@@ -5,12 +5,12 @@ import { Mail, ExternalLink } from 'lucide-react';
 
 const footerLinks = {
   company: [
-    { label: 'About Us', href: '#' },
-    { label: 'PressKit', href: '#' },
-    { label: 'Contact Us', href: '#' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'Contact Us', href: '/contact' },
   ],
   support: [
-    { label: 'Support', href: '#' },
+    { label: 'Support', href: '/contact' },
     { label: 'FAQ', href: '#' },
   ],
 };
@@ -70,7 +70,7 @@ export default function Footer() {
               <span className="font-bold text-lg text-foreground">CSID</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4 max-w-sm">
-              Center for Sustainability and Inclusive Development — structured climate education grounded in the Adaptive Thematic Framework™.
+              Center for Sustainability &amp; Inclusive Development — structured, research-backed climate education for learners and professionals worldwide.
             </p>
             <div className="flex items-center gap-1 text-xs text-muted-foreground mb-3">
               <Mail size={13} />
@@ -96,7 +96,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-sm font-600 font-semibold text-foreground mb-4 tracking-wide uppercase">Company</h4>
+            <h4 className="text-sm font-semibold text-foreground mb-4 tracking-wide uppercase">Company</h4>
             <ul className="space-y-2.5">
               {footerLinks?.company?.map((link) => (
                 <li key={`footer-company-${link?.label}`}>
@@ -128,12 +128,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground">
-            © 2026 CSID — Center for Sustainability and Inclusive Development. All rights reserved.
+            © 2026 CSID — Center for Sustainability &amp; Inclusive Development. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            Course content sourced from the{' '}
-            <span className="text-primary font-medium">Adaptive Thematic Framework™</span>
-            {' '}by Arciteq Capital.
+            Empowering action for a sustainable and inclusive future.
           </p>
         </div>
       </div>

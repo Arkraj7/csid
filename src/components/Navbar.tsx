@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import AppLogo from '@/components/ui/AppLogo';
-import { Sun, Moon, Globe, ChevronDown, Menu, X, User, Settings, LogIn, BookOpen, TrendingUp, Award } from 'lucide-react';
+import { Sun, Moon, Globe, ChevronDown, Menu, X, User, Settings, LogIn, BookOpen, TrendingUp, Award, Briefcase } from 'lucide-react';
 
 interface NavbarProps {
   currentPath?: string;
@@ -10,6 +10,7 @@ interface NavbarProps {
 
 const navLinks = [
   { label: 'Courses', labelHi: 'पाठ्यक्रम', href: '/courses', icon: BookOpen },
+  { label: 'Careers', labelHi: 'करियर', href: '/careers', icon: Briefcase },
   { label: 'My Progress', labelHi: 'मेरी प्रगति', href: '/progress', icon: TrendingUp },
   { label: 'Get Pro', labelHi: 'प्रो पाएं', href: '/payments', icon: Award },
 ];

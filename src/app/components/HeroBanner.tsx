@@ -23,19 +23,19 @@ export default function HeroBanner() {
             {/* Tag */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-5">
               <Leaf size={12} />
-              Adaptive Thematic Framework™ — April 2026
+              Center for Sustainability &amp; Inclusive Development
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-5 text-balance">
-              Navigate the{' '}
+              Empowering Action for a{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                Climate Economy
+                Sustainable and Inclusive
               </span>
-              {' '}with Confidence
+              {' '}Future.
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl">
-              CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — built on the Adaptive Thematic Framework™ by Arciteq Capital.
+              CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change.
             </p>
 
             {/* Pillars row */}
@@ -70,11 +70,11 @@ export default function HeroBanner() {
             <div className="flex flex-wrap items-center gap-5 mt-8 text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-primary inline-block" />
-                2,400+ learners enrolled
+                500+ active learners
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-secondary inline-block" />
-                9 structured chapters
+                150+ research modules
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-accent inline-block" />

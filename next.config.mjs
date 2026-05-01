@@ -1,44 +1,22 @@
-import { imageHosts } from './image-hosts.config.mjs';
+// next.config.mjs
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  productionBrowserSourceMaps: true,
-  distDir: process.env.DIST_DIR || '.next',
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // 1. Enable static HTML export
+  output: 'export',
+  
+  // 2. Add trailing slashes to all paths (required by GitHub Pages)
+  trailingSlash: true,
+
+  // 3. Set the basePath and assetPrefix to your repository name
+  // CRITICAL: Replace 'csid' with the EXACT name of your GitHub repository
+  basePath: '/csid',
+  assetPrefix: '/csid',
+
+  // 4. Disable the default image optimization API as it requires a Node.js server
   images: {
-    remotePatterns: imageHosts,
-    minimumCacheTTL: 60,
-  },
-  webpack(
-    config,
-    {
-      dev: dev
-    }
-  ) {
-    config.module.rules.push({
-      test: /\.(jsx|tsx)$/,
-      exclude: [/node_modules/],
-      use: [{
-        loader: '@dhiwise/component-tagger/nextLoader',
-      }],
-    });
-    if (dev) {
-      const ignoredPaths = (process.env.WATCH_IGNORED_PATHS || '')
-        .split(',')
-        .map((p) => p.trim())
-        .filter(Boolean);
-      config.watchOptions = {
-        ignored: ignoredPaths.length
-          ? ignoredPaths.map((p) => `**/${p.replace(/^\/+|\/+$/g, '')}/**`)
-          : undefined,
-      };
-    }
-    return config;
+    unoptimized: true,
   },
 };
+
 export default nextConfig;

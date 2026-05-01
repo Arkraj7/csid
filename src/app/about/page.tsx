@@ -52,8 +52,8 @@ export default function AboutPage() {
                   <p className="text-lg font-bold text-foreground">Arkraj Biswas</p>
                   <p className="text-sm text-primary font-medium">Founder &amp; Director, CSID</p>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  [Short introductory bio — focusing on background in environmental science, agricultural sciences, and experience in environmental governance. Please replace this placeholder with your actual bio.]
+                <p className="text-sm text-muted-foreground leading-relaxed">Arkraj Biswas is an environmental and climate researcher whose work sits at the crossroads of climate resilience, geospatial analysis, and public policy. He currently serves as a Research Associate at National CAMPA, under the Ministry of Environment, Forest and Climate Change (MoEFCC), Government of India
+
                 </p>
                 <div className="flex flex-wrap gap-2 pt-1">
                   {['Environmental Science', 'Agricultural Sciences', 'Environmental Governance', 'Climate Policy']?.map((tag) =>

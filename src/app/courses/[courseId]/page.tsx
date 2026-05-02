@@ -1,16 +1,20 @@
 import CoursesPageClient from '../components/CoursesPageClient';
 
-// 1. Tell Next.js exactly what courses exist so it can build them statically
 export function generateStaticParams() {
   return [
     { courseId: 'climate-101' },
-    // Add future course IDs here
+    // Add any other course IDs you create here
   ];
 }
 
-// 2. Use a standard Async Server Component for Next.js 15
-export default async function CoursePage(props: { params: Promise<{ courseId: string }> }) {
-  const params = await props.params;
+type Props = {
+  params: Promise<{ courseId: string }>;
+};
+
+export default async function CoursePage({ params }: Props) {
+  // We resolve the params just to satisfy Next.js 15 routing rules
+  const resolvedParams = await params;
   
-  return <CoursesPageClient courseId={params.courseId} />;
+  // We removed the courseId prop because CoursesPageClient doesn't need it!
+  return <CoursesPageClient />;
 }

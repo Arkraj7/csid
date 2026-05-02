@@ -1,6 +1,3 @@
-'use client';
-
-import { use } from 'react';
 import Link from 'next/link';
 
 // Mock data structure - replace with your actual data fetching/loading
@@ -18,11 +15,18 @@ const courseContent = {
   }
 };
 
-export default function ChapterPage(props: { params: Promise<{ courseId: string; chapterId: string }> }) {
-  // In Next.js 15, we must unwrap the params Promise using the use() hook
-  const params = use(props.params);
-  const courseId = params.courseId;
-  const chapterId = params.chapterId;
+// 1. Tell Next.js exactly what chapters exist for the static export
+export function generateStaticParams() {
+  return [
+    { courseId: 'climate-101', chapterId: '1' },
+    { courseId: 'climate-101', chapterId: '2' },
+  ];
+}
+
+// 2. Use a standard Async Server Component for Next.js 15
+export default async function ChapterPage(props: { params: Promise<{ courseId: string; chapterId: string }> }) {
+  const params = await props.params;
+  const { courseId, chapterId } = params;
 
   const course = courseContent[courseId as keyof typeof courseContent];
   const chapter = course?.chapters[chapterId as keyof typeof course.chapters];

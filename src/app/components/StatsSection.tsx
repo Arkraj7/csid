@@ -2,10 +2,10 @@ import React from 'react';
 import { Users, BookOpen, Award, Globe } from 'lucide-react';
 
 const stats = [
-  { icon: Users, value: '2,400+', label: 'Active Learners', color: 'text-primary' },
-  { icon: BookOpen, value: '9', label: 'Course Chapters', color: 'text-secondary' },
-  { icon: Award, value: '₹49', label: 'Certificate Cost', color: 'text-accent' },
-  { icon: Globe, value: '2', label: 'Languages', color: 'text-earth' },
+  { icon: Users, value: '500+', label: 'Active Learners', color: 'text-primary' },
+  { icon: BookOpen, value: '150+', label: 'Research Modules', color: 'text-secondary' },
+  { icon: Award, value: '25+', label: 'Global Experts', color: 'text-accent' },
+  { icon: Globe, value: '200+', label: 'Certifications Issued', color: 'text-earth' },
 ];
 
 export default function StatsSection() {

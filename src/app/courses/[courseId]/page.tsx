@@ -44,8 +44,13 @@ const courseCatalog: Record<string, CourseInfo> = {
   },
 };
 
-export default function CoursePage({ params }: { params: { courseId: string } }) {
-  const { courseId } = params;
+import { use } from 'react'; // <-- Make sure this is at the very top of your file
+
+export default function CoursePage({ params }: { params: Promise<{ courseId: string }> }) {
+  const unwrappedParams = use(params);
+  const courseId = unwrappedParams.courseId;
+  
+  // ... leave the rest of your existing code exactly as it is!  const { courseId } = params;
   const course = courseCatalog[courseId];
 
   if (!course) {

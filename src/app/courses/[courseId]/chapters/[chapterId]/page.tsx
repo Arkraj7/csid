@@ -15,7 +15,6 @@ const courseContent = {
   }
 };
 
-// 1. Tell Next.js exactly what chapters exist for the static export
 export function generateStaticParams() {
   return [
     { courseId: 'climate-101', chapterId: '1' },
@@ -23,10 +22,13 @@ export function generateStaticParams() {
   ];
 }
 
-// 2. Use a standard Async Server Component for Next.js 15
-export default async function ChapterPage(props: { params: Promise<{ courseId: string; chapterId: string }> }) {
-  const params = await props.params;
-  const { courseId, chapterId } = params;
+type Props = {
+  params: Promise<{ courseId: string; chapterId: string }>;
+};
+
+export default async function ChapterPage({ params }: Props) {
+  const resolvedParams = await params;
+  const { courseId, chapterId } = resolvedParams;
 
   const course = courseContent[courseId as keyof typeof courseContent];
   const chapter = course?.chapters[chapterId as keyof typeof course.chapters];

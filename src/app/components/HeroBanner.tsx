@@ -16,6 +16,7 @@ export default function HeroBanner() {
       <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-teal-50/60 to-emerald-50 dark:from-green-950/40 dark:via-teal-950/30 dark:to-emerald-950/20" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/4" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
+      
       <div className="relative max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
@@ -84,20 +85,14 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          {/* Right: Visual Graphic */}
+          {/* Right: Visual Graphic (The Bouncing Books) */}
           <div className="hidden lg:flex items-center justify-center relative">
             <div className="hero-graphic-container">
-              {/* The Girl Image */}
               <img 
-                src="/csid/assets/images/reading-girl.png" 
-                alt="Girl reading book" 
-                className="hero-image drop-shadow-2xl" 
+                src="/csid/assets/images/hero-books.png" 
+                alt="Students learning on stacked books" 
+                className="hero-image-bouncing" 
               />
-              
-              {/* The 3 Bubbles */}
-              <div className="bubble bubble-1"></div>
-              <div className="bubble bubble-2"></div>
-              <div className="bubble bubble-3"></div>
             </div>
           </div>
 

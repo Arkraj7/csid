@@ -1,19 +1,19 @@
 import React from 'react';
-import { CheckCircle2, BookOpen, FileText } from 'lucide-react';
+import { CheckCircle2, BookOpen, BookMarked } from 'lucide-react';
 
 export default function WhyChooseSection() {
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Main White Card Container */}
+        {/* NEW "Built on Frameworks" Text ONLY */}
         <div className="bg-card border border-border rounded-[2rem] p-8 md:p-12 lg:p-16 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            {/* Left Side: Text and Checks */}
+            {/* Left Side: New Text and Checks */}
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-xs font-semibold mb-6">
-                <FileText size={14} />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-xs font-semibold mb-6">
+                <BookMarked size={14} />
                 Peer-Reviewed
               </div>
               
@@ -40,18 +40,24 @@ export default function WhyChooseSection() {
               </ul>
             </div>
 
-            {/* Right Side: The Light Green "6 Modules" Box */}
-            <div className="bg-primary/5 border border-primary/10 rounded-3xl p-10 md:p-14 text-center flex flex-col items-center justify-center h-full">
-              <div className="mb-6 text-primary">
-                <BookOpen size={64} strokeWidth={1.5} />
+            {/* Right Side: The "6 Modules" Box */}
+            <div className="bg-primary/5 border border-primary/10 rounded-3xl p-10 md:p-14 text-center flex flex-col items-center justify-center h-full relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-5">
+                <BookOpen size={200} />
               </div>
-              <div className="text-7xl md:text-8xl font-bold text-primary mb-4">6</div>
-              <p className="text-xl md:text-2xl text-foreground font-semibold mb-3">
-                Comprehensive Modules
-              </p>
-              <p className="text-sm md:text-base text-muted-foreground max-w-[280px] mx-auto">
-                Carefully structured and curated by the Center for Sustainability &amp; Inclusive Development (CSID)
-              </p>
+
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 mx-auto">
+                  <BookOpen size={32} />
+                </div>
+                <div className="text-7xl md:text-8xl font-bold text-primary mb-4">6</div>
+                <p className="text-xl md:text-2xl text-foreground font-semibold mb-3">
+                  Comprehensive Modules
+                </p>
+                <p className="text-sm md:text-base text-muted-foreground max-w-[280px] mx-auto">
+                  Carefully structured and curated by the Center for Sustainability &amp; Inclusive Development (CSID)
+                </p>
+              </div>
             </div>
 
           </div>

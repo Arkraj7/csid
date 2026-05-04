@@ -59,7 +59,8 @@
     "react-dom": "19.0.3",
     "react-hook-form": "^7.74.0",
     "recharts": "^2.15.2",
-    "sonner": "^1.7.4"
+    "sonner": "^1.7.4",
+    "gsap": "^3.12.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

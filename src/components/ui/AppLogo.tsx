@@ -1,50 +1,32 @@
-'use client';
+import React from 'react';
 
-import React, { memo, useMemo } from 'react';
-import AppIcon from './AppIcon';
-import AppImage from './AppImage';
-
-interface AppLogoProps {
-  src?: string; // Image source (optional)
-  iconName?: string; // Icon name when no image
-  size?: number; // Size for icon/image
-  className?: string; // Additional classes
-  onClick?: () => void; // Click handler
-}
-
-const AppLogo = memo(function AppLogo({
-  src = '/assets/images/app_logo.png',
-  iconName = 'SparklesIcon',
-  size = 64,
-  className = '',
-  onClick,
-}: AppLogoProps) {
-  // Memoize className calculation
-  const containerClassName = useMemo(() => {
-    const classes = ['flex items-center'];
-    if (onClick) classes.push('cursor-pointer hover:opacity-80 transition-opacity');
-    if (className) classes.push(className);
-    return classes.join(' ');
-  }, [onClick, className]);
-
+export default function AppLogo({ className = "w-12 h-12" }: { className?: string }) {
   return (
-    <div className={containerClassName} onClick={onClick}>
-      {/* Show image if src provided, otherwise show icon */}
-      {src ? (
-        <AppImage
-          src={src}
-          alt="Logo" 
-          width={size}
-          height={size}
-          className="flex-shrink-0"
-          priority={true}
-          unoptimized={src.endsWith('.svg')}
-        />
-      ) : (
-        <AppIcon name={iconName} size={size} className="flex-shrink-0" />
-      )}
-    </div>
-  );
-});
+    <svg
+      viewBox="0 0 200 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      // The multiply blend mode gives it that authentic overlapping shadow effect
+      style={{ mixBlendMode: 'normal' }} 
+    >
+      {/* Left Circle (Teal / Mitigation) */}
+      <g style={{ mixBlendMode: 'multiply' }}>
+        <circle cx="60" cy="60" r="60" fill="#014241" />
+        <circle cx="60" cy="60" r="48" fill="#03726f" />
+        <circle cx="60" cy="60" r="36" fill="#109e99" />
+        <circle cx="60" cy="60" r="24" fill="#32ded6" />
+        <circle cx="60" cy="60" r="12" fill="#c2ffff" />
+      </g>
 
-export default AppLogo;
+      {/* Right Circle (Gold / Finance) */}
+      <g style={{ mixBlendMode: 'multiply' }}>
+        <circle cx="140" cy="60" r="60" fill="#4f3000" />
+        <circle cx="140" cy="60" r="48" fill="#8a5400" />
+        <circle cx="140" cy="60" r="36" fill="#cc8200" />
+        <circle cx="140" cy="60" r="24" fill="#ffb300" />
+        <circle cx="140" cy="60" r="12" fill="#ffee99" />
+      </g>
+    </svg>
+  );
+}

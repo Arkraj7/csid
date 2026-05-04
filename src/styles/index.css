@@ -1,36 +1,68 @@
-@import './tailwind.css';
-
-/* --- HERO IMAGE ANIMATION & GLOW --- */
-.hero-graphic-container {
+/* --- DILMAYS PARALLAX HERO GRAPHIC --- */
+.dilmays-container {
   position: relative;
   width: 100%;
-  max-width: 550px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 550px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  background-color: #a4c5d5; /* Sky fallback color */
 }
 
-.hero-image-bouncing {
+/* Layer the images perfectly */
+.parallax-item {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  display: block;
-  /* The slow, gentle 6-second infinite bounce */
-  animation: slowBounce 6s ease-in-out infinite; 
-  
-  /* A soft, standard shadow for Light Mode */
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1));
-  transition: filter 0.4s ease;
+  height: 100%;
 }
 
-/* 🌙 The Radium Glow specifically for Dark Mode */
-.dark .hero-image-bouncing {
-  /* A bright, neon "radium" green/emerald glow that hugs the PNG shapes */
-  filter: drop-shadow(0 0 35px rgba(16, 185, 129, 0.6)); 
+.parallax-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
 }
 
-/* Keyframes for the gentle float up and down */
-@keyframes slowBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+/* Z-indexes to stack them back-to-front */
+.parallax-sky { z-index: 1; }
+.parallax-mountains { z-index: 2; }
+.parallax-castle { z-index: 3; }
+.parallax-tree { z-index: 4; }
+
+/* Dilmays Overlay Text inside the graphic */
+.dilmays-overlay {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 60px 30px 30px;
+  background: linear-gradient(to top, rgba(20, 30, 48, 0.95) 0%, rgba(20, 30, 48, 0.4) 60%, transparent 100%);
+  color: #FDFAF7;
+  text-align: left;
+}
+
+.dilmays-subtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #f5c560;
+  margin-bottom: 8px;
+}
+
+.dilmays-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.dilmays-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #cbd5e1;
 }

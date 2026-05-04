@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroBanner from '@/app/components/HeroBanner';
-import WhyChooseSection from '@/app/components/WhyChooseSection';
 import BadgeTabsSection from '@/app/components/BadgeTabsSection';
 import CoursePreviewSection from '@/app/components/CoursePreviewSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
@@ -16,9 +15,8 @@ export default function HomePage() {
       <main>
         <HeroBanner />
         <StatsSection />
-        <WhyChooseSection />
-        <BadgeTabsSection />
         <CoursePreviewSection />
+        <BadgeTabsSection />
         <TestimonialsSection />
         <CertificatePreviewSection />
       </main>

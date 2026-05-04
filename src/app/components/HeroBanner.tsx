@@ -1,5 +1,8 @@
-import React from 'react';
+"use client"; // Required for GSAP and useEffect in Next.js
+
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import gsap from 'gsap';
 import { ArrowRight, Leaf, Droplets, Shield, Hammer, Play } from 'lucide-react';
 
 const pillars = [
@@ -10,6 +13,28 @@ const pillars = [
 ];
 
 export default function HeroBanner() {
+  const treeRef = useRef(null);
+  const castleRef = useRef(null);
+  const mountainsRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    // 1. Initial Setup: Push elements down
+    gsap.set(treeRef.current, { y: 100 });
+    gsap.set(castleRef.current, { y: 150 });
+    gsap.set(mountainsRef.current, { y: 200 });
+    gsap.set(textRef.current, { y: 30, autoAlpha: 0 });
+
+    // 2. The Free GSAP Entrance Animation Timeline
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    tl.to(mountainsRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0)
+      .to(castleRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.2)
+      .to(treeRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.4)
+      .to(textRef.current, { y: 0, autoAlpha: 1, duration: 1, ease: "power2.out" }, 0.8);
+
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-hero-pattern">
       {/* Gradient background */}
@@ -20,9 +45,8 @@ export default function HeroBanner() {
       <div className="relative max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left: Text */}
+          {/* Left: Your CSID Text */}
           <div className="animate-fade-in">
-            {/* Tag */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-5">
               <Leaf size={12} />
               Center for Sustainability &amp; Inclusive Development
@@ -40,7 +64,6 @@ export default function HeroBanner() {
               CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change.
             </p>
 
-            {/* Pillars row */}
             <div className="flex flex-wrap gap-2 mb-8">
               {pillars?.map((p) => (
                 <span
@@ -53,7 +76,6 @@ export default function HeroBanner() {
               ))}
             </div>
 
-            {/* CTAs */}
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/courses"
@@ -68,7 +90,6 @@ export default function HeroBanner() {
               </button>
             </div>
 
-            {/* Trust indicators */}
             <div className="flex flex-wrap items-center gap-5 mt-8 text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-primary inline-block" />
@@ -85,14 +106,32 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          {/* Right: Visual Graphic (The Bouncing Books) */}
-          <div className="hidden lg:flex items-center justify-center relative">
-            <div className="hero-graphic-container">
-              <img 
-                src="/csid/assets/images/hero-books.png" 
-                alt="Students learning on stacked books" 
-                className="hero-image-bouncing" 
-              />
+          {/* Right: Dilmays Parallax Animation */}
+          <div className="hidden lg:block w-full">
+            <div className="dilmays-container">
+              {/* Parallax Image Layers */}
+              <div className="parallax-item parallax-sky">
+                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-sky.png" alt="Sky" />
+              </div>
+              <div className="parallax-item parallax-mountains" ref={mountainsRef}>
+                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-moutains.png" alt="Mountains" />
+              </div>
+              <div className="parallax-item parallax-castle" ref={castleRef}>
+                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-castle.png" alt="Castle" />
+              </div>
+              <div className="parallax-item parallax-tree" ref={treeRef}>
+                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png" alt="Tree" />
+              </div>
+              
+              {/* Text Overlay */}
+              <div className="dilmays-overlay" ref={textRef}>
+                <div className="dilmays-subtitle">The Good Knight</div>
+                <div className="dilmays-title">The Story of the Dilmays Kingdom</div>
+                <div className="dilmays-desc">
+                  King Olav is old and has only his kingdom. His daughter was kidnapped 
+                  by the dragon Liuf. He has declared five trials: strength, honesty, generosity, courage, and sympathy.
+                </div>
+              </div>
             </div>
           </div>
 

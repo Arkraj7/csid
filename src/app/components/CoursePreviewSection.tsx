@@ -1,166 +1,128 @@
 import React from 'react';
 import Link from 'next/link';
-import { BookOpen, Clock, BarChart2, ArrowRight, Leaf, Droplets, Shield, Hammer, Lock } from 'lucide-react';
-
-const previewCourses = [
-  {
-    id: 'course-atf-001',
-    title: 'Understanding the Climate Economy: The Adaptive Thematic Framework™',
-    subtitle: 'A structured exploration of mitigation, adaptation, resilience, and recovery',
-    pillar: 'All Pillars',
-    pillarIcon: BookOpen,
-    pillarClass: 'bg-primary/10 text-primary',
-    chapters: 9,
-    level: 'Beginner to Intermediate',
-    duration: '3–4 hours',
-    status: 'available',
-    description: 'Learn how the global climate economy is structured across four pillars — and why $1.7 trillion of annual investment is concentrated in just one of them.',
-  },
-  {
-    id: 'course-mit-002',
-    title: 'Climate Mitigation Fundamentals',
-    subtitle: 'Renewable energy, EVs, hydrogen, and industrial decarbonisation',
-    pillar: 'Mitigation',
-    pillarIcon: Leaf,
-    pillarClass: 'pillar-mitigation',
-    chapters: 7,
-    level: 'Beginner',
-    duration: '2–3 hours',
-    status: 'coming-soon',
-    description: 'A deep dive into the dominant pillar of climate investment — the technologies, policies, and capital flows driving the energy transition.',
-  },
-  {
-    id: 'course-ada-003',
-    title: 'Adaptation Strategies for Infrastructure',
-    subtitle: 'Flood management, water systems, and coastal protection',
-    pillar: 'Adaptation',
-    pillarIcon: Droplets,
-    pillarClass: 'pillar-adaptation',
-    chapters: 6,
-    level: 'Intermediate',
-    duration: '2–3 hours',
-    status: 'coming-soon',
-    description: 'Explore the underfunded pillar — how infrastructure must adapt to a changed climate, and the $307B annual financing gap that needs to be closed.',
-  },
-  {
-    id: 'course-res-004',
-    title: 'Building Climate Resilience',
-    subtitle: 'Grid hardening, wildfire systems, storm-resistant infrastructure',
-    pillar: 'Resilience',
-    pillarIcon: Shield,
-    pillarClass: 'pillar-resilience',
-    chapters: 6,
-    level: 'Intermediate',
-    duration: '2–3 hours',
-    status: 'coming-soon',
-    description: 'Understand how risk-driven capital is being deployed to harden systems against climate shocks — and why this pillar is structurally underrepresented.',
-  },
-  {
-    id: 'course-rec-005',
-    title: 'Climate Recovery & Reconstruction',
-    subtitle: 'Disaster response, rebuilding frameworks, insurance-linked finance',
-    pillar: 'Recovery',
-    pillarIcon: Hammer,
-    pillarClass: 'pillar-recovery',
-    chapters: 5,
-    level: 'Advanced',
-    duration: '2 hours',
-    status: 'coming-soon',
-    description: 'The event-driven pillar — how communities and economies rebuild after climate disasters, and the role of insurance-linked capital in financing recovery.',
-  },
-];
+import { ArrowRight, BookOpen, Clock, BarChart, ShieldCheck, Library } from 'lucide-react';
 
 export default function CoursePreviewSection() {
   return (
-    <section className="py-16 md:py-20 bg-background">
-      <div className="max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16">
-        {/* Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-          <div>
-            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3">
-              Course Catalog
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Explore Our Courses</h2>
-            <p className="text-muted-foreground text-base max-w-lg">
-              Start with the flagship ATF™ course — more courses covering each climate pillar are coming soon.
+    <section className="py-20 md:py-28 bg-muted/30">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Top Header Section */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:items-end justify-between mb-16">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Built on Published Climate Frameworks
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              All CSID courses are built on published climate frameworks, research papers, and global policy documents. The curriculum synthesises data from leading academic climate finance literature to provide actionable, real-world knowledge.
             </p>
+            
+            <div className="flex flex-wrap gap-3 mt-6">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background border border-border text-xs font-medium text-muted-foreground shadow-sm">
+                <Library size={14} className="text-primary" />
+                Published Climate Frameworks
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background border border-border text-xs font-medium text-muted-foreground shadow-sm">
+                <ShieldCheck size={14} className="text-primary" />
+                Peer-Reviewed Research
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background border border-border text-xs font-medium text-muted-foreground shadow-sm">
+                <BookOpen size={14} className="text-primary" />
+                Global Policy Documents
+              </span>
+            </div>
           </div>
-          <Link
-            href="/courses"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
-          >
-            View All Courses
-            <ArrowRight size={15} />
-          </Link>
+
+          <div className="flex-shrink-0">
+            <p className="text-sm font-semibold text-foreground mb-2">Explore Our Courses</p>
+            <p className="text-sm text-muted-foreground mb-4 max-w-xs">
+              Start with our flagship curriculum — more courses covering each climate pillar are coming soon.
+            </p>
+            <Link 
+              href="/courses" 
+              className="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors"
+            >
+              View All Courses <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
 
-        {/* Course cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-          {previewCourses?.map((course) => {
-            const isAvailable = course?.status === 'available';
-            return (
-              <div
-                key={course?.id}
-                className={`bg-card rounded-xl border border-border overflow-hidden card-hover ${!isAvailable ? 'opacity-80' : ''}`}
-              >
-                {/* Card header */}
-                <div className={`p-4 ${isAvailable ? 'bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-950/20 dark:to-teal-950/20' : 'bg-muted/50'}`}>
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${course?.pillarClass}`}>
-                      <course.pillarIcon size={11} />
-                      {course?.pillar}
-                    </span>
-                    {!isAvailable && (
-                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-muted text-muted-foreground text-xs font-medium">
-                        <Lock size={10} />
-                        Coming Soon
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="font-semibold text-foreground text-sm leading-snug mb-1 line-clamp-2">{course?.title}</h3>
-                  <p className="text-xs text-muted-foreground">{course?.subtitle}</p>
+        {/* Featured Course Card */}
+        <div className="bg-card rounded-2xl border border-border shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+          <div className="grid grid-cols-1 lg:grid-cols-5">
+            
+            {/* Course Info */}
+            <div className="p-8 md:p-10 lg:col-span-3 flex flex-col justify-center">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-6 w-max">
+                All Pillars
+              </div>
+              
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+                Climate Finance &amp; Investing
+              </h3>
+              
+              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                Explore our new standalone curriculum covering carbon markets, ESG frameworks, and the future of global climate finance. Learn how the global climate economy is structured and how capital is mobilized for the net-zero transition.
+              </p>
+              
+              <div className="flex flex-wrap items-center gap-6 mb-8 text-sm text-muted-foreground font-medium">
+                <div className="flex items-center gap-2">
+                  <BookOpen size={18} className="text-primary" />
+                  <span>6 Chapters</span>
                 </div>
-                {/* Card body */}
-                <div className="p-4">
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-4">{course?.description}</p>
-
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-                    <span className="flex items-center gap-1">
-                      <BookOpen size={12} />
-                      {course?.chapters} chapters
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} />
-                      {course?.duration}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <BarChart2 size={12} />
-                      {course?.level}
-                    </span>
-                  </div>
-
-                  {isAvailable ? (
-                    <Link
-                      href="/courses"
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-150 active:scale-95"
-                    >
-                      Start Course
-                      <ArrowRight size={14} />
-                    </Link>
-                  ) : (
-                    <button
-                      disabled
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-muted text-muted-foreground text-sm font-medium cursor-not-allowed"
-                    >
-                      <Lock size={13} />
-                      Coming Soon
-                    </button>
-                  )}
+                <div className="flex items-center gap-2">
+                  <Clock size={18} className="text-primary" />
+                  <span>4–5 hours</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <BarChart size={18} className="text-primary" />
+                  <span>Intermediate to Advanced</span>
                 </div>
               </div>
-            );
-          })}
+              
+              <div>
+                <a 
+                  href="/csid/climate-finance.html" 
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-all shadow-md active:scale-95"
+                >
+                  Start Course Now <ArrowRight size={16} />
+                </a>
+              </div>
+            </div>
+            
+            {/* Visual/Feature side */}
+            <div className="bg-primary/5 lg:col-span-2 p-8 md:p-10 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-border relative overflow-hidden">
+              <div className="absolute -right-12 -bottom-12 opacity-5">
+                <Leaf size={250} />
+              </div>
+              
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 text-primary">
+                  <ShieldCheck size={24} />
+                </div>
+                <h4 className="text-xl font-bold text-foreground mb-3">Research-Backed Learning</h4>
+                <p className="text-muted-foreground mb-6">
+                  Every module is grounded in real frameworks and published climate finance research curated by the Center for Sustainability &amp; Inclusive Development (CSID).
+                </p>
+                
+                <ul className="space-y-3">
+                  {['Comprehensive Modules', 'Interactive Assessments', 'Verifiable Certificate'].map((feature, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm font-medium text-foreground">
+                      <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            
+          </div>
         </div>
+
       </div>
     </section>
   );

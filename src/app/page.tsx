@@ -15,6 +15,7 @@ export default function HomePage() {
       <main>
         <HeroBanner />
         <StatsSection />
+        {/* CoursePreviewSection now ONLY contains the Recent Uploads card */}
         <CoursePreviewSection />
         <BadgeTabsSection />
         <TestimonialsSection />

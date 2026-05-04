@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Climate Finance & Investing — CSID</title>
+<link rel="icon" href="https://arkraj7.github.io/assets/images/app_logo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --green-dark: #1a3a2a;
+  --green-mid: #2d5f42;
+  --green-light: #3d7a58;
+  --amber: #e8a020;
+  --amber-light: #f5c560;
+  --cream: #faf7f2;
+  --cream-dark: #f0ebe1;
+  --text-dark: #1a1a1a;
+  --text-mid: #4a4a4a;
+  --text-light: #7a7a7a;
+  --border: #e0d8cc;
+  --white: #ffffff;
+  --pass: #2d7a4a;
+  --fail: #c0392b;
+  --radius: 12px;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo { display:flex; align-items:center; gap:.6rem; text-decoration:none; }
+.nav-logo img { height:36px; }
+.nav-logo span { font-weight:600; color:var(--green-dark); font-size:.95rem; line-height:1.2; }
+.nav-logo small { display:block; font-size:.72rem; color:var(--text-light); font-weight:400; }
+.nav-links { display:flex; gap:2rem; }
+.nav-links a { text-decoration:none; color:var(--text-mid); font-size:.9rem; font-weight:500; transition:color .2s; }
+.nav-links a:hover { color:var(--green-mid); }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-light) 100%);
+  color: var(--white);
+  padding: 4rem 2rem 3rem;
+}
+.hero-inner { max-width: 960px; margin: 0 auto; }
+.hero-tags { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.2rem; }
+.tag {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  color: var(--white);
+  border-radius: 20px;
+  padding: .25rem .85rem;
+  font-size: .78rem;
+  font-weight:500;
+  letter-spacing: .03em;
+}
+.tag.amber { background: var(--amber); border-color: var(--amber); color: var(--green-dark); }
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.2;
+  margin-bottom: .8rem;
+}
+.hero-sub { font-size: 1.05rem; opacity:.85; max-width:680px; margin-bottom:2rem; }
+.hero-stats { display:flex; gap:2.5rem; flex-wrap:wrap; }
+.stat-item { text-align:center; }
+.stat-num { font-family:'DM Serif Display',serif; font-size:2rem; color:var(--amber-light); display:block; }
+.stat-label { font-size:.78rem; opacity:.75; }
+
+/* ── LAYOUT ── */
+.layout { max-width:960px; margin:0 auto; padding:3rem 1.5rem; display:grid; grid-template-columns:1fr 300px; gap:2.5rem; }
+@media(max-width:768px){ .layout{grid-template-columns:1fr; } }
+
+/* ── SIDEBAR ── */
+.sidebar { position:sticky; top:80px; height:fit-content; }
+.card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.5rem;
+  box-shadow:var(--shadow);
+  margin-bottom:1.2rem;
+}
+.card h3 { font-size:.9rem; font-weight:600; color:var(--green-dark); margin-bottom:1rem; text-transform:uppercase; letter-spacing:.06em; }
+.progress-bar-wrap { background:var(--cream-dark); border-radius:99px; height:8px; margin-bottom:.5rem; }
+.progress-bar { background:var(--green-mid); height:8px; border-radius:99px; transition:width .5s ease; }
+.progress-label { font-size:.82rem; color:var(--text-light); }
+.chapter-nav { list-style:none; }
+.chapter-nav li { margin-bottom:.4rem; }
+.chapter-nav a {
+  display:flex; align-items:center; gap:.7rem;
+  padding:.5rem .7rem;
+  border-radius:8px;
+  text-decoration:none;
+  color:var(--text-mid);
+  font-size:.85rem;
+  font-weight:500;
+  transition:all .2s;
+}
+.chapter-nav a:hover { background:var(--cream-dark); color:var(--green-dark); }
+.chapter-nav a.active { background:var(--green-dark); color:var(--white); }
+.chapter-nav a.done { color:var(--pass); }
+.ch-icon { width:22px; height:22px; border-radius:50%; border:2px solid currentColor; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.7rem; }
+.ch-icon.done { background:var(--pass); border-color:var(--pass); color:white; }
+
+/* ── MAIN CONTENT ── */
+.main-content {}
+.chapter-panel { display:none; }
+.chapter-panel.active { display:block; }
+
+.chapter-header {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.chapter-number { font-size:.8rem; font-weight:600; color:var(--green-light); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem; }
+.chapter-title { font-family:'DM Serif Display',serif; font-size:1.7rem; color:var(--green-dark); margin-bottom:.6rem; }
+.chapter-meta { display:flex; gap:1.2rem; font-size:.82rem; color:var(--text-light); flex-wrap:wrap; }
+
+.content-block {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.phase-label {
+  display:inline-block;
+  background: var(--green-dark);
+  color: var(--amber-light);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:.3rem .8rem;
+  border-radius:4px;
+  margin-bottom:1rem;
+}
+.content-block h2 { font-family:'DM Serif Display',serif; font-size:1.25rem; color:var(--green-dark); margin-bottom:1rem; }
+.content-block h3 { font-weight:600; color:var(--green-dark); margin:1.4rem 0 .6rem; font-size:1rem; }
+.content-block p { color:var(--text-mid); margin-bottom:.9rem; font-size:.94rem; }
+.content-block ul, .content-block ol { margin:.6rem 0 1rem 1.5rem; color:var(--text-mid); font-size:.94rem; }
+.content-block li { margin-bottom:.4rem; }
+.content-block strong { color:var(--text-dark); }
+
+.key-term {
+  background: var(--cream);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 8px 8px 0;
+  padding: .8rem 1.2rem;
+  margin: 1rem 0;
+  font-size:.9rem;
+}
+.key-term strong { color:var(--green-dark); }
+
+/* ── QUIZ ── */
+.quiz-section {
+  background: var(--white);
+  border: 2px solid var(--green-dark);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.quiz-header { display:flex; align-items:center; gap:.8rem; margin-bottom:1.5rem; }
+.quiz-icon { background:var(--green-dark); color:var(--amber-light); width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.quiz-header h3 { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--green-dark); }
+.quiz-header p { font-size:.82rem; color:var(--text-light); }
+.question-block { margin-bottom:1.8rem; }
+.question-text { font-weight:600; color:var(--text-dark); margin-bottom:.9rem; font-size:.95rem; line-height:1.5; }
+.options-list { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
+.option-btn {
+  width:100%;
+  text-align:left;
+  padding:.75rem 1rem;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  background:var(--cream);
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  font-size:.9rem;
+  color:var(--text-dark);
+  transition:all .2s;
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+}
+.option-btn:hover:not(:disabled) { border-color:var(--green-light); background:var(--white); }
+.option-btn.selected { border-color:var(--green-mid); background:#e8f5ee; }
+.option-btn.correct { border-color:var(--pass); background:#e8f5ee; color:var(--pass); }
+.option-btn.wrong { border-color:var(--fail); background:#fdecea; color:var(--fail); }
+.option-btn.reveal-correct { border-color:var(--pass); background:#e8f5ee; }
+.option-letter { width:26px; height:26px; border-radius:50%; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; flex-shrink:0; }
+.explanation { margin-top:.7rem; padding:.7rem 1rem; background:var(--cream); border-radius:8px; font-size:.85rem; color:var(--text-mid); display:none; }
+.explanation.show { display:block; }
+.quiz-actions { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-top:1rem; }
+.btn {
+  padding:.7rem 1.5rem;
+  border-radius:8px;
+  font-family:'DM Sans',sans-serif;
+  font-size:.9rem;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+  transition:all .2s;
+}
+.btn-primary { background:var(--green-dark); color:var(--white); }
+.btn-primary:hover { background:var(--green-mid); }
+.btn-primary:disabled { background:var(--border); color:var(--text-light); cursor:not-allowed; }
+.btn-secondary { background:transparent; border:1.5px solid var(--green-dark); color:var(--green-dark); }
+.btn-secondary:hover { background:var(--green-dark); color:var(--white); }
+.btn-amber { background:var(--amber); color:var(--green-dark); }
+.btn-amber:hover { background:var(--amber-light); }
+.quiz-result {
+  display:none;
+  padding:1.2rem;
+  border-radius:8px;
+  text-align:center;
+  margin-top:1rem;
+}
+.quiz-result.pass { background:#e8f5ee; border:1.5px solid var(--pass); color:var(--pass); }
+.quiz-result.fail { background:#fdecea; border:1.5px solid var(--fail); color:var(--fail); }
+.quiz-result h4 { font-size:1.1rem; font-family:'DM Serif Display',serif; margin-bottom:.3rem; }
+.quiz-result p { font-size:.85rem; opacity:.85; }
+.quiz-result.show { display:block; }
+
+/* ── FINAL EXAM ── */
+.final-panel { display:none; }
+.final-panel.active { display:block; }
+.final-hero {
+  background:linear-gradient(135deg,var(--green-dark),var(--green-light));
+  color:white;
+  border-radius:var(--radius);
+  padding:2.5rem;
+  text-align:center;
+  margin-bottom:1.5rem;
+}
+.final-hero h2 { font-family:'DM Serif Display',serif; font-size:1.8rem; margin-bottom:.5rem; }
+.final-hero p { opacity:.85; max-width:500px; margin:0 auto 1.5rem; font-size:.95rem; }
+.final-req { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; }
+.final-req-item { text-align:center; }
+.final-req-item strong { display:block; font-size:1.4rem; color:var(--amber-light); font-family:'DM Serif Display',serif; }
+.final-req-item span { font-size:.8rem; opacity:.75; }
+
+/* ── CERTIFICATE ── */
+.certificate-panel { display:none; text-align:center; padding:2rem; }
+.certificate-panel.active { display:block; }
+.cert-box {
+  background:var(--white);
+  border:3px solid var(--green-dark);
+  border-radius:var(--radius);
+  padding:3rem;
+  max-width:700px;
+  margin:0 auto 2rem;
+  position:relative;
+  overflow:hidden;
+}
+.cert-box::before {
+  content:'';
+  position:absolute; inset:8px;
+  border:1px solid var(--amber);
+  border-radius:8px;
+  pointer-events:none;
+}
+.cert-logo { height:50px; margin-bottom:1rem; }
+.cert-org { font-size:.85rem; color:var(--text-light); letter-spacing:.1em; text-transform:uppercase; margin-bottom:2rem; }
+.cert-title-label { font-size:.8rem; color:var(--text-light); }
+.cert-name { font-family:'DM Serif Display',serif; font-size:2rem; color:var(--green-dark); margin:.3rem 0 1.5rem; }
+.cert-course { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--green-mid); margin-bottom:.5rem; }
+.cert-desc { font-size:.85rem; color:var(--text-light); margin-bottom:2rem; }
+.cert-details { display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:1.2rem; flex-wrap:wrap; gap:1rem; }
+.cert-detail { text-align:center; }
+.cert-detail strong { display:block; color:var(--green-dark); font-size:.9rem; }
+.cert-detail span { font-size:.75rem; color:var(--text-light); }
+.cert-badge { background:var(--green-dark); color:var(--amber-light); padding:.4rem 1rem; border-radius:20px; font-size:.75rem; font-weight:600; letter-spacing:.05em; }
+.download-area { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem; }
+
+/* ── NEXT CHAPTER BANNER ── */
+.next-chapter {
+  background: linear-gradient(90deg, var(--green-dark), var(--green-mid));
+  color: white;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.next-chapter p { font-size:.85rem; opacity:.8; }
+.next-chapter h4 { font-weight:600; }
+
+/* ── LOCKED OVERLAY ── */
+.locked-banner {
+  background: var(--cream-dark);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+.locked-banner .lock-icon { font-size: 2rem; margin-bottom:.5rem; }
+
+/* ── SCORE BADGE ── */
+.score-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  padding:.3rem .8rem;
+  border-radius:20px;
+  font-size:.78rem;
+  font-weight:600;
+}
+.score-badge.pass { background:#e8f5ee; color:var(--pass); border:1px solid var(--pass); }
+.score-badge.fail { background:#fdecea; color:var(--fail); border:1px solid var(--fail); }
+.score-badge.pending { background:var(--cream); color:var(--text-light); border:1px solid var(--border); }
+
+/* ── CHAPTER COMPLETE MODAL ── */
+.modal-overlay {
+  display:none;
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:1rem;
+}
+.modal-overlay.show { display:flex; }
+.modal-box {
+  background:var(--white);
+  border-radius:var(--radius);
+  padding:2.5rem;
+  max-width:440px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+.modal-icon { font-size:3rem; margin-bottom:.8rem; }
+.modal-box h3 { font-family:'DM Serif Display',serif; font-size:1.5rem; color:var(--green-dark); margin-bottom:.5rem; }
+.modal-box p { color:var(--text-mid); font-size:.9rem; margin-bottom:1.5rem; }
+.modal-actions { display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
+
+/* ── NAME INPUT ── */
+.name-form {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:2rem;
+  max-width:500px;
+  margin:2rem auto;
+  text-align:center;
+}
+.name-form h3 { font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--green-dark); margin-bottom:.5rem; }
+.name-form p { font-size:.85rem; color:var(--text-light); margin-bottom:1.2rem; }
+.name-input {
+  width:100%;
+  padding:.8rem 1rem;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  font-family:'DM Sans',sans-serif;
+  font-size:1rem;
+  margin-bottom:1rem;
+  color:var(--text-dark);
+  background:var(--cream);
+}
+.name-input:focus { outline:none; border-color:var(--green-mid); }
+
+/* Utils */
+.text-center { text-align:center; }
+.mt-1 { margin-top:1rem; }
+.mb-0 { margin-bottom:0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://arkraj7.github.io/csid/">
+    <img src="https://arkraj7.github.io/assets/images/app_logo.png" alt="CSID"/>
+    <span>CSID <small>Sustainability &amp; Inclusive Dev</small></span>
+  </a>
+  <div class="nav-links">
+    <a href="https://arkraj7.github.io/csid/courses/">Courses</a>
+    <a href="https://arkraj7.github.io/csid/progress/">My Progress</a>
+    <a href="https://arkraj7.github.io/csid/payments/">Get Pro</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tags">
+      <span class="tag">All Pillars</span>
+      <span class="tag">Intermediate to Advanced</span>
+      <span class="tag amber">New Course</span>
+    </div>
+    <h1>Climate Finance &amp; Investing</h1>
+    <p class="hero-sub">A rigorous, research-backed curriculum spanning macroeconomics, multilateral funds, carbon markets, ESG frameworks, dMRV technology, and the future of global climate finance.</p>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Chapters</span></div>
+      <div class="stat-item"><span class="stat-num">24</span><span class="stat-label">Phases</span></div>
+      <div class="stat-item"><span class="stat-num">60</span><span class="stat-label">Chapter MCQs</span></div>
+      <div class="stat-item"><span class="stat-num">15</span><span class="stat-label">Final Exam Qs</span></div>
+      <div class="stat-item"><span class="stat-num">4–5h</span><span class="stat-label">Total Duration</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="card">
+      <h3>Your Progress</h3>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="globalProgressBar" style="width:0%"></div></div>
+      <div class="progress-label" id="globalProgressLabel">0 / 6 chapters complete</div>
+    </div>
+    <div class="card">
+      <h3>Chapters</h3>
+      <ul class="chapter-nav" id="chapterNav">
+        <li><a href="#" onclick="showChapter(0,event)" id="nav-0" class="active">
+          <span class="ch-icon" id="nav-icon-0">1</span> Macroeconomics of Climate Change
+        </a></li>
+        <li><a href="#" onclick="showChapter(1,event)" id="nav-1">
+          <span class="ch-icon" id="nav-icon-1">2</span> Multilateral Climate Funds &amp; Policy
+        </a></li>
+        <li><a href="#" onclick="showChapter(2,event)" id="nav-2">
+          <span class="ch-icon" id="nav-icon-2">3</span> Carbon Markets &amp; Trading
+        </a></li>
+        <li><a href="#" onclick="showChapter(3,event)" id="nav-3">
+          <span class="ch-icon" id="nav-icon-3">4</span> Corporate Sustainability &amp; ESG
+        </a></li>
+        <li><a href="#" onclick="showChapter(4,event)" id="nav-4">
+          <span class="ch-icon" id="nav-icon-4">5</span> Innovations: dMRV &amp; Blockchain
+        </a></li>
+        <li><a href="#" onclick="showChapter(5,event)" id="nav-5">
+          <span class="ch-icon" id="nav-icon-5">6</span> Future of Global Climate Finance
+        </a></li>
+        <li><a href="#" onclick="showFinal(event)" id="nav-final">
+          <span class="ch-icon" id="nav-icon-final">🏆</span> Final Assessment
+        </a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Certificate</h3>
+      <p style="font-size:.82rem;color:var(--text-light);margin-bottom:.8rem;">Complete all chapters and pass the final exam (≥70%) to earn your certificate.</p>
+      <button class="btn btn-amber" style="width:100%" onclick="showCertificate()">View Certificate</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- ════════════════════════════════════════════
+         CHAPTER 1: MACROECONOMICS OF CLIMATE CHANGE
+    ═══════════════════════════════════════════════ -->
+    <div class="chapter-panel active" id="chapter-0">
+      <div class="chapter-header">
+        <div class="chapter-number">Chapter 1 · 45 min</div>
+        <div class="chapter-title">The Macroeconomics of Climate Change</div>
+        <div class="chapter-meta">
+          <span>📚 4 Phases</span><span>📍 Foundational</span>
+          <span id="ch-score-0" class="score-badge pending">Not started</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 1</div>
+        <h2>The Macro-Criticality of Climate Change: Physical and Transition Risks</h2>
+        <p>For decades, traditional macroeconomic theory treated climate change as a peripheral environmental externality. However, contemporary research by the World Bank, IMF, and the Network for Greening the Financial System (NGFS) has demonstrated that climate-related risks are deeply <strong>macro-critical</strong>. Climate change reshapes aggregate supply, aggregate demand, inflation dynamics, and global financial stability.</p>
+        <h3>Physical Risks</h3>
+        <p>Physical risks manifest in two forms: <strong>chronic shifts</strong> (gradual sea-level rise, temperature increases eroding agricultural yields) and <strong>acute events</strong> (cyclones, floods, wildfires). Acute physical risks act as severe supply-side shocks — destroying physical capital, damaging infrastructure, and reducing total factor productivity (TFP).</p>
+        <div class="key-term"><strong>World Bank CCDRs:</strong> Under a "dry/hot" scenario, Malawi faces 12.8% GDP loss by 2050, Mali 10.7%, and Guinea-Bissau 7.7% — demonstrating the sovereign debt sustainability threat of unmitigated physical risks.</div>
+        <h3>Transition Risks</h3>
+        <p>Transition risks emerge from policy, legal, and technological shifts required to achieve net-zero. <strong>Carbon pricing</strong> (taxes or ETS) internalizes the Social Cost of Carbon (SCC) and acts as a negative supply-side shock in the short run. <strong>Green subsidies</strong> (e.g., the US $750B Inflation Reduction Act) act as both demand and supply shocks.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 2</div>
+        <h2>Technical Mechanisms: Blended Capital, dMRV, and Market Infrastructure</h2>
+        <p><strong>Blended finance</strong> strategically deploys concessional public capital (junior/subordinated tranches) to catalyze private investment. By absorbing first-loss risk, MCFs upgrade project credit profiles, enabling commercial lenders to participate in senior debt tranches at investment-grade levels.</p>
+        <h3>Article 6 and Carbon Market Infrastructure</h3>
+        <p>Article 6 of the Paris Agreement establishes rules for cross-border carbon trading. Under <strong>Article 6.2</strong>, countries trade <em>Internationally Transferred Mitigation Outcomes (ITMOs)</em>. The <strong>Corresponding Adjustment (CA)</strong> mechanism prevents double-counting by requiring host countries to add exported reductions back to their own inventory.</p>
+        <div class="key-term"><strong>dMRV:</strong> Digital Monitoring, Reporting, and Verification — integrates IoT, AI, satellite imagery, and blockchain to automate data collection and lower transaction costs for carbon finance.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 3</div>
+        <h2>Implementation: Policy Trilemmas and Green Transition Challenges</h2>
+        <p>The EU has emphasized carbon pricing via the Emissions Trading System (ETS), while the US and China favor subsidy-based approaches. Carbon pricing generates different macroeconomic outcomes depending on how revenues are recycled — targeted transfers to low-income households significantly cushion output losses.</p>
+        <h3>Border Carbon Adjustments</h3>
+        <p>The EU's <strong>Carbon Border Adjustment Mechanism (CBAM)</strong> entered a transitional phase in late 2023. BCAs counter carbon leakage by applying tariffs on carbon-intensive imports, but impose negative macroeconomic shocks on exporting EMDEs with weaker climate policies.</p>
+        <h3>Stranded Assets</h3>
+        <p>A 10% increase in climate policy uncertainty reduces firm investment by approximately 2–3% in the same year. An abrupt transition risks generating a massive portfolio of stranded assets — triggering financial contagion if carbon-intensive collateral loses value suddenly.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 4</div>
+        <h2>Synthesis: Macroeconomics of Climate Finance</h2>
+        <p>Climate change is a profound, macro-critical variable. Physical risks destroy capital stock and threaten sovereign debt sustainability. Transition risks generate stranded assets and financial contagion if unmanaged. DSGE and IAM frameworks remain essential for central banks to simulate non-linear climate shocks.</p>
+        <p>Carbon pricing corrects market failures but presents negative supply shocks. Green subsidies stimulate clean innovation but carry fiscal implications. BCAs protect domestic competitiveness but shift transition burdens onto emerging markets.</p>
+        <p>Robust market infrastructure — Article 6 accounting, dMRV systems, and mandatory ESG reporting — is the foundation for mobilizing the trillions required to secure a resilient, net-zero global economy.</p>
+      </div>
+
+      <!-- Chapter 1 Quiz -->
+      <div class="quiz-section" id="quiz-0">
+        <div class="quiz-header">
+          <div class="quiz-icon">📝</div>
+          <div>
+            <h3>Chapter 1 Quiz</h3>
+            <p>10 questions · Pass threshold: 70% · Complete to unlock Chapter 2</p>
+          </div>
+        </div>
+        <div id="q0-questions"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" onclick="submitQuiz(0)" id="submit-0">Submit Answers</button>
+          <button class="btn btn-secondary" onclick="retryQuiz(0)" id="retry-0" style="display:none">Retry Quiz</button>
+        </div>
+        <div class="quiz-result" id="result-0"></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         CHAPTER 2: MULTILATERAL CLIMATE FUNDS
+    ═══════════════════════════════════════════════ -->
+    <div class="chapter-panel" id="chapter-1">
+      <div class="chapter-header">
+        <div class="chapter-number">Chapter 2 · 45 min</div>
+        <div class="chapter-title">Multilateral Climate Funds &amp; Public Policy</div>
+        <div class="chapter-meta">
+          <span>📚 4 Phases</span><span>📍 Intermediate</span>
+          <span id="ch-score-1" class="score-badge pending">Not started</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 1</div>
+        <h2>The Institutional Architecture of Global Climate Finance</h2>
+        <p>Achieving Paris Agreement targets requires moving from "billions to trillions" in climate investment. This task cannot rely on domestic budgets alone — <strong>Multilateral Climate Funds (MCFs)</strong> bridge the gap between international public policy and private financial markets.</p>
+        <h3>The Big Four MCFs</h3>
+        <p>The four major MCFs have collectively approved <strong>USD 34 billion</strong> in direct financing, generating <strong>USD 176.2 billion</strong> in co-financing across 2,287 projects in 145 countries.</p>
+        <ul>
+          <li><strong>Green Climate Fund (GCF):</strong> Largest fund; USD 19.3B invested; 50/50 mitigation/adaptation split; 420+ partners; drives paradigm shift toward low-emission resilience.</li>
+          <li><strong>Global Environment Facility (GEF):</strong> USD 26B+ in grants; USD 149B mobilized; systemic approach integrating biodiversity, land degradation, and climate.</li>
+          <li><strong>Climate Investment Funds (CIF):</strong> USD 12.5B pledged; works through MDBs; "systems approach" using concessional funding to de-risk hard-to-finance sectors.</li>
+          <li><strong>Adaptation Fund (AF):</strong> USD 1.27B committed; pioneered "Direct Access" modality, bypassing international intermediaries and building local capacity.</li>
+        </ul>
+        <div class="key-term"><strong>India's CAMPA:</strong> A prime example of domestic public policy mobilizing climate capital — forest diversion funds are legally channeled into ecological restoration, reducing reliance on international donors.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 2</div>
+        <h2>Technical Mechanisms: Blended Capital and Sovereign Debt Solutions</h2>
+        <p>Blended finance alters the <strong>capital stack</strong> of projects. MCFs inject concessional capital into junior/subordinated tranches, absorbing first-loss risk. This upgrades senior debt tranches to investment-grade (BBB- or higher), enabling pension funds and insurance companies to legally invest.</p>
+        <div class="key-term"><strong>Lendable MSME Fintech Credit Fund II:</strong> 60% of capital subordinated through junior tranches → investment-grade rating for senior debt → attracted fully commercial institutional investors.</div>
+        <h3>Advanced Sovereign Instruments</h3>
+        <p><strong>Synthetic securitization</strong> allows MDBs to transfer credit risk from loan portfolios to private investors, freeing balance sheet capacity for new green loans. <strong>Debt-for-Climate (DFC) swaps</strong> cancel/refinance sovereign debt in exchange for binding commitments to invest debt service savings in climate action.</p>
+        <div class="key-term"><strong>2023 Ecuador DFC Swap:</strong> Converted USD 1.6B of commercial debt to a USD 656M loan via "blue bonds," backed by IDB guarantee and USDFC insurance — increasing marine reserve protection by 60,000 km².</div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 3</div>
+        <h2>Implementation: Roadblocks, Scaling, and Policy Intersections</h2>
+        <p>A primary MCF challenge is maintaining "clear line of sight" between transformational goals and localized projects. Evaluations of CIF's SREP and FIP programs reveal tension between funding pilot technologies and driving national sectoral transformation.</p>
+        <h3>Institutional Readiness</h3>
+        <p>EMDEs often lack the technical, fiduciary, and administrative frameworks to design bankable projects. GCF Readiness Programmes and AF Direct Access modality address this by building local capacity and embedding adaptive practices into sovereign governance structures.</p>
+        <h3>Policy Intersections with Carbon Markets</h3>
+        <p>When state subsidies fund CDR technologies (e.g., BECCS) while developers also sell VCM credits for the same outcomes, "regulatory additionality" becomes contested. Paris-aligned baselines must prevent double-claiming of state-funded achievements by private carbon buyers.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 4</div>
+        <h2>Synthesis: Multilateral Climate Funds and Public Policy</h2>
+        <p>MCFs serve as sophisticated financial engineers. Blended finance — injecting concessional capital into subordinated tranches — is the core mechanism for mobilizing institutional capital at scale. Synthetic securitization and DFC swaps expand fiscal headroom for vulnerable nations.</p>
+        <p>The mandate of <strong>Transformational Change (TC)</strong> — deep, systemic shifts in a system's form, function, or process — requires bridging the implementation gap through institutional capacity building and the AF's Direct Access modality.</p>
+        <p>dMRV systems and mandatory ESG frameworks (ESRS/CSRD, ISSB) ensure that public and private capital driving the green economy is transparent, scalable, and genuinely tied to Paris Agreement objectives.</p>
+      </div>
+
+      <div class="quiz-section" id="quiz-1">
+        <div class="quiz-header">
+          <div class="quiz-icon">📝</div>
+          <div>
+            <h3>Chapter 2 Quiz</h3>
+            <p>10 questions · Pass threshold: 70% · Complete to unlock Chapter 3</p>
+          </div>
+        </div>
+        <div id="q1-questions"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" onclick="submitQuiz(1)" id="submit-1">Submit Answers</button>
+          <button class="btn btn-secondary" onclick="retryQuiz(1)" id="retry-1" style="display:none">Retry Quiz</button>
+        </div>
+        <div class="quiz-result" id="result-1"></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         CHAPTER 3: CARBON MARKETS
+    ═══════════════════════════════════════════════ -->
+    <div class="chapter-panel" id="chapter-2">
+      <div class="chapter-header">
+        <div class="chapter-number">Chapter 3 · 50 min</div>
+        <div class="chapter-title">Carbon Markets, Pricing &amp; Trading Mechanisms</div>
+        <div class="chapter-meta">
+          <span>📚 4 Phases</span><span>📍 Intermediate</span>
+          <span id="ch-score-2" class="score-badge pending">Not started</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 1</div>
+        <h2>Foundations of Carbon Pricing: Internalizing Externalities</h2>
+        <p>Greenhouse gas emission is a classic market failure — a negative externality. Carbon pricing corrects this by attaching a financial cost to each tonne of CO₂e. In the short term, carbon pricing acts as a negative supply-side shock; in the long term, it drives <strong>directed technical change</strong> toward low-carbon technologies.</p>
+        <h3>Carbon Taxes vs. ETS</h3>
+        <ul>
+          <li><strong>Carbon tax:</strong> Price-based; fixed cost per tonne; market determines quantity of reductions; greater output volatility over business cycle.</li>
+          <li><strong>ETS (cap-and-trade):</strong> Quantity-based; declining cap creates scarcity; market determines price; operates countercyclically as an automatic economic stabilizer.</li>
+        </ul>
+        <p>Currently, approximately <strong>25% of global GHG emissions</strong> are covered by explicit carbon pricing policies. In 2024, compliance carbon market trading reached <strong>USD 950 billion</strong>. EU allowance prices ranged between €60–€100+ per tonne in 2023–2025.</p>
+        <h3>Voluntary Carbon Markets (VCMs)</h3>
+        <p>Valued at ~USD 2B in 2023. Uses a "baseline-and-credit" model. Credits are heterogeneous — older renewable energy avoidance credits may trade under $1, while high-quality engineered removal credits command $100+ per tonne. Foundational requirement: <strong>additionality</strong>.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 2</div>
+        <h2>Article 6 Architecture: ITMOs and Accounting Integrity</h2>
+        <p>Article 6 of the Paris Agreement bridges compliance and voluntary markets through rigorous accounting protocols.</p>
+        <h3>Article 6.2: Corresponding Adjustments</h3>
+        <p>Allows bilateral/multilateral trade of <strong>Internationally Transferred Mitigation Outcomes (ITMOs)</strong>. The <strong>Corresponding Adjustment (CA)</strong> prevents double-claiming: when a host country exports an ITMO, it adds that reduction back to its own GHG inventory; the buying country subtracts it from theirs.</p>
+        <h3>Article 6.4: Paris Agreement Crediting Mechanism (PACM)</h3>
+        <p>Replaces the Kyoto CDM with enhanced rigor. Two types of units:</p>
+        <ul>
+          <li><strong>Authorized A6.4ERs:</strong> Require Corresponding Adjustment; can be used toward NDCs or CORSIA compliance.</li>
+          <li><strong>Mitigation Contribution Units (MCUs):</strong> Non-authorized; no CA required; emission reduction stays on host country's ledger; allows corporations to make "mitigation contribution" claims without disrupting host NDC achievement.</li>
+        </ul>
+        <div class="key-term"><strong>OMGE &amp; SOP:</strong> Article 6.4 mandates a 2% mandatory cancellation of all issued A6.4ERs (OMGE) and a 5% Share of Proceeds (SOP) levy deposited into the UN Adaptation Fund.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 3</div>
+        <h2>Implementation: CDM Transition, Policy Overlaps, and Market Integrity</h2>
+        <p>The transition from the CDM to the PACM is not a rebranding — it is a fundamental restructuring. Legacy static baselines are replaced by dynamic, conservative baselines that must fall "below business as usual." The International Transaction Log (ITL) administration closes by end of September 2026.</p>
+        <h3>Regulatory Additionality and BECCS</h3>
+        <p>Sweden's state-subsidized BECCS facilities illustrate the additionality dilemma: if capital expenditures are heavily subsidized, VCM buyers must prove the carbon market revenue was genuinely required for project viability. Failure to demonstrate this constitutes double-claiming of state-funded achievements.</p>
+        <h3>ESG Integration and MCU Claims</h3>
+        <p>Corporations purchasing MCUs can make credible "climate contribution" claims — demonstrating results-based finance and technology transfer — without claiming carbon neutrality. The ICVCM's Core Carbon Principles and VCMI's Claims Codes of Practice standardize these claims to prevent greenwashing.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 4</div>
+        <h2>Synthesis: Carbon Markets and Trading Mechanisms</h2>
+        <p>Compliance markets provide a legally enforced, USD 950B+ regulatory floor driving industrial decarbonization. VCMs channel risk capital into nature-based solutions and nascent CDR technologies. Article 6 intertwines both through ITMO trading, Corresponding Adjustments, and the PACM's OMGE mechanism.</p>
+        <p>The CDM-to-PACM transition introduces significant regulatory risk during the transitional period. State subsidies intersecting with VCM finance require stringent additionality proof. MCUs enable a new corporate claim paradigm aligned with NDC achievement in the Global South.</p>
+        <p>Ultimately, every ton of carbon financed must be permanently removed and verifiably tracked — making the deployment of dMRV infrastructure a non-negotiable prerequisite for institutional-grade carbon markets.</p>
+      </div>
+
+      <div class="quiz-section" id="quiz-2">
+        <div class="quiz-header">
+          <div class="quiz-icon">📝</div>
+          <div>
+            <h3>Chapter 3 Quiz</h3>
+            <p>10 questions · Pass threshold: 70%</p>
+          </div>
+        </div>
+        <div id="q2-questions"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" onclick="submitQuiz(2)" id="submit-2">Submit Answers</button>
+          <button class="btn btn-secondary" onclick="retryQuiz(2)" id="retry-2" style="display:none">Retry Quiz</button>
+        </div>
+        <div class="quiz-result" id="result-2"></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         CHAPTER 4: ESG REPORTING
+    ═══════════════════════════════════════════════ -->
+    <div class="chapter-panel" id="chapter-3">
+      <div class="chapter-header">
+        <div class="chapter-number">Chapter 4 · 50 min</div>
+        <div class="chapter-title">Corporate Sustainability &amp; ESG Reporting Frameworks</div>
+        <div class="chapter-meta">
+          <span>📚 4 Phases</span><span>📍 Intermediate</span>
+          <span id="ch-score-3" class="score-badge pending">Not started</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 1</div>
+        <h2>From Voluntary Frameworks to Mandatory Standards</h2>
+        <p>ESG reporting has shifted from voluntary guidelines allowing selective disclosure and greenwashing to <strong>legally binding financial disclosure standards</strong>. Key distinction:</p>
+        <ul>
+          <li><strong>Frameworks:</strong> High-level principles (e.g., TCFD); significant room for interpretation.</li>
+          <li><strong>Standards:</strong> Specific, structured rules dictating exact metrics (e.g., ISSB standards).</li>
+          <li><strong>Regulations:</strong> Legally binding mandates with enforcement deadlines (e.g., CSRD).</li>
+        </ul>
+        <h3>TCFD and ISSB</h3>
+        <p>TCFD (est. 2015) established four core categories: Governance, Strategy, Risk Management, and Metrics &amp; Targets. By 2022, 58% of surveyed companies aligned with ≥5 of 11 TCFD recommendations (up from 18% in 2020). In 2024, the IFRS Foundation assumed TCFD monitoring, marking its end as an independent entity.</p>
+        <p><strong>IFRS S1</strong> covers all sustainability-related financial information. <strong>IFRS S2</strong> mandates mandatory <strong>Scope 3 GHG emission</strong> reporting — which often constitutes 70–90% of a firm's total carbon footprint. Both apply to annual periods beginning January 1, 2024.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 2</div>
+        <h2>Technical Mechanisms: Double Materiality, Scope 3, and Scenario Analysis</h2>
+        <p>The EU's CSRD/ESRS mandates <strong>Double Materiality</strong> — a dual-axis assessment:</p>
+        <ul>
+          <li><strong>Financial Materiality (Outside-In):</strong> How external sustainability issues affect firm enterprise value.</li>
+          <li><strong>Impact Materiality (Inside-Out):</strong> How the firm's operations impact the external environment and communities.</li>
+        </ul>
+        <p>If material under either perspective → must be disclosed. This legally compels fossil fuel companies to report ecological externalities, enabling accurate pricing of "carbon tail risk."</p>
+        <h3>SFDR and Scope 3 Complexity</h3>
+        <p>SFDR categorizes funds: <strong>Article 6</strong> (no sustainability scope), <strong>Article 8</strong> ("light green"), <strong>Article 9</strong> ("dark green"). Scope 3 calculation requires API-driven carbon accounting software, supply chain databases, and complex emission factors — daunting for multinationals with thousands of global suppliers.</p>
+        <h3>Climate Scenario Analysis</h3>
+        <p>Firms must stress-test balance sheets against multiple warming pathways: a <strong>1.5°C orderly transition</strong> (high transition risk, low physical risk) vs. a <strong>3°C+ BAU scenario</strong> (catastrophic physical risks, delayed policy). Real estate sector: 18 industry-based disclosures under IFRS S2.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 3</div>
+        <h2>Implementation: Jurisdictional Overlaps and Mitigating Greenwashing</h2>
+        <p>Under ISSB standards, ESG disclosures must be published simultaneously with traditional financial statements — eliminating the historical practice of un-audited sustainability reports months later. Spend-based Scope 3 proxies are highly inaccurate; switching to a more expensive low-carbon supplier paradoxically increases proxy-based emissions.</p>
+        <h3>Jurisdictional Interoperability</h3>
+        <p>A multinational may simultaneously face CSRD (Double Materiality) and ISSB IFRS S2 (Financial Materiality) obligations. GRI and ISSB have published interoperability guidance to prevent duplicative compliance burdens.</p>
+        <h3>AI and Blockchain Against Greenwashing</h3>
+        <p>Attention-based CNNs classify and validate green finance flows. Blockchain provides decentralized, immutable accounting for ESG claims. Smart contract integration with dMRV systems allows corporations to cryptographically prove environmental impact — providing regulators with tamper-proof evidence of sustainability claims.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 4</div>
+        <h2>Synthesis: Corporate Sustainability &amp; ESG Frameworks</h2>
+        <p>Mandatory ESG reporting is the foundational regulatory infrastructure that drives institutional capital into green technologies. IFRS S1/S2 and the EU's CSRD/ESRS create a comprehensive global framework moving from voluntary guidelines to legally binding standards enforced at the jurisdiction level.</p>
+        <p>Double Materiality legally compels disclosure of ecological externalities. Scope 3 accounting drives demand for high-fidelity supply chain data and VCM integration. Climate scenario analysis forces quantification of stranded asset risk across corporate portfolios.</p>
+        <p>Corporations purchasing MCUs under Article 6.4 must make transparent "mitigation contribution" claims — not carbon neutrality claims — ensuring environmental integrity of the Paris Agreement architecture remains inviolable.</p>
+      </div>
+
+      <div class="quiz-section" id="quiz-3">
+        <div class="quiz-header">
+          <div class="quiz-icon">📝</div>
+          <div>
+            <h3>Chapter 4 Quiz</h3>
+            <p>10 questions · Pass threshold: 70%</p>
+          </div>
+        </div>
+        <div id="q3-questions"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" onclick="submitQuiz(3)" id="submit-3">Submit Answers</button>
+          <button class="btn btn-secondary" onclick="retryQuiz(3)" id="retry-3" style="display:none">Retry Quiz</button>
+        </div>
+        <div class="quiz-result" id="result-3"></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         CHAPTER 5: dMRV AND BLOCKCHAIN
+    ═══════════════════════════════════════════════ -->
+    <div class="chapter-panel" id="chapter-4">
+      <div class="chapter-header">
+        <div class="chapter-number">Chapter 5 · 50 min</div>
+        <div class="chapter-title">Innovations in Climate Tech: dMRV &amp; Blockchain in Green Assets</div>
+        <div class="chapter-meta">
+          <span>📚 4 Phases</span><span>📍 Advanced</span>
+          <span id="ch-score-4" class="score-badge pending">Not started</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 1</div>
+        <h2>The Digital Disruption of Carbon Markets: From MRV to dMRV</h2>
+        <p>Traditional MRV — manual data collection, static spreadsheets, infrequent on-site audits by third-party auditors — is slow, costly, and prone to error, delaying credit issuance by months or years. <strong>Digital MRV (dMRV)</strong> automates this by integrating IoT, smart sensors, cloud computing, remote sensing, and AI.</p>
+        <h3>dMRV for Nature-Based Solutions</h3>
+        <p>Satellites capture continuous multispectral imagery. AI/ML algorithms automatically estimate above-ground biomass and carbon sequestration volumes. <strong>LiDAR</strong> (Light Detection and Ranging) creates 3D point clouds of forest canopy for empirical ground-truth data. Acoustic monitoring uses AI to analyze wildlife vocalizations for biodiversity metrics.</p>
+        <div class="key-term"><strong>Sylvera:</strong> Deploys proprietary ML on multispectral satellite data + LiDAR scans to rate nature-based carbon credits. Raised USD 32M in VC to expand dMRV infrastructure — validating institutional demand for tech-driven ratings.</div>
+        <h3>Industrial dMRV</h3>
+        <p>EBRD protocol for renewable energy: IoT-enabled solar installations report electricity generation in real-time. Chile waste-to-energy landfills: digital sensors log real-time gas flow → automated GHG calculations → remote verification.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 2</div>
+        <h2>Technical Architecture: Algorithmic Verification, DLT &amp; Smart Contracts</h2>
+        <p>End-to-end digitalization operates across four integrated layers:</p>
+        <ul>
+          <li><strong>Layer 1 — Data Acquisition:</strong> IoT sensors + bi-directional smart meters → APIs → secure cloud (EBRD protocol: Level 1 grid meters, Level 2 inverters, Level 3 pyranometers).</li>
+          <li><strong>Layer 2 — AI/ML Processing:</strong> ACNNs (Attention-based Convolutional Neural Networks) with Financial Filtered Graphs classify data as "auto-approved," "pending," or "rejected" — human auditors review only flagged anomalies.</li>
+          <li><strong>Layer 3 — DLT &amp; Tokenization:</strong> Verified reductions minted as digital assets (ERC-20 standard on Polygon/Base). Metadata embedded: methodology, location, verification, vintage. Fractionalization to kilogram-level for granular use cases.</li>
+          <li><strong>Layer 4 — Smart Contracts:</strong> Self-executing code bridges verified ecological impact to automated financial settlement. GROVE Forestry Smart Ledger: smart contract releases GRO-coins to community developers when AI verifies mangrove carbon sequestration targets are met.</li>
+        </ul>
+        <div class="key-term"><strong>Carbonmark (2025):</strong> Issued tokenized ocean alkalinity enhancement credits from Limenet, enabling DeFi integration — carbon as collateral in green lending protocols and instant settlement in digital currencies.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 3</div>
+        <h2>Implementation: Digital Divide, Cybersecurity &amp; Policy Friction</h2>
+        <p>The most immediate roadblock is the <strong>digital divide</strong> — high-potential nature-based sequestration projects are in remote developing regions lacking internet connectivity, IoT hardware access, and local technical capacity. Initial CapEx for dMRV deployment is prohibitive for many local project developers.</p>
+        <h3>Data Privacy and Cybersecurity</h3>
+        <p>Household-level dMRV (rooftop solar, clean cooking) captures sensitive personal and location data. Robust cybersecurity (end-to-end encryption, decentralized storage, multi-factor authentication) is essential. Consumer consent and cryptographic anonymization before on-chain recording are required.</p>
+        <h3>Regulatory Friction and Methodological Adaptation</h3>
+        <p>Legacy standards bodies (Verra, Gold Standard) were designed for manual ex-post auditing. The EBRD dMRV protocol demonstrates the path forward: transitioning from project-by-project human audits to <strong>system-wide certification of the underlying algorithms</strong>. Chile's IOTA Tangle landfill pilot integrates verified data directly into the national GHG inventory, demonstrating API interoperability with sovereign reporting obligations.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 4</div>
+        <h2>Synthesis: Climate Tech Innovations and Digital Green Assets</h2>
+        <p>Trust is the foundational prerequisite of climate finance. dMRV + blockchain replaces analog estimates with continuous, empirical, cryptographically secured data — providing the infrastructure to confidently price climate risk and scale carbon sequestration economics.</p>
+        <p>The four-layer architecture (IoT → AI/ML → DLT → Smart Contracts) enables near-real-time credit issuance, fraud-proof audit trails, and frictionless automated settlement. Tokenization enables fractionalization to kilogram-level precision, unlocking entirely new use cases for granular carbon retirement.</p>
+        <p>Successful implementation requires: targeted multilateral capacity-building grants to bridge the digital divide; regulatory evolution to certify algorithmic verification; API integration between private dMRV registries and national GHG inventories for accurate Corresponding Adjustment execution under Article 6.</p>
+      </div>
+
+      <div class="quiz-section" id="quiz-4">
+        <div class="quiz-header">
+          <div class="quiz-icon">📝</div>
+          <div>
+            <h3>Chapter 5 Quiz</h3>
+            <p>10 questions · Pass threshold: 70%</p>
+          </div>
+        </div>
+        <div id="q4-questions"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" onclick="submitQuiz(4)" id="submit-4">Submit Answers</button>
+          <button class="btn btn-secondary" onclick="retryQuiz(4)" id="retry-4" style="display:none">Retry Quiz</button>
+        </div>
+        <div class="quiz-result" id="result-4"></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         CHAPTER 6: FUTURE OF CLIMATE FINANCE
+    ═══════════════════════════════════════════════ -->
+    <div class="chapter-panel" id="chapter-5">
+      <div class="chapter-header">
+        <div class="chapter-number">Chapter 6 · 40 min</div>
+        <div class="chapter-title">The Future of Global Climate Finance</div>
+        <div class="chapter-meta">
+          <span>📚 3 Phases</span><span>📍 Advanced</span>
+          <span id="ch-score-5" class="score-badge pending">Not started</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 1</div>
+        <h2>Scaling the Green Transition: Structural Challenges and Emerging Frontiers</h2>
+        <p>The green transition faces a monumental financing gap. Annual climate investment (~USD 1.7T) is concentrated almost entirely in mitigation — adaptation, resilience, and recovery remain structurally underfunded. The path from current investment to the trillions required by 2030 demands fundamental shifts in how capital is structured, priced, and deployed.</p>
+        <h3>The Next Frontier: Nature, CDR, and Biodiversity Credits</h3>
+        <p>Nature-based solutions are evolving from a supplementary tool to a central pillar of climate strategy. The Kunming-Montreal Biodiversity Framework's "30x30" goal — protecting 30% of land and ocean by 2030 — is driving demand for <strong>biodiversity credits</strong> alongside carbon. Engineered CDR technologies (BECCS, DAC, ocean alkalinity enhancement, enhanced weathering) are maturing toward commercial scale, but require institutional-grade dMRV infrastructure to attract pension and sovereign wealth fund capital.</p>
+        <div class="key-term"><strong>The Biodiversity-Carbon Nexus:</strong> High-integrity nature-based carbon credits increasingly bundle biodiversity co-benefits — creating multi-attribute environmental assets that command premium pricing in voluntary markets.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 2</div>
+        <h2>Structural Reforms: Article 6, Just Transition, and Sovereign Finance Innovation</h2>
+        <p>The Article 6 rulebook's final operationalization is the most consequential near-term development for global carbon markets. The decommissioning of the ITL by September 2026, combined with the full activation of PACM registries, will reshape how ITMOs are tracked, transferred, and accounted for at sovereign and corporate levels.</p>
+        <h3>Just Transition Finance</h3>
+        <p>The concept of a <strong>Just Transition</strong> — ensuring the decarbonization process is equitable for workers, communities, and developing nations — is gaining regulatory force. The EU's Just Transition Mechanism, the World Bank's Just Transition Finance Facility, and new MDB frameworks are carving out dedicated capital streams for coal-dependent regions and fossil fuel-reliant economies to pivot to clean industries.</p>
+        <h3>Sovereign Green Bond Markets</h3>
+        <p>Sovereign green bond issuance has grown exponentially, with nations like India, Indonesia, Germany, and Chile issuing sovereign green/sustainability bonds to finance national climate strategies. The development of <strong>Sustainability-Linked Bonds (SLBs)</strong> — where coupon rates are tied to ESG KPI performance — aligns sovereign debt service with climate outcomes, creating direct financial incentives for government decarbonization.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="phase-label">Phase 3</div>
+        <h2>Synthesis: The Future Architecture of Global Climate Finance</h2>
+        <p>The future of global climate finance rests on four interconnected pillars:</p>
+        <ul>
+          <li><strong>Institutional Evolution:</strong> MDBs and MCFs must evolve from grant-makers to sophisticated capital structurers deploying blended finance, synthetic securitization, and DFC swaps at scale. The capitalization of the Loss and Damage Fund (established at COP27) represents the next frontier of MCF architecture.</li>
+          <li><strong>Technological Infrastructure:</strong> Universal dMRV deployment — enabled by targeted multilateral capacity-building — is the prerequisite for all other climate finance flows. Without verifiable, real-time impact data, institutional capital cannot price climate assets with confidence.</li>
+          <li><strong>Regulatory Harmonization:</strong> Convergence between ISSB standards and CSRD, interoperability between Article 6 registries and national GHG inventories, and the global adoption of Just Transition frameworks will determine whether climate finance achieves the systemic impact required.</li>
+          <li><strong>Equity and Justice:</strong> Ensuring EMDEs are not excluded from next-generation automated carbon markets requires targeted digital capacity-building, equitable MCU frameworks, and sovereign financial innovation that creates fiscal headroom for the most climate-vulnerable nations.</li>
+        </ul>
+        <p>The architecture of global climate finance is entering its most consequential decade. The decisions made by policymakers, institutional investors, and technology innovators in the next five years will determine whether the world achieves a resilient, equitable, net-zero economy — or faces the cascading consequences of a disorderly, unjust transition.</p>
+      </div>
+
+      <div class="quiz-section" id="quiz-5">
+        <div class="quiz-header">
+          <div class="quiz-icon">📝</div>
+          <div>
+            <h3>Chapter 6 Quiz</h3>
+            <p>10 questions · Pass threshold: 70%</p>
+          </div>
+        </div>
+        <div id="q5-questions"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" onclick="submitQuiz(5)" id="submit-5">Submit Answers</button>
+          <button class="btn btn-secondary" onclick="retryQuiz(5)" id="retry-5" style="display:none">Retry Quiz</button>
+        </div>
+        <div class="quiz-result" id="result-5"></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         FINAL ASSESSMENT
+    ═══════════════════════════════════════════════ -->
+    <div class="final-panel" id="final-panel">
+      <div class="final-hero">
+        <h2>Final Assessment</h2>
+        <p>15 questions drawn from all 6 chapters. You must score ≥70% (11/15) to earn your certificate. You may attempt this as many times as needed.</p>
+        <div class="final-req">
+          <div class="final-req-item"><strong>15</strong><span>Questions</span></div>
+          <div class="final-req-item"><strong>70%</strong><span>Passing score</span></div>
+          <div class="final-req-item"><strong>∞</strong><span>Attempts</span></div>
+          <div class="final-req-item"><strong>₹49</strong><span>Certificate unlock</span></div>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="final-quiz">
+        <div class="quiz-header">
+          <div class="quiz-icon">🏆</div>
+          <div>
+            <h3>Final Examination</h3>
+            <p>Climate Finance &amp; Investing — All Chapters</p>
+          </div>
+        </div>
+        <div id="final-questions"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-amber" onclick="submitFinal()" id="submit-final" style="font-size:1rem;padding:.85rem 2rem">Submit Final Exam</button>
+          <button class="btn btn-secondary" onclick="retryFinal()" id="retry-final" style="display:none">Retry Exam</button>
+        </div>
+        <div class="quiz-result" id="result-final"></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         CERTIFICATE PANEL
+    ═══════════════════════════════════════════════ -->
+    <div class="final-panel" id="certificate-panel">
+      <div id="pre-cert-form">
+        <div class="name-form">
+          <h3>🎓 You've earned it!</h3>
+          <p>Enter your full name as you'd like it to appear on your certificate.</p>
+          <input type="text" class="name-input" id="learnerName" placeholder="Your Full Name" />
+          <button class="btn btn-amber" style="width:100%" onclick="generateCertificate()">Generate My Certificate</button>
+        </div>
+      </div>
+
+      <div id="cert-display" style="display:none">
+        <div class="cert-box" id="certBox">
+          <img class="cert-logo" src="https://arkraj7.github.io/assets/images/app_logo.png" alt="CSID"/>
+          <div class="cert-org">Center for Sustainability &amp; Inclusive Development</div>
+          <div class="cert-title-label">This certifies that</div>
+          <div class="cert-name" id="certName">—</div>
+          <div style="font-size:.85rem;color:var(--text-light);margin-bottom:.5rem;">has successfully completed</div>
+          <div class="cert-course">Climate Finance &amp; Investing</div>
+          <div class="cert-desc">A comprehensive curriculum spanning macroeconomics of climate change, multilateral climate funds, carbon markets, ESG frameworks, dMRV &amp; blockchain innovations, and the future of global climate finance.</div>
+          <div class="cert-details">
+            <div class="cert-detail"><strong id="certDate">—</strong><span>Date of Completion</span></div>
+            <div class="cert-detail"><strong id="certId">—</strong><span>Certificate ID</span></div>
+            <div class="cert-detail"><strong id="certScore">—</strong><span>Final Score</span></div>
+            <div class="cert-detail"><span class="cert-badge">CSID Verified</span></div>
+          </div>
+        </div>
+        <div class="download-area">
+          <button class="btn btn-primary" onclick="printCertificate()">⬇ Download PDF</button>
+          <button class="btn btn-amber" onclick="shareLinkedIn()">🔗 Share on LinkedIn</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-icon" id="modal-icon">🎉</div>
+    <h3 id="modal-title">Chapter Complete!</h3>
+    <p id="modal-body">Great work. You've unlocked the next chapter.</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal()">Stay Here</button>
+      <button class="btn btn-primary" id="modal-next-btn" onclick="closeModal()">Next Chapter →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════
+// DATA: CHAPTER QUIZZES (10 questions each)
+// ════════════════════════════════════════════════
+const quizData = [
+  // Chapter 1
+  [
+    { q:"Which institution established that climate risks are 'macro-critical' alongside bodies like the World Bank and IMF?", opts:["NGFS (Network for Greening the Financial System)","World Economic Forum","Basel Committee on Banking Supervision","OECD"], ans:0, exp:"The NGFS, together with the World Bank and IMF, has demonstrated unequivocally that climate-related risks are deeply macro-critical." },
+    { q:"In the World Bank CCDR 'dry/hot' scenario, which country faces the largest projected GDP reduction by 2050?", opts:["Mali","Guinea-Bissau","Malawi","Bangladesh"], ans:2, exp:"Malawi faces a projected 12.8% GDP reduction, compared to Mali's 10.7% and Guinea-Bissau's 7.7%." },
+    { q:"What type of economic shock does carbon pricing primarily represent in the short run?", opts:["A positive demand shock","A positive supply shock","A negative supply-side shock","A neutral macroeconomic event"], ans:2, exp:"Carbon pricing increases marginal production costs for carbon-intensive firms, acting as a negative supply-side shock in the short term." },
+    { q:"The US Inflation Reduction Act (IRA) is valued at approximately:", opts:["$500 billion","$750 billion","$1 trillion","$250 billion"], ans:1, exp:"The IRA is the landmark USD 750 billion green subsidy package that acts as both demand and supply shocks." },
+    { q:"CGE models are best suited for evaluating:", opts:["High-frequency acute weather shocks","Long-term chronic impacts and structural multi-sectoral reallocation","Short-term monetary policy transmission","Daily equity market volatility"], ans:1, exp:"CGE models assume perfect foresight and map detailed input-output matrices — making them ideal for long-term chronic impacts and the structural reallocation for a low-carbon transition." },
+    { q:"What is the 'damage function' in climate-economic models?", opts:["A policy instrument setting carbon tax levels","An equation relating physical climate changes to economic output losses","A formula calculating ETS allowance prices","A scoring system for ESG reporting compliance"], ans:1, exp:"The damage function relates physical climate changes (typically temperature rise) directly to economic output losses." },
+    { q:"The EU's Carbon Border Adjustment Mechanism (CBAM) entered its transitional phase in:", opts:["2021","2022","Late 2023","2025"], ans:2, exp:"The CBAM entered a transitional phase in late 2023 to counteract carbon leakage from imports." },
+    { q:"What does 'carbon leakage' refer to in the context of climate policy?", opts:["CO₂ escaping from carbon capture facilities","Emission-intensive industries relocating to jurisdictions with laxer climate policies","Tax revenues from carbon pricing being redirected outside the jurisdiction","The over-issuance of ETS allowances"], ans:1, exp:"Carbon leakage occurs when industries relocate production from strict-policy jurisdictions to those with weaker environmental regulations, shifting emissions geographically." },
+    { q:"According to empirical evidence, a 10% increase in climate policy uncertainty reduces firm investment by approximately:", opts:["0.5%","1%","2–3%","5–6%"], ans:2, exp:"Evidence from 12 OECD countries shows a 10% increase in climate policy uncertainty reduces firm investment by approximately 2–3% in the same year." },
+    { q:"Which model type is preferred by central banks for simulating high-frequency acute weather shocks?", opts:["CGE (Computable General Equilibrium)","DICE (Dynamic Integrated Climate-Economy)","DSGE (Dynamic Stochastic General Equilibrium)","IAM (Integrated Assessment Model) without economic core"], ans:2, exp:"DSGE models are dynamic and stochastic, incorporating nominal rigidities and financial frictions — making them the preferred tool for central banks simulating high-frequency shocks." }
+  ],
+  // Chapter 2
+  [
+    { q:"Collectively, the Big Four MCFs have generated what ratio of co-financing to direct financing?", opts:["2:1","3:1","5:1","Approximately 5:1 (USD 176.2B co-financing on USD 34B direct)"], ans:3, exp:"The Big Four MCFs approved USD 34B in direct financing, generating USD 176.2B in co-financing — approximately a 5:1 leverage ratio." },
+    { q:"The GCF mandates what allocation split between mitigation and adaptation funding?", opts:["70% mitigation / 30% adaptation","80% mitigation / 20% adaptation","50% mitigation / 50% adaptation","60% mitigation / 40% adaptation"], ans:2, exp:"The GCF explicitly mandates an even 50/50 split between mitigation and adaptation funding." },
+    { q:"Which MCF specifically operates outside the formal UNFCCC framework through MDBs?", opts:["Green Climate Fund (GCF)","Adaptation Fund (AF)","Climate Investment Funds (CIF)","Global Environment Facility (GEF)"], ans:2, exp:"CIF was established in 2008 and operates outside the formal UNFCCC framework as a programmatic initiative working directly through Multilateral Development Banks (MDBs)." },
+    { q:"'Direct Access' modality — pioneered by the Adaptation Fund — means:", opts:["Climate finance is accessed directly from UNFCCC treasury accounts","National and sub-national entities receive and manage climate finance directly, bypassing international intermediaries","Commercial banks access concessional rates directly from the Adaptation Fund","Governments can directly issue A6.4ERs without third-party verification"], ans:1, exp:"Direct Access allows accredited national and sub-national entities to receive and manage climate finance directly, deeply institutionalizing local capacity and governance." },
+    { q:"In the Ecuador 2023 DFC swap, what was the approximate reduction in debt obligation?", opts:["USD 1.6B converted to USD 800M","USD 1.6B converted to USD 656M","USD 1.6B converted to USD 500M","USD 1.6B converted to USD 1.2B"], ans:1, exp:"Ecuador converted USD 1.6B of commercial debt into a cheaper USD 656M loan via specialized 'blue bonds.'" },
+    { q:"What is 'Transformational Change (TC)' as formally defined by MCFs?", opts:["A 50% reduction in emissions within 10 years","A deep, systemic, and sustainable shift in an economy's form, function, or process","A mandatory transition from fossil fuels to renewables within national borders","A requirement to achieve net-zero by 2050"], ans:1, exp:"TC is formally defined as 'a deep and systemic change in a system's form, function, or process' — beyond isolated emission reductions to market transformation." },
+    { q:"How does 'synthetic securitization' help MDBs expand green lending capacity?", opts:["By selling bonds directly to retail investors","By transferring credit risk of existing loans to private investors, freeing balance sheet headroom","By printing new capital from donor nations","By converting project grants into equity stakes"], ans:1, exp:"Synthetic securitization transfers credit risk from a portfolio of performing MDB loans to third-party private investors, mathematically freeing critical capital headroom for new green loans." },
+    { q:"What credit rating did the EAAIF (Emerging Africa and Asia Infrastructure Fund) secure from Moody's?", opts:["AAA","Aa1","A2","Baa1"], ans:2, exp:"The EAAIF leveraged a diversified portfolio and highly-rated public shareholders to secure a coveted A2 long-term issuer rating from Moody's." },
+    { q:"In Lendable's MSME Fintech Credit Fund II, what percentage of capital was subordinated?", opts:["30%","45%","60%","75%"], ans:2, exp:"By structuring the fund so that 60% of capital was subordinated through junior tranches, Lendable obtained an investment-grade rating for its senior debt." },
+    { q:"India's CAMPA is an example of:", opts:["A multilateral climate fund operating through the UNFCCC","A domestic public policy instrument mobilizing capital for ecological restoration via forest diversion fees","A voluntary carbon market standard for nature-based projects","An MDB providing concessional loans for renewable energy"], ans:1, exp:"CAMPA illustrates how sovereign public policy can internally mobilize capital for ecological restoration without relying entirely on international donor funds." }
+  ],
+  // Chapter 3
+  [
+    { q:"What percentage of global annual GHG emissions are currently covered by explicit carbon pricing policies?", opts:["10%","15%","25%","40%"], ans:2, exp:"Approximately 25% of global annual GHG emissions are covered by explicit carbon pricing policies." },
+    { q:"In 2024, the total trading value of compliance carbon markets reached approximately:", opts:["USD 250 billion","USD 500 billion","USD 950 billion","USD 1.5 trillion"], ans:2, exp:"In 2024, trading of carbon allowances in compliance markets reached a staggering USD 950 billion." },
+    { q:"What does 'countercyclical' behavior of ETS mean for the business cycle?", opts:["ETS prices rise during recessions and fall during booms","ETS prices fall during recessions (lower output/emissions) and rise during booms — acting as an automatic stabilizer","ETS prices are fixed regardless of economic conditions","ETS causes inflation to increase consistently throughout the business cycle"], ans:1, exp:"ETS operates countercyclically: carbon allowance prices fall during recessions (as output/emissions drop) and rise during booms, reducing GDP volatility as an automatic stabilizer." },
+    { q:"What is the foundational requirement of any voluntary carbon credit?", opts:["Permanence — the reduction must last forever","Additionality — the reduction would not have occurred without carbon finance","Co-benefits — the project must generate biodiversity outcomes","Fungibility — the credit must be interchangeable with compliance market allowances"], ans:1, exp:"Additionality is the foundational requirement: proof that the underlying emission reduction would not have occurred in the absence of carbon market financing." },
+    { q:"Under Article 6.2, when a host country exports an ITMO, it must:", opts:["Subtract that reduction from its national GHG inventory","Add that reduction back to its own national GHG inventory","Receive a 5% SOP levy from the purchasing country","Cancel 2% of the transferred units into a cancellation account"], ans:1, exp:"The Corresponding Adjustment (CA) requires the host country to add the exported reduction back to its own inventory, preventing double-claiming across national ledgers." },
+    { q:"Mitigation Contribution Units (MCUs) differ from authorized A6.4ERs in that MCUs:", opts:["Require a Corresponding Adjustment","Can be used by other countries toward their NDCs","Do NOT require a Corresponding Adjustment — the reduction stays on the host country's ledger","Are issued by the UNFCCC Supervisory Body only after host country authorization"], ans:2, exp:"MCUs are non-authorized units that do not require a Corresponding Adjustment, allowing the emission reduction to remain on the host country's ledger to assist NDC achievement." },
+    { q:"What does OMGE mandate in the Article 6.4 mechanism?", opts:["A minimum 5% cancellation of all issued A6.4ERs","A mandatory 2% cancellation of all issued A6.4ERs into a centralized cancellation account","That all credits must be validated by two independent third parties","That developing countries receive 10% of proceeds from all ITMO trades"], ans:1, exp:"OMGE mandates a minimum 2% cancellation of all issued A6.4ERs, mathematically guaranteeing a net benefit to the atmosphere." },
+    { q:"The International Transaction Log (ITL) — central infrastructure of the CDM — is scheduled to close by:", opts:["End of 2024","Mid-2025","End of September 2026","End of 2030"], ans:2, exp:"The ITL administration is scheduled to close by end of September 2026, marking the final phase of the CDM-to-PACM transition." },
+    { q:"Which governance body regulates supply-side quality in voluntary carbon markets through 'Core Carbon Principles'?", opts:["VCMI (Voluntary Carbon Markets Integrity Initiative)","ICVCM (Integrity Council for the Voluntary Carbon Market)","UNFCCC Supervisory Body","Science Based Targets initiative (SBTi)"], ans:1, exp:"The ICVCM has established 'Core Carbon Principles' to set rigorous supply-side quality benchmarks for VCM credits." },
+    { q:"A carbon tax primarily differs from an ETS in that a carbon tax:", opts:["Sets a fixed quantity of emissions and lets markets determine price","Sets a fixed price per tonne and lets markets determine the quantity of reductions","Automatically adjusts to business cycle conditions","Requires all sectors including agriculture and aviation to participate"], ans:1, exp:"A carbon tax is price-based: the policymaker sets a fixed price per tonne; the market determines the resulting quantity of emission reductions." }
+  ],
+  // Chapter 4
+  [
+    { q:"In 2024, the IFRS Foundation assumed monitoring responsibility from which entity that marked its end as an independent body?", opts:["GRI (Global Reporting Initiative)","SASB (Sustainability Accounting Standards Board)","TCFD (Task Force on Climate-related Financial Disclosures)","CDP (Carbon Disclosure Project)"], ans:2, exp:"In 2024, the IFRS Foundation officially assumed TCFD monitoring responsibility, marking the end of the TCFD as an independent entity with no further updates planned." },
+    { q:"IFRS S2 mandates the reporting of Scope 3 GHG emissions, which typically account for what percentage of a company's total carbon footprint?", opts:["20–30%","40–50%","60–70%","70–90%"], ans:3, exp:"Scope 3 emissions often account for 70% to 90% of a corporation's total carbon footprint, making S2's requirement the most consequential new disclosure obligation." },
+    { q:"'Double Materiality' under the EU's CSRD/ESRS requires corporations to assess:", opts:["Both financial materiality (outside-in) AND impact materiality (inside-out)","Materiality across two different accounting standards simultaneously","Financial materiality across both short-term and long-term horizons","Both Scope 1 and Scope 3 GHG emissions in financial statements"], ans:0, exp:"Double Materiality is a dual-axis assessment: Financial Materiality (how sustainability issues affect firm value) + Impact Materiality (how firm operations impact the environment/communities)." },
+    { q:"Under the SFDR, what are 'Article 9' funds classified as?", opts:["Funds without a sustainability scope","'Light green' funds promoting environmental characteristics","'Dark green' funds with a specific sustainable investment objective","Funds exclusively targeting emerging market assets"], ans:2, exp:"Article 9 funds have a specific sustainable investment objective — the most stringent 'dark green' classification under SFDR." },
+    { q:"What is the primary limitation of 'spend-based' Scope 3 emission factors?", opts:["They require primary data from thousands of global suppliers","Switching to a more expensive low-carbon supplier paradoxically increases calculated emissions","They are only applicable to upstream Scope 3 categories","They cannot be calculated for service-sector companies"], ans:1, exp:"Spend-based proxies are highly inaccurate: if a company switches to a more expensive low-carbon supplier, its spend-based emissions mathematically increase due to the higher financial cost — failing to capture actual decarbonization progress." },
+    { q:"The IFRS S1 standard applies to annual reporting periods beginning:", opts:["January 1, 2023","January 1, 2024","January 1, 2025","January 1, 2026"], ans:1, exp:"IFRS S1 and S2 apply to annual reporting periods beginning on or after January 1, 2024." },
+    { q:"Under IFRS S2, a company in the 'Real Estate' sector must report against how many industry-based disclosures?", opts:["5","10","18","25"], ans:2, exp:"Under IFRS S2, the 'Real Estate' sector requires reporting against 18 distinct industry-based disclosures." },
+    { q:"When a corporation purchases MCUs for ESG reporting, the correct claim to make is:", opts:["Carbon neutrality — the credits offset residual emissions","Carbon negative — the credits exceed the company's total footprint","A mitigation contribution — financing climate outcomes while the reduction stays on the host country's ledger","A Scope 3 offset — the MCUs cancel out all value chain emissions"], ans:2, exp:"Corporations using MCUs must report a 'mitigation contribution' claim rather than carbon neutrality — transparently proving results-based climate finance while maintaining the environmental integrity of the Paris Agreement architecture." },
+    { q:"By 2022, what percentage of surveyed companies aligned their reporting with at least 5 of the 11 TCFD recommendations?", opts:["18%","38%","58%","78%"], ans:2, exp:"According to the TCFD's 2023 Status Report, 58% of surveyed companies aligned with at least 5 of 11 TCFD recommendations by 2022 — up sharply from 18% in 2020." },
+    { q:"Attention-based CNNs (ACNNs) in ESG/dMRV contexts are primarily used for:", opts:["Manually reviewing third-party audit reports","Selectively focusing on the most relevant features in massive datasets to classify and validate green finance data","Setting carbon tax rates using historical emissions data","Managing the reconciliation of Scope 1 and Scope 2 emission calculations"], ans:1, exp:"ACNNs use an attention mechanism to selectively focus on the most relevant features within massive datasets — dramatically increasing prediction accuracy for classifying and validating green finance flows." }
+  ],
+  // Chapter 5
+  [
+    { q:"What makes traditional MRV inadequate for scaling climate finance?", opts:["It is too automated and lacks human oversight","It is manual, slow, expensive, and prone to human error — delaying credit issuance by months or years","It cannot measure carbon emissions in developing countries","It requires government approval for every transaction"], ans:1, exp:"Traditional MRV requires physical data collection, static spreadsheets, and infrequent on-site audits — making it too slow, costly, and error-prone to support the pace of the net-zero transition." },
+    { q:"What technology does Sylvera use to provide independent ratings for nature-based carbon credits?", opts:["IoT sensors and smart contracts only","Manual field audits combined with remote sensing","Proprietary ML on multispectral satellite data + localized LiDAR scans","Blockchain-based voting by verified stakeholders"], ans:2, exp:"Sylvera deploys ML models interpreting multispectral satellite data alongside localized LiDAR scans to automate carbon performance assessment." },
+    { q:"LiDAR in dMRV provides what specific function?", opts:["Measures biodiversity through acoustic signals","Creates highly accurate 3D point clouds of forest canopy height and structural density for empirical carbon quantification","Transmits real-time data from IoT sensors to the cloud","Tokenizes carbon credits on a blockchain"], ans:1, exp:"LiDAR emits laser pulses to create 3D point clouds of forest canopy, providing the empirical ground-truth data required to rigorously quantify sequestered carbon." },
+    { q:"In the EBRD dMRV protocol for renewable energy, Level 1 data capture refers to:", opts:["On-site pyranometers measuring solar irradiance","Inverter-level power output data","Smart bi-directional meters measuring net electricity supplied to the grid","Blockchain nodes validating credit issuance"], ans:2, exp:"Level 1 in the EBRD protocol captures net electricity supplied to the grid via smart, bi-directional digital meters at five-minute intervals." },
+    { q:"What does 'tokenization' of a carbon credit enable that traditional markets cannot?", opts:["Longer credit verification periods and lower audit costs","Fractionalization to kilogram-level and instantaneous automated settlement via DeFi protocols","Removal of the need for third-party verification entirely","Compliance with national GHG inventory requirements without Corresponding Adjustments"], ans:1, exp:"Tokenization enables fractionalization (down to kilogram-level) and DeFi integration — allowing a fintech to retire exactly 4.2 kg of a tokenized credit to offset a single e-commerce transaction." },
+    { q:"In the GROVE Forestry Smart Ledger, what triggers the automated release of payments (GRO-coins)?", opts:["Manual approval by a designated operational entity","When the blockchain node count exceeds a threshold","When AI-verified satellite data confirms the mangrove forest has sequestered a targeted volume of carbon","When the carbon credit is purchased on a secondary market"], ans:2, exp:"The smart contract monitors AI-verified satellite data (the 'oracle' input) and automatically releases GRO-coins to community developers when carbon sequestration targets are confirmed algorithmically." },
+    { q:"ACNNs (Attention-based CNNs) with Financial Filtered Graphs are used in dMRV primarily to:", opts:["Build physical sensor networks in the field","Classify incoming project data as 'auto-approved', 'pending', or 'rejected' — reducing burden on human auditors","Generate real-time GHG inventory reports for governments","Tokenize carbon assets on ERC-20 compatible blockchains"], ans:1, exp:"ACNNs with FFGs dynamically classify project data, allowing human auditors (DOEs) to focus exclusively on flagged anomalies rather than manually auditing entire datasets." },
+    { q:"Which distributed ledger did the Chile landfill dMRV pilot use to validate real-time gas flow data?", opts:["Ethereum","IOTA Tangle","Polygon","Hyperledger Fabric"], ans:1, exp:"Chile's waste-to-energy landfill pilot used the IOTA Tangle distributed ledger to capture and validate real-time gas flow data, with a core objective of reporting into the national GHG inventory." },
+    { q:"The ERC-20 token standard in carbon asset tokenization is used on which blockchain networks?", opts:["Bitcoin and Litecoin","Ethereum classic and Solana","Polygon and Base","Only on private permissioned blockchains"], ans:2, exp:"Verified carbon reductions are minted as digital assets utilizing the ERC-20 token standard on public blockchains such as Polygon or Base." },
+    { q:"What is the primary cybersecurity requirement for dMRV systems handling sensitive household data?", opts:["Public disclosure of all IoT sensor data on open-source platforms","End-to-end encryption, decentralized storage, multi-factor authentication, and cryptographic anonymization before on-chain recording","Manual review of all personal data by compliance officers before uploading","Government ownership of all data nodes to ensure sovereignty"], ans:1, exp:"Robust cybersecurity requires end-to-end encryption, decentralized data storage, multi-factor authentication, consumer consent, and cryptographic anonymization before permanent blockchain recording." }
+  ],
+  // Chapter 6
+  [
+    { q:"The Kunming-Montreal Biodiversity Framework's '30x30' goal aims to protect what portion of land and ocean by 2030?", opts:["10%","20%","30%","50%"], ans:2, exp:"The Kunming-Montreal Biodiversity Framework's '30x30' goal aims to protect 30% of land and ocean by 2030, driving demand for biodiversity credits alongside carbon." },
+    { q:"What structural innovation do Sustainability-Linked Bonds (SLBs) introduce?", opts:["Fixed coupon rates regardless of performance","Coupon rates tied to ESG KPI performance, creating direct financial incentives for government decarbonization","Zero-coupon bonds issued exclusively for renewable energy projects","Bonds that automatically convert to equity if climate targets are missed"], ans:1, exp:"SLBs link sovereign coupon rates to ESG KPI performance, aligning debt service with climate outcomes and creating direct financial incentives for government decarbonization." },
+    { q:"What is the Loss and Damage Fund, established at COP27, designed to address?", opts:["Legal liability claims from nations for historical emissions","Financial support for developing nations experiencing irreversible climate impacts beyond adaptation capacity","A penalty fund for countries missing NDC targets","Insurance for MCF-funded project defaults"], ans:1, exp:"The Loss and Damage Fund provides financial support for developing nations experiencing irreversible climate impacts that exceed their adaptation capacity — a key frontier in MCF architecture." },
+    { q:"What must happen for Article 6 to be fully operational by late 2026?", opts:["The GCF must triple its capitalization","The PACM registries must be fully activated while the ITL is decommissioned","All sovereign nations must ratify bilateral ITMO agreements","VCMs must be merged into compliance markets under UNFCCC oversight"], ans:1, exp:"Full Article 6 operationalization requires the final activation of PACM registries alongside the decommissioning of the ITL by September 2026 — reshaping ITMO tracking at both sovereign and corporate levels." },
+    { q:"The concept of 'Just Transition Finance' primarily addresses:", opts:["Ensuring financial returns to institutional investors are equitable across regions","Ensuring the decarbonization process is equitable for workers, communities, and developing nations dependent on fossil fuels","Converting all existing fossil fuel bonds to green bonds","Providing legal protections for companies transitioning to net-zero"], ans:1, exp:"Just Transition Finance ensures the decarbonization process is equitable for fossil fuel-dependent workers, communities, and nations — with dedicated capital streams from the EU's Just Transition Mechanism, World Bank facilities, and new MDB frameworks." },
+    { q:"High-integrity nature-based carbon credits are increasingly 'bundling' what additional environmental attribute?", opts:["Water rights offsets","Biodiversity co-benefits — creating multi-attribute environmental assets commanding premium pricing","Agricultural land use certificates","Methane reduction guarantees"], ans:1, exp:"High-integrity nature-based carbon credits increasingly bundle biodiversity co-benefits, creating multi-attribute environmental assets that command premium pricing in voluntary markets." },
+    { q:"Which of the following engineered CDR technologies requires the most institutional-grade dMRV infrastructure to attract pension fund capital?", opts:["Forest conservation (REDD+)","Afforestation and reforestation","Biochar and ocean alkalinity enhancement","Fuel switching from coal to natural gas"], ans:2, exp:"Engineered CDR technologies like biochar and ocean alkalinity enhancement are maturing toward commercial scale but require the most sophisticated institutional-grade dMRV infrastructure to attract large institutional investors." },
+    { q:"Regulatory harmonization in the future of climate finance requires convergence between:", opts:["Gold Standard and Verra certification protocols only","ISSB standards and CSRD, interoperability between Article 6 registries and national GHG inventories, and global Just Transition frameworks","ETS cap levels across all G20 nations","VCM credit prices and compliance market allowance prices"], ans:1, exp:"Future regulatory harmonization requires convergence between ISSB/CSRD standards, interoperability of Article 6 registries with national GHG inventories, and global adoption of Just Transition frameworks." },
+    { q:"What is the primary equity concern regarding next-generation automated carbon markets for EMDEs?", opts:["EMDE corporations dominating the supply side of premium CDR credits","EMDEs being systematically excluded from automated markets due to the digital divide and lack of dMRV capacity","EMDE governments setting artificially low carbon prices to attract investment","Advanced economies purchasing all EMDE carbon credits at below-market prices"], ans:1, exp:"Without targeted digital capacity-building, EMDEs risk systematic exclusion from next-generation automated carbon markets — concentrating benefits in advanced economies while the regions with highest sequestration potential are marginalized." },
+    { q:"India's sovereign green bond issuance is an example of which broader trend in climate finance?", opts:["Nations replacing MCF concessional finance with purely commercial debt markets","Exponential growth in sovereign green bond markets aligning national debt financing with climate strategy","The decline of domestic carbon markets in favour of international compliance schemes","Central banks directly purchasing green bonds to implement monetary policy"], ans:1, exp:"India's sovereign green bond issuance exemplifies the exponential growth in sovereign green bond markets — nations like India, Indonesia, Germany, and Chile now issue green/sustainability bonds to finance national climate strategies." }
+  ]
+];
+
+// ════════════════════════════════════════════════
+// FINAL EXAM (15 questions, one from each chapter set)
+// ════════════════════════════════════════════════
+const finalData = [
+  quizData[0][1], // Ch1: Malawi GDP
+  quizData[0][7], // Ch1: Carbon leakage
+  quizData[1][0], // Ch2: Co-financing ratio
+  quizData[1][5], // Ch2: TC definition
+  quizData[1][6], // Ch2: Synthetic securitization
+  quizData[2][2], // Ch3: Countercyclical ETS
+  quizData[2][5], // Ch3: MCUs
+  quizData[2][6], // Ch3: OMGE
+  quizData[3][1], // Ch4: Scope 3 %
+  quizData[3][2], // Ch4: Double Materiality
+  quizData[3][4], // Ch4: Spend-based limitation
+  quizData[4][2], // Ch5: LiDAR
+  quizData[4][4], // Ch5: Tokenization
+  quizData[5][1], // Ch6: SLBs
+  quizData[5][4]  // Ch6: Just Transition
+];
+
+// ════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════
+const state = {
+  chapterDone: [false,false,false,false,false,false],
+  chapterScores: [null,null,null,null,null,null],
+  finalScore: null,
+  finalPassed: false,
+  currentView: 'chapter',
+  answers: {}, // key: "quiz-ch-q"
+  finalAnswers: {}
+};
+
+// ════════════════════════════════════════════════
+// RENDER QUIZ
+// ════════════════════════════════════════════════
+function renderQuiz(chIdx) {
+  const container = document.getElementById(`q${chIdx}-questions`);
+  if (!container || container.children.length > 0) return;
+  const questions = quizData[chIdx];
+  container.innerHTML = questions.map((q,qi) => buildQuestion(q, qi, `q${chIdx}-${qi}`, `q${chIdx}`)).join('');
+}
+
+function renderFinal() {
+  const container = document.getElementById('final-questions');
+  if (!container || container.children.length > 0) return;
+  container.innerHTML = finalData.map((q,qi) => buildQuestion(q, qi, `final-${qi}`, 'final')).join('');
+}
+
+function buildQuestion(q, qi, key, group) {
+  const letters = ['A','B','C','D'];
+  const opts = q.opts.map((o,oi) => `
+    <li>
+      <button class="option-btn" id="${key}-opt-${oi}" onclick="selectOption('${key}',${oi},${q.ans},'${group}',${qi})">
+        <span class="option-letter">${letters[oi]}</span> ${o}
+      </button>
+    </li>`).join('');
+  return `
+    <div class="question-block" id="${key}-block">
+      <div class="question-text">Q${qi+1}. ${q.q}</div>
+      <ul class="options-list">${opts}</ul>
+      <div class="explanation" id="${key}-exp">💡 ${q.exp}</div>
+    </div>`;
+}
+
+// ════════════════════════════════════════════════
+// SELECT OPTION
+// ════════════════════════════════════════════════
+function selectOption(key, optIdx, correct, group, qi) {
+  // Only allow selection if not submitted
+  const submitBtn = document.getElementById(group === 'final' ? 'submit-final' : `submit-${group.replace('q','').replace('-','')}`);
+  if (submitBtn && submitBtn.disabled) return;
+
+  // Store answer
+  if (group === 'final') state.finalAnswers[qi] = optIdx;
+  else state.answers[key] = optIdx;
+
+  // Visual feedback: highlight selected
+  const block = document.getElementById(`${key}-block`);
+  block.querySelectorAll('.option-btn').forEach((b,i) => {
+    b.classList.remove('selected');
+    if (i === optIdx) b.classList.add('selected');
+  });
+}
+
+// ════════════════════════════════════════════════
+// SUBMIT CHAPTER QUIZ
+// ════════════════════════════════════════════════
+function submitQuiz(chIdx) {
+  const questions = quizData[chIdx];
+  let correct = 0;
+  questions.forEach((q,qi) => {
+    const key = `q${chIdx}-${qi}`;
+    const chosen = state.answers[key];
+    const block = document.getElementById(`${key}-block`);
+    const expEl = document.getElementById(`${key}-exp`);
+    block.querySelectorAll('.option-btn').forEach((b,oi) => {
+      b.disabled = true;
+      if (oi === q.ans) b.classList.add('reveal-correct','correct');
+      if (chosen !== undefined && oi === chosen && chosen !== q.ans) b.classList.add('wrong');
+    });
+    if (expEl) expEl.classList.add('show');
+    if (chosen === q.ans) correct++;
+  });
+
+  const pct = Math.round((correct / questions.length) * 100);
+  const passed = pct >= 70;
+  state.chapterScores[chIdx] = pct;
+  state.chapterDone[chIdx] = passed;
+
+  const resultEl = document.getElementById(`result-${chIdx}`);
+  resultEl.className = `quiz-result ${passed ? 'pass' : 'fail'} show`;
+  resultEl.innerHTML = `<h4>${passed ? '✅ Chapter Passed!' : '❌ Not Passed'}</h4><p>Score: ${correct}/${questions.length} (${pct}%) — ${passed ? 'Chapter complete! Proceed to the next chapter.' : 'Score below 70%. Click Retry to try again.'}</p>`;
+
+  document.getElementById(`submit-${chIdx}`).style.display = 'none';
+  if (!passed) document.getElementById(`retry-${chIdx}`).style.display = 'inline-block';
+
+  const scoreEl = document.getElementById(`ch-score-${chIdx}`);
+  if (scoreEl) {
+    scoreEl.className = `score-badge ${passed ? 'pass' : 'fail'}`;
+    scoreEl.textContent = `${pct}% ${passed ? '✓' : '✗'}`;
+  }
+
+  updateNavIcons();
+  updateGlobalProgress();
+
+  if (passed) {
+    const nextCh = chIdx + 1;
+    const modalNextBtn = document.getElementById('modal-next-btn');
+    if (nextCh < 6) {
+      document.getElementById('modal-title').textContent = '🎉 Chapter Complete!';
+      document.getElementById('modal-body').textContent = `You scored ${pct}%. Chapter ${nextCh + 1} is now unlocked!`;
+      modalNextBtn.textContent = `Chapter ${nextCh + 1} →`;
+      modalNextBtn.onclick = () => { closeModal(); showChapter(nextCh); };
+    } else {
+      document.getElementById('modal-title').textContent = '🏆 All Chapters Complete!';
+      document.getElementById('modal-body').textContent = `Outstanding! You've completed all 6 chapters. Take the Final Assessment to earn your certificate.`;
+      modalNextBtn.textContent = 'Take Final Exam →';
+      modalNextBtn.onclick = () => { closeModal(); showFinal(); };
+    }
+    document.getElementById('modal').classList.add('show');
+  }
+}
+
+function retryQuiz(chIdx) {
+  state.answers = Object.fromEntries(Object.entries(state.answers).filter(([k]) => !k.startsWith(`q${chIdx}-`)));
+  const container = document.getElementById(`q${chIdx}-questions`);
+  container.innerHTML = '';
+  renderQuiz(chIdx);
+  document.getElementById(`result-${chIdx}`).className = 'quiz-result';
+  document.getElementById(`submit-${chIdx}`).style.display = 'inline-block';
+  document.getElementById(`retry-${chIdx}`).style.display = 'none';
+}
+
+// ════════════════════════════════════════════════
+// SUBMIT FINAL EXAM
+// ════════════════════════════════════════════════
+function submitFinal() {
+  let correct = 0;
+  finalData.forEach((q,qi) => {
+    const key = `final-${qi}`;
+    const chosen = state.finalAnswers[qi];
+    const block = document.getElementById(`${key}-block`);
+    const expEl = document.getElementById(`${key}-exp`);
+    block.querySelectorAll('.option-btn').forEach((b,oi) => {
+      b.disabled = true;
+      if (oi === q.ans) b.classList.add('reveal-correct','correct');
+      if (chosen !== undefined && oi === chosen && chosen !== q.ans) b.classList.add('wrong');
+    });
+    if (expEl) expEl.classList.add('show');
+    if (chosen === q.ans) correct++;
+  });
+
+  const pct = Math.round((correct / finalData.length) * 100);
+  const passed = pct >= 70;
+  state.finalScore = pct;
+  state.finalPassed = passed;
+
+  const resultEl = document.getElementById('result-final');
+  resultEl.className = `quiz-result ${passed ? 'pass' : 'fail'} show`;
+  resultEl.innerHTML = `<h4>${passed ? '🎓 Exam Passed! Certificate Unlocked!' : '❌ Not Passed'}</h4><p>Score: ${correct}/${finalData.length} (${pct}%) — ${passed ? 'Congratulations! You can now download your certificate.' : 'Score below 70% (need 11/15). Click Retry to try again.'}</p>`;
+
+  document.getElementById('submit-final').style.display = 'none';
+  document.getElementById('retry-final').style.display = 'inline-block';
+
+  if (passed) {
+    setTimeout(() => {
+      document.getElementById('modal-title').textContent = '🎓 Certificate Unlocked!';
+      document.getElementById('modal-body').textContent = `Congratulations! You scored ${pct}% on the final exam. Your certificate is ready.`;
+      const btn = document.getElementById('modal-next-btn');
+      btn.textContent = 'Get My Certificate →';
+      btn.onclick = () => { closeModal(); showCertificate(); };
+      document.getElementById('modal').classList.add('show');
+    }, 800);
+  }
+}
+
+function retryFinal() {
+  state.finalAnswers = {};
+  const container = document.getElementById('final-questions');
+  container.innerHTML = '';
+  renderFinal();
+  document.getElementById('result-final').className = 'quiz-result';
+  document.getElementById('submit-final').style.display = 'inline-block';
+  document.getElementById('retry-final').style.display = 'none';
+}
+
+// ════════════════════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════════════════════
+function showChapter(idx, e) {
+  if (e) e.preventDefault();
+  // Hide all
+  document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.final-panel').forEach(p => p.classList.remove('active'));
+  // Show
+  const panel = document.getElementById(`chapter-${idx}`);
+  if (panel) panel.classList.add('active');
+  // Nav highlight
+  document.querySelectorAll('.chapter-nav a').forEach(a => a.classList.remove('active'));
+  const navLink = document.getElementById(`nav-${idx}`);
+  if (navLink) navLink.classList.add('active');
+  // Render quiz
+  renderQuiz(idx);
+  window.scrollTo({top: 0, behavior:'smooth'});
+}
+
+function showFinal(e) {
+  if (e) e.preventDefault();
+  document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.final-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('final-panel').classList.add('active');
+  document.querySelectorAll('.chapter-nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('nav-final').classList.add('active');
+  renderFinal();
+  window.scrollTo({top: 0, behavior:'smooth'});
+}
+
+function showCertificate() {
+  if (!state.finalPassed) {
+    alert('Please complete and pass the final assessment first (score ≥70%).');
+    showFinal();
+    return;
+  }
+  document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.final-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('certificate-panel').classList.add('active');
+  document.getElementById('pre-cert-form').style.display = 'block';
+  document.getElementById('cert-display').style.display = 'none';
+  window.scrollTo({top: 0, behavior:'smooth'});
+}
+
+function generateCertificate() {
+  const name = document.getElementById('learnerName').value.trim();
+  if (!name) { alert('Please enter your name.'); return; }
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'});
+  const certId = 'CSID-CFI-' + now.getFullYear() + '-' + String(Math.floor(10000 + Math.random()*90000));
+  document.getElementById('certName').textContent = name;
+  document.getElementById('certDate').textContent = dateStr;
+  document.getElementById('certId').textContent = certId;
+  document.getElementById('certScore').textContent = `${state.finalScore}% (${Math.round(state.finalScore/100*15)}/15)`;
+  document.getElementById('pre-cert-form').style.display = 'none';
+  document.getElementById('cert-display').style.display = 'block';
+}
+
+function printCertificate() {
+  const cert = document.getElementById('certBox');
+  const win = window.open('', '_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>CSID Certificate</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>body{margin:0;padding:40px;font-family:'DM Sans',sans-serif;background:#fff;}${cert.ownerDocument.querySelector('style').textContent}</style>
+  </head><body>${cert.outerHTML}<script>window.onload=function(){window.print();}<\/script></body></html>`);
+  win.document.close();
+}
+
+function shareLinkedIn() {
+  const url = 'https://arkraj7.github.io/csid/courses/climate-finance-investing/';
+  const text = encodeURIComponent('I just completed "Climate Finance & Investing" on CSID — a rigorous curriculum on carbon markets, ESG frameworks, dMRV & blockchain in green assets. #ClimateFinance #ESG #Sustainability #CSID');
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&summary=${text}`, '_blank');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+// ════════════════════════════════════════════════
+// PROGRESS TRACKING
+// ════════════════════════════════════════════════
+function updateNavIcons() {
+  state.chapterDone.forEach((done, idx) => {
+    const icon = document.getElementById(`nav-icon-${idx}`);
+    const link = document.getElementById(`nav-${idx}`);
+    if (icon) {
+      if (done) {
+        icon.className = 'ch-icon done';
+        icon.textContent = '✓';
+        link.classList.add('done');
+      }
+    }
+  });
+}
+
+function updateGlobalProgress() {
+  const done = state.chapterDone.filter(Boolean).length;
+  const pct = Math.round((done / 6) * 100);
+  document.getElementById('globalProgressBar').style.width = pct + '%';
+  document.getElementById('globalProgressLabel').textContent = `${done} / 6 chapters complete`;
+}
+
+// ════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  renderQuiz(0);
+  updateNavIcons();
+  updateGlobalProgress();
+});
+</script>
+</body>
+</html>

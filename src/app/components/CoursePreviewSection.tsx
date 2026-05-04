@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Clock, BarChart, ShieldCheck, Library } from 'lucide-react';
+import { ArrowRight, BookOpen, Clock, BarChart, ShieldCheck, Library, Leaf } from 'lucide-react';
 
 export default function CoursePreviewSection() {
   return (

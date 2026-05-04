@@ -4,7 +4,6 @@ import Footer from '@/components/Footer';
 import HeroBanner from '@/app/components/HeroBanner';
 import BadgeTabsSection from '@/app/components/BadgeTabsSection';
 import CoursePreviewSection from '@/app/components/CoursePreviewSection';
-import WhyChooseSection from '@/app/components/WhyChooseSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
 import CertificatePreviewSection from '@/app/components/CertificatePreviewSection';
 import StatsSection from '@/app/components/StatsSection';
@@ -17,11 +16,10 @@ export default function HomePage() {
         <HeroBanner />
         <StatsSection />
         
-        {/* Just the Recent Uploads banner */}
+        {/* Recent Uploads Banner */}
         <CoursePreviewSection />
         
-        {/* Just the Built on Frameworks card */}
-        <WhyChooseSection />
+        {/* The Built on Frameworks section is completely deleted from here */}
         
         <BadgeTabsSection />
         <TestimonialsSection />

@@ -18,6 +18,7 @@ export default function HeroBanner() {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
       <div className="relative max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
           {/* Left: Text */}
           <div className="animate-fade-in">
             {/* Tag */}
@@ -83,55 +84,23 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          {/* Right: Visual card */}
-          <div className="hidden lg:block">
-            <div className="relative">
-              {/* Main card */}
-              <div className="bg-card rounded-2xl border border-border shadow-xl p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-semibold text-foreground">Climate Economy Investment Cycle</span>
-                  <span className="text-xs text-primary font-medium bg-primary/10 px-2 py-0.5 rounded-full">Live Data</span>
-                </div>
-                {/* Visual bars */}
-                <div className="space-y-3">
-                  {[
-                    { label: 'Mitigation Capital', value: 94, color: 'bg-green-500', amount: '$1.7T' },
-                    { label: 'Adaptation Finance', value: 5, color: 'bg-cyan-500', amount: '$76B' },
-                    { label: 'Resilience Capital', value: 2, color: 'bg-indigo-500', amount: 'Fragmented' },
-                    { label: 'Recovery Capital', value: 1, color: 'bg-amber-500', amount: 'Reactive' },
-                  ]?.map((item) => (
-                    <div key={`hero-bar-${item?.label}`}>
-                      <div className="flex justify-between text-xs mb-1">
-                        <span className="text-muted-foreground">{item?.label}</span>
-                        <span className="font-medium text-foreground font-tabular">{item?.amount}</span>
-                      </div>
-                      <div className="h-2.5 bg-muted rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full ${item?.color}`}
-                          style={{ width: `${Math.max(item?.value, 3)}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-xs text-muted-foreground mt-4 italic">Source: Climate Policy Initiative, 2024</p>
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute -top-4 -right-4 bg-card rounded-xl border border-border shadow-lg px-3 py-2">
-                <div className="text-xs text-muted-foreground">Adaptation Gap</div>
-                <div className="text-lg font-bold text-danger font-tabular">$307B</div>
-                <div className="text-xs text-muted-foreground">annual shortfall</div>
-              </div>
-
-              {/* Bottom floating badge */}
-              <div className="absolute -bottom-4 -left-4 bg-card rounded-xl border border-border shadow-lg px-3 py-2">
-                <div className="text-xs text-muted-foreground">Course Progress</div>
-                <div className="text-lg font-bold text-primary font-tabular">73%</div>
-                <div className="text-xs text-muted-foreground">avg completion</div>
-              </div>
+          {/* Right: Visual Graphic */}
+          <div className="hidden lg:flex items-center justify-center relative">
+            <div className="hero-graphic-container">
+              {/* The Girl Image */}
+              <img 
+                src="/csid/assets/images/reading-girl.png" 
+                alt="Girl reading book" 
+                className="hero-image drop-shadow-2xl" 
+              />
+              
+              {/* The 3 Bubbles */}
+              <div className="bubble bubble-1"></div>
+              <div className="bubble bubble-2"></div>
+              <div className="bubble bubble-3"></div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

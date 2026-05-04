@@ -1,4 +1,4 @@
-"use client"; // Required for GSAP and useEffect in Next.js
+"use client";
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -13,26 +13,35 @@ const pillars = [
 ];
 
 export default function HeroBanner() {
+  const containerRef = useRef(null);
   const treeRef = useRef(null);
   const castleRef = useRef(null);
   const mountainsRef = useRef(null);
   const textRef = useRef(null);
 
   useEffect(() => {
-    // 1. Initial Setup: Push elements down
-    gsap.set(treeRef.current, { y: 100 });
-    gsap.set(castleRef.current, { y: 150 });
-    gsap.set(mountainsRef.current, { y: 200 });
-    gsap.set(textRef.current, { y: 30, autoAlpha: 0 });
+    // gsap.context() is the secret weapon for React. It cleans up the animation 
+    // so React Strict Mode doesn't cause it to break and jump around.
+    const ctx = gsap.context(() => {
+      
+      // 1. Initial Setup: Push elements down
+      gsap.set(treeRef.current, { y: 100 });
+      gsap.set(castleRef.current, { y: 150 });
+      gsap.set(mountainsRef.current, { y: 200 });
+      gsap.set(textRef.current, { y: 30, autoAlpha: 0 });
 
-    // 2. The Free GSAP Entrance Animation Timeline
-    const tl = gsap.timeline({ delay: 0.2 });
+      // 2. The Animation Timeline
+      const tl = gsap.timeline({ delay: 0.2 });
 
-    tl.to(mountainsRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0)
-      .to(castleRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.2)
-      .to(treeRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.4)
-      .to(textRef.current, { y: 0, autoAlpha: 1, duration: 1, ease: "power2.out" }, 0.8);
+      tl.to(mountainsRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0)
+        .to(castleRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.2)
+        .to(treeRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.4)
+        .to(textRef.current, { y: 0, autoAlpha: 1, duration: 1, ease: "power2.out" }, 0.8);
 
+    }, containerRef); // Scope the animation to our specific container
+
+    // Cleanup function when the component re-renders
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -45,7 +54,7 @@ export default function HeroBanner() {
       <div className="relative max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left: Your CSID Text */}
+          {/* Left: Text */}
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-5">
               <Leaf size={12} />
@@ -106,31 +115,38 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          {/* Right: Dilmays Parallax Animation */}
-          <div className="hidden lg:block w-full">
-            <div className="dilmays-container">
-              {/* Parallax Image Layers */}
-              <div className="parallax-item parallax-sky">
-                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-sky.png" alt="Sky" />
+          {/* Right: Dilmays Parallax Animation using Tailwind to prevent breaking */}
+          <div className="hidden lg:block w-full" ref={containerRef}>
+            <div className="relative w-full h-[500px] xl:h-[550px] rounded-3xl overflow-hidden shadow-2xl bg-[#a4c5d5] border border-white/10">
+              
+              {/* Background Layers with Absolute Positioning */}
+              <div className="absolute top-0 left-0 w-full h-full z-10">
+                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-sky.png" alt="Sky" className="w-full h-full object-cover object-bottom" />
               </div>
-              <div className="parallax-item parallax-mountains" ref={mountainsRef}>
-                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-moutains.png" alt="Mountains" />
+              
+              <div className="absolute top-0 left-0 w-full h-full z-20" ref={mountainsRef}>
+                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-moutains.png" alt="Mountains" className="w-full h-full object-cover object-bottom" />
               </div>
-              <div className="parallax-item parallax-castle" ref={castleRef}>
-                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-castle.png" alt="Castle" />
+              
+              <div className="absolute top-0 left-0 w-full h-full z-30" ref={castleRef}>
+                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-castle.png" alt="Castle" className="w-full h-full object-cover object-bottom" />
               </div>
-              <div className="parallax-item parallax-tree" ref={treeRef}>
-                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png" alt="Tree" />
+              
+              <div className="absolute top-0 left-0 w-full h-full z-40" ref={treeRef}>
+                <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png" alt="Tree" className="w-full h-full object-cover object-bottom scale-105" />
               </div>
               
               {/* Text Overlay */}
-              <div className="dilmays-overlay" ref={textRef}>
-                <div className="dilmays-subtitle">The Good Knight</div>
-                <div className="dilmays-title">The Story of the Dilmays Kingdom</div>
-                <div className="dilmays-desc">
+              <div className="absolute z-50 bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-[#0e192d] via-[#0e192d]/80 to-transparent text-left" ref={textRef}>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#f5c560] mb-2 block">The Good Knight</span>
+                <h2 className="text-3xl font-serif leading-tight mb-3 text-white font-medium">The Story of the Dilmays Kingdom</h2>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5">
                   King Olav is old and has only his kingdom. His daughter was kidnapped 
                   by the dragon Liuf. He has declared five trials: strength, honesty, generosity, courage, and sympathy.
-                </div>
+                </p>
+                <button className="px-6 py-2.5 bg-[#f5c560] text-gray-900 font-semibold rounded-lg text-sm hover:bg-[#e8a020] hover:scale-105 transition-all duration-200">
+                  Start the story
+                </button>
               </div>
             </div>
           </div>

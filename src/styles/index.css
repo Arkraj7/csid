@@ -1,65 +1,36 @@
 @import './tailwind.css';
 
-/* --- HERO BUBBLE ANIMATION --- */
+/* --- HERO IMAGE ANIMATION & GLOW --- */
 .hero-graphic-container {
   position: relative;
   width: 100%;
-  max-width: 450px;
+  max-width: 550px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero-image {
+.hero-image-bouncing {
   width: 100%;
   height: auto;
   display: block;
-  /* Adds a gentle, slow float to the girl herself to make it feel alive! */
-  animation: gentleFloat 6s ease-in-out infinite; 
+  /* The slow, gentle 6-second infinite bounce */
+  animation: slowBounce 6s ease-in-out infinite; 
+  
+  /* A soft, standard shadow for Light Mode */
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1));
+  transition: filter 0.4s ease;
 }
 
-.bubble {
-  position: absolute;
-  /* Adjust these percentages if the bubbles don't perfectly align with the book */
-  bottom: 45%; 
-  left: 35%;
-  background: rgba(255, 255, 255, 0.4); 
-  border: 1px solid rgba(255, 255, 255, 0.8); 
-  border-radius: 50%;
-  opacity: 0; 
-  animation: floatAndPop 4s infinite ease-in; 
+/* 🌙 The Radium Glow specifically for Dark Mode */
+.dark .hero-image-bouncing {
+  /* A bright, neon "radium" green/emerald glow that hugs the PNG shapes */
+  filter: drop-shadow(0 0 35px rgba(16, 185, 129, 0.6)); 
 }
 
-.bubble-1 {
-  width: 20px;
-  height: 20px;
-  left: 32%;
-  animation-delay: 0s;
-}
-
-.bubble-2 {
-  width: 35px;
-  height: 35px;
-  left: 40%;
-  animation-delay: 1.5s; 
-}
-
-.bubble-3 {
-  width: 25px;
-  height: 25px;
-  left: 36%;
-  animation-delay: 3s; 
-}
-
-/* Keyframes for the rising and popping bubbles */
-@keyframes floatAndPop {
-  0% { transform: translateY(0) scale(0.5); opacity: 0; }
-  20% { opacity: 1; }
-  80% { transform: translateY(-120px) scale(1); opacity: 0.8; }
-  95% { transform: translateY(-140px) scale(1.5); opacity: 0; }
-  100% { transform: translateY(-140px) scale(1.5); opacity: 0; }
-}
-
-/* Keyframes for the gentle float of the main image */
-@keyframes gentleFloat {
+/* Keyframes for the gentle float up and down */
+@keyframes slowBounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-20px); }
 }

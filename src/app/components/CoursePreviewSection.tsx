@@ -6,8 +6,8 @@ export default function CoursePreviewSection() {
   return (
     <section className="py-12 md:py-16 bg-muted/30">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* "Recent Uploads" Banner ONLY */}
+
+        {/* ONLY SECTION: "Recent Uploads" Banner */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 bg-card p-8 md:p-10 rounded-[2rem] border border-border shadow-md">
           <div>
             <p className="text-primary font-bold tracking-widest text-sm uppercase mb-3">

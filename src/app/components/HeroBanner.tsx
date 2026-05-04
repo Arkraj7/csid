@@ -20,27 +20,24 @@ export default function HeroBanner() {
   const textRef = useRef(null);
 
   useEffect(() => {
-    // gsap.context() is the secret weapon for React. It cleans up the animation 
-    // so React Strict Mode doesn't cause it to break and jump around.
     const ctx = gsap.context(() => {
       
-      // 1. Initial Setup: Push elements down
-      gsap.set(treeRef.current, { y: 100 });
-      gsap.set(castleRef.current, { y: 150 });
-      gsap.set(mountainsRef.current, { y: 200 });
-      gsap.set(textRef.current, { y: 30, autoAlpha: 0 });
+      // 1. Initial Setup: Smaller Y values so the image doesn't break the top edge
+      gsap.set(treeRef.current, { y: 20 });
+      gsap.set(castleRef.current, { y: 40 });
+      gsap.set(mountainsRef.current, { y: 60 });
+      gsap.set(textRef.current, { y: 20, autoAlpha: 0 });
 
       // 2. The Animation Timeline
-      const tl = gsap.timeline({ delay: 0.2 });
+      const tl = gsap.timeline({ delay: 0.1 });
 
       tl.to(mountainsRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0)
-        .to(castleRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.2)
-        .to(treeRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.4)
-        .to(textRef.current, { y: 0, autoAlpha: 1, duration: 1, ease: "power2.out" }, 0.8);
+        .to(castleRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.1)
+        .to(treeRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.2)
+        .to(textRef.current, { y: 0, autoAlpha: 1, duration: 1, ease: "power2.out" }, 0.5);
 
-    }, containerRef); // Scope the animation to our specific container
+    }, containerRef);
 
-    // Cleanup function when the component re-renders
     return () => ctx.revert();
   }, []);
 
@@ -98,55 +95,39 @@ export default function HeroBanner() {
                 Watch Demo
               </button>
             </div>
-
-            <div className="flex flex-wrap items-center gap-5 mt-8 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-primary inline-block" />
-                500+ active learners
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-secondary inline-block" />
-                150+ research modules
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-accent inline-block" />
-                ₹49 certificate
-              </span>
-            </div>
           </div>
 
-          {/* Right: Dilmays Parallax Animation using Tailwind to prevent breaking */}
+          {/* Right: Dilmays Parallax Animation (Fixed Layout) */}
           <div className="hidden lg:block w-full" ref={containerRef}>
             <div className="relative w-full h-[500px] xl:h-[550px] rounded-3xl overflow-hidden shadow-2xl bg-[#a4c5d5] border border-white/10">
               
-              {/* Background Layers with Absolute Positioning */}
+              {/* Background Layers with Extra Height (-top-[15%]) to prevent tearing */}
               <div className="absolute top-0 left-0 w-full h-full z-10">
                 <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-sky.png" alt="Sky" className="w-full h-full object-cover object-bottom" />
               </div>
               
-              <div className="absolute top-0 left-0 w-full h-full z-20" ref={mountainsRef}>
+              <div className="absolute -top-[15%] left-0 w-full h-[115%] z-20" ref={mountainsRef}>
                 <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-moutains.png" alt="Mountains" className="w-full h-full object-cover object-bottom" />
               </div>
               
-              <div className="absolute top-0 left-0 w-full h-full z-30" ref={castleRef}>
+              <div className="absolute -top-[15%] left-0 w-full h-[115%] z-30" ref={castleRef}>
                 <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-castle.png" alt="Castle" className="w-full h-full object-cover object-bottom" />
               </div>
               
-              <div className="absolute top-0 left-0 w-full h-full z-40" ref={treeRef}>
+              <div className="absolute -top-[15%] left-0 w-full h-[115%] z-40" ref={treeRef}>
                 <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png" alt="Tree" className="w-full h-full object-cover object-bottom scale-105" />
               </div>
               
-              {/* Text Overlay */}
-              <div className="absolute z-50 bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-[#0e192d] via-[#0e192d]/80 to-transparent text-left" ref={textRef}>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#f5c560] mb-2 block">The Good Knight</span>
-                <h2 className="text-3xl font-serif leading-tight mb-3 text-white font-medium">The Story of the Dilmays Kingdom</h2>
+              {/* Text Overlay (Updated to Climate Course) */}
+              <div className="absolute z-50 bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-[#0e192d] via-[#0e192d]/90 to-transparent text-left" ref={textRef}>
+                <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2 block">New Release</span>
+                <h2 className="text-3xl font-serif leading-tight mb-3 text-white font-medium">Featured Course: Climate Finance &amp; Investing</h2>
                 <p className="text-sm text-slate-300 leading-relaxed mb-5">
-                  King Olav is old and has only his kingdom. His daughter was kidnapped 
-                  by the dragon Liuf. He has declared five trials: strength, honesty, generosity, courage, and sympathy.
+                  Explore our new standalone curriculum covering carbon markets, ESG frameworks, and the future of global climate finance.
                 </p>
-                <button className="px-6 py-2.5 bg-[#f5c560] text-gray-900 font-semibold rounded-lg text-sm hover:bg-[#e8a020] hover:scale-105 transition-all duration-200">
-                  Start the story
-                </button>
+                <a href="/csid/climate-finance.html" className="inline-block px-6 py-2.5 bg-emerald-500 text-white font-semibold rounded-lg text-sm hover:bg-emerald-400 hover:scale-105 transition-all duration-200 shadow-lg shadow-emerald-500/30">
+                  Start Course Now
+                </a>
               </div>
             </div>
           </div>

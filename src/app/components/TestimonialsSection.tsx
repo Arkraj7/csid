@@ -1,116 +1,116 @@
 import React from 'react';
-import { Star, Quote } from 'lucide-react';
+import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    id: 'review-001',
-    name: 'Ananya Krishnamurthy',
-    role: 'ESG Analyst, Mumbai',
-    rating: 5,
-    quote: 'The ATF™ course completely changed how I think about climate investment. The four-pillar framework is something I now apply in my daily work. The chapter quizzes really lock in the knowledge.',
-    avatar: 'AK',
-    avatarColor: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+    quote: "The ATF™ course completely changed how I think about climate investment. The four-pillar framework is something I now apply in my daily work. The chapter quizzes really lock in the knowledge.",
+    initials: "AK",
+    name: "Ananya Krishnamurthy",
+    title: "ESG Analyst",
+    location: "Mumbai",
+    color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
   },
   {
-    id: 'review-002',
-    name: 'Rohit Venkataraman',
-    role: 'Urban Planner, Bengaluru',
-    rating: 5,
-    quote: 'I had no background in climate finance and was worried the content would be too technical. CSID breaks it down beautifully — the Gold Coast case study in Chapter 9 was especially eye-opening.',
-    avatar: 'RV',
-    avatarColor: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300',
+    quote: "I had no background in climate finance and was worried the content would be too technical. CSID breaks it down beautifully — the Gold Coast case study in Chapter 9 was especially eye-opening.",
+    initials: "RV",
+    name: "Rohit Venkataraman",
+    title: "Urban Planner",
+    location: "Bengaluru",
+    color: "bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400"
   },
   {
-    id: 'review-003',
-    name: 'Priyanka Mehra',
-    role: 'Sustainability Researcher, Delhi',
-    rating: 5,
-    quote: 'The capital imbalance data in Chapter 5 was genuinely shocking — $1.3 trillion going to mitigation versus $76 billion to adaptation. CSID makes these numbers understandable and actionable.',
-    avatar: 'PM',
-    avatarColor: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
+    quote: "The capital imbalance data in Chapter 5 was genuinely shocking — $1.3 trillion going to mitigation versus $76 billion to adaptation. CSID makes these numbers understandable and actionable.",
+    initials: "PM",
+    name: "Priyanka Mehra",
+    title: "Sustainability Researcher",
+    location: "Delhi",
+    color: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400"
   },
   {
-    id: 'review-004',
-    name: 'Siddharth Nair',
-    role: 'Policy Advisor, Kochi',
-    rating: 4,
-    quote: 'Clean interface, well-structured chapters, and the 70% quiz threshold keeps you honest. I appreciated that the certificate actually requires you to demonstrate understanding — not just click through.',
-    avatar: 'SN',
-    avatarColor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+    quote: "Clean interface, well-structured chapters, and the 70% quiz threshold keeps you honest. I appreciated that the certificate actually requires you to demonstrate understanding — not just click through.",
+    initials: "SN",
+    name: "Siddharth Nair",
+    title: "Policy Advisor",
+    location: "Kochi",
+    color: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
   },
   {
-    id: 'review-005',
-    name: 'Kavitha Sundaram',
-    role: 'Climate Finance Consultant, Chennai',
-    rating: 5,
-    quote: 'The Efficient Frontier concept in Chapter 7 is something I have been trying to explain to clients for years. CSID explains it in a way that a non-technical audience can actually grasp. Excellent platform.',
-    avatar: 'KS',
-    avatarColor: 'bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-300',
-  },
+    quote: "The Efficient Frontier concept in Chapter 7 is something I have been trying to explain to clients for years. CSID explains it in a way that a non-technical audience can actually grasp. Excellent platform.",
+    initials: "KS",
+    name: "Kavitha Sundaram",
+    title: "Climate Finance Consultant",
+    location: "Chennai",
+    color: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400"
+  }
 ];
 
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={`star-${i}`}
-          size={14}
-          className={i < rating ? 'fill-amber-400 text-amber-400' : 'text-muted fill-muted'}
-        />
-      ))}
-    </div>
-  );
-}
-
 export default function TestimonialsSection() {
-  return (
-    <section className="py-16 md:py-20 bg-muted/30">
-      <div className="max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16">
-        {/* Heading */}
-        <div className="text-center mb-12">
-          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3">
-            Learner Reviews
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">What Our Learners Say</h2>
-          <p className="text-muted-foreground text-base max-w-lg mx-auto">
-            From ESG analysts to urban planners — CSID learners come from every corner of the climate economy.
-          </p>
-        </div>
+  // We duplicate the array to create a seamless, infinite loop
+  const loopItems = [...testimonials, ...testimonials];
 
-        {/* Testimonials grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-          {testimonials.map((t) => (
-            <div key={t.id} className="bg-card rounded-xl border border-border p-5 card-hover">
-              <Quote size={20} className="text-primary/30 mb-3" />
-              <p className="text-sm text-foreground leading-relaxed mb-4 italic">&ldquo;{t.quote}&rdquo;</p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold ${t.avatarColor}`}>
-                    {t.avatar}
+  return (
+    <section className="py-20 md:py-28 bg-muted/20 overflow-hidden relative">
+      
+      {/* We inject a small style tag here to handle the infinite scrolling math perfectly */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes infiniteScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-infinite-scroll {
+          animation: infiniteScroll 40s linear infinite;
+          width: max-content;
+        }
+        .animate-infinite-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}} />
+
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          What Our Learners Say
+        </h2>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          From ESG analysts to urban planners — CSID learners come from every corner of the climate economy.
+        </p>
+      </div>
+
+      {/* The Scrolling Marquee Container */}
+      <div className="relative w-full overflow-hidden">
+        
+        {/* Soft gradient fade on the left and right edges for a premium look */}
+        <div className="absolute top-0 left-0 h-full w-12 md:w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 right-0 h-full w-12 md:w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+
+        {/* The Track that moves */}
+        <div className="flex animate-infinite-scroll">
+          {loopItems.map((testimonial, idx) => (
+            
+            // We use padding (px-4) instead of gap to make the 50% loop math perfect
+            <div key={`testimonial-${idx}`} className="px-4 w-[350px] md:w-[420px] flex-shrink-0">
+              <div className="h-full bg-card border border-border rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                
+                <div>
+                  <Quote size={28} className="text-primary/20 mb-6" />
+                  <p className="text-foreground text-sm md:text-base leading-relaxed mb-8">
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${testimonial.color}`}>
+                    {testimonial.initials}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-foreground">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                    <h4 className="font-semibold text-foreground text-sm">{testimonial.name}</h4>
+                    <p className="text-xs text-muted-foreground">{testimonial.title}, {testimonial.location}</p>
                   </div>
                 </div>
-                <StarRating rating={t.rating} />
+
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Aggregate */}
-        <div className="mt-10 text-center">
-          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-card border border-border">
-            <div className="flex gap-0.5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={`agg-star-${i}`} size={16} className="fill-amber-400 text-amber-400" />
-              ))}
-            </div>
-            <span className="text-lg font-bold text-foreground font-tabular">4.9</span>
-            <span className="text-sm text-muted-foreground">from 2,400+ learners</span>
-          </div>
+          ))}
         </div>
       </div>
     </section>

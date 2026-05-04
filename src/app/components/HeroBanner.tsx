@@ -21,20 +21,13 @@ export default function HeroBanner() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      
-      // 1. Initial Setup: Smaller Y values so the image doesn't break the top edge
-      gsap.set(treeRef.current, { y: 20 });
-      gsap.set(castleRef.current, { y: 40 });
-      gsap.set(mountainsRef.current, { y: 60 });
-      gsap.set(textRef.current, { y: 20, autoAlpha: 0 });
-
-      // 2. The Animation Timeline
       const tl = gsap.timeline({ delay: 0.1 });
 
-      tl.to(mountainsRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0)
-        .to(castleRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.1)
-        .to(treeRef.current, { y: 0, duration: 1.5, ease: "power3.out" }, 0.2)
-        .to(textRef.current, { y: 0, autoAlpha: 1, duration: 1, ease: "power2.out" }, 0.5);
+      // Using fromTo guarantees the animation starts perfectly every time without glitching
+      tl.fromTo(mountainsRef.current, { y: 60 }, { y: 0, duration: 1.5, ease: "power3.out" }, 0)
+        .fromTo(castleRef.current, { y: 80 }, { y: 0, duration: 1.5, ease: "power3.out" }, 0.1)
+        .fromTo(treeRef.current, { y: 100 }, { y: 0, duration: 1.5, ease: "power3.out" }, 0.2)
+        .fromTo(textRef.current, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, ease: "power2.out" }, 0.5);
 
     }, containerRef);
 
@@ -90,31 +83,30 @@ export default function HeroBanner() {
                 Start Learning Today
                 <ArrowRight size={16} />
               </Link>
-              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-foreground font-semibold text-sm hover:bg-muted transition-all duration-150 active:scale-95">
-                <Play size={14} className="text-primary" />
-                Watch Demo
-              </button>
             </div>
           </div>
 
-          {/* Right: Dilmays Parallax Animation (Fixed Layout) */}
+          {/* Right: Dilmays Parallax Animation */}
           <div className="hidden lg:block w-full" ref={containerRef}>
             <div className="relative w-full h-[500px] xl:h-[550px] rounded-3xl overflow-hidden shadow-2xl bg-[#a4c5d5] border border-white/10">
               
-              {/* Background Layers with Extra Height (-top-[15%]) to prevent tearing */}
+              {/* SKY */}
               <div className="absolute top-0 left-0 w-full h-full z-10">
                 <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-sky.png" alt="Sky" className="w-full h-full object-cover object-bottom" />
               </div>
               
-              <div className="absolute -top-[15%] left-0 w-full h-[115%] z-20" ref={mountainsRef}>
+              {/* MOUNTAINS: Massive Bleed to prevent tearing */}
+              <div className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-20" ref={mountainsRef}>
                 <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-moutains.png" alt="Mountains" className="w-full h-full object-cover object-bottom" />
               </div>
               
-              <div className="absolute -top-[15%] left-0 w-full h-[115%] z-30" ref={castleRef}>
+              {/* CASTLE */}
+              <div className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-30" ref={castleRef}>
                 <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-castle.png" alt="Castle" className="w-full h-full object-cover object-bottom" />
               </div>
               
-              <div className="absolute -top-[15%] left-0 w-full h-[115%] z-40" ref={treeRef}>
+              {/* TREES */}
+              <div className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-40" ref={treeRef}>
                 <img src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png" alt="Tree" className="w-full h-full object-cover object-bottom scale-105" />
               </div>
               

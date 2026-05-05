@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Course } from './courseData';
-import { Chapter } from '@/types/certificate';
+import { Chapter } from '@/types/certificate'; // THE CRITICAL FIX IS ON THIS LINE
 import ChapterSidebar from './ChapterSidebar';
 import ChapterContent from './ChapterContent';
 

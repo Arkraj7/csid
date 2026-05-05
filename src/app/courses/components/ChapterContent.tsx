@@ -22,13 +22,16 @@ export default function ChapterContent({ chapter, courseId }: ChapterContentProp
       const endTime = Date.now();
       const timeSpentMilliseconds = endTime - startTime;
       const hoursSpent = timeSpentMilliseconds / (1000 * 60 * 60);
-      if (hoursSpent > 0.004) { 
+      if (hoursSpent > 0.004) {
         updateUserProgress({ hoursLearned: Number(hoursSpent.toFixed(2)) });
       }
     };
   }, []);
 
-  const handleCompleteAndContinue = async (e: React.MouseEvent, nextChapterId: string | undefined) => {
+  const handleCompleteAndContinue = async (
+    e: React.MouseEvent,
+    nextChapterId: string | undefined
+  ) => {
     e.preventDefault();
     setIsCompleting(true);
     await updateUserProgress({ lessonsCompleted: 1 });
@@ -61,7 +64,7 @@ export default function ChapterContent({ chapter, courseId }: ChapterContentProp
 
       <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-6">
         {chapter.previousChapter ? (
-          <Link 
+          <Link
             href={`/courses/${courseId}/chapters/${chapter.previousChapter}`}
             className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary font-medium transition-colors w-full sm:w-auto justify-center sm:justify-start"
           >

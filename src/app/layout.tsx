@@ -18,23 +18,27 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'CSID — Learn the Climate Economy',
-  description: 'Center for Sustainability and Inclusive Development — structured courses on climate mitigation, adaptation, resilience, and recovery for learners and professionals.',
+  description:
+    'Center for Sustainability and Inclusive Development — structured courses on climate mitigation, adaptation, resilience, and recovery for learners and professionals.',
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={dmSans.variable}>
       <body className={dmSans.className}>
         {children}
         <Toaster position="bottom-right" richColors closeButton />
 
-        <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcsid1039back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.18" />
-        <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2" /></body>
+        <script
+          type="module"
+          async
+          src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcsid1039back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.18"
+        />
+        <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2" />
+      </body>
     </html>
   );
 }

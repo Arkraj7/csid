@@ -4,7 +4,9 @@ import { Award, X, Download, Lock, CheckCircle } from 'lucide-react';
 
 function CertificateCard({ preview = false }: { preview?: boolean }) {
   return (
-    <div className={`relative bg-white rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/30 ${preview ? 'max-w-2xl mx-auto' : ''}`}>
+    <div
+      className={`relative bg-white rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/30 ${preview ? 'max-w-2xl mx-auto' : ''}`}
+    >
       {/* Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
         <div className="text-5xl font-bold text-primary/5 rotate-[-25deg] select-none tracking-widest">
@@ -18,12 +20,16 @@ function CertificateCard({ preview = false }: { preview?: boolean }) {
           <Award size={22} />
           <span className="text-lg font-bold tracking-wide">CSID</span>
         </div>
-        <div className="text-xs opacity-80 tracking-widest uppercase">Center for Sustainability and Inclusive Development</div>
+        <div className="text-xs opacity-80 tracking-widest uppercase">
+          Center for Sustainability and Inclusive Development
+        </div>
       </div>
 
       {/* Certificate body */}
       <div className="p-6 md:p-8 text-center">
-        <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">This certifies that</div>
+        <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
+          This certifies that
+        </div>
         <div className="text-2xl md:text-3xl font-bold text-foreground mb-1 font-serif italic">
           {preview ? 'Your Name Here' : 'Ananya Krishnamurthy'}
         </div>
@@ -32,7 +38,9 @@ function CertificateCard({ preview = false }: { preview?: boolean }) {
         <div className="text-base font-semibold text-foreground mb-1 max-w-md mx-auto leading-snug">
           Understanding the Climate Economy: The Adaptive Thematic Framework™
         </div>
-        <div className="text-xs text-muted-foreground mb-5">Issued by CSID — Center for Sustainability and Inclusive Development</div>
+        <div className="text-xs text-muted-foreground mb-5">
+          Issued by CSID — Center for Sustainability and Inclusive Development
+        </div>
 
         {/* Meta row */}
         <div className="flex flex-wrap justify-center gap-6 text-xs text-muted-foreground border-t border-border pt-4 mb-4">
@@ -66,7 +74,8 @@ function CertificateCard({ preview = false }: { preview?: boolean }) {
       {/* Footer */}
       <div className="bg-muted/30 px-6 py-3 text-center">
         <p className="text-xs text-muted-foreground">
-          Verify at <span className="text-primary font-medium">csid.education/verify</span> using Certificate ID
+          Verify at <span className="text-primary font-medium">csid.education/verify</span> using
+          Certificate ID
         </p>
       </div>
     </div>
@@ -89,7 +98,9 @@ export default function CertificatePreviewSection() {
               Earn a Certificate That Proves You Know the Climate Economy
             </h2>
             <p className="text-muted-foreground text-base leading-relaxed mb-5">
-              Complete all chapters, pass the 15-question final assessment with ≥70%, and unlock your CSID certificate for just ₹49. Industry-recognised, verifiable, and genuinely earned.
+              Complete all chapters, pass the 15-question final assessment with ≥70%, and unlock
+              your CSID certificate for just ₹49. Industry-recognised, verifiable, and genuinely
+              earned.
             </p>
             <ul className="space-y-3 mb-7">
               {[
@@ -98,7 +109,10 @@ export default function CertificatePreviewSection() {
                 'Download as PDF — shareable on LinkedIn',
                 'Verify with unique Certificate ID',
               ].map((point) => (
-                <li key={`cert-point-${point.slice(0, 20)}`} className="flex items-start gap-2.5 text-sm text-foreground">
+                <li
+                  key={`cert-point-${point.slice(0, 20)}`}
+                  className="flex items-start gap-2.5 text-sm text-foreground"
+                >
                   <CheckCircle size={16} className="mt-0.5 text-primary flex-shrink-0" />
                   {point}
                 </li>
@@ -150,7 +164,10 @@ export default function CertificatePreviewSection() {
             </button>
             <CertificateCard preview />
             <div className="mt-4 text-center">
-              <p className="text-xs text-white/70">This is a preview. Complete the course and pay ₹49 to receive your personalised certificate.</p>
+              <p className="text-xs text-white/70">
+                This is a preview. Complete the course and pay ₹49 to receive your personalised
+                certificate.
+              </p>
             </div>
           </div>
         </div>

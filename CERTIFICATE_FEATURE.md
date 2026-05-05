@@ -7,27 +7,30 @@ This implementation adds automated certificate generation and PDF download funct
 ## What Was Implemented
 
 ### 1. **Certificate Utility Library** (`src/lib/certificate.ts`)
-   - `generateCertificatePDF()` - Converts HTML certificate element to PDF using html2canvas and jsPDF
-   - `downloadCertificate()` - User-facing function to trigger certificate download
-   - `CertificateData` interface - Defines certificate metadata structure
+
+- `generateCertificatePDF()` - Converts HTML certificate element to PDF using html2canvas and jsPDF
+- `downloadCertificate()` - User-facing function to trigger certificate download
+- `CertificateData` interface - Defines certificate metadata structure
 
 ### 2. **Updated FinalAssessmentModal** (`src/app/courses/components/FinalAssessmentModal.tsx`)
-   - Added download button in the results screen for students who pass
-   - Integrated certificate generation functionality
-   - Hidden certificate HTML element with complete certificate design
-   - Download state management with loading indicator
-   - Error handling with toast notifications
+
+- Added download button in the results screen for students who pass
+- Integrated certificate generation functionality
+- Hidden certificate HTML element with complete certificate design
+- Download state management with loading indicator
+- Error handling with toast notifications
 
 ### 3. **Certificate Design**
-   - Professional certificate template with:
-     - CSID header with gradient background
-     - Student name display area
-     - Course name and completion details
-     - Certificate ID (auto-generated with timestamp)
-     - Completion date
-     - Final score display
-     - Signature line and verification seal
-     - Footer with verification URL and certificate ID
+
+- Professional certificate template with:
+  - CSID header with gradient background
+  - Student name display area
+  - Course name and completion details
+  - Certificate ID (auto-generated with timestamp)
+  - Completion date
+  - Final score display
+  - Signature line and verification seal
+  - Footer with verification URL and certificate ID
 
 ## How It Works
 
@@ -46,10 +49,12 @@ This implementation adds automated certificate generation and PDF download funct
 ## Technical Details
 
 ### Dependencies Added
+
 - `html2canvas` - Converts DOM elements to canvas for PDF export
 - `jspdf` - Generates PDF files from canvas images
 
 ### Key Features
+
 - **Client-side processing** - Certificate generation happens entirely in the browser
 - **High-quality output** - PDF generated at 2x scale for crisp rendering
 - **Responsive certificate design** - Maintains aspect ratio on any screen size
@@ -65,6 +70,7 @@ This implementation adds automated certificate generation and PDF download funct
 ## Usage
 
 Students can download certificates by:
+
 1. Completing all chapters of a course
 2. Taking the final assessment (minimum 15 questions)
 3. Achieving ≥70% score
@@ -82,12 +88,14 @@ Students can download certificates by:
 ## Testing
 
 The build completes successfully with:
+
 - TypeScript type checking ✓
 - All pages generate correctly ✓
 - No compilation errors ✓
 - Certificate module properly imported and used ✓
 
 Build output:
+
 ```
 ✓ Compiled successfully
 ✓ Checking validity of types

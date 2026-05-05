@@ -6,7 +6,6 @@ export default function CoursePreviewSection() {
   return (
     <section className="py-12 md:py-16 bg-muted/30">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* ONLY SECTION: "Recent Uploads" Banner */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 bg-card p-8 md:p-10 rounded-[2rem] border border-border shadow-md">
           <div>
@@ -23,7 +22,7 @@ export default function CoursePreviewSection() {
               Start Now <Play size={16} className="fill-current" />
             </a>
           </div>
-          
+
           <div className="w-full md:w-auto md:text-right border-t md:border-t-0 md:border-l border-border pt-6 md:pt-0 md:pl-10">
             <p className="text-sm text-muted-foreground mb-4 max-w-[200px] hidden md:block ml-auto">
               Explore our full curriculum covering every pillar of the climate economy.
@@ -38,7 +37,6 @@ export default function CoursePreviewSection() {
             </Link>
           </div>
         </div>
-
       </div>
     </section>
   );

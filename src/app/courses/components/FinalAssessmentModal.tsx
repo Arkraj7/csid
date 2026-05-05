@@ -23,7 +23,7 @@ export default function FinalAssessmentModal({
   score,
   totalQuestions,
   courseTitle,
-  onPass
+  onPass,
 }: FinalAssessmentModalProps) {
   const certificateRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -52,9 +52,15 @@ export default function FinalAssessmentModal({
   const certData: CertificateData = {
     fullName: userName,
     courseTitle: courseTitle,
-    dateCompleted: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+    dateCompleted: new Date().toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    }),
     finalScore: `${Math.round((score / totalQuestions) * 100)}% (${score}/${totalQuestions})`,
-    uniqueCertId: `CSID-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`,
+    uniqueCertId: `CSID-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000)
+      .toString()
+      .padStart(4, '0')}`,
   };
 
   const generatePDF = async () => {
@@ -63,7 +69,7 @@ export default function FinalAssessmentModal({
     try {
       const canvas = await html2canvas(certificateRef.current, {
         scale: 2,
-        useCORS: true, 
+        useCORS: true,
         logging: false,
       });
 
@@ -75,8 +81,8 @@ export default function FinalAssessmentModal({
       pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
       pdf.save(`${certData.fullName.replace(/\s+/g, '_')}_Certificate.pdf`);
     } catch (error) {
-      console.error("Error generating certificate:", error);
-      alert("Error generating certificate. Please try again.");
+      console.error('Error generating certificate:', error);
+      alert('Error generating certificate. Please try again.');
     } finally {
       setIsGenerating(false);
     }
@@ -89,14 +95,14 @@ export default function FinalAssessmentModal({
           <h2 className={`text-3xl font-bold mb-4 ${passed ? 'text-green-600' : 'text-red-600'}`}>
             {passed ? 'Assessment Passed!' : 'Assessment Failed'}
           </h2>
-          
+
           <div className="text-6xl font-bold mb-2">
             {Math.round((score / totalQuestions) * 100)}%
           </div>
-          
+
           <p className="text-gray-600 mb-8">
             You scored {score} out of {totalQuestions} correctly.
-            {!passed && " You need 70% to pass and earn your certificate."}
+            {!passed && ' You need 70% to pass and earn your certificate.'}
           </p>
 
           <div className="flex flex-col gap-3">
@@ -109,11 +115,13 @@ export default function FinalAssessmentModal({
                 {isGenerating ? 'Generating PDF...' : 'Download Certificate'}
               </button>
             )}
-            
+
             <button
               onClick={onClose}
               className={`w-full py-3 px-4 rounded-xl font-semibold transition-colors ${
-                passed ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' : 'bg-green-600 text-white hover:bg-green-700'
+                passed
+                  ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-green-600 text-white hover:bg-green-700'
               }`}
             >
               {passed ? 'Return to Course' : 'Try Again'}

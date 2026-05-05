@@ -4,9 +4,7 @@ import { courseData } from '../components/courseData';
 
 // This tells Next.js which course pages to build
 export function generateStaticParams() {
-  return [
-    { courseId: 'climate-finance-101' }
-  ];
+  return [{ courseId: 'climate-finance-101' }];
 }
 
 export default function CoursePage() {

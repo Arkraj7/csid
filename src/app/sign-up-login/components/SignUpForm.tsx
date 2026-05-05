@@ -26,7 +26,11 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
       await updateProfile(userCredential.user, { displayName: name });
       router.push('/courses');
     } catch (err: any) {
-      setError(err.message.includes('email-already-in-use') ? 'Email is already in use.' : 'Failed to create account.');
+      setError(
+        err.message.includes('email-already-in-use')
+          ? 'Email is already in use.'
+          : 'Failed to create account.'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -46,12 +50,16 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <button 
+      <button
         onClick={handleGoogleSignUp}
         disabled={isLoading}
         className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
       >
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
+        <img
+          src="https://www.svgrepo.com/show/475656/google-color.svg"
+          alt="Google"
+          className="w-5 h-5"
+        />
         Sign up with Google
       </button>
 
@@ -65,17 +73,40 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
         {error && <p className="text-red-500 text-sm text-center">{error}</p>}
         <div>
           <label className="block text-sm font-medium mb-1">Full Name</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none" />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none"
+          />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none" />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none"
+          />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none" />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={6}
+            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none"
+          />
         </div>
-        <button type="submit" disabled={isLoading} className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors mt-2">
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors mt-2"
+        >
           {isLoading ? 'Creating Account...' : 'Create Account'}
         </button>
       </form>

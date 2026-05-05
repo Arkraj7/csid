@@ -15,12 +15,12 @@ export default function HomePage() {
       <main>
         <HeroBanner />
         <StatsSection />
-        
+
         {/* Recent Uploads Banner */}
         <CoursePreviewSection />
-        
+
         {/* The Built on Frameworks section is completely deleted from here */}
-        
+
         <BadgeTabsSection />
         <TestimonialsSection />
         <CertificatePreviewSection />

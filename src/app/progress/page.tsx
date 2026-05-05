@@ -6,14 +6,46 @@ import Footer from '@/components/Footer';
 import { TrendingUp, BookOpen, Star, Clock, CheckCircle, BarChart2, Award } from 'lucide-react';
 
 const mockCourses = [
-  { id: 1, title: 'Climate Change Mitigation', progress: 73, chapters: 9, completed: 6, color: 'bg-green-500' },
-  { id: 2, title: 'Adaptation Strategies', progress: 40, chapters: 7, completed: 3, color: 'bg-cyan-500' },
+  {
+    id: 1,
+    title: 'Climate Change Mitigation',
+    progress: 73,
+    chapters: 9,
+    completed: 6,
+    color: 'bg-green-500',
+  },
+  {
+    id: 2,
+    title: 'Adaptation Strategies',
+    progress: 40,
+    chapters: 7,
+    completed: 3,
+    color: 'bg-cyan-500',
+  },
 ];
 
 const recommendedCourses = [
-  { id: 1, title: 'Resilience & Recovery', desc: 'Build systems that withstand climate shocks', tag: 'New', tagColor: 'bg-primary/10 text-primary' },
-  { id: 2, title: 'Inclusive Development', desc: 'Equity-centered approaches to sustainability', tag: 'Popular', tagColor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' },
-  { id: 3, title: 'Climate Finance', desc: 'Understanding investment flows in the climate economy', tag: 'Trending', tagColor: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300' },
+  {
+    id: 1,
+    title: 'Resilience & Recovery',
+    desc: 'Build systems that withstand climate shocks',
+    tag: 'New',
+    tagColor: 'bg-primary/10 text-primary',
+  },
+  {
+    id: 2,
+    title: 'Inclusive Development',
+    desc: 'Equity-centered approaches to sustainability',
+    tag: 'Popular',
+    tagColor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
+  },
+  {
+    id: 3,
+    title: 'Climate Finance',
+    desc: 'Understanding investment flows in the climate economy',
+    tag: 'Trending',
+    tagColor: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
+  },
 ];
 
 const activityData = [
@@ -28,7 +60,7 @@ const activityData = [
 
 export default function ProgressPage() {
   const [activeView] = useState<'week'>('week');
-  const maxMinutes = Math.max(...activityData?.map((d) => d?.minutes));
+  const maxMinutes = Math.max(...(activityData?.map((d) => d?.minutes) || []));
 
   return (
     <div className="min-h-screen bg-background">
@@ -41,8 +73,12 @@ export default function ProgressPage() {
               <TrendingUp size={12} />
               My Progress
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Learning Dashboard</h1>
-            <p className="text-muted-foreground">Track your journey through CSID&apos;s sustainability curriculum.</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+              Learning Dashboard
+            </h1>
+            <p className="text-muted-foreground">
+              Track your journey through CSID&apos;s sustainability curriculum.
+            </p>
           </div>
         </section>
 
@@ -55,12 +91,17 @@ export default function ProgressPage() {
               { icon: Clock, label: 'Hours Learned', value: '12.5', color: 'text-accent' },
               { icon: Award, label: 'Certificates', value: '0', color: 'text-earth' },
             ]?.map((stat) => (
-              <div key={stat?.label} className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
+              <div
+                key={stat?.label}
+                className="bg-card border border-border rounded-xl p-4 flex items-center gap-3"
+              >
                 <div className={`p-2 rounded-lg bg-muted ${stat?.color}`}>
                   <stat.icon size={18} />
                 </div>
                 <div>
-                  <div className={`text-xl font-bold font-tabular ${stat?.color}`}>{stat?.value}</div>
+                  <div className={`text-xl font-bold font-tabular ${stat?.color}`}>
+                    {stat?.value}
+                  </div>
                   <div className="text-xs text-muted-foreground">{stat?.label}</div>
                 </div>
               </div>
@@ -75,12 +116,17 @@ export default function ProgressPage() {
                   <BarChart2 size={18} className="text-primary" />
                   Weekly Activity
                 </h2>
-                <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full">This Week</span>
+                <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full">
+                  This Week
+                </span>
               </div>
               <div className="flex items-end gap-3 h-32">
                 {activityData?.map((d) => (
                   <div key={d?.day} className="flex-1 flex flex-col items-center gap-1">
-                    <div className="w-full flex items-end justify-center" style={{ height: '96px' }}>
+                    <div
+                      className="w-full flex items-end justify-center"
+                      style={{ height: '96px' }}
+                    >
                       <div
                         className="w-full rounded-t-lg bg-primary/80 hover:bg-primary transition-colors cursor-default"
                         style={{ height: `${(d?.minutes / maxMinutes) * 96}px` }}
@@ -91,7 +137,9 @@ export default function ProgressPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground mt-4 text-center">Minutes of learning per day (mock data)</p>
+              <p className="text-xs text-muted-foreground mt-4 text-center">
+                Minutes of learning per day (mock data)
+              </p>
             </div>
 
             {/* Previous / Enrolled Courses */}
@@ -104,8 +152,12 @@ export default function ProgressPage() {
                 {mockCourses?.map((course) => (
                   <div key={course?.id} className="space-y-2">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm font-medium text-foreground leading-tight">{course?.title}</p>
-                      <span className="text-xs font-tabular text-muted-foreground flex-shrink-0">{course?.progress}%</span>
+                      <p className="text-sm font-medium text-foreground leading-tight">
+                        {course?.title}
+                      </p>
+                      <span className="text-xs font-tabular text-muted-foreground flex-shrink-0">
+                        {course?.progress}%
+                      </span>
                     </div>
                     <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
@@ -134,10 +186,15 @@ export default function ProgressPage() {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {recommendedCourses?.map((course) => (
-                  <div key={course?.id} className="border border-border rounded-xl p-4 hover:border-primary/40 hover:bg-muted/30 transition-all duration-150 cursor-pointer">
+                  <div
+                    key={course?.id}
+                    className="border border-border rounded-xl p-4 hover:border-primary/40 hover:bg-muted/30 transition-all duration-150 cursor-pointer"
+                  >
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <h3 className="text-sm font-semibold text-foreground">{course?.title}</h3>
-                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${course?.tagColor}`}>
+                      <span
+                        className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${course?.tagColor}`}
+                      >
                         {course?.tag}
                       </span>
                     </div>

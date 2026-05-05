@@ -5,14 +5,20 @@ const courseContent = {
   'climate-101': {
     title: 'Climate Change Mitigation',
     chapters: {
-      '1': { title: 'Introduction to Mitigation', content: '[Add Your 1200-1800 word content here]' },
-      '2': { title: 'Renewable Energy Solutions', content: '[Add Your 1200-1800 word content here]' },
+      '1': {
+        title: 'Introduction to Mitigation',
+        content: '[Add Your 1200-1800 word content here]',
+      },
+      '2': {
+        title: 'Renewable Energy Solutions',
+        content: '[Add Your 1200-1800 word content here]',
+      },
     },
     quiz: [
       { question: 'Placeholder Question 1?', options: ['A', 'B', 'C', 'D'], answer: 'A' },
       { question: 'Placeholder Question 2?', options: ['A', 'B', 'C', 'D'], answer: 'B' },
-    ]
-  }
+    ],
+  },
 };
 
 export function generateStaticParams() {
@@ -37,7 +43,9 @@ export default async function ChapterPage({ params }: Props) {
     return (
       <main className="p-12 text-center">
         <h1 className="text-2xl font-bold mb-4">Chapter not found.</h1>
-        <Link href="/courses" className="text-blue-600 hover:underline">Return to Courses</Link>
+        <Link href="/courses" className="text-blue-600 hover:underline">
+          Return to Courses
+        </Link>
       </main>
     );
   }
@@ -51,12 +59,15 @@ export default async function ChapterPage({ params }: Props) {
       </div>
 
       <h1 className="text-3xl font-bold mb-2">{course.title}</h1>
-      <h2 className="text-xl text-gray-700 mb-8">Chapter {chapterId}: {chapter.title}</h2>
+      <h2 className="text-xl text-gray-700 mb-8">
+        Chapter {chapterId}: {chapter.title}
+      </h2>
 
       <section className="prose prose-lg max-w-none text-gray-800 mb-12">
         <p>{chapter.content}</p>
         <p className="bg-gray-100 p-4 rounded border text-sm italic mt-4">
-          Founder note: Please manually replace this placeholder with your 1200-1800 word, originally written chapter content.
+          Founder note: Please manually replace this placeholder with your 1200-1800 word,
+          originally written chapter content.
         </p>
       </section>
 
@@ -64,11 +75,18 @@ export default async function ChapterPage({ params }: Props) {
         <h3 className="text-2xl font-semibold mb-6">Chapter {chapterId} Quiz</h3>
         {course.quiz.map((q, index) => (
           <div key={index} className="quiz-question mb-8 pb-6 border-b last:border-0">
-            <p className="font-medium text-lg mb-3">{index + 1}. {q.question}</p>
+            <p className="font-medium text-lg mb-3">
+              {index + 1}. {q.question}
+            </p>
             <div className="options space-y-3 ml-4">
               {q.options.map((option) => (
                 <label key={option} className="flex items-center gap-3 cursor-pointer">
-                  <input type="radio" name={`question-${index}`} value={option} className="w-4 h-4 text-blue-600" />
+                  <input
+                    type="radio"
+                    name={`question-${index}`}
+                    value={option}
+                    className="w-4 h-4 text-blue-600"
+                  />
                   <span>{option}</span>
                 </label>
               ))}

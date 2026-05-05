@@ -23,9 +23,12 @@ export default function GetProPage() {
               <Zap size={12} />
               Upgrade to Pro
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Unlock Your Full Potential</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Unlock Your Full Potential
+            </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Get unlimited access to all CSID courses with a single, one-time payment. No subscriptions. No renewals.
+              Get unlimited access to all CSID courses with a single, one-time payment. No
+              subscriptions. No renewals.
             </p>
           </div>
         </section>
@@ -48,7 +51,9 @@ export default function GetProPage() {
                     <span className="text-2xl font-bold text-foreground">₹</span>
                     <span className="text-6xl font-bold text-foreground font-tabular">1999</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mt-2">One-time payment · No recurring fees</p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    One-time payment · No recurring fees
+                  </p>
                 </div>
 
                 <ul className="space-y-3 mb-8">
@@ -73,17 +78,38 @@ export default function GetProPage() {
                 <h3 className="text-xl font-bold text-foreground">Why Go Pro?</h3>
                 <div className="space-y-4">
                   {[
-                    { icon: BookOpen, title: 'All Courses Included', desc: 'Access every course on climate mitigation, adaptation, resilience, and recovery.' },
-                    { icon: Award, title: 'Verified Certificates', desc: 'Earn industry-recognised certificates to showcase your expertise.' },
-                    { icon: Star, title: 'Future-Proof Access', desc: 'New courses added regularly — all included in your one-time payment.' },
-                    { icon: Zap, title: 'Lifetime Validity', desc: 'No expiry date. Learn at your own pace, forever.' },
+                    {
+                      icon: BookOpen,
+                      title: 'All Courses Included',
+                      desc: 'Access every course on climate mitigation, adaptation, resilience, and recovery.',
+                    },
+                    {
+                      icon: Award,
+                      title: 'Verified Certificates',
+                      desc: 'Earn industry-recognised certificates to showcase your expertise.',
+                    },
+                    {
+                      icon: Star,
+                      title: 'Future-Proof Access',
+                      desc: 'New courses added regularly — all included in your one-time payment.',
+                    },
+                    {
+                      icon: Zap,
+                      title: 'Lifetime Validity',
+                      desc: 'No expiry date. Learn at your own pace, forever.',
+                    },
                   ]?.map((item, i) => (
-                    <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-card border border-border">
+                    <div
+                      key={i}
+                      className="flex items-start gap-4 p-4 rounded-xl bg-card border border-border"
+                    >
                       <div className="p-2 rounded-lg bg-primary/10">
                         <item.icon size={18} className="text-primary" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-foreground mb-0.5">{item?.title}</div>
+                        <div className="text-sm font-semibold text-foreground mb-0.5">
+                          {item?.title}
+                        </div>
                         <div className="text-xs text-muted-foreground">{item?.desc}</div>
                       </div>
                     </div>

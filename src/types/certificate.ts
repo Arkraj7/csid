@@ -12,6 +12,6 @@ export interface Chapter {
   content: string;
   order: number;
   duration: number;
-  previousChapter?: string; 
-  nextChapter?: string;     
+  previousChapter?: string;
+  nextChapter?: string;
 }

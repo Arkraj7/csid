@@ -14,7 +14,8 @@ export const translations = {
     hero: {
       tagBadge: 'Center for Sustainability & Inclusive Development',
       title: 'Empowering Action for a Sustainable and Inclusive Future.',
-      description: 'CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change.',
+      description:
+        'CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change.',
       startLearning: 'Start Learning Today',
       watchDemo: 'Watch Demo',
       learnersEnrolled: 'active learners',
@@ -36,7 +37,8 @@ export const translations = {
       careers: 'Careers',
       contactUs: 'Contact Us',
       faq: 'FAQ',
-      copyright: '© 2026 CSID — Center for Sustainability & Inclusive Development. All rights reserved.',
+      copyright:
+        '© 2026 CSID — Center for Sustainability & Inclusive Development. All rights reserved.',
     },
   },
   hi: {
@@ -54,7 +56,8 @@ export const translations = {
     hero: {
       tagBadge: 'स्थिरता और समावेशी विकास केंद्र',
       title: 'संवर्धनीय और समावेशी भविष्य के लिए कार्रवाई को सशक्त बनाना।',
-      description: 'CSID जलवायु शमन, अनुकूलन, लचीलापन और पुनर्प्राप्ति पर संरचित, अनुसंधान-समर्थित पाठ्यक्रम प्रदान करता है।',
+      description:
+        'CSID जलवायु शमन, अनुकूलन, लचीलापन और पुनर्प्राप्ति पर संरचित, अनुसंधान-समर्थित पाठ्यक्रम प्रदान करता है।',
       startLearning: 'आज सीखना शुरू करें',
       watchDemo: 'डेमो देखें',
       learnersEnrolled: 'सक्रिय शिक्षार्थी',

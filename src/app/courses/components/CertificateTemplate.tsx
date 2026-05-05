@@ -10,11 +10,11 @@ interface Props {
 const CertificateTemplate = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
   // IMPORTANT: Since you are hosting on GitHub Pages at arkraj7.github.io/csid/
   // We must prefix the image path so html2canvas can find the logo.
-  const basePath = '/csid'; 
+  const basePath = '/csid';
 
   return (
     <div style={{ position: 'absolute', top: '-10000px', left: '-10000px' }}>
-      <div 
+      <div
         ref={ref}
         style={{
           width: '1122px', // A4 Landscape width at 96 DPI
@@ -25,18 +25,20 @@ const CertificateTemplate = forwardRef<HTMLDivElement, Props>(({ data }, ref) =>
           padding: '0',
           boxSizing: 'border-box',
           textAlign: 'center',
-          color: '#333'
+          color: '#333',
         }}
       >
         {/* Top Green Banner */}
         <div style={{ backgroundColor: '#10895a', padding: '30px', color: 'white' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px' }}>
+          <div
+            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px' }}
+          >
             {/* Standard img tag is required here for html2canvas to work properly */}
-            <img 
-              src={`${basePath}/assets/images/app_logo.png`} 
-              alt="CSID Logo" 
+            <img
+              src={`${basePath}/assets/images/app_logo.png`}
+              alt="CSID Logo"
               style={{ width: '40px', height: 'auto' }}
-              crossOrigin="anonymous" 
+              crossOrigin="anonymous"
             />
             <h2 style={{ margin: 0, fontSize: '32px' }}>CSID</h2>
           </div>
@@ -47,21 +49,37 @@ const CertificateTemplate = forwardRef<HTMLDivElement, Props>(({ data }, ref) =>
 
         {/* Certificate Body */}
         <div style={{ padding: '60px 80px' }}>
-          <p style={{ color: '#666', letterSpacing: '2px', fontSize: '16px', textTransform: 'uppercase' }}>
+          <p
+            style={{
+              color: '#666',
+              letterSpacing: '2px',
+              fontSize: '16px',
+              textTransform: 'uppercase',
+            }}
+          >
             This certifies that
           </p>
 
-          <h1 style={{ 
-            fontSize: '56px', 
-            color: '#0d1b2a', 
-            fontFamily: 'Georgia, serif', 
-            margin: '20px 0',
-            fontStyle: 'italic'
-          }}>
+          <h1
+            style={{
+              fontSize: '56px',
+              color: '#0d1b2a',
+              fontFamily: 'Georgia, serif',
+              margin: '20px 0',
+              fontStyle: 'italic',
+            }}
+          >
             {data.fullName}
           </h1>
-          
-          <div style={{ width: '150px', height: '3px', backgroundColor: '#10895a', margin: '0 auto 30px auto' }}></div>
+
+          <div
+            style={{
+              width: '150px',
+              height: '3px',
+              backgroundColor: '#10895a',
+              margin: '0 auto 30px auto',
+            }}
+          ></div>
 
           <p style={{ fontSize: '18px', color: '#555', marginBottom: '20px' }}>
             has successfully completed
@@ -77,7 +95,14 @@ const CertificateTemplate = forwardRef<HTMLDivElement, Props>(({ data }, ref) =>
           <hr style={{ border: 'none', borderTop: '1px solid #eaeaea', marginBottom: '40px' }} />
 
           {/* Data Grid */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '60px', padding: '0 40px' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginBottom: '60px',
+              padding: '0 40px',
+            }}
+          >
             <div>
               <p style={{ fontWeight: 'bold', margin: '0 0 5px 0' }}>Date of Completion</p>
               <p style={{ margin: 0, color: '#666' }}>{data.dateCompleted}</p>
@@ -93,13 +118,19 @@ const CertificateTemplate = forwardRef<HTMLDivElement, Props>(({ data }, ref) =>
           </div>
 
           {/* Signatures & Footer */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '80px', marginBottom: '40px' }}>
+          <div
+            style={{ display: 'flex', justifyContent: 'center', gap: '80px', marginBottom: '40px' }}
+          >
             <div style={{ textAlign: 'center' }}>
               <div style={{ borderBottom: '1px solid #999', width: '200px', height: '40px' }}></div>
               <p style={{ marginTop: '10px', color: '#555' }}>Course Director, CSID</p>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '40px', color: '#10895a', height: '40px', lineHeight: '40px' }}>❂</div>
+              <div
+                style={{ fontSize: '40px', color: '#10895a', height: '40px', lineHeight: '40px' }}
+              >
+                ❂
+              </div>
               <p style={{ marginTop: '10px', color: '#555' }}>CSID Verified</p>
             </div>
           </div>

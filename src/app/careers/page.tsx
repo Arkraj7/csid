@@ -28,7 +28,8 @@ export default function CareersPage() {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Careers at CSID</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Be part of a mission-driven team advancing knowledge and action for a sustainable, climate-resilient, and equitable future.
+              Be part of a mission-driven team advancing knowledge and action for a sustainable,
+              climate-resilient, and equitable future.
             </p>
           </div>
         </section>
@@ -42,7 +43,8 @@ export default function CareersPage() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 py-4 px-6 text-sm font-medium border-b-2 transition-all duration-150 ${
                   activeTab === tab.id
-                    ? 'border-primary text-primary' :'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
                 }`}
               >
                 <tab.icon size={16} />
@@ -57,12 +59,19 @@ export default function CareersPage() {
           {activeTab === 'internship' && (
             <section className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-foreground mb-3">Internship Opportunities</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-3">
+                  Internship Opportunities
+                </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  We have intern positions open on a regular and rolling basis. If you are interested in an internship with CSID, kindly mail your application to{' '}
-                  <a href="mailto:careers@csid.org" className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors">
+                  We have intern positions open on a regular and rolling basis. If you are
+                  interested in an internship with CSID, kindly mail your application to{' '}
+                  <a
+                    href="mailto:careers@csid.org"
+                    className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                  >
                     careers@csid.org
-                  </a>.
+                  </a>
+                  .
                 </p>
               </div>
 
@@ -91,13 +100,18 @@ export default function CareersPage() {
               {/* Non-AI Policy */}
               <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-2xl p-6">
                 <div className="flex items-start gap-3">
-                  <AlertTriangle size={20} className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+                  <AlertTriangle
+                    size={20}
+                    className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5"
+                  />
                   <div>
                     <h3 className="text-base font-semibold text-amber-900 dark:text-amber-200 mb-2">
                       Strict Non-AI Policy
                     </h3>
                     <p className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
-                      No AI should be used while generating or writing any application materials, including the SOP and writing sample. Plagiarism and AI findings at any stage will be taken seriously, and the position may be terminated at any time.
+                      No AI should be used while generating or writing any application materials,
+                      including the SOP and writing sample. Plagiarism and AI findings at any stage
+                      will be taken seriously, and the position may be terminated at any time.
                     </p>
                   </div>
                 </div>
@@ -112,7 +126,9 @@ export default function CareersPage() {
                       <Clock size={16} className="text-primary" />
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-0.5">Duration</div>
+                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-0.5">
+                        Duration
+                      </div>
                       <div className="text-sm font-medium text-foreground">1 – 3 months</div>
                     </div>
                   </div>
@@ -121,7 +137,9 @@ export default function CareersPage() {
                       <MapPin size={16} className="text-secondary" />
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-0.5">Mode</div>
+                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-0.5">
+                        Mode
+                      </div>
                       <div className="text-sm font-medium text-foreground">Remote</div>
                     </div>
                   </div>
@@ -130,7 +148,9 @@ export default function CareersPage() {
                       <Mail size={16} className="text-accent" />
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-0.5">Compensation</div>
+                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-0.5">
+                        Compensation
+                      </div>
                       <div className="text-sm font-medium text-foreground">Unpaid</div>
                     </div>
                   </div>
@@ -158,10 +178,13 @@ export default function CareersPage() {
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-3">No Current Openings</h2>
               <p className="text-muted-foreground max-w-md mx-auto mb-8">
-                There are no job openings at the moment. Please check back later or follow us on social media for updates.
+                There are no job openings at the moment. Please check back later or follow us on
+                social media for updates.
               </p>
               <div className="bg-card border border-border rounded-2xl p-6 max-w-sm mx-auto">
-                <p className="text-sm text-muted-foreground mb-3">Get notified when positions open</p>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Get notified when positions open
+                </p>
                 <a
                   href="mailto:careers@csid.org?subject=Job%20Opportunity%20Interest"
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg border border-border text-foreground text-sm font-medium hover:bg-muted transition-colors"

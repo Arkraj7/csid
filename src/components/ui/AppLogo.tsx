@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AppLogo({ className = "w-12 h-12" }: { className?: string }) {
+export default function AppLogo({ className = 'w-12 h-12' }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 200 120"
@@ -8,7 +8,7 @@ export default function AppLogo({ className = "w-12 h-12" }: { className?: strin
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       // The multiply blend mode gives it that authentic overlapping shadow effect
-      style={{ mixBlendMode: 'normal' }} 
+      style={{ mixBlendMode: 'normal' }}
     >
       {/* Left Circle (Teal / Mitigation) */}
       <g style={{ mixBlendMode: 'multiply' }}>

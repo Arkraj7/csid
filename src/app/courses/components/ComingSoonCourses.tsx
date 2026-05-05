@@ -65,7 +65,9 @@ export default function ComingSoonCourses() {
       <div className="flex items-center justify-between mb-5">
         <div>
           <h2 className="text-xl font-bold text-foreground">Coming Soon</h2>
-          <p className="text-sm text-muted-foreground mt-0.5">More pillar-specific courses launching in 2026</p>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            More pillar-specific courses launching in 2026
+          </p>
         </div>
         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs font-medium">
           <Lock size={11} />
@@ -74,19 +76,32 @@ export default function ComingSoonCourses() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-4">
         {comingSoon?.map((course) => (
-          <div key={course?.id} className="bg-card rounded-xl border border-border p-4 opacity-75 hover:opacity-90 transition-opacity">
+          <div
+            key={course?.id}
+            className="bg-card rounded-xl border border-border p-4 opacity-75 hover:opacity-90 transition-opacity"
+          >
             <div className="flex items-center justify-between mb-3">
-              <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-semibold ${course?.pillarClass}`}>
+              <span
+                className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-semibold ${course?.pillarClass}`}
+              >
                 <course.icon size={10} />
                 {course?.pillar}
               </span>
               <Lock size={12} className="text-muted-foreground" />
             </div>
-            <h4 className="text-sm font-semibold text-foreground mb-1 leading-snug">{course?.title}</h4>
+            <h4 className="text-sm font-semibold text-foreground mb-1 leading-snug">
+              {course?.title}
+            </h4>
             <p className="text-xs text-muted-foreground leading-relaxed mb-3">{course?.desc}</p>
             <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><BookOpen size={10} />{course?.chapters} ch</span>
-              <span className="flex items-center gap-1"><Clock size={10} />{course?.duration}</span>
+              <span className="flex items-center gap-1">
+                <BookOpen size={10} />
+                {course?.chapters} ch
+              </span>
+              <span className="flex items-center gap-1">
+                <Clock size={10} />
+                {course?.duration}
+              </span>
             </div>
           </div>
         ))}

@@ -23,7 +23,8 @@ export default function CourseHeader({ overallProgress, completedCount, totalCha
             Understanding the Climate Economy: The Adaptive Thematic Framework™
           </h1>
           <p className="text-sm text-muted-foreground">
-            A structured exploration of mitigation, adaptation, resilience, and recovery — 9 chapters
+            A structured exploration of mitigation, adaptation, resilience, and recovery — 9
+            chapters
           </p>
         </div>
         <div className="flex items-center gap-4 flex-shrink-0">

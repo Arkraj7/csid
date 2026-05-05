@@ -1,77 +1,44 @@
+'use client';
+
 import React from 'react';
-import { CheckCircle, Lock, ChevronRight, Circle } from 'lucide-react';
-import type { Chapter } from './courseData';
-import type { ChapterProgress } from './CoursesPageClient';
+import { Chapter } from '@/types/certificate';
 
 interface Props {
   chapters: Chapter[];
   activeChapterId: string;
-  progress: Record<string, ChapterProgress>;
-  onSelect: (id: string) => void;
-  isChapterUnlocked: (idx: number) => boolean;
+  onSelectChapter: (id: string) => void;
 }
 
-export default function ChapterSidebar({ chapters, activeChapterId, progress, onSelect, isChapterUnlocked }: Props) {
+export default function ChapterSidebar({ chapters, activeChapterId, onSelectChapter }: Props) {
   return (
-    <div className="bg-card rounded-xl border border-border overflow-hidden">
-      <div className="px-4 py-3 border-b border-border bg-muted/30">
-        <h3 className="text-sm font-semibold text-foreground">Course Chapters</h3>
-        <p className="text-xs text-muted-foreground mt-0.5">Complete each chapter quiz to unlock the next</p>
-      </div>
-      <div className="divide-y divide-border">
-        {chapters.map((chapter, idx) => {
-          const isActive = chapter.id === activeChapterId;
-          const prog = progress[chapter.id];
-          const unlocked = isChapterUnlocked(idx);
-
-          return (
-            <button
-              key={chapter.id}
-              onClick={() => onSelect(chapter.id)}
-              disabled={!unlocked}
-              className={`w-full text-left px-4 py-3 flex items-start gap-3 transition-colors ${
-                isActive
-                  ? 'bg-primary/5 border-l-2 border-primary'
-                  : unlocked
-                  ? 'hover:bg-muted/50 cursor-pointer' :'opacity-50 cursor-not-allowed'
-              }`}
-            >
-              {/* Status icon */}
-              <div className="mt-0.5 flex-shrink-0">
-                {prog?.quizPassed ? (
-                  <CheckCircle size={16} className="text-primary" />
-                ) : !unlocked ? (
-                  <Lock size={16} className="text-muted-foreground" />
-                ) : isActive ? (
-                  <ChevronRight size={16} className="text-primary" />
-                ) : (
-                  <Circle size={16} className="text-muted-foreground" />
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <span className={`text-xs font-semibold ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
-                    Ch {chapter.number}
+    <div className="w-full md:w-80 bg-white dark:bg-[#112240] border-r border-gray-200 dark:border-gray-800 flex-shrink-0 h-full overflow-y-auto">
+      <div className="p-6">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Course Content</h2>
+        <div className="space-y-3">
+          {chapters.map((chapter) => {
+            const isActive = chapter.id === activeChapterId;
+            return (
+              <button
+                key={chapter.id}
+                onClick={() => onSelectChapter(chapter.id)}
+                className={`w-full text-left flex items-center justify-between p-4 rounded-xl transition-all ${
+                  isActive 
+                    ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/50' 
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50 border border-transparent'
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className={`flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 ${isActive ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400' : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'}`}>
+                    <span className="text-sm font-bold">{chapter.order}</span>
+                  </div>
+                  <span className={`font-medium line-clamp-2 ${isActive ? 'text-emerald-700 dark:text-emerald-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                    {chapter.title}
                   </span>
-                  <span className="text-xs text-muted-foreground">· {chapter.duration}</span>
                 </div>
-                <div className={`text-xs font-medium leading-snug ${isActive ? 'text-foreground' : 'text-foreground/80'} line-clamp-2`}>
-                  {chapter.title}
-                </div>
-                {prog?.quizPassed && prog.quizScore !== null && (
-                  <div className="text-xs text-primary mt-1 font-tabular">
-                    Quiz: {prog.quizScore}% ✓
-                  </div>
-                )}
-                {prog && !prog.quizPassed && prog.quizScore !== null && (
-                  <div className="text-xs text-danger mt-1 font-tabular">
-                    Last: {prog.quizScore}% — retry needed
-                  </div>
-                )}
-              </div>
-            </button>
-          );
-        })}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

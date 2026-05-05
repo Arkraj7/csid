@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { createUserWithEmailAndPassword, updateProfile, signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '@/lib/firebase';
 
 interface Props {
   onSwitchToSignIn: () => void;
@@ -12,66 +14,71 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simple mock signup: Save user to localStorage so the Certificate uses their real name
-    const newUser = {
-      name: name,
-      email: email
-    };
-    
-    localStorage.setItem('csid_user', JSON.stringify(newUser));
-    
-    // Redirect to courses page after signing up
-    router.push('/courses');
+    setIsLoading(true);
+    setError('');
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCredential.user, { displayName: name });
+      router.push('/courses');
+    } catch (err: any) {
+      setError(err.message.includes('email-already-in-use') ? 'Email is already in use.' : 'Failed to create account.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    setIsLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+      router.push('/courses');
+    } catch (err) {
+      setError('Google sign-up failed.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <div>
-        <label className="block text-sm font-medium mb-1">Full Name</label>
-        <input 
-          type="text" 
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
-          placeholder="John Doe"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-1">Email</label>
-        <input 
-          type="email" 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
-          placeholder="you@example.com"
-        />
-      </div>
-      
-      <div>
-        <label className="block text-sm font-medium mb-1">Password</label>
-        <input 
-          type="password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
-          placeholder="Create a password"
-        />
-      </div>
-
+    <div className="flex flex-col gap-4">
       <button 
-        type="submit"
-        className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors mt-2"
+        onClick={handleGoogleSignUp}
+        disabled={isLoading}
+        className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
       >
-        Create Account
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
+        Sign up with Google
       </button>
-    </form>
+
+      <div className="relative flex items-center py-2">
+        <div className="flex-grow border-t border-gray-300"></div>
+        <span className="flex-shrink-0 px-4 text-sm text-gray-500">or</span>
+        <div className="flex-grow border-t border-gray-300"></div>
+      </div>
+
+      <form onSubmit={handleEmailSignUp} className="flex flex-col gap-4">
+        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+        <div>
+          <label className="block text-sm font-medium mb-1">Full Name</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none" />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Email</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none" />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Password</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-primary outline-none" />
+        </div>
+        <button type="submit" disabled={isLoading} className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors mt-2">
+          {isLoading ? 'Creating Account...' : 'Create Account'}
+        </button>
+      </form>
+    </div>
   );
 }

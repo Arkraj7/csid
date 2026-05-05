@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import CertificateTemplate from './CertificateTemplate';
 import { CertificateData } from '@/types/certificate';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 interface FinalAssessmentModalProps {
   isOpen: boolean;
@@ -21,55 +23,47 @@ export default function FinalAssessmentModal({
   score,
   totalQuestions,
   courseTitle,
-  onPass,
+  onPass
 }: FinalAssessmentModalProps) {
   const certificateRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [userName, setUserName] = useState('Student Name');
+  const [userName, setUserName] = useState('Valued Student');
 
-  const passingScore = Math.ceil(totalQuestions * 0.8);
+  const passingScore = Math.ceil(totalQuestions * 0.7);
   const passed = score >= passingScore;
 
+  // Listen to Firebase to get the user's real name securely
   useEffect(() => {
-    const storedUser = localStorage.getItem('csid_user');
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        if (parsedUser.name) setUserName(parsedUser.name);
-      } catch (e) {
-        console.error('Could not parse user', e);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user && user.displayName) {
+        setUserName(user.displayName);
       }
-    }
+    });
 
     if (isOpen && passed && onPass) {
       onPass();
     }
+
+    return () => unsubscribe();
   }, [isOpen, passed, onPass]);
 
   if (!isOpen) return null;
 
   const certData: CertificateData = {
     fullName: userName,
-    courseTitle,
-    dateCompleted: new Date().toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-    }),
+    courseTitle: courseTitle,
+    dateCompleted: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
     finalScore: `${Math.round((score / totalQuestions) * 100)}% (${score}/${totalQuestions})`,
-    uniqueCertId: `CSID-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000)
-      .toString()
-      .padStart(4, '0')}`,
+    uniqueCertId: `CSID-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`,
   };
 
   const generatePDF = async () => {
     if (!certificateRef.current) return;
-
     setIsGenerating(true);
     try {
       const canvas = await html2canvas(certificateRef.current, {
         scale: 2,
-        useCORS: true,
+        useCORS: true, 
         logging: false,
       });
 
@@ -81,8 +75,8 @@ export default function FinalAssessmentModal({
       pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
       pdf.save(`${certData.fullName.replace(/\s+/g, '_')}_Certificate.pdf`);
     } catch (error) {
-      console.error('Error generating certificate:', error);
-      alert('There was an error generating your certificate. Please try again.');
+      console.error("Error generating certificate:", error);
+      alert("Error generating certificate. Please try again.");
     } finally {
       setIsGenerating(false);
     }
@@ -95,12 +89,14 @@ export default function FinalAssessmentModal({
           <h2 className={`text-3xl font-bold mb-4 ${passed ? 'text-green-600' : 'text-red-600'}`}>
             {passed ? 'Assessment Passed!' : 'Assessment Failed'}
           </h2>
-
-          <div className="text-6xl font-bold mb-2">{Math.round((score / totalQuestions) * 100)}%</div>
-
+          
+          <div className="text-6xl font-bold mb-2">
+            {Math.round((score / totalQuestions) * 100)}%
+          </div>
+          
           <p className="text-gray-600 mb-8">
-            You scored {score} out of {totalQuestions} questions correctly.
-            {!passed && ' You need 80% to pass and earn your certificate.'}
+            You scored {score} out of {totalQuestions} correctly.
+            {!passed && " You need 70% to pass and earn your certificate."}
           </p>
 
           <div className="flex flex-col gap-3">
@@ -113,7 +109,7 @@ export default function FinalAssessmentModal({
                 {isGenerating ? 'Generating PDF...' : 'Download Certificate'}
               </button>
             )}
-
+            
             <button
               onClick={onClose}
               className={`w-full py-3 px-4 rounded-xl font-semibold transition-colors ${

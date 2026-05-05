@@ -1,15 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  trailingSlash: true,
-  basePath: '/csid',
-  assetPrefix: '/csid',
+  trailingSlash: true, // <-- THIS IS THE MAGIC FIX FOR GITHUB PAGES
   images: {
     unoptimized: true,
-  },
-  // ADDED THIS: Tells Next.js to ignore formatting errors during deployment
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 };
 

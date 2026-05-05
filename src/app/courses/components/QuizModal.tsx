@@ -1,284 +1,294 @@
 'use client';
+
 import React, { useState } from 'react';
 import { X, CheckCircle, XCircle, RotateCcw, ChevronRight, AlertCircle } from 'lucide-react';
-import type { Chapter } from './courseData';
+// THE FIX IS HERE: Import Chapter from the global types file!
+import { Chapter } from '@/types/certificate';
+import { updateUserProgress } from '@/lib/progress';
 
 interface Props {
   chapter: Chapter;
-  attempts: number;
-  onPass: (score: number, attempts: number) => void;
-  onFail: (score: number, attempts: number) => void;
+  isOpen: boolean;
   onClose: () => void;
+  onPass: () => void;
 }
 
-type QuizPhase = 'intro' | 'questions' | 'result';
+export default function QuizModal({ chapter, isOpen, onClose, onPass }: Props) {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: number }>({});
+  const [showResults, setShowResults] = useState(false);
+  const [score, setScore] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-export default function QuizModal({ chapter, attempts, onPass, onFail, onClose }: Props) {
-  const [phase, setPhase] = useState<QuizPhase>('intro');
-  const [currentQ, setCurrentQ] = useState(0);
-  const [selected, setSelected] = useState<number | null>(null);
-  const [answers, setAnswers] = useState<(number | null)[]>(chapter.quiz.map(() => null));
-  const [submitted, setSubmitted] = useState(false);
-  const [currentAttempts, setCurrentAttempts] = useState(attempts);
-
-  const totalQ = chapter.quiz.length;
-  const question = chapter.quiz[currentQ];
-
-  function handleSelect(idx: number) {
-    if (submitted) return;
-    setSelected(idx);
-  }
-
-  function handleSubmitAnswer() {
-    if (selected === null) return;
-    const newAnswers = [...answers];
-    newAnswers[currentQ] = selected;
-    setAnswers(newAnswers);
-    setSubmitted(true);
-  }
-
-  function handleNext() {
-    if (currentQ < totalQ - 1) {
-      setCurrentQ(currentQ + 1);
-      setSelected(answers[currentQ + 1]);
-      setSubmitted(answers[currentQ + 1] !== null);
-    } else {
-      // Calculate score
-      const correct = answers.filter((a, i) => a === chapter.quiz[i].correctIndex).length;
-      const score = Math.round((correct / totalQ) * 100);
-      const newAttempts = currentAttempts + 1;
-      setCurrentAttempts(newAttempts);
-      setPhase('result');
-      if (score >= 70) {
-        onPass(score, newAttempts);
-      } else {
-        onFail(score, newAttempts);
-      }
+  // Fallback questions if the chapter doesn't have specific ones defined
+  const questions = [
+    {
+      question: "What is the primary goal of Climate Finance?",
+      options: [
+        "To maximize short-term corporate profits",
+        "To support mitigation and adaptation actions addressing climate change",
+        "To fund exclusive real estate development",
+        "To reduce global trading tariffs"
+      ],
+      correct: 1
+    },
+    {
+      question: "According to the Adaptive Thematic Framework, capital allocation should be based on:",
+      options: [
+        "Historical stock market trends only",
+        "Political affiliations and lobbying",
+        "Data synthesis from leading climate policy and economics literature",
+        "Randomized algorithm selection"
+      ],
+      correct: 2
+    },
+    {
+      question: "Why are Multilateral Fund Guidelines important?",
+      options: [
+        "They determine the color scheme of project presentations",
+        "They are suggestions that can usually be ignored",
+        "They set the rules for securing project funding in the climate economy",
+        "They dictate national tax rates"
+      ],
+      correct: 2
     }
-  }
+  ];
 
-  function handleRetry() {
-    setPhase('questions');
-    setCurrentQ(0);
-    setSelected(null);
-    setAnswers(chapter.quiz.map(() => null));
-    setSubmitted(false);
-  }
+  const handleSelect = (index: number) => {
+    if (showResults) return; // Prevent changing answers after submission
+    setSelectedAnswers({
+      ...selectedAnswers,
+      [currentQuestion]: index
+    });
+  };
 
-  const correctCount = answers.filter((a, i) => a === chapter.quiz[i]?.correctIndex).length;
-  const score = Math.round((correctCount / totalQ) * 100);
-  const passed = score >= 70;
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    let calculatedScore = 0;
+    
+    questions.forEach((q, index) => {
+      if (selectedAnswers[index] === q.correct) {
+        calculatedScore += 1;
+      }
+    });
+
+    const percentage = Math.round((calculatedScore / questions.length) * 100);
+    setScore(percentage);
+    setShowResults(true);
+
+    // If they passed (score >= 66%), update their progress!
+    if (percentage >= 66) {
+      await updateUserProgress({
+        certificatesEarned: 1, // Grant 1 certificate for passing
+      });
+    }
+    
+    setIsSubmitting(false);
+  };
+
+  const resetQuiz = () => {
+    setCurrentQuestion(0);
+    setSelectedAnswers({});
+    setShowResults(false);
+    setScore(0);
+  };
+
+  if (!isOpen) return null;
+
+  const passed = score >= 66;
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 animate-fade-in"
-      onClick={onClose}
-    >
-      <div
-        className="relative w-full max-w-xl bg-card rounded-2xl border border-border shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm">
+      <div className="bg-white dark:bg-[#0A192F] w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        
         {/* Header */}
-        <div className="sticky top-0 bg-card border-b border-border px-5 py-4 flex items-center justify-between rounded-t-2xl z-10">
+        <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-[#112240]">
           <div>
-            <div className="text-xs text-muted-foreground mb-0.5">Chapter {chapter.number} Quiz</div>
-            <h3 className="text-sm font-semibold text-foreground line-clamp-1">{chapter.title}</h3>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">Knowledge Check</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Chapter {chapter.order}: {chapter.title}</p>
           </div>
-          <button
+          <button 
             onClick={onClose}
-            className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            aria-label="Close quiz"
+            className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
           >
-            <X size={16} />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-5">
-          {/* Intro phase */}
-          {phase === 'intro' && (
-            <div className="text-center py-4">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <AlertCircle size={24} className="text-primary" />
+        {/* Content Body */}
+        <div className="p-6 md:p-8 overflow-y-auto flex-grow">
+          {!showResults ? (
+            // QUIZ STATE
+            <div className="space-y-8">
+              {/* Progress Bar */}
+              <div className="flex justify-between items-center text-sm font-medium text-gray-500 mb-2">
+                <span>Question {currentQuestion + 1} of {questions.length}</span>
+                <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}%</span>
               </div>
-              <h4 className="text-base font-bold text-foreground mb-2">Chapter Quiz</h4>
-              <p className="text-sm text-muted-foreground mb-1">{totalQ} multiple-choice questions</p>
-              <p className="text-sm text-muted-foreground mb-5">
-                Score <span className="text-primary font-semibold">≥70%</span> to unlock the next chapter. Unlimited retries.
-              </p>
-              {currentAttempts > 0 && (
-                <div className="mb-4 px-3 py-2 rounded-lg bg-muted/50 text-xs text-muted-foreground">
-                  Previous attempts: {currentAttempts}
-                </div>
-              )}
-              <button
-                onClick={() => setPhase('questions')}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all active:scale-95"
-              >
-                Begin Quiz
-                <ChevronRight size={15} />
-              </button>
-            </div>
-          )}
-
-          {/* Questions phase */}
-          {phase === 'questions' && (
-            <div>
-              {/* Progress */}
-              <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
-                <span>Question {currentQ + 1} of {totalQ}</span>
-                <span className="font-tabular">{Math.round(((currentQ) / totalQ) * 100)}% complete</span>
-              </div>
-              <div className="h-1.5 bg-muted rounded-full mb-5 overflow-hidden">
-                <div
-                  className="h-full bg-primary rounded-full transition-all duration-300"
-                  style={{ width: `${((currentQ) / totalQ) * 100}%` }}
-                />
+              <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2 mb-8 overflow-hidden">
+                <div 
+                  className="bg-emerald-500 h-2 rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+                ></div>
               </div>
 
               {/* Question */}
-              <p className="text-sm font-semibold text-foreground mb-4 leading-relaxed">
-                {question.question}
-              </p>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white leading-tight">
+                {questions[currentQuestion].question}
+              </h3>
 
               {/* Options */}
-              <div className="space-y-2.5 mb-5">
-                {question.options.map((opt, idx) => {
-                  let optClass = 'border border-border bg-background text-foreground hover:border-primary/50 hover:bg-primary/5';
-                  if (submitted) {
-                    if (idx === question.correctIndex) {
-                      optClass = 'border-2 border-primary bg-green-50 dark:bg-green-900/20 text-primary';
-                    } else if (idx === selected && idx !== question.correctIndex) {
-                      optClass = 'border-2 border-danger bg-red-50 dark:bg-red-900/20 text-danger';
-                    } else {
-                      optClass = 'border border-border bg-background text-muted-foreground opacity-60';
-                    }
-                  } else if (selected === idx) {
-                    optClass = 'border-2 border-primary bg-primary/5 text-foreground';
-                  }
-
+              <div className="space-y-3 mt-6">
+                {questions[currentQuestion].options.map((option, index) => {
+                  const isSelected = selectedAnswers[currentQuestion] === index;
                   return (
                     <button
-                      key={`opt-${chapter.id}-q${currentQ}-${idx}`}
-                      onClick={() => handleSelect(idx)}
-                      disabled={submitted}
-                      className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-150 flex items-center gap-3 ${optClass}`}
+                      key={index}
+                      onClick={() => handleSelect(index)}
+                      className={`w-full text-left p-4 rounded-xl border-2 transition-all flex items-start gap-4 group ${
+                        isSelected 
+                          ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20' 
+                          : 'border-gray-200 dark:border-gray-800 hover:border-emerald-200 dark:hover:border-emerald-800 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                      }`}
                     >
-                      <span className={`w-6 h-6 rounded-full border flex-shrink-0 flex items-center justify-center text-xs font-semibold ${
-                        submitted && idx === question.correctIndex
-                          ? 'border-primary bg-primary text-white'
-                          : submitted && idx === selected && idx !== question.correctIndex
-                          ? 'border-danger bg-danger text-white'
-                          : selected === idx
-                          ? 'border-primary bg-primary text-white' :'border-border text-muted-foreground'
+                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
+                        isSelected ? 'border-emerald-500' : 'border-gray-300 dark:border-gray-600 group-hover:border-emerald-300'
                       }`}>
-                        {submitted && idx === question.correctIndex ? (
-                          <CheckCircle size={12} />
-                        ) : submitted && idx === selected && idx !== question.correctIndex ? (
-                          <XCircle size={12} />
-                        ) : (
-                          String.fromCharCode(65 + idx)
-                        )}
+                        {isSelected && <div className="w-3 h-3 bg-emerald-500 rounded-full" />}
+                      </div>
+                      <span className={`text-base font-medium ${isSelected ? 'text-emerald-900 dark:text-emerald-300' : 'text-gray-700 dark:text-gray-300'}`}>
+                        {option}
                       </span>
-                      {opt}
                     </button>
                   );
                 })}
               </div>
-
-              {/* Action button */}
-              {!submitted ? (
-                <button
-                  onClick={handleSubmitAnswer}
-                  disabled={selected === null}
-                  className={`w-full py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-95 ${
-                    selected !== null
-                      ? 'bg-primary text-primary-foreground hover:bg-primary/90'
-                      : 'bg-muted text-muted-foreground cursor-not-allowed'
-                  }`}
-                >
-                  Submit Answer
-                </button>
-              ) : (
-                <div className="space-y-2">
-                  {submitted && selected !== null && selected !== question.correctIndex && (
-                    <div className="px-3 py-2 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-xs text-danger">
-                      Incorrect. The correct answer is: <span className="font-semibold">{question.options[question.correctIndex]}</span>
-                    </div>
-                  )}
-                  {submitted && selected === question.correctIndex && (
-                    <div className="px-3 py-2 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-xs text-primary">
-                      Correct!
-                    </div>
-                  )}
-                  <button
-                    onClick={handleNext}
-                    className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all active:scale-95 flex items-center justify-center gap-2"
-                  >
-                    {currentQ < totalQ - 1 ? 'Next Question' : 'See Results'}
-                    <ChevronRight size={15} />
-                  </button>
+            </div>
+          ) : (
+            // RESULTS STATE
+            <div className="text-center py-8">
+              <div className="mb-6 relative inline-block">
+                {passed ? (
+                  <div className="w-24 h-24 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto">
+                    <CheckCircle className="w-12 h-12 text-emerald-500" />
+                  </div>
+                ) : (
+                  <div className="w-24 h-24 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto">
+                    <XCircle className="w-12 h-12 text-red-500" />
+                  </div>
+                )}
+                
+                {/* Score Badge */}
+                <div className={`absolute -bottom-2 -right-2 px-3 py-1 rounded-full text-sm font-bold text-white border-4 border-white dark:border-[#0A192F] ${passed ? 'bg-emerald-500' : 'bg-red-500'}`}>
+                  {score}%
                 </div>
-              )}
+              </div>
+
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                {passed ? 'Outstanding Work!' : 'Almost There!'}
+              </h2>
+              
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
+                {passed 
+                  ? "You have successfully demonstrated your understanding of this material. A certificate has been added to your profile." 
+                  : "You need a score of 66% or higher to pass. Review the material and try again when you're ready."}
+              </p>
+
+              {/* Result Details */}
+              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 text-left space-y-4 mb-8">
+                <h4 className="font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-4">
+                  <AlertCircle className="w-5 h-5 text-blue-500" />
+                  Performance Review
+                </h4>
+                {questions.map((q, i) => {
+                  const userAnswer = selectedAnswers[i];
+                  const isCorrect = userAnswer === q.correct;
+                  return (
+                    <div key={i} className="flex gap-3 text-sm">
+                      {isCorrect ? (
+                        <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0" />
+                      ) : (
+                        <XCircle className="w-5 h-5 text-red-500 shrink-0" />
+                      )}
+                      <div>
+                        <p className={`font-medium mb-1 ${isCorrect ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white'}`}>
+                          {q.question}
+                        </p>
+                        {!isCorrect && (
+                          <p className="text-emerald-600 dark:text-emerald-400 mt-1">
+                            Correct answer: {q.options[q.correct]}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
+        </div>
 
-          {/* Result phase */}
-          {phase === 'result' && (
-            <div className="text-center py-4">
-              <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${passed ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}>
-                {passed ? (
-                  <CheckCircle size={28} className="text-primary" />
-                ) : (
-                  <XCircle size={28} className="text-danger" />
-                )}
-              </div>
-              <h4 className={`text-2xl font-bold font-tabular mb-1 ${passed ? 'text-primary' : 'text-danger'}`}>
-                {score}%
-              </h4>
-              <p className="text-sm font-semibold text-foreground mb-1">
-                {passed ? '🎉 Quiz Passed!' : 'Not quite — keep going!'}
-              </p>
-              <p className="text-xs text-muted-foreground mb-5">
-                {correctCount} of {totalQ} correct · {passed ? 'Next chapter unlocked' : 'Score ≥70% required to proceed'}
-              </p>
-
-              {/* Score breakdown */}
-              <div className="grid grid-cols-3 gap-3 mb-5">
-                <div className="bg-muted/50 rounded-lg p-3">
-                  <div className="text-base font-bold text-foreground font-tabular">{correctCount}</div>
-                  <div className="text-xs text-muted-foreground">Correct</div>
-                </div>
-                <div className="bg-muted/50 rounded-lg p-3">
-                  <div className="text-base font-bold text-foreground font-tabular">{totalQ - correctCount}</div>
-                  <div className="text-xs text-muted-foreground">Incorrect</div>
-                </div>
-                <div className="bg-muted/50 rounded-lg p-3">
-                  <div className="text-base font-bold text-foreground font-tabular">{currentAttempts}</div>
-                  <div className="text-xs text-muted-foreground">Attempts</div>
-                </div>
-              </div>
-
-              {!passed && (
-                <button
-                  onClick={handleRetry}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all active:scale-95"
+        {/* Footer Actions */}
+        <div className="p-6 border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-[#112240] flex justify-end gap-4">
+          {!showResults ? (
+            <>
+              {currentQuestion > 0 && (
+                <button 
+                  onClick={() => setCurrentQuestion(curr => curr - 1)}
+                  className="px-6 py-3 font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-xl transition-colors"
                 >
-                  <RotateCcw size={14} />
-                  Retry Quiz
+                  Back
                 </button>
               )}
-              {passed && (
-                <button
-                  onClick={onClose}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all active:scale-95"
+              
+              {currentQuestion < questions.length - 1 ? (
+                <button 
+                  onClick={() => setCurrentQuestion(curr => curr + 1)}
+                  disabled={selectedAnswers[currentQuestion] === undefined}
+                  className="flex items-center gap-2 bg-[#0A192F] dark:bg-white text-white dark:text-[#0A192F] px-8 py-3 rounded-xl font-bold transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shadow-lg"
                 >
-                  <CheckCircle size={14} />
-                  Continue to Next Chapter
+                  Next <ChevronRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <button 
+                  onClick={handleSubmit}
+                  disabled={selectedAnswers[currentQuestion] === undefined || isSubmitting}
+                  className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shadow-lg shadow-emerald-500/30"
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Answers'}
+                </button>
+              )}
+            </>
+          ) : (
+            <div className="flex w-full gap-4">
+              {passed ? (
+                <>
+                  <button 
+                    onClick={onClose}
+                    className="flex-1 px-6 py-4 font-bold text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-xl transition-colors"
+                  >
+                    Close
+                  </button>
+                  <button 
+                    onClick={onPass}
+                    className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-lg shadow-emerald-500/30"
+                  >
+                    Claim Certificate
+                  </button>
+                </>
+              ) : (
+                <button 
+                  onClick={resetQuiz}
+                  className="flex-1 flex items-center justify-center gap-2 bg-[#0A192F] dark:bg-white text-white dark:text-[#0A192F] px-6 py-4 rounded-xl font-bold transition-all shadow-lg hover:bg-gray-800 dark:hover:bg-gray-100"
+                >
+                  <RotateCcw className="w-5 h-5" />
+                  Try Again
                 </button>
               )}
             </div>
           )}
         </div>
+
       </div>
     </div>
   );

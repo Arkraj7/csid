@@ -40,10 +40,6 @@ export default function Navbar({ currentPath }: NavbarProps) {
   };
 
   return (
-    {/* 
-      1. fixed top-0 w-full z-50: Makes it stay at the top when scrolling 
-      2. /80 and backdrop-blur-md: Creates the semi-transparent glass effect
-    */}
     <nav className="fixed top-0 w-full z-50 bg-[#f4faf7]/80 dark:bg-[#0A192F]/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">

@@ -34,6 +34,7 @@ export default function CoursesPageClient() {
   });
   const [finalPassed, setFinalPassed] = useState(false);
   const [certUnlocked, setCertUnlocked] = useState(false);
+  const [finalScore, setFinalScore] = useState(0);
 
   const activeChapter = chapters.find((c) => c.id === activeChapterId) ?? chapters[0];
 
@@ -127,12 +128,14 @@ export default function CoursesPageClient() {
       )}
 
       {/* Final Assessment Modal */}
-      {finalOpen && (
-        <FinalAssessmentModal
-          onPass={() => { setFinalPassed(true); setFinalOpen(false); }}
-          onClose={() => setFinalOpen(false)}
-        />
-      )}
+      <FinalAssessmentModal 
+        isOpen={finalOpen} 
+        onClose={() => setFinalOpen(false)}
+        onPass={() => { setFinalPassed(true); setFinalOpen(false); }}
+        score={finalScore}
+        totalQuestions={15}
+        courseTitle="The Adaptive Thematic Framework™"
+      />
     </div>
   );
 }

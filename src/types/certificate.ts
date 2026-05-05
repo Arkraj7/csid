@@ -8,13 +8,13 @@ export interface CertificateData {
   uniqueCertId: string;
 }
 
-// Add the missing Chapter interface to satisfy TypeScript
+// Export the unified Chapter type so the whole app uses the same rules
 export interface Chapter {
   id: string;
   title: string;
   content: string;
   order: number;
   duration: number;
-  previousChapter?: string; // Optional: ID of the previous chapter
-  nextChapter?: string;     // Optional: ID of the next chapter
+  previousChapter?: string; 
+  nextChapter?: string;     
 }

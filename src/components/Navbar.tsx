@@ -1,71 +1,79 @@
-"use client";
+'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import AppLogo from '@/components/ui/AppLogo';
 
-// 1. This interface fixes the TypeScript build error!
-interface NavbarProps {
-  currentPath?: string;
-}
-
-export default function Navbar({ currentPath = '/' }: NavbarProps) {
-  // Define your navigation links here
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Courses', path: '/courses' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-  ];
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full border-b border-border bg-background sticky top-0 z-50">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="w-full bg-[#f4faf7] border-b border-gray-200">
+      {/* We use max-w-[1600px] to allow the logo to sit further to the left on wide screens */}
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">
           
-          {/* Logo Section */}
-          <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
-            <AppLogo className="w-12 h-12 drop-shadow-sm" />
-            <span className="font-bold text-xl tracking-tight text-foreground hidden sm:block">
-              CSID
-            </span>
+          {/* LOGO SECTION - Moved Left with Full Form */}
+          <Link href="/" className="flex items-center gap-3">
+            <AppLogo className="w-10 h-10 md:w-12 md:h-12 drop-shadow-sm" />
+            <div className="flex flex-col justify-center">
+              <span className="font-bold text-xl md:text-2xl text-[#0d1b2a] leading-none tracking-tight">
+                CSID
+              </span>
+              {/* Full form text - hidden on very small screens to save space */}
+              <span className="text-[10px] md:text-[11px] text-gray-600 font-semibold tracking-wide mt-1 hidden sm:block uppercase">
+                Center for Sustainability and Inclusive Development
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.path}
-                className={`text-sm font-semibold transition-colors duration-200 ${
-                  currentPath === link.path 
-                    ? 'text-primary' 
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+          {/* DESKTOP MENU */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-primary font-medium hover:text-green-700 transition-colors">Home</Link>
+            <Link href="/courses" className="text-gray-600 font-medium hover:text-primary transition-colors">Courses</Link>
+            <Link href="/about" className="text-gray-600 font-medium hover:text-primary transition-colors">About</Link>
+            <Link href="/contact" className="text-gray-600 font-medium hover:text-primary transition-colors">Contact</Link>
           </div>
 
-          {/* Auth Buttons */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            <Link 
-              href="/sign-up-login" 
-              className="hidden md:inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-foreground hover:bg-muted rounded-xl transition-colors"
-            >
+          {/* AUTH BUTTONS */}
+          <div className="hidden md:flex items-center space-x-6">
+            <Link href="/sign-up-login" className="text-[#0d1b2a] font-semibold hover:text-primary transition-colors">
               Log in
             </Link>
-            <Link 
-              href="/sign-up-login" 
-              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-primary-foreground bg-primary hover:bg-primary/90 rounded-xl transition-all shadow-md active:scale-95"
-            >
+            <Link href="/sign-up-login" className="bg-primary hover:bg-green-600 text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-sm">
               Sign up
             </Link>
           </div>
 
+          {/* Mobile menu button (hamburger) */}
+          <div className="md:hidden flex items-center">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-600 hover:text-primary focus:outline-none">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* MOBILE MENU */}
+      {isOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full z-50">
+          <div className="px-4 pt-4 pb-8 space-y-2 flex flex-col">
+            <Link href="/" className="block px-3 py-2 text-primary font-medium">Home</Link>
+            <Link href="/courses" className="block px-3 py-2 text-gray-600 font-medium hover:text-primary">Courses</Link>
+            <Link href="/about" className="block px-3 py-2 text-gray-600 font-medium hover:text-primary">About</Link>
+            <Link href="/contact" className="block px-3 py-2 text-gray-600 font-medium hover:text-primary">Contact</Link>
+            <div className="h-px bg-gray-100 my-4"></div>
+            <Link href="/sign-up-login" className="block px-3 py-2 text-[#0d1b2a] font-semibold text-center border border-gray-200 rounded-lg">Log in</Link>
+            <Link href="/sign-up-login" className="block px-3 py-3 mt-2 text-center bg-primary text-white rounded-lg font-semibold shadow-md">Sign up</Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

@@ -1,4 +1,3 @@
-// src/app/courses/components/courseData.ts
 import { Chapter } from '@/types/certificate';
 
 export interface Course {

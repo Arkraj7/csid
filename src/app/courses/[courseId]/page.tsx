@@ -1,20 +1,8 @@
+import React from 'react';
 import CoursesPageClient from '../components/CoursesPageClient';
+import { courseData } from '../components/courseData';
 
-export function generateStaticParams() {
-  return [
-    { courseId: 'climate-101' },
-    // Add any other course IDs you create here
-  ];
-}
-
-type Props = {
-  params: Promise<{ courseId: string }>;
-};
-
-export default async function CoursePage({ params }: Props) {
-  // We resolve the params just to satisfy Next.js 15 routing rules
-  const resolvedParams = await params;
-  
-  // We removed the courseId prop because CoursesPageClient doesn't need it!
-  return <CoursesPageClient />;
+export default function CoursePage() {
+  // We explicitly pass the courseData into the Client component here
+  return <CoursesPageClient course={courseData} />;
 }

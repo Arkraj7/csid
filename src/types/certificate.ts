@@ -8,7 +8,6 @@ export interface CertificateData {
   uniqueCertId: string;
 }
 
-// Export the unified Chapter type so the whole app uses the same rules
 export interface Chapter {
   id: string;
   title: string;

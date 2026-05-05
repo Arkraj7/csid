@@ -31,7 +31,7 @@ export default function AuthPageClient() {
             <ArrowLeft size={16} /> Back to home
           </Link>
           
-          {/* Logo - Fixed Size Prop */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 mb-12">
             <AppLogo className="w-10 h-10 drop-shadow-md" />
             <div>
@@ -95,8 +95,12 @@ export default function AuthPageClient() {
             </p>
           </div>
 
-          {/* Render the appropriate form */}
-          {isLogin ? <SignInForm onSwitchToSignUp={toggleAuthMode} /> : <SignUpForm onSwitchToSignIn={toggleAuthMode} />}
+          {/* Render the appropriate form WITH PROPS */}
+          {isLogin ? (
+            <SignInForm onSwitchToSignUp={toggleAuthMode} />
+          ) : (
+            <SignUpForm onSwitchToSignIn={toggleAuthMode} />
+          )}
 
           {/* Toggle between Sign In / Sign Up */}
           <div className="mt-8 text-center text-sm text-muted-foreground">

@@ -6,10 +6,10 @@ import Footer from '@/components/Footer';
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-      <Navbar />
+      <Navbar currentPath="/contact" />
 
       <main className="flex-grow">
-        {/* Contact Header (Night Mode Style) */}
+        {/* Contact Header */}
         <div className="bg-[#0A192F] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden text-center">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent opacity-50" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3" />
@@ -79,12 +79,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-              
-              <div className="relative z-10 mt-16 pt-8 border-t border-white/20">
-                <p className="text-sm text-emerald-50 leading-relaxed">
-                  We aim to respond to all inquiries within 24 hours during standard business days.
-                </p>
-              </div>
             </div>
 
             {/* Right Side: Contact Form */}
@@ -105,11 +99,6 @@ export default function ContactPage() {
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                   <input type="email" className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="john@example.com" />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="How can we help?" />
                 </div>
 
                 <div>

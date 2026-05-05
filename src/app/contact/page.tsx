@@ -1,109 +1,133 @@
-'use client';
-
 import React from 'react';
+import { Mail, Phone, MapPin, User, Send } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar currentPath="/contact" />
-      <main>
-        {/* Header */}
-        <section className="bg-gradient-to-br from-green-50 via-teal-50/60 to-emerald-50 dark:from-green-950/40 dark:via-teal-950/30 dark:to-emerald-950/20 border-b border-border py-14 px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-4">
-              <MessageCircle size={12} />
-              Get in Touch
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Contact Us</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Have questions or want to collaborate? We&apos;d love to hear from you.
+    <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+      <Navbar />
+
+      <main className="flex-grow">
+        {/* Contact Header (Night Mode Style) */}
+        <div className="bg-[#0A192F] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden text-center">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent opacity-50" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3" />
+          <div className="relative z-10">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Get in Touch</h1>
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+              Have questions about our courses or want to discuss the Climate Economy? We'd love to hear from you.
             </p>
           </div>
-        </section>
+        </div>
 
-        <div className="max-w-4xl mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Contact Info */}
-            <div className="space-y-6">
-              <h2 className="text-xl font-bold text-foreground">Reach Out to Us</h2>
-              <div className="space-y-4">
-                {[
-                  { icon: Mail, label: 'Email', value: '[Your Email from Resume]', href: 'mailto:contact@csid.education' },
-                  { icon: Phone, label: 'Phone', value: '[Your Phone from Resume]', href: 'tel:+91XXXXXXXXXX' },
-                  { icon: MapPin, label: 'Address', value: '[Your Address from Resume]', href: '#' },
-                ]?.map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 p-4 bg-card border border-border rounded-xl">
-                    <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                      <item.icon size={18} className="text-primary" />
-                    </div>
+        {/* Contact Info & Form Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-12 relative z-20">
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
+            
+            {/* Left Side: Contact Information */}
+            <div className="lg:w-2/5 bg-primary p-10 text-white flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-[80px] translate-x-1/3 -translate-y-1/3" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-[80px] -translate-x-1/3 translate-y-1/3" />
+              
+              <div className="relative z-10">
+                <h2 className="text-3xl font-bold mb-8">Contact Info</h2>
+                
+                <div className="space-y-8">
+                  {/* Name */}
+                  <div className="flex items-start gap-4">
+                    <User className="w-6 h-6 mt-1 text-emerald-200" />
                     <div>
-                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-0.5">{item?.label}</div>
-                      <a href={item?.href} className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                        {item?.value}
+                      <p className="text-sm text-emerald-100 font-medium uppercase tracking-wider mb-1">Name</p>
+                      <p className="text-xl font-semibold">Arkraj Biswas</p>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div className="flex items-start gap-4">
+                    <Mail className="w-6 h-6 mt-1 text-emerald-200" />
+                    <div>
+                      <p className="text-sm text-emerald-100 font-medium uppercase tracking-wider mb-1">Email</p>
+                      <a href="mailto:arkraj.biswas6@gmail.com" className="text-lg font-semibold hover:text-emerald-100 transition-colors">
+                        arkraj.biswas6@gmail.com
                       </a>
                     </div>
                   </div>
-                ))}
-              </div>
 
-              <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
-                <p className="text-sm text-muted-foreground">
-                  For internship applications, please email{' '}
-                  <a href="mailto:careers@csid.org" className="text-primary font-medium hover:underline">
-                    careers@csid.org
-                  </a>
+                  {/* Phone */}
+                  <div className="flex items-start gap-4">
+                    <Phone className="w-6 h-6 mt-1 text-emerald-200" />
+                    <div>
+                      <p className="text-sm text-emerald-100 font-medium uppercase tracking-wider mb-1">Phone</p>
+                      <a href="tel:+917903735679" className="text-lg font-semibold hover:text-emerald-100 transition-colors">
+                        +91-7903735679
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Address */}
+                  <div className="flex items-start gap-4">
+                    <MapPin className="w-6 h-6 mt-1 text-emerald-200 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm text-emerald-100 font-medium uppercase tracking-wider mb-1">Address</p>
+                      <p className="text-lg font-semibold leading-relaxed">
+                        Supreme Court metro station building,<br />
+                        Pragati Maidan,<br />
+                        New Delhi, Delhi 110001
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="relative z-10 mt-16 pt-8 border-t border-white/20">
+                <p className="text-sm text-emerald-50 leading-relaxed">
+                  We aim to respond to all inquiries within 24 hours during standard business days.
                 </p>
               </div>
             </div>
 
-            {/* Quick Contact Form */}
-            <div className="bg-card border border-border rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-foreground mb-5">Send a Message</h2>
-              <form className="space-y-4" onSubmit={(e) => e?.preventDefault()}>
-                <div>
-                  <label className="block text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
-                  />
+            {/* Right Side: Contact Form */}
+            <div className="lg:w-3/5 p-10 sm:p-12 bg-white">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Send a Message</h2>
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
+                    <input type="text" className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="John" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>
+                    <input type="text" className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="Doe" />
+                  </div>
                 </div>
+
                 <div>
-                  <label className="block text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
-                  />
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                  <input type="email" className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="john@example.com" />
                 </div>
+
                 <div>
-                  <label className="block text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5">
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    placeholder="How can we help you?"
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none"
-                  />
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
+                  <input type="text" className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="How can we help?" />
                 </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-all duration-150 active:scale-95"
-                >
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                  <textarea rows={5} className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none bg-gray-50 focus:bg-white" placeholder="Your message here..."></textarea>
+                </div>
+
+                <button type="button" className="bg-primary hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl w-full flex justify-center items-center gap-2 transition-all shadow-lg shadow-primary/30 mt-4">
                   Send Message
+                  <Send className="w-5 h-5" />
                 </button>
               </form>
             </div>
+
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );

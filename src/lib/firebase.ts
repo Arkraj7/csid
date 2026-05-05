@@ -2,8 +2,9 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getAnalytics, isSupported } from "firebase/analytics";
+// Import Firestore Database
+import { getFirestore } from "firebase/firestore"; 
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCvjaSR2FIf64s15wkWkbJDlvTzJ2xAVEQ",
   authDomain: "csid-dad42.firebaseapp.com",
@@ -14,10 +15,8 @@ const firebaseConfig = {
   measurementId: "G-RN92TRG52B"
 };
 
-// Initialize Firebase (Prevents "app already exists" error in Next.js)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// Initialize Analytics safely (only runs in the browser, not on the server)
 let analytics;
 if (typeof window !== "undefined") {
   isSupported().then((supported) => {
@@ -27,6 +26,7 @@ if (typeof window !== "undefined") {
   });
 }
 
-// Initialize Authentication and Providers for your Sign-In components
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+// Export Firestore Database
+export const db = getFirestore(app);

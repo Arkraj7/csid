@@ -66,7 +66,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <AppLogo size={36} />
+              <AppLogo className="w-9 h-9" />
               <span className="font-bold text-lg text-foreground">CSID</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4 max-w-sm">

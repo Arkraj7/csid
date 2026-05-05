@@ -96,7 +96,7 @@ export default function AuthPageClient() {
           </div>
 
           {/* Render the appropriate form */}
-          {isLogin ? <SignInForm /> : <SignUpForm />}
+          {isLogin ? <SignInForm onSwitchToSignUp={toggleAuthMode} /> : <SignUpForm onSwitchToSignIn={toggleAuthMode} />}
 
           {/* Toggle between Sign In / Sign Up */}
           <div className="mt-8 text-center text-sm text-muted-foreground">

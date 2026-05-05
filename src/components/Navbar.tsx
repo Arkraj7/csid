@@ -4,7 +4,13 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import AppLogo from '@/components/ui/AppLogo';
 
-export default function Navbar() {
+// 1. Tell TypeScript that this component is allowed to accept 'currentPath'
+interface NavbarProps {
+  currentPath?: string;
+}
+
+// 2. Pass currentPath into the function
+export default function Navbar({ currentPath }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -27,12 +33,12 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* DESKTOP MENU */}
+          {/* DESKTOP MENU - Uses currentPath to highlight the active page */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-primary font-medium hover:text-green-700 transition-colors">Home</Link>
-            <Link href="/courses" className="text-gray-600 font-medium hover:text-primary transition-colors">Courses</Link>
-            <Link href="/about" className="text-gray-600 font-medium hover:text-primary transition-colors">About</Link>
-            <Link href="/contact" className="text-gray-600 font-medium hover:text-primary transition-colors">Contact</Link>
+            <Link href="/" className={`font-medium transition-colors ${currentPath === '/' ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}>Home</Link>
+            <Link href="/courses" className={`font-medium transition-colors ${currentPath === '/courses' ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}>Courses</Link>
+            <Link href="/about" className={`font-medium transition-colors ${currentPath === '/about' ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}>About</Link>
+            <Link href="/contact" className={`font-medium transition-colors ${currentPath === '/contact' ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}>Contact</Link>
           </div>
 
           {/* AUTH BUTTONS */}
@@ -64,10 +70,10 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full z-50">
           <div className="px-4 pt-4 pb-8 space-y-2 flex flex-col">
-            <Link href="/" className="block px-3 py-2 text-primary font-medium">Home</Link>
-            <Link href="/courses" className="block px-3 py-2 text-gray-600 font-medium hover:text-primary">Courses</Link>
-            <Link href="/about" className="block px-3 py-2 text-gray-600 font-medium hover:text-primary">About</Link>
-            <Link href="/contact" className="block px-3 py-2 text-gray-600 font-medium hover:text-primary">Contact</Link>
+            <Link href="/" className={`block px-3 py-2 font-medium ${currentPath === '/' ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}>Home</Link>
+            <Link href="/courses" className={`block px-3 py-2 font-medium ${currentPath === '/courses' ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}>Courses</Link>
+            <Link href="/about" className={`block px-3 py-2 font-medium ${currentPath === '/about' ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}>About</Link>
+            <Link href="/contact" className={`block px-3 py-2 font-medium ${currentPath === '/contact' ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}>Contact</Link>
             <div className="h-px bg-gray-100 my-4"></div>
             <Link href="/sign-up-login" className="block px-3 py-2 text-[#0d1b2a] font-semibold text-center border border-gray-200 rounded-lg">Log in</Link>
             <Link href="/sign-up-login" className="block px-3 py-3 mt-2 text-center bg-primary text-white rounded-lg font-semibold shadow-md">Sign up</Link>

@@ -1,5 +1,3 @@
-// src/types/certificate.ts
-
 export interface CertificateData {
   fullName: string;
   courseTitle: string;

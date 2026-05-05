@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  trailingSlash: true, // <-- THIS IS THE MAGIC FIX FOR GITHUB PAGES
+  trailingSlash: true,
+  basePath: '/csid', // <-- THIS FIXES THE BLANK SCREEN
   images: {
     unoptimized: true,
   },

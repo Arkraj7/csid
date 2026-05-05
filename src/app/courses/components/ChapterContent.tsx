@@ -16,32 +16,23 @@ export default function ChapterContent({ chapter, courseId }: ChapterContentProp
   const router = useRouter();
   const [isCompleting, setIsCompleting] = useState(false);
 
-  // 1. INVISIBLE TIME TRACKER
-  // This automatically tracks how long they spend reading the chapter
   useEffect(() => {
     const startTime = Date.now();
-
     return () => {
       const endTime = Date.now();
       const timeSpentMilliseconds = endTime - startTime;
       const hoursSpent = timeSpentMilliseconds / (1000 * 60 * 60);
-
-      // If they spent more than ~15 seconds on the page, log the reading time!
       if (hoursSpent > 0.004) { 
         updateUserProgress({ hoursLearned: Number(hoursSpent.toFixed(2)) });
       }
     };
   }, []);
 
-  // 2. COMPLETE CHAPTER LOGIC
   const handleCompleteAndContinue = async (e: React.MouseEvent, nextChapterId: string | undefined) => {
     e.preventDefault();
     setIsCompleting(true);
-
-    // Tell the database they finished 1 lesson!
     await updateUserProgress({ lessonsCompleted: 1 });
 
-    // Send them to the next chapter, or back to the course page to take the Quiz
     if (nextChapterId) {
       router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
     } else {
@@ -51,8 +42,6 @@ export default function ChapterContent({ chapter, courseId }: ChapterContentProp
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-24">
-      
-      {/* Chapter Header */}
       <div className="mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-center gap-3 text-emerald-600 dark:text-emerald-400 font-semibold mb-4 text-sm tracking-wide uppercase">
           <FileText className="w-5 h-5" />
@@ -66,15 +55,11 @@ export default function ChapterContent({ chapter, courseId }: ChapterContentProp
         </p>
       </div>
 
-      {/* Chapter Text Content */}
       <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-emerald-600">
         <div dangerouslySetInnerHTML={{ __html: chapter.content }} />
       </div>
 
-      {/* Completion & Navigation Section */}
       <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-6">
-        
-        {/* Previous Button */}
         {chapter.previousChapter ? (
           <Link 
             href={`/courses/${courseId}/chapters/${chapter.previousChapter}`}
@@ -84,10 +69,9 @@ export default function ChapterContent({ chapter, courseId }: ChapterContentProp
             Previous Chapter
           </Link>
         ) : (
-          <div className="hidden sm:block w-32"></div> // spacer
+          <div className="hidden sm:block w-32"></div>
         )}
 
-        {/* Next / Complete Button */}
         {chapter.nextChapter ? (
           <button
             onClick={(e) => handleCompleteAndContinue(e, chapter.nextChapter)}
@@ -107,7 +91,6 @@ export default function ChapterContent({ chapter, courseId }: ChapterContentProp
             <ChevronRight className="w-5 h-5" />
           </button>
         )}
-        
       </div>
     </div>
   );

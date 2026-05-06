@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation';
 import { courses } from '@/app/courses/components/data';
-import ChapterSidebar from '../../../components/ChapterSidebar';
-import ChapterContent from '../../../components/ChapterContent';
-import { Chapter } from '@/types/certificate';
+import CourseReaderClient from '../../../components/CourseReaderClient';
 
 export function generateStaticParams() {
   const paths: { courseId: string; chapterId: string }[] = [];
@@ -31,26 +29,10 @@ export default async function ChapterPage({
     notFound();
   }
 
-  const chapters: Chapter[] = course.chapters.map((chapter, index) => ({
-    ...chapter,
-    order: index + 1,
-    duration: 15,
-    previousChapter: course.chapters[index - 1]?.id,
-    nextChapter: course.chapters[index + 1]?.id,
-  }));
-
-  const chapter = chapters.find((ch) => ch.id === resolvedParams.chapterId);
+  const chapter = course.chapters.find((ch) => ch.id === resolvedParams.chapterId);
   if (!chapter) {
     notFound();
   }
 
-  return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-50 dark:bg-[#0A192F]">
-      <ChapterSidebar chapters={chapters} activeChapterId={chapter.id} courseId={course.id} />
-
-      <div className="flex-grow">
-        <ChapterContent chapter={chapter} courseId={course.id} />
-      </div>
-    </div>
-  );
+  return <CourseReaderClient course={course} chapter={chapter} />;
 }

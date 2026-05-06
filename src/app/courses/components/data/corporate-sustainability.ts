@@ -9,7 +9,7 @@ export const corporateSustainabilityCourse = {
   title: 'Corporate Sustainability & Carbon Accounting',
   description:
     'Master the transition from voluntary ESG initiatives to mandatory global frameworks, the GHG Protocol, and Net-Zero strategies.',
-  image: '/assets/images/climate-finance.png', // Ensure this image exists in your public folder
+  image: '/assets/images/course-corporate-sustainability.png',
   level: 'Advanced',
   duration: '6 Modules',
   chapters: [

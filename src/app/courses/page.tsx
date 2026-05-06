@@ -2,19 +2,11 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { BookOpen, Clock, BarChart, Lock, Play } from 'lucide-react';
+import Link from 'next/link';
+import { courses as availableCourses } from '@/app/courses/components/data';
 
 export default function CoursesPage() {
-  const courses = [
-    {
-      title: 'Climate Finance & Investing',
-      description:
-        'Explore our standalone curriculum covering carbon markets, ESG frameworks, and the future of global climate finance.',
-      modules: '6 Modules',
-      duration: '4-5 Hours',
-      level: 'Advanced',
-      available: true,
-      link: '/csid/climate-finance.html',
-    },
+  const comingSoonCourses = [
     {
       title: 'Urban Climate Adaptation',
       description:
@@ -35,6 +27,19 @@ export default function CoursesPage() {
       available: false,
       link: '#',
     },
+  ];
+
+  const courses = [
+    ...availableCourses.map((course) => ({
+      title: course.title,
+      description: course.description,
+      modules: `${course.chapters.length} Modules`,
+      duration: course.duration,
+      level: course.level,
+      available: true,
+      link: `/courses/${course.id}`,
+    })),
+    ...comingSoonCourses,
   ];
 
   return (
@@ -91,12 +96,12 @@ export default function CoursesPage() {
 
               {/* Button */}
               {course.available ? (
-                <a
+                <Link
                   href={course.link}
                   className="w-full py-4 px-4 bg-primary text-primary-foreground text-center rounded-xl font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
                 >
                   Start Course <Play size={18} className="fill-current" />
-                </a>
+                </Link>
               ) : (
                 <button
                   disabled

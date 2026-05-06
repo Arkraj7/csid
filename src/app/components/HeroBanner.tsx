@@ -176,12 +176,12 @@ export default function HeroBanner() {
                   Explore our new standalone curriculum covering carbon markets, ESG frameworks, and
                   the future of global climate finance.
                 </p>
-                <a
-                  href="/csid/climate-finance.html"
+                <Link
+                  href="/courses"
                   className="inline-block px-6 py-2.5 bg-emerald-500 text-white font-semibold rounded-lg text-sm hover:bg-emerald-400 hover:scale-105 transition-all duration-200 shadow-lg shadow-emerald-500/30"
                 >
-                  Start Course Now
-                </a>
+                  Explore Course Catalog
+                </Link>
               </div>
             </div>
           </div>

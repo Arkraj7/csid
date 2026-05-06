@@ -1,15 +1,16 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Chapter } from '@/types/certificate';
 
 interface Props {
   chapters: Chapter[];
   activeChapterId: string;
-  onSelectChapter: (id: string) => void;
+  courseId: string;
 }
 
-export default function ChapterSidebar({ chapters, activeChapterId, onSelectChapter }: Props) {
+export default function ChapterSidebar({ chapters, activeChapterId, courseId }: Props) {
   return (
     <div className="w-full md:w-80 bg-white dark:bg-[#112240] border-r border-gray-200 dark:border-gray-800 flex-shrink-0 h-full overflow-y-auto">
       <div className="p-6">
@@ -18,9 +19,9 @@ export default function ChapterSidebar({ chapters, activeChapterId, onSelectChap
           {chapters.map((chapter) => {
             const isActive = chapter.id === activeChapterId;
             return (
-              <button
+              <Link
                 key={chapter.id}
-                onClick={() => onSelectChapter(chapter.id)}
+                href={`/courses/${courseId}/chapters/${chapter.id}`}
                 className={`w-full text-left flex items-center justify-between p-4 rounded-xl transition-all ${
                   isActive
                     ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/50'
@@ -39,7 +40,7 @@ export default function ChapterSidebar({ chapters, activeChapterId, onSelectChap
                     {chapter.title}
                   </span>
                 </div>
-              </button>
+              </Link>
             );
           })}
         </div>

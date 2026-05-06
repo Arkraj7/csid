@@ -88,8 +88,7 @@ export type Language = 'en' | 'hi';
 export type Translations = typeof translations.en;
 
 export function getTranslations(lang: Language): Translations {
-  // We use "as any" to stop TypeScript from crashing over translation string mismatches
-  return ((translations as any)[lang] ?? (translations as any).en) as Translations;
+  return (translations[lang] ?? translations.en) as Translations;
 }
 
 export const SUPPORTED_LANGUAGES: { code: Language; label: string; native: string }[] = [

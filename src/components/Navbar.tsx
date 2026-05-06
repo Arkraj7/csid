@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Sun, Moon, Menu, X, LogOut, UserCircle } from 'lucide-react';
 import AppLogo from '@/components/ui/AppLogo';
@@ -136,10 +137,13 @@ export default function Navbar({ currentPath }: NavbarProps) {
               <div className="flex items-center gap-5 border-l border-gray-300 dark:border-gray-700 pl-6">
                 <div className="flex items-center gap-2 cursor-pointer">
                   {user.photoURL ? (
-                    <img
+                    <Image
                       src={user.photoURL}
                       alt="Profile"
+                      width={36}
+                      height={36}
                       className="w-9 h-9 rounded-full border-2 border-primary"
+                      unoptimized
                     />
                   ) : (
                     <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
@@ -207,7 +211,14 @@ export default function Navbar({ currentPath }: NavbarProps) {
             {user && (
               <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl mb-2 border border-gray-100 dark:border-gray-800">
                 {user.photoURL ? (
-                  <img src={user.photoURL} alt="Profile" className="w-10 h-10 rounded-full" />
+                  <Image
+                    src={user.photoURL}
+                    alt="Profile"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 rounded-full"
+                    unoptimized
+                  />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     {user.displayName?.charAt(0).toUpperCase() ||

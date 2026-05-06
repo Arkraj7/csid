@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
-import { ArrowRight, Leaf, Droplets, Shield, Hammer, Play } from 'lucide-react';
+import { ArrowRight, Leaf, Droplets, Shield, Hammer } from 'lucide-react';
 
 const pillars = [
   {
@@ -112,10 +113,12 @@ export default function HeroBanner() {
             <div className="relative w-full h-[500px] xl:h-[550px] rounded-3xl overflow-hidden shadow-2xl bg-[#a4c5d5] border border-white/10">
               {/* SKY */}
               <div className="absolute top-0 left-0 w-full h-full z-10">
-                <img
+                <Image
                   src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-sky.png"
                   alt="Sky"
                   className="w-full h-full object-cover object-bottom"
+                  fill
+                  unoptimized
                 />
               </div>
 
@@ -124,10 +127,12 @@ export default function HeroBanner() {
                 className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-20"
                 ref={mountainsRef}
               >
-                <img
+                <Image
                   src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-moutains.png"
                   alt="Mountains"
                   className="w-full h-full object-cover object-bottom"
+                  fill
+                  unoptimized
                 />
               </div>
 
@@ -136,19 +141,23 @@ export default function HeroBanner() {
                 className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-30"
                 ref={castleRef}
               >
-                <img
+                <Image
                   src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-castle.png"
                   alt="Castle"
                   className="w-full h-full object-cover object-bottom"
+                  fill
+                  unoptimized
                 />
               </div>
 
               {/* TREES */}
               <div className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-40" ref={treeRef}>
-                <img
+                <Image
                   src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png"
                   alt="Tree"
                   className="w-full h-full object-cover object-bottom scale-105"
+                  fill
+                  unoptimized
                 />
               </div>
 

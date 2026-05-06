@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '@/lib/firebase';
@@ -16,14 +17,14 @@ export default function SignInForm({ onSwitchToSignUp }: Props) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailSignIn = async (e: React.FormEvent) => {
+  const handleEmailSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push('/courses');
-    } catch (err) {
+    } catch {
       setError('Failed to sign in. Check your credentials.');
     } finally {
       setIsLoading(false);
@@ -35,7 +36,7 @@ export default function SignInForm({ onSwitchToSignUp }: Props) {
     try {
       await signInWithPopup(auth, googleProvider);
       router.push('/courses');
-    } catch (err) {
+    } catch {
       setError('Google sign-in failed.');
     } finally {
       setIsLoading(false);
@@ -49,10 +50,13 @@ export default function SignInForm({ onSwitchToSignUp }: Props) {
         disabled={isLoading}
         className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
       >
-        <img
+        <Image
           src="https://www.svgrepo.com/show/475656/google-color.svg"
           alt="Google"
+          width={20}
+          height={20}
           className="w-5 h-5"
+          unoptimized
         />
         Continue with Google
       </button>
@@ -93,6 +97,16 @@ export default function SignInForm({ onSwitchToSignUp }: Props) {
           {isLoading ? 'Signing In...' : 'Sign In'}
         </button>
       </form>
+      <div className="text-center text-sm text-muted-foreground mt-4">
+        Don&apos;t have an account?{' '}
+        <button
+          type="button"
+          onClick={onSwitchToSignUp}
+          className="font-semibold text-primary hover:underline focus:outline-none"
+        >
+          Sign up
+        </button>
+      </div>
     </div>
   );
 }

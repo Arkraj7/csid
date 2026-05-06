@@ -1,13 +1,22 @@
 import React from 'react';
 import { BookOpen, CheckCircle, Trophy } from 'lucide-react';
 
+type Course = {
+  title: string;
+  description: string;
+  chapters: { id: string }[];
+};
+
 interface Props {
-  overallProgress: number;
-  completedCount: number;
-  totalChapters: number;
+  course: Course;
+  completedChapters: string[];
 }
 
-export default function CourseHeader({ overallProgress, completedCount, totalChapters }: Props) {
+export default function CourseHeader({ course, completedChapters }: Props) {
+  const totalChapters = course.chapters.length;
+  const completedCount = completedChapters.length;
+  const overallProgress = Math.round((completedCount / totalChapters) * 100);
+
   return (
     <div className="bg-card rounded-xl border border-border p-5 md:p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -20,12 +29,9 @@ export default function CourseHeader({ overallProgress, completedCount, totalCha
             <span className="text-xs text-muted-foreground">Beginner to Intermediate</span>
           </div>
           <h1 className="text-lg md:text-xl font-bold text-foreground leading-snug mb-1">
-            Understanding the Climate Economy: The Adaptive Thematic Framework™
+            {course.title}
           </h1>
-          <p className="text-sm text-muted-foreground">
-            A structured exploration of mitigation, adaptation, resilience, and recovery — 9
-            chapters
-          </p>
+          <p className="text-sm text-muted-foreground">{course.description}</p>
         </div>
         <div className="flex items-center gap-4 flex-shrink-0">
           <div className="text-center">
@@ -44,7 +50,6 @@ export default function CourseHeader({ overallProgress, completedCount, totalCha
           </div>
         </div>
       </div>
-      {/* Progress bar */}
       <div className="mt-4">
         <div className="h-2 bg-muted rounded-full overflow-hidden">
           <div

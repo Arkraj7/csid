@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { TrendingUp, BookOpen, Star, Clock, CheckCircle, BarChart2, Award } from 'lucide-react';
@@ -59,7 +59,6 @@ const activityData = [
 ];
 
 export default function ProgressPage() {
-  const [activeView] = useState<'week'>('week');
   const maxMinutes = Math.max(...(activityData?.map((d) => d?.minutes) || []));
 
   return (

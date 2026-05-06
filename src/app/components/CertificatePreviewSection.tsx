@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Award, X, Download, Lock, CheckCircle } from 'lucide-react';
+import { Award, X, Lock, CheckCircle } from 'lucide-react';
 
 function CertificateCard({ preview = false }: { preview?: boolean }) {
   return (

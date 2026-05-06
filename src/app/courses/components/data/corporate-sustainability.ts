@@ -1,7 +1,14 @@
+/* eslint-disable */
+// @ts-nocheck
+
+/* eslint-disable @next/next/no-img-element */
+// @ts-nocheck
+
 export const corporateSustainabilityCourse = {
   id: 'corporate-sustainability-and-carbon-accounting',
   title: 'Corporate Sustainability & Carbon Accounting',
-  description: 'Master the transition from voluntary ESG initiatives to mandatory global frameworks, the GHG Protocol, and Net-Zero strategies.',
+  description:
+    'Master the transition from voluntary ESG initiatives to mandatory global frameworks, the GHG Protocol, and Net-Zero strategies.',
   image: '/assets/images/climate-finance.png', // Ensure this image exists in your public folder
   level: 'Advanced',
   duration: '6 Modules',
@@ -50,65 +57,70 @@ Despite these simplifications, the core philosophical difference remains intact.
       quiz: [
         {
           id: 'ch1-q1',
-          question: 'Scenario: A European manufacturing conglomerate decides to close a highly carbon-intensive coal plant to align with its new climate transition strategy. The closure significantly reduces the company’s exposure to future carbon taxes (boosting investor confidence), but it results in the immediate layoff of 500 local workers and devastating economic consequences for the surrounding community. How would the reporting of this event differ under the ISSB (IFRS S2) versus the EU CSRD?',
+          question:
+            'Scenario: A European manufacturing conglomerate decides to close a highly carbon-intensive coal plant to align with its new climate transition strategy. The closure significantly reduces the company’s exposure to future carbon taxes (boosting investor confidence), but it results in the immediate layoff of 500 local workers and devastating economic consequences for the surrounding community. How would the reporting of this event differ under the ISSB (IFRS S2) versus the EU CSRD?',
           options: [
             'Under both frameworks, the company only reports the carbon tax savings, as social impacts are excluded from environmental standards.',
             'Under ISSB, the company strictly reports the financial risk mitigation and tax savings; under the CSRD, the company must report both the financial benefits and the negative socio-economic impacts on the local workforce and community.',
             'Under ISSB, the company must report the job losses because they affect operational capacity; under CSRD, only the environmental benefit of the plant closure is considered material.',
-            'Neither framework requires disclosure, as plant closures fall under general business operations rather than climate-related financial disclosures.'
+            'Neither framework requires disclosure, as plant closures fall under general business operations rather than climate-related financial disclosures.',
           ],
           correctAnswer: 1,
-          explanation: 'The ISSB focuses exclusively on financial materiality (how climate actions affect the entity\'s cash flows and investors), whereas the CSRD legally codifies double materiality, forcing companies to cross-reference environmental goals with social standards and report the "inside-out" impact on affected communities and workers.'
+          explanation:
+            'The ISSB focuses exclusively on financial materiality (how climate actions affect the entity\'s cash flows and investors), whereas the CSRD legally codifies double materiality, forcing companies to cross-reference environmental goals with social standards and report the "inside-out" impact on affected communities and workers.',
         },
         {
           id: 'ch1-q2',
-          question: 'Scenario: A publicly listed European mid-sized tech firm with 400 employees and an annual net turnover of €80 million is drafting its compliance budget for the next three years. The Chief Financial Officer is concerned about the immense compliance costs of capturing value chain data under the CSRD. Based on recent regulatory shifts, what should the CFO advise the board regarding the firm\'s immediate CSRD obligations?',
+          question:
+            "Scenario: A publicly listed European mid-sized tech firm with 400 employees and an annual net turnover of €80 million is drafting its compliance budget for the next three years. The Chief Financial Officer is concerned about the immense compliance costs of capturing value chain data under the CSRD. Based on recent regulatory shifts, what should the CFO advise the board regarding the firm's immediate CSRD obligations?",
           options: [
             'The firm must immediately implement double materiality reporting because all listed entities, regardless of size, are permanently bound by the CSRD.',
             'The firm must report only on its financial materiality using the ISSB baseline, as European regulations prohibit SMEs from capturing Scope 3 data.',
             'The firm is fully exempted from mandatory CSRD reporting due to the 2025 Omnibus simplification package.',
-            'The firm must report its impacts, but is exempt from obtaining mandatory external assurance until 2030.'
+            'The firm must report its impacts, but is exempt from obtaining mandatory external assurance until 2030.',
           ],
           correctAnswer: 2,
-          explanation: 'The European Commission\'s early 2025 "Omnibus" simplification package narrowed the CSRD\'s scope to only large undertakings (over 1,000 employees and >€450 million turnover), officially lifting the threshold and fully exempting listed Small and Medium-sized Enterprises (SMEs) from the mandate.'
+          explanation:
+            'The European Commission\'s early 2025 "Omnibus" simplification package narrowed the CSRD\'s scope to only large undertakings (over 1,000 employees and >€450 million turnover), officially lifting the threshold and fully exempting listed Small and Medium-sized Enterprises (SMEs) from the mandate.',
         },
         {
           id: 'ch1-q3',
-          question: 'Scenario: An international bank is assessing a corporate client\'s IFRS S2 disclosures. The client provides a detailed breakdown of its board\'s oversight committees and its Scope 1, 2, and 3 emissions (quantified via the GHG Protocol). However, the client fails to provide an analysis of how its supply chain and business model would perform under a hypothetical 1.5°C global warming trajectory. Which of the four core pillars of the IFRS S2 standard has the client failed to satisfy?',
-          options: [
-            'Governance',
-            'Strategy',
-            'Risk Management',
-            'Metrics and Targets'
-          ],
+          question:
+            "Scenario: An international bank is assessing a corporate client's IFRS S2 disclosures. The client provides a detailed breakdown of its board's oversight committees and its Scope 1, 2, and 3 emissions (quantified via the GHG Protocol). However, the client fails to provide an analysis of how its supply chain and business model would perform under a hypothetical 1.5°C global warming trajectory. Which of the four core pillars of the IFRS S2 standard has the client failed to satisfy?",
+          options: ['Governance', 'Strategy', 'Risk Management', 'Metrics and Targets'],
           correctAnswer: 1,
-          explanation: 'Under the ISSB\'s IFRS S2 framework, the "Strategy" pillar explicitly requires the use of climate-related scenario analysis to assess the climate resilience of an entity\'s business model, value chain, and financial planning.'
+          explanation:
+            'Under the ISSB\'s IFRS S2 framework, the "Strategy" pillar explicitly requires the use of climate-related scenario analysis to assess the climate resilience of an entity\'s business model, value chain, and financial planning.',
         },
         {
           id: 'ch1-q4',
-          question: 'Scenario: A fast-fashion retailer discovers that a new chemical dye used by a prospective overseas supplier poses a severe potential risk of irreversible toxic runoff into a local river. The pollution has not yet occurred, and the supplier has not yet signed the contract. If the retailer is subject to the CSRD\'s ESRS frameworks, how must it evaluate this situation under the paradigm of "Impact Materiality"?',
+          question:
+            'Scenario: A fast-fashion retailer discovers that a new chemical dye used by a prospective overseas supplier poses a severe potential risk of irreversible toxic runoff into a local river. The pollution has not yet occurred, and the supplier has not yet signed the contract. If the retailer is subject to the CSRD\'s ESRS frameworks, how must it evaluate this situation under the paradigm of "Impact Materiality"?',
           options: [
             'It does not need to be evaluated because potential future impacts are strictly excluded from impact materiality until they physically manifest.',
             'It must be evaluated based solely on the anticipated financial fines the retailer would face if the pollution triggers a lawsuit.',
             'It must evaluate the potential negative impact based on its severity (scale, scope, and irremediable character) combined with its likelihood of occurring.',
-            'It must defer the evaluation to the ISSB global baseline, as overseas suppliers fall outside the jurisdiction of European double materiality.'
+            'It must defer the evaluation to the ISSB global baseline, as overseas suppliers fall outside the jurisdiction of European double materiality.',
           ],
           correctAnswer: 2,
-          explanation: 'Under the CSRD\'s impact materiality (inside-out) requirements, entities must disclose material actual or potential impacts, with negative potential impacts specifically assessed based on their severity (scale, scope, and irremediable character) and their likelihood.'
+          explanation:
+            "Under the CSRD's impact materiality (inside-out) requirements, entities must disclose material actual or potential impacts, with negative potential impacts specifically assessed based on their severity (scale, scope, and irremediable character) and their likelihood.",
         },
         {
           id: 'ch1-q5',
-          question: 'Scenario: A multinational corporation has historically published an annual corporate social responsibility (CSR) report detailing its carbon footprint and net-zero ambitions as a public relations and marketing tool. As this corporation transitions into the new era of mandatory global frameworks (like California SB253 or the CSRD), which fundamental governance transformation must occur regarding its sustainability data?',
+          question:
+            'Scenario: A multinational corporation has historically published an annual corporate social responsibility (CSR) report detailing its carbon footprint and net-zero ambitions as a public relations and marketing tool. As this corporation transitions into the new era of mandatory global frameworks (like California SB253 or the CSRD), which fundamental governance transformation must occur regarding its sustainability data?',
           options: [
-            'The data must be transitioned from the GHG Protocol to a localized methodology strictly tailored to the company\'s specific operating region.',
+            "The data must be transitioned from the GHG Protocol to a localized methodology strictly tailored to the company's specific operating region.",
             'The data must be treated as a core fiduciary duty, subjected to rigorous digital tagging, mandatory external assurance, and intense stakeholder scrutiny.',
-            'The data must be audited internally by the marketing team to ensure alignment with the company\'s financial profit margins before public release.',
-            'The data must be simplified to eliminate all Scope 3 emissions, as regulatory frameworks now exclusively focus on direct operational footprints.'
+            "The data must be audited internally by the marketing team to ensure alignment with the company's financial profit margins before public release.",
+            'The data must be simplified to eliminate all Scope 3 emissions, as regulatory frameworks now exclusively focus on direct operational footprints.',
           ],
           correctAnswer: 1,
-          explanation: 'The transition from voluntary initiatives to mandatory legal frameworks dictates that carbon accounting is no longer a marketing exercise; it is a core fiduciary duty placing sustainability data on equal footing with traditional financial reporting, requiring digital tagging and external assurance.'
-        }
-      ]
+          explanation:
+            'The transition from voluntary initiatives to mandatory legal frameworks dictates that carbon accounting is no longer a marketing exercise; it is a core fiduciary duty placing sustainability data on equal footing with traditional financial reporting, requiring digital tagging and external assurance.',
+        },
+      ],
     },
     {
       id: 'chapter-2',
@@ -152,65 +164,75 @@ By mastering the rigid physical boundaries of Scope 1 and the evolving, contract
       quiz: [
         {
           id: 'ch2-q1',
-          question: 'Scenario: A parent company acquires a 40% equity stake in a manufacturing joint venture. Despite lacking majority ownership, the parent company holds the exclusive contractual authority to introduce and implement all of the joint venture\'s daily operating and environmental policies. The parent company utilizes the operational control approach to consolidate its corporate GHG inventory. How must the parent company account for the joint venture\'s emissions?',
+          question:
+            "Scenario: A parent company acquires a 40% equity stake in a manufacturing joint venture. Despite lacking majority ownership, the parent company holds the exclusive contractual authority to introduce and implement all of the joint venture's daily operating and environmental policies. The parent company utilizes the operational control approach to consolidate its corporate GHG inventory. How must the parent company account for the joint venture's emissions?",
           options: [
             'It must account for 40% of the emissions in Scopes 1 and 2, strictly matching its underlying economic risk and reward.',
-            'It must account for 100% of the joint venture\'s emissions in its Scopes 1 and 2, because it holds the practical authority to enact operating policies.',
+            "It must account for 100% of the joint venture's emissions in its Scopes 1 and 2, because it holds the practical authority to enact operating policies.",
             'It must exclude the joint venture entirely from Scopes 1 and 2, reporting the 40% share solely under Scope 3 Category 15 (Investments).',
-            'It must claim 0% of the emissions across all scopes, as operational control can only be applied to wholly owned subsidiaries.'
+            'It must claim 0% of the emissions across all scopes, as operational control can only be applied to wholly owned subsidiaries.',
           ],
           correctAnswer: 1,
-          explanation: 'Under the operational control approach, an organization accounts for 100% of the GHG emissions from operations over which it holds the full authority to introduce and implement its operating policies, regardless of its financial ownership percentage.'
+          explanation:
+            'Under the operational control approach, an organization accounts for 100% of the GHG emissions from operations over which it holds the full authority to introduce and implement its operating policies, regardless of its financial ownership percentage.',
         },
         {
           id: 'ch2-q2',
-          question: 'Scenario: To reduce its direct carbon footprint, an industrial facility retrofits its onsite boilers to run on 100% bio-diesel (B100). During the combustion process, the boilers emit biogenic carbon dioxide (CO2), along with trace amounts of methane (CH4) and nitrous oxide (N2O). Additionally, a nearby cooling unit leaks chlorofluorocarbons (CFCs). According to the strict physical quantification mechanics of the GHG Protocol, how are these specific gases classified within the facility’s Scope 1 inventory?',
+          question:
+            'Scenario: To reduce its direct carbon footprint, an industrial facility retrofits its onsite boilers to run on 100% bio-diesel (B100). During the combustion process, the boilers emit biogenic carbon dioxide (CO2), along with trace amounts of methane (CH4) and nitrous oxide (N2O). Additionally, a nearby cooling unit leaks chlorofluorocarbons (CFCs). According to the strict physical quantification mechanics of the GHG Protocol, how are these specific gases classified within the facility’s Scope 1 inventory?',
           options: [
             'All emitted gases (CO2, CH4, N2O, and CFCs) must be aggregated and reported as a single CO2e metric within Scope 1.',
             'The entire combustion process is considered carbon-neutral; therefore, all boiler emissions are excluded from Scope 1, while CFCs are included.',
             'The biogenic CO2 must be reported separately as a memo item, CFCs are excluded, but the anthropogenic byproducts (CH4 and N2O) must be quantified and reported in Scope 1.',
-            'The biogenic CO2 is reported in Scope 1, while the CH4, N2O, and CFCs are reclassified into Scope 3 because they are non-Kyoto or trace gases.'
+            'The biogenic CO2 is reported in Scope 1, while the CH4, N2O, and CFCs are reclassified into Scope 3 because they are non-Kyoto or trace gases.',
           ],
           correctAnswer: 2,
-          explanation: 'Direct CO2 emissions from the combustion of biomass or biofuels are explicitly excluded from Scope 1 and reported separately, and non-Kyoto gases like CFCs are also excluded. However, the anthropogenic byproducts of biofuel combustion, specifically CH4 and N2O, must be quantified and included within the reporting company\'s Scope 1 emissions.'
+          explanation:
+            "Direct CO2 emissions from the combustion of biomass or biofuels are explicitly excluded from Scope 1 and reported separately, and non-Kyoto gases like CFCs are also excluded. However, the anthropogenic byproducts of biofuel combustion, specifically CH4 and N2O, must be quantified and included within the reporting company's Scope 1 emissions.",
         },
         {
           id: 'ch2-q3',
-          question: 'Scenario: A regional hospital network purchases 10,000 MWh of electricity from a public utility provider. During the transmission of this electricity across the grid, 800 MWh is lost as heat due to line inefficiencies (Transmission & Distribution losses). How does the GHG Protocol dictate the accounting of these T&D losses between the hospital network (the end-consumer) and the utility provider?',
+          question:
+            'Scenario: A regional hospital network purchases 10,000 MWh of electricity from a public utility provider. During the transmission of this electricity across the grid, 800 MWh is lost as heat due to line inefficiencies (Transmission & Distribution losses). How does the GHG Protocol dictate the accounting of these T&D losses between the hospital network (the end-consumer) and the utility provider?',
           options: [
             'The hospital network must report the T&D losses in its Scope 2 inventory using an Emission Factor at Consumption (EFC).',
             'Both entities share the burden and must report 50% of the T&D losses in their respective Scope 2 inventories to avoid omissions.',
             'The hospital network reports the T&D losses as Scope 1 emissions, while the utility provider reports them as Scope 3.',
-            'The utility provider accounts for the T&D losses as its own Scope 2 emissions, while the hospital network excludes them from Scope 2, utilizing an Emission Factor at Generation (EFG) instead.'
+            'The utility provider accounts for the T&D losses as its own Scope 2 emissions, while the hospital network excludes them from Scope 2, utilizing an Emission Factor at Generation (EFG) instead.',
           ],
           correctAnswer: 3,
-          explanation: 'To prevent double-counting, end-consumers use an Emission Factor at Generation (EFG) and do not report T&D losses in Scope 2 because they do not own or control the grid; instead, the utility company that owns the T&D infrastructure must report those losses as its own Scope 2 emissions.'
+          explanation:
+            'To prevent double-counting, end-consumers use an Emission Factor at Generation (EFG) and do not report T&D losses in Scope 2 because they do not own or control the grid; instead, the utility company that owns the T&D infrastructure must report those losses as its own Scope 2 emissions.',
         },
         {
           id: 'ch2-q4',
-          question: 'Scenario: "Company X" operates a data center 24 hours a day, 7 days a week. To meet its net-zero goals, it purchases unbundled solar Energy Attribute Certificates (EACs) equal to 100% of its total annual megawatt-hour volume. However, the local grid physically relies on natural gas generation at night. Under the newest, most stringent market-based Scope 2 accounting criteria (such as those being phased in by the SBTi), how does this scenario affect Company X\'s market-based reporting?',
+          question:
+            'Scenario: "Company X" operates a data center 24 hours a day, 7 days a week. To meet its net-zero goals, it purchases unbundled solar Energy Attribute Certificates (EACs) equal to 100% of its total annual megawatt-hour volume. However, the local grid physically relies on natural gas generation at night. Under the newest, most stringent market-based Scope 2 accounting criteria (such as those being phased in by the SBTi), how does this scenario affect Company X\'s market-based reporting?',
           options: [
-            'The company\'s market-based Scope 2 emissions approach zero because annual REC volumes perfectly match annual consumption volumes.',
+            "The company's market-based Scope 2 emissions approach zero because annual REC volumes perfectly match annual consumption volumes.",
             'The company must acknowledge natural-gas-generated electricity consumption at night due to hourly-matching requirements, increasing its market-based Scope 2 emissions.',
             'The company is permitted to use the location-based grid average for its daytime emissions and the residual mix for its nighttime emissions.',
-            'The company must reclassify its entire electricity footprint into Scope 3 because unbundled solar EACs are no longer legally recognized as valid contractual instruments.'
+            'The company must reclassify its entire electricity footprint into Scope 3 because unbundled solar EACs are no longer legally recognized as valid contractual instruments.',
           ],
           correctAnswer: 1,
-          explanation: 'Under stringent new quality criteria transitioning from annual to hourly matching, companies cannot simply offset 24/7 consumption with daytime-only solar generation. They must acknowledge the fossil-fuel generated electricity consumed at night to meet demand, which increases their market-based Scope 2 footprint.'
+          explanation:
+            'Under stringent new quality criteria transitioning from annual to hourly matching, companies cannot simply offset 24/7 consumption with daytime-only solar generation. They must acknowledge the fossil-fuel generated electricity consumed at night to meet demand, which increases their market-based Scope 2 footprint.',
         },
         {
           id: 'ch2-q5',
-          question: 'Scenario: An international logistics firm wants to structurally alter its carbon footprint. It decides to sell its entire owned fleet of diesel trucks and immediately lease them back from a third party. The logistics firm still dictates all operational routes and policies for the fleet, but it has chosen the equity share approach for its organizational boundary. How does this financial maneuver alter the firm\'s GHG inventory?',
+          question:
+            "Scenario: An international logistics firm wants to structurally alter its carbon footprint. It decides to sell its entire owned fleet of diesel trucks and immediately lease them back from a third party. The logistics firm still dictates all operational routes and policies for the fleet, but it has chosen the equity share approach for its organizational boundary. How does this financial maneuver alter the firm's GHG inventory?",
           options: [
             'The physical emissions from the trucks shift completely from Scope 1 to Scope 3 Category 8 (Upstream Leased Assets).',
             'The physical emissions from the trucks remain in Scope 1 because the firm maintains operational control over the routes.',
-            'The emissions from the trucks are entirely eliminated from the firm\'s inventory since they are no longer legally owned.',
-            'The emissions shift from Scope 1 to Scope 2 because leasing represents a purchased service rather than direct fuel combustion.'
+            "The emissions from the trucks are entirely eliminated from the firm's inventory since they are no longer legally owned.",
+            'The emissions shift from Scope 1 to Scope 2 because leasing represents a purchased service rather than direct fuel combustion.',
           ],
           correctAnswer: 0,
-          explanation: 'Under the equity share approach, operations or assets excluded from a company\'s financial ownership boundary (like a leased asset with 0% equity) are excluded from direct Scope 1 reporting. Instead, they are reclassified and accounted for as indirect Scope 3 emissions to avoid omissions.'
-        }
-      ]
+          explanation:
+            "Under the equity share approach, operations or assets excluded from a company's financial ownership boundary (like a leased asset with 0% equity) are excluded from direct Scope 1 reporting. Instead, they are reclassified and accounted for as indirect Scope 3 emissions to avoid omissions.",
+        },
+      ],
     },
     {
       id: 'chapter-3',
@@ -267,65 +289,75 @@ The ultimate goal of this engagement is to create a cascading effect of influenc
       quiz: [
         {
           id: 'ch3-q1',
-          question: 'Scenario: A reporting company uses a spend-based Environmentally-Extended Input-Output (EEIO) model to calculate its Scope 3 emissions for procured materials. Over the course of a year, the company\'s primary supplier installs a massive onsite solar array and heavily reduces its physical carbon intensity. However, the supplier continues to charge the reporting company the exact same financial price for the procured goods. How will the supplier\'s operational improvement reflect in the reporting company\'s Scope 3 inventory?',
+          question:
+            "Scenario: A reporting company uses a spend-based Environmentally-Extended Input-Output (EEIO) model to calculate its Scope 3 emissions for procured materials. Over the course of a year, the company's primary supplier installs a massive onsite solar array and heavily reduces its physical carbon intensity. However, the supplier continues to charge the reporting company the exact same financial price for the procured goods. How will the supplier's operational improvement reflect in the reporting company's Scope 3 inventory?",
           options: [
-            'The reporting company\'s Scope 3 emissions will decrease proportionally to the supplier\'s physical carbon reduction.',
-            'The reporting company\'s Scope 3 emissions will remain completely unchanged.',
-            'The emissions reduction will be reallocated to the reporting company\'s Scope 2 market-based inventory.',
-            'The reporting company must transition the supplier to Category 10 (Processing of Sold Products) to capture the improvement.'
+            "The reporting company's Scope 3 emissions will decrease proportionally to the supplier's physical carbon reduction.",
+            "The reporting company's Scope 3 emissions will remain completely unchanged.",
+            "The emissions reduction will be reallocated to the reporting company's Scope 2 market-based inventory.",
+            'The reporting company must transition the supplier to Category 10 (Processing of Sold Products) to capture the improvement.',
           ],
           correctAnswer: 1,
-          explanation: 'The spend-based method relies entirely on the economic value of purchased goods multiplied by sector-average emission factors; therefore, it completely fails to reflect physical operational improvements made by a value chain partner unless the financial cost of the procured goods also decreases.'
+          explanation:
+            'The spend-based method relies entirely on the economic value of purchased goods multiplied by sector-average emission factors; therefore, it completely fails to reflect physical operational improvements made by a value chain partner unless the financial cost of the procured goods also decreases.',
         },
         {
           id: 'ch3-q2',
-          question: 'Scenario: A petrochemical company manufactures plastic resins and sells them to a third-party toy manufacturer. The toy manufacturer moulds the resin into action figures, which are sold, used, and eventually disposed of in a local landfill by the end consumer. According to the 15-category framework, how must the original petrochemical company categorize the emissions from the toy moulding process and the final landfill disposal within its own Scope 3 inventory?',
+          question:
+            'Scenario: A petrochemical company manufactures plastic resins and sells them to a third-party toy manufacturer. The toy manufacturer moulds the resin into action figures, which are sold, used, and eventually disposed of in a local landfill by the end consumer. According to the 15-category framework, how must the original petrochemical company categorize the emissions from the toy moulding process and the final landfill disposal within its own Scope 3 inventory?',
           options: [
             'Category 1 (Purchased Goods and Services) and Category 5 (Waste Generated in Operations).',
             'Category 4 (Upstream Transportation) and Category 11 (Use of Sold Products).',
             'Category 10 (Processing of Sold Products) and Category 12 (End-of-Life Treatment of Sold Products).',
-            'Category 2 (Capital Goods) and Category 9 (Downstream Transportation).'
+            'Category 2 (Capital Goods) and Category 9 (Downstream Transportation).',
           ],
           correctAnswer: 2,
-          explanation: 'Because the resin is an intermediate product, the downstream third-party moulding process is classified under Category 10 (Processing of Sold Products), while the consumer\'s disposal of the final product is captured under Category 12 (End-of-Life Treatment of Sold Products).'
+          explanation:
+            "Because the resin is an intermediate product, the downstream third-party moulding process is classified under Category 10 (Processing of Sold Products), while the consumer's disposal of the final product is captured under Category 12 (End-of-Life Treatment of Sold Products).",
         },
         {
           id: 'ch3-q3',
-          question: 'Scenario: A multinational conglomerate is initiating its Scope 3 decarbonization strategy but is overwhelmed by the administrative burden of collecting primary, activity-based data from its 8,000 Tier 1 suppliers. To effectively drive supply chain decarbonization without micro-managing third-party operations, what highly structured mechanism could the conglomerate adopt?',
+          question:
+            'Scenario: A multinational conglomerate is initiating its Scope 3 decarbonization strategy but is overwhelmed by the administrative burden of collecting primary, activity-based data from its 8,000 Tier 1 suppliers. To effectively drive supply chain decarbonization without micro-managing third-party operations, what highly structured mechanism could the conglomerate adopt?',
           options: [
             'Implement a Supplier Engagement Target committing that a specific percentage of its suppliers (by spend or emissions) will adopt their own science-based targets within a five-year timeframe.',
             'Utilize spend-based EEIO data permanently, as this legally offsets the need to track genuine operational improvements across Tier 1 suppliers.',
             'Shift the suppliers to a "financial control" boundary, thereby reclassifying their emissions as Scope 1 and eliminating the Scope 3 reporting burden.',
-            'Demand that all 8,000 suppliers immediately provide product carbon footprints, accepting "survey fatigue" as an unavoidable regulatory mandate.'
+            'Demand that all 8,000 suppliers immediately provide product carbon footprints, accepting "survey fatigue" as an unavoidable regulatory mandate.',
           ],
           correctAnswer: 0,
-          explanation: 'Acknowledging the difficulty of directly reducing downstream and upstream metrics, frameworks like the SBTi allow companies to set Supplier Engagement Targets, shifting the burden from micro-managing individual supplier data to mandating that suppliers set their own rigorous decarbonization goals.'
+          explanation:
+            'Acknowledging the difficulty of directly reducing downstream and upstream metrics, frameworks like the SBTi allow companies to set Supplier Engagement Targets, shifting the burden from micro-managing individual supplier data to mandating that suppliers set their own rigorous decarbonization goals.',
         },
         {
           id: 'ch3-q4',
-          question: 'Scenario: An automotive factory purchases large amounts of electricity from the local grid. While the factory correctly reports the direct consumption in Scope 2, a percentage of that energy is inevitably lost as heat during transmission over the utility company\'s power lines. Where do the indirect emissions associated with these specific Transmission and Distribution (T&D) losses belong in the automotive factory\'s GHG inventory?',
+          question:
+            "Scenario: An automotive factory purchases large amounts of electricity from the local grid. While the factory correctly reports the direct consumption in Scope 2, a percentage of that energy is inevitably lost as heat during transmission over the utility company's power lines. Where do the indirect emissions associated with these specific Transmission and Distribution (T&D) losses belong in the automotive factory's GHG inventory?",
           options: [
-            'They are omitted from the factory\'s inventory entirely to prevent double counting with the utility provider.',
+            "They are omitted from the factory's inventory entirely to prevent double counting with the utility provider.",
             'Scope 3, Category 3: Fuel- and Energy-Related Activities.',
             'Scope 3, Category 4: Upstream Transportation and Distribution.',
-            'Scope 2 (Location-Based method), but excluded from the Scope 2 (Market-Based method).'
+            'Scope 2 (Location-Based method), but excluded from the Scope 2 (Market-Based method).',
           ],
           correctAnswer: 1,
-          explanation: 'Category 3 (Fuel- and Energy-Related Activities) captures the emissions from the extraction, production, and transportation of energy consumed by the reporting company, specifically including transmission and distribution (T&D) grid losses that are not captured in Scope 1 or 2.'
+          explanation:
+            'Category 3 (Fuel- and Energy-Related Activities) captures the emissions from the extraction, production, and transportation of energy consumed by the reporting company, specifically including transmission and distribution (T&D) grid losses that are not captured in Scope 1 or 2.',
         },
         {
           id: 'ch3-q5',
-          question: 'Scenario: A technology firm wants to transition from a generic Scope 3 estimate to a highly accurate, actionable inventory. However, collecting supplier-specific activity data requires significant capital expenditure. Following best practice for supply chain engagement and data collection (similar to the AkzoNobel example), what is the optimal strategy for the firm to deploy its resources?',
+          question:
+            'Scenario: A technology firm wants to transition from a generic Scope 3 estimate to a highly accurate, actionable inventory. However, collecting supplier-specific activity data requires significant capital expenditure. Following best practice for supply chain engagement and data collection (similar to the AkzoNobel example), what is the optimal strategy for the firm to deploy its resources?',
           options: [
             'Deploy a spend-based EEIO model for the entire inventory and avoid primary data collection entirely to optimize financial resources.',
             'Disregard upstream categories and focus 100% of primary data collection on downstream consumer use-phase emissions.',
             'Use spend-based or industry-average data to screen and map the full inventory, then prioritize primary activity-based data collection solely for the vital few suppliers that represent the largest GHG hotspots or greatest strategic risk.',
-            'Mandate that every supplier, regardless of size, provide primary activity data, and delay public reporting until 100% primary data coverage is achieved.'
+            'Mandate that every supplier, regardless of size, provide primary activity data, and delay public reporting until 100% primary data coverage is achieved.',
           ],
           correctAnswer: 2,
-          explanation: 'To optimize resources and combat data collection challenges like survey fatigue, best practice dictates a hybrid approach: using spend analyses to identify the "vital few" partners who contribute the majority of the impact, and subsequently prioritizing those specific hotspots for rigorous activity-based data collection.'
-        }
-      ]
+          explanation:
+            'To optimize resources and combat data collection challenges like survey fatigue, best practice dictates a hybrid approach: using spend analyses to identify the "vital few" partners who contribute the majority of the impact, and subsequently prioritizing those specific hotspots for rigorous activity-based data collection.',
+        },
+      ],
     },
     {
       id: 'chapter-4',
@@ -375,65 +407,75 @@ Through its rigorous boundary requirements, standardized decarbonization methodo
       quiz: [
         {
           id: 'ch4-q1',
-          question: 'Scenario: A multinational retail corporation calculates its baseline greenhouse gas footprint and discovers that Scope 3 (value chain) emissions constitute 82% of its total emissions. To comply with SBTi requirements, the company sets a near-term target covering 70% of its Scope 3 emissions. Five years later, the company begins designing its long-term 2050 net-zero target. Under the SBTi\'s Corporate Net-Zero Standard, how must the company adjust its Scope 3 boundary and ambition level for this long-term target?',
+          question:
+            "Scenario: A multinational retail corporation calculates its baseline greenhouse gas footprint and discovers that Scope 3 (value chain) emissions constitute 82% of its total emissions. To comply with SBTi requirements, the company sets a near-term target covering 70% of its Scope 3 emissions. Five years later, the company begins designing its long-term 2050 net-zero target. Under the SBTi's Corporate Net-Zero Standard, how must the company adjust its Scope 3 boundary and ambition level for this long-term target?",
           options: [
             'It can maintain the 70% coverage boundary but must increase the ambition from "well-below 2°C" to "1.5°C" alignment.',
             'It must expand the Scope 3 boundary to cover at least 90% of its indirect emissions and ensure the ambition strictly aligns with a 1.5°C trajectory.',
             'It is exempt from setting a long-term Scope 3 target because its near-term target already exceeds the required 67% coverage threshold.',
-            'It must contract its Scope 3 boundary to 67% across all tiers to align with the Absolute Contraction Approach (ACA) for long-term targets.'
+            'It must contract its Scope 3 boundary to 67% across all tiers to align with the Absolute Contraction Approach (ACA) for long-term targets.',
           ],
           correctAnswer: 1,
-          explanation: 'The SBTi utilizes an "expansive boundary approach," meaning that while near-term Scope 3 targets only require 67% coverage and "well-below 2°C" ambition, long-term targets demand that companies expand accountability to cover at least 90% of all Scope 3 emissions, with the ambition strictly aligned to a 1.5°C trajectory.'
+          explanation:
+            'The SBTi utilizes an "expansive boundary approach," meaning that while near-term Scope 3 targets only require 67% coverage and "well-below 2°C" ambition, long-term targets demand that companies expand accountability to cover at least 90% of all Scope 3 emissions, with the ambition strictly aligned to a 1.5°C trajectory.',
         },
         {
           id: 'ch4-q2',
-          question: 'Scenario: A global cement manufacturer and a software development firm are both preparing to set 1.5°C-aligned science-based targets. The cement manufacturer anticipates production volume to double over the next decade due to emerging market infrastructure demands, while the software firm plans to scale its digital operations with minimal physical asset growth. Based on SBTi target-setting methodologies, which approaches are most appropriate for these two distinct entities?',
+          question:
+            'Scenario: A global cement manufacturer and a software development firm are both preparing to set 1.5°C-aligned science-based targets. The cement manufacturer anticipates production volume to double over the next decade due to emerging market infrastructure demands, while the software firm plans to scale its digital operations with minimal physical asset growth. Based on SBTi target-setting methodologies, which approaches are most appropriate for these two distinct entities?',
           options: [
             'Both companies must use the Absolute Contraction Approach (ACA) because intensity-based targets have been entirely phased out under the 2021 Corporate Net-Zero Standard.',
             'The cement manufacturer should utilize the Sectoral Decarbonization Approach (SDA) to set an intensity-based target, while the software firm should use the Absolute Contraction Approach (ACA) for linear absolute reductions.',
             'The software firm should use the SDA because its emissions are homogenous, while the cement manufacturer must use the ACA to ensure absolute carbon tonnage does not increase with its production volume.',
-            'Both companies must exclusively use the Forest, Land and Agriculture (FLAG) guidance, as all global operations ultimately impact land-use change.'
+            'Both companies must exclusively use the Forest, Land and Agriculture (FLAG) guidance, as all global operations ultimately impact land-use change.',
           ],
           correctAnswer: 1,
-          explanation: 'The Absolute Contraction Approach (ACA) applies a standard linear reduction rate suitable for cross-sector companies like a software firm, whereas the Sectoral Decarbonization Approach (SDA) allows highly energy-intensive, homogenous industries like cement to use intensity-based metrics that converge toward a sector-specific benchmark.'
+          explanation:
+            'The Absolute Contraction Approach (ACA) applies a standard linear reduction rate suitable for cross-sector companies like a software firm, whereas the Sectoral Decarbonization Approach (SDA) allows highly energy-intensive, homogenous industries like cement to use intensity-based metrics that converge toward a sector-specific benchmark.',
         },
         {
           id: 'ch4-q3',
-          question: 'Scenario: A large logistics firm emits 100,000 tons of CO2e annually. To meet its near-term science-based target of a 42% reduction by 2030, the firm\'s executive board proposes a strategy: they will physically reduce operational emissions by 20,000 tons (20%) and purchase 22,000 tons (22%) of high-quality, verified carbon credits from a wind farm project to make up the difference. Why will the SBTi reject this decarbonization strategy?',
+          question:
+            "Scenario: A large logistics firm emits 100,000 tons of CO2e annually. To meet its near-term science-based target of a 42% reduction by 2030, the firm's executive board proposes a strategy: they will physically reduce operational emissions by 20,000 tons (20%) and purchase 22,000 tons (22%) of high-quality, verified carbon credits from a wind farm project to make up the difference. Why will the SBTi reject this decarbonization strategy?",
           options: [
             'The purchased credits are generated from renewable energy rather than permanent geological carbon sequestration.',
-            'The SBTi\'s Mitigation Hierarchy mandates that science-based targets are strict gross targets; carbon credits cannot be used as a substitute for internal physical emissions reductions within the value chain.',
+            "The SBTi's Mitigation Hierarchy mandates that science-based targets are strict gross targets; carbon credits cannot be used as a substitute for internal physical emissions reductions within the value chain.",
             'Wind farm credits fall under Beyond Value Chain Mitigation (BVCM), which can only be applied to Scope 3 emissions, not Scope 1 and 2 operational targets.',
-            'The SBTi prohibits the purchase of carbon credits entirely, including for the neutralization of residual emissions at the net-zero target year.'
+            'The SBTi prohibits the purchase of carbon credits entirely, including for the neutralization of residual emissions at the net-zero target year.',
           ],
           correctAnswer: 1,
-          explanation: 'Under the strict Mitigation Hierarchy of the SBTi, science-based targets are gross targets, meaning a company cannot use carbon offsets to meet its near-term or long-term reduction targets; it must physically abate the emissions within its own operations and supply chain.'
+          explanation:
+            'Under the strict Mitigation Hierarchy of the SBTi, science-based targets are gross targets, meaning a company cannot use carbon offsets to meet its near-term or long-term reduction targets; it must physically abate the emissions within its own operations and supply chain.',
         },
         {
           id: 'ch4-q4',
-          question: 'Scenario: An international aviation company successfully executes its long-term SBTi strategy by 2050, having physically abated 90% of its base year emissions across all scopes through the adoption of sustainable aviation fuels and extreme efficiency measures. However, the final 10% of emissions cannot be technologically or economically eliminated. To officially and legitimately claim it has reached "corporate net-zero" under the SBTi standard, what specific action must the company take regarding these remaining emissions?',
+          question:
+            'Scenario: An international aviation company successfully executes its long-term SBTi strategy by 2050, having physically abated 90% of its base year emissions across all scopes through the adoption of sustainable aviation fuels and extreme efficiency measures. However, the final 10% of emissions cannot be technologically or economically eliminated. To officially and legitimately claim it has reached "corporate net-zero" under the SBTi standard, what specific action must the company take regarding these remaining emissions?',
           options: [
             'It must purchase unbundled Renewable Energy Certificates (RECs) equivalent to the remaining 10% to zero out its market-based electricity footprint.',
             'It must permanently neutralize the residual emissions by purchasing high-quality carbon removal credits (such as direct air capture or geological sequestration).',
             'It must reclassify the remaining 10% of emissions as Beyond Value Chain Mitigation (BVCM) and fund global forest protection initiatives.',
-            'It does not need to take any further action; achieving a 90% absolute physical reduction is the sole requirement for reaching SBTi net-zero.'
+            'It does not need to take any further action; achieving a 90% absolute physical reduction is the sole requirement for reaching SBTi net-zero.',
           ],
           correctAnswer: 1,
-          explanation: 'Achieving a legitimate state of corporate net-zero requires two distinct steps: first, deeply reducing absolute emissions (typically by 90%), and second, permanently neutralizing any unavoidable residual emissions (capped at 10%) through the purchase of high-quality carbon removals.'
+          explanation:
+            'Achieving a legitimate state of corporate net-zero requires two distinct steps: first, deeply reducing absolute emissions (typically by 90%), and second, permanently neutralizing any unavoidable residual emissions (capped at 10%) through the purchase of high-quality carbon removals.',
         },
         {
           id: 'ch4-q5',
-          question: 'Scenario: A multinational apparel brand calculates its baseline footprint and determines that 75% of its total emissions originate in its Scope 3 value chain. The brand sets a near-term target to reduce its Scope 1 and 2 emissions by a linear annual rate of 4.2%. For its near-term Scope 3 target, it formally commits to a 2.5% linear annual reduction. Is this target structure compliant with SBTi ambition criteria, and why?',
+          question:
+            'Scenario: A multinational apparel brand calculates its baseline footprint and determines that 75% of its total emissions originate in its Scope 3 value chain. The brand sets a near-term target to reduce its Scope 1 and 2 emissions by a linear annual rate of 4.2%. For its near-term Scope 3 target, it formally commits to a 2.5% linear annual reduction. Is this target structure compliant with SBTi ambition criteria, and why?',
           options: [
             'No, because if Scope 3 constitutes more than 40% of the total footprint, all near-term targets across all scopes must strictly align with a 1.5°C trajectory (4.2% annual reduction).',
             'No, because the apparel sector is mandated to use the Sectoral Decarbonization Approach (SDA), rendering linear contraction percentages invalid.',
             'Yes, because while Scope 1 and 2 near-term targets must strictly align with a 1.5°C pathway, the SBTi permits a minimum ambition of "well-below 2°C" (2.5% annual reduction) for near-term Scope 3 targets.',
-            'Yes, but only if the brand completely neutralizes the 1.7% ambition gap by investing in Beyond Value Chain Mitigation (BVCM) projects.'
+            'Yes, but only if the brand completely neutralizes the 1.7% ambition gap by investing in Beyond Value Chain Mitigation (BVCM) projects.',
           ],
           correctAnswer: 2,
-          explanation: 'The SBTi Corporate Net-Zero Standard requires near-term Scope 1 and 2 targets to align with a 1.5°C pathway (4.2% linear reduction), but it provides a slightly lower minimum ambition of "well-below 2°C" (2.5% linear reduction) for near-term Scope 3 targets due to the inherent data and influence challenges within the value chain.'
-        }
-      ]
+          explanation:
+            'The SBTi Corporate Net-Zero Standard requires near-term Scope 1 and 2 targets to align with a 1.5°C pathway (4.2% linear reduction), but it provides a slightly lower minimum ambition of "well-below 2°C" (2.5% linear reduction) for near-term Scope 3 targets due to the inherent data and influence challenges within the value chain.',
+        },
+      ],
     },
     {
       id: 'chapter-5',
@@ -477,65 +519,70 @@ Ultimately, the VCM is an indispensable tool for funneling private capital towar
       quiz: [
         {
           id: 'ch5-q1',
-          question: 'Scenario: A multinational corporation wants to support global climate action by purchasing carbon credits from a wind energy farm. However, upon auditing the project, it is discovered that the wind farm was already fully financed by local government subsidies and legally mandated by the host country\'s renewable energy transition laws. Based on the Core Carbon Principles of the VCM, how should the corporation view these credits?',
+          question:
+            "Scenario: A multinational corporation wants to support global climate action by purchasing carbon credits from a wind energy farm. However, upon auditing the project, it is discovered that the wind farm was already fully financed by local government subsidies and legally mandated by the host country's renewable energy transition laws. Based on the Core Carbon Principles of the VCM, how should the corporation view these credits?",
           options: [
             'Valid for neutralization, because wind energy permanently removes carbon from the atmosphere.',
             'Invalid, because the project fails the principle of additionality, as the mitigation would have occurred even without the financial incentive of the carbon credit.',
             'Valid for BVCM (Beyond Value Chain Mitigation), but only if the credits are issued ex-ante.',
-            'Invalid, because the mitigation hierarchy prohibits corporations from financing renewable energy outside of their own Scope 2 footprint.'
+            'Invalid, because the mitigation hierarchy prohibits corporations from financing renewable energy outside of their own Scope 2 footprint.',
           ],
           correctAnswer: 1,
-          explanation: 'The foundational test for high-integrity credits is "additionality"; if a project is already legally mandated or fully financed under existing policies, it is non-additional, meaning the purchase of the credit did not genuinely cause the emission reduction.'
+          explanation:
+            'The foundational test for high-integrity credits is "additionality"; if a project is already legally mandated or fully financed under existing policies, it is non-additional, meaning the purchase of the credit did not genuinely cause the emission reduction.',
         },
         {
           id: 'ch5-q2',
-          question: 'Scenario: In 2030, a retail brand successfully meets its near-term science-based target. However, it still emits 50,000 tonnes of CO2e annually from its supply chain. The brand purchases 50,000 tonnes of high-quality afforestation credits and issues a press release stating it has officially "neutralized" its emissions and achieved "corporate net-zero." According to the SBTi Mitigation Hierarchy outlined in the text, why is this public claim fundamentally flawed?',
+          question:
+            'Scenario: In 2030, a retail brand successfully meets its near-term science-based target. However, it still emits 50,000 tonnes of CO2e annually from its supply chain. The brand purchases 50,000 tonnes of high-quality afforestation credits and issues a press release stating it has officially "neutralized" its emissions and achieved "corporate net-zero." According to the SBTi Mitigation Hierarchy outlined in the text, why is this public claim fundamentally flawed?',
           options: [
             'Corporate net-zero cannot be claimed until the company achieves its long-term target (e.g., 90% absolute reduction), and credits purchased before 2050 should be framed as Beyond Value Chain Mitigation (BVCM) rather than neutralization.',
             'Afforestation credits are classified as long-lived removals, and net-zero claims require the use of short-lived biological avoidance credits.',
             'The company is not permitted to use biological sinks to offset Scope 3 emissions; they may only be applied to Scope 1 direct emissions.',
-            'SBTi frameworks prohibit the purchase of carbon credits entirely, regardless of whether they are used for BVCM or neutralization.'
+            'SBTi frameworks prohibit the purchase of carbon credits entirely, regardless of whether they are used for BVCM or neutralization.',
           ],
           correctAnswer: 0,
-          explanation: 'Under the SBTi, carbon credits cannot substitute internal emission reductions, and true neutralization (and the "net-zero" claim) only applies to the final 10% of residual emissions after a long-term science-based target is achieved; interim credit purchases must be framed as BVCM (financing global action).'
+          explanation:
+            'Under the SBTi, carbon credits cannot substitute internal emission reductions, and true neutralization (and the "net-zero" claim) only applies to the final 10% of residual emissions after a long-term science-based target is achieved; interim credit purchases must be framed as BVCM (financing global action).',
         },
         {
           id: 'ch5-q3',
-          question: 'Scenario: A company wishes to fund an environmental initiative by purchasing credits from a project that promises to plant 10,000 hectares of mangroves. The project developer offers to sell the company credits today based on the anticipated carbon the mangroves will absorb over the next 40 years. Why do high-integrity VCM oversight bodies warn against utilizing this specific type of carbon credit?',
+          question:
+            'Scenario: A company wishes to fund an environmental initiative by purchasing credits from a project that promises to plant 10,000 hectares of mangroves. The project developer offers to sell the company credits today based on the anticipated carbon the mangroves will absorb over the next 40 years. Why do high-integrity VCM oversight bodies warn against utilizing this specific type of carbon credit?',
           options: [
             'Mangroves are classified as avoidance credits, which mathematically violate the double-counting rule.',
             'The credits rely on "ex-ante" issuance, carrying an unacceptably high level of uncertainty if the biological sink suffers a reversal (like a disease or storm) before the carbon is physically absorbed.',
             'Biological sinks are legally required to utilize "ex-post" issuance to bypass the host country\'s Nationally Determined Contributions (NDCs).',
-            'The GHG Protocol classifies future biological absorption as a Scope 3 Category 1 reduction rather than an external market instrument.'
+            'The GHG Protocol classifies future biological absorption as a Scope 3 Category 1 reduction rather than an external market instrument.',
           ],
           correctAnswer: 1,
-          explanation: 'High-integrity credits must be issued ex-post (after the physical removal has been verified by observed data) because ex-ante credits (based on anticipation of future removals) carry immense risk, particularly for biological sinks which are highly vulnerable to reversibility.'
+          explanation:
+            'High-integrity credits must be issued ex-post (after the physical removal has been verified by observed data) because ex-ante credits (based on anticipation of future removals) carry immense risk, particularly for biological sinks which are highly vulnerable to reversibility.',
         },
         {
           id: 'ch5-q4',
-          question: 'Scenario: A heavy industry firm is preparing its annual sustainability report to comply with emerging anti-greenwashing regulations. It has heavily decarbonized its value chain but still purchased 10,000 tonnes of Direct Air Capture (DAC) credits to take responsibility for its ongoing emissions. According to the forthcoming GHG Protocol Actions and Market Instruments (AMI) standard, how must the firm report these DAC credits?',
+          question:
+            'Scenario: A heavy industry firm is preparing its annual sustainability report to comply with emerging anti-greenwashing regulations. It has heavily decarbonized its value chain but still purchased 10,000 tonnes of Direct Air Capture (DAC) credits to take responsibility for its ongoing emissions. According to the forthcoming GHG Protocol Actions and Market Instruments (AMI) standard, how must the firm report these DAC credits?',
           options: [
-            'They must be mathematically subtracted from the company\'s Scope 1 inventory to demonstrate a net-reduced physical footprint.',
+            "They must be mathematically subtracted from the company's Scope 1 inventory to demonstrate a net-reduced physical footprint.",
             'They must be reported completely separately from the attributional physical GHG inventory (Scopes 1, 2, and 3) within a dedicated, consequential "GHG Impact Statement."',
             'They must be allocated as "Emission Avoidance Credits" and incorporated into the company\'s Scope 2 market-based accounting ledger.',
-            'They must be multiplied by a "residual mix" factor to account for the energy used by the DAC facility.'
+            'They must be multiplied by a "residual mix" factor to account for the energy used by the DAC facility.',
           ],
           correctAnswer: 1,
-          explanation: 'To prevent greenwashing and deceptive netting, the proposed AMI standard mandates that market-based activities and the retirement of VCM credits be reported in a consequential impact statement that is entirely separate from the company\'s physical, attributional footprint.'
+          explanation:
+            "To prevent greenwashing and deceptive netting, the proposed AMI standard mandates that market-based activities and the retirement of VCM credits be reported in a consequential impact statement that is entirely separate from the company's physical, attributional footprint.",
         },
         {
           id: 'ch5-q5',
-          question: 'Scenario: An investor is analyzing a carbon avoidance project that successfully prevents the logging of a specific, 500-acre tract of old-growth forest. The project\'s baseline scenario is highly conservative, and issuance is strictly ex-post. However, the investor rejects the credits after satellite monitoring reveals that the logging company simply moved its equipment and clear-cut a different, unprotected 500-acre forest five miles away. Which specific VCM integrity principle has this project failed to mitigate?',
-          options: [
-            'Reversibility',
-            'Double Counting',
-            'Additionality',
-            'Leakage'
-          ],
+          question:
+            "Scenario: An investor is analyzing a carbon avoidance project that successfully prevents the logging of a specific, 500-acre tract of old-growth forest. The project's baseline scenario is highly conservative, and issuance is strictly ex-post. However, the investor rejects the credits after satellite monitoring reveals that the logging company simply moved its equipment and clear-cut a different, unprotected 500-acre forest five miles away. Which specific VCM integrity principle has this project failed to mitigate?",
+          options: ['Reversibility', 'Double Counting', 'Additionality', 'Leakage'],
           correctAnswer: 3,
-          explanation: '"Leakage" occurs when actions taken to reduce emissions within a defined project boundary inadvertently cause an increase in emissions outside that boundary, completely negating the intended climate benefit of the avoidance project.'
-        }
-      ]
+          explanation:
+            '"Leakage" occurs when actions taken to reduce emissions within a defined project boundary inadvertently cause an increase in emissions outside that boundary, completely negating the intended climate benefit of the avoidance project.',
+        },
+      ],
     },
     {
       id: 'chapter-6',
@@ -576,175 +623,188 @@ Blockchain, or distributed ledger technology (DLT), provides the ultimate infras
       quiz: [
         {
           id: 'ch6-q1',
-          question: 'Why is the transition from manual spreadsheet accounting to enterprise ESG software increasingly a legal necessity?',
+          question:
+            'Why is the transition from manual spreadsheet accounting to enterprise ESG software increasingly a legal necessity?',
           options: [
             'Software eliminates the need for Scope 3 reporting.',
             'Spreadsheets cannot calculate location-based Scope 2 emissions.',
             'Mandatory frameworks like the CSRD require digital tagging (XHTML) and "audit-grade" assurance trails that manual spreadsheets cannot reliably support.',
-            'The GHG Protocol explicitly banned the use of Excel in 2024.'
+            'The GHG Protocol explicitly banned the use of Excel in 2024.',
           ],
           correctAnswer: 2,
-          explanation: 'Strict regulatory mandates require data to survive external assurance and be digitally tagged for databases (like the ESAP), making manual, un-versioned spreadsheets a massive compliance risk.'
+          explanation:
+            'Strict regulatory mandates require data to survive external assurance and be digitally tagged for databases (like the ESAP), making manual, un-versioned spreadsheets a massive compliance risk.',
         },
         {
           id: 'ch6-q2',
-          question: 'In Digital MRV (dMRV), what is the primary advantage of integrating Internet of Things (IoT) sensors into physical assets?',
+          question:
+            'In Digital MRV (dMRV), what is the primary advantage of integrating Internet of Things (IoT) sensors into physical assets?',
           options: [
             'It automatically neutralizes residual emissions.',
             'It allows companies to skip the double materiality assessment.',
             'It replaces estimated, spend-based proxies with real-time, primary activity data directly from the point of combustion.',
-            'It reclassifies Scope 1 emissions into Scope 3.'
+            'It reclassifies Scope 1 emissions into Scope 3.',
           ],
           correctAnswer: 2,
-          explanation: 'IoT enables continuous direct measurement of physical assets, generating irrefutable, automated primary data pipelines rather than relying on delayed estimates.'
+          explanation:
+            'IoT enables continuous direct measurement of physical assets, generating irrefutable, automated primary data pipelines rather than relying on delayed estimates.',
         },
         {
           id: 'ch6-q3',
-          question: 'How does Artificial Intelligence (AI) directly support the quality control of Scope 3 GHG inventories?',
+          question:
+            'How does Artificial Intelligence (AI) directly support the quality control of Scope 3 GHG inventories?',
           options: [
             'By completely replacing the need for external auditors.',
             'By providing automated anomaly detection to instantly flag irregular data streams (e.g., impossibly high fuel rates) from thousands of suppliers.',
             'By converting all Scope 3 emissions into Scope 1 direct measurements.',
-            'By legally verifying compliance with the ISSB global baseline.'
+            'By legally verifying compliance with the ISSB global baseline.',
           ],
           correctAnswer: 1,
-          explanation: 'AI excels at automated anomaly detection, flagging irregular data streams from vast supply chains before they corrupt the aggregate inventory, which is crucial for robust quality control.'
+          explanation:
+            'AI excels at automated anomaly detection, flagging irregular data streams from vast supply chains before they corrupt the aggregate inventory, which is crucial for robust quality control.',
         },
         {
           id: 'ch6-q4',
-          question: 'How does blockchain (Distributed Ledger Technology) specifically solve challenges in the Voluntary Carbon Market (VCM)?',
+          question:
+            'How does blockchain (Distributed Ledger Technology) specifically solve challenges in the Voluntary Carbon Market (VCM)?',
           options: [
             'It absorbs carbon directly from the atmosphere.',
             'It automatically calculates Scope 3 EEIO data.',
             'It provides an immutable, transparent registry that uniquely serializes credits, ensuring provenance and mathematically preventing double-counting.',
-            'It converts all location-based metrics to market-based metrics.'
+            'It converts all location-based metrics to market-based metrics.',
           ],
           correctAnswer: 2,
-          explanation: 'Blockchain acts as a decentralized ledger that permanently records ownership and retirement of environmental attributes, eliminating the risk of double-claiming a single carbon credit.'
+          explanation:
+            'Blockchain acts as a decentralized ledger that permanently records ownership and retirement of environmental attributes, eliminating the risk of double-claiming a single carbon credit.',
         },
         {
           id: 'ch6-q5',
-          question: 'Which upcoming global auditing standard requires auditors to perform both limited and reasonable sustainability assurance engagements, further necessitating the use of auditable dMRV software?',
-          options: [
-            'ISSA 5000',
-            'SBTi Net-Zero Standard',
-            'Scope 2 Guidance',
-            'CSRD E1'
-          ],
+          question:
+            'Which upcoming global auditing standard requires auditors to perform both limited and reasonable sustainability assurance engagements, further necessitating the use of auditable dMRV software?',
+          options: ['ISSA 5000', 'SBTi Net-Zero Standard', 'Scope 2 Guidance', 'CSRD E1'],
           correctAnswer: 0,
-          explanation: 'The International Auditing and Assurance Standards Board (IAASB) recently issued ISSA 5000, which sets rigorous global expectations for performing sustainability assurance engagements.'
-        }
-      ]
-    }
+          explanation:
+            'The International Auditing and Assurance Standards Board (IAASB) recently issued ISSA 5000, which sets rigorous global expectations for performing sustainability assurance engagements.',
+        },
+      ],
+    },
   ],
   finalAssessment: [
     {
       id: 'final-1',
-      question: 'What is the fundamental difference in the "materiality" approach between the ISSB (IFRS S2) and the EU’s CSRD?',
+      question:
+        'What is the fundamental difference in the "materiality" approach between the ISSB (IFRS S2) and the EU’s CSRD?',
       options: [
         'ISSB focuses on impact materiality, while CSRD focuses on financial materiality.',
         'ISSB uses a spend-based materiality threshold, while CSRD uses an activity-based threshold.',
         'ISSB strictly focuses on financial materiality (impacts on the company), while the CSRD requires "double materiality" (impacts on the company AND the company\'s impacts on society/environment).',
-        'Neither framework uses materiality; they require 100% disclosure of all data.'
+        'Neither framework uses materiality; they require 100% disclosure of all data.',
       ],
       correctAnswer: 2,
-      explanation: 'The ISSB targets investors using financial materiality, whereas the CSRD legally codifies double materiality to serve a broader set of stakeholders.'
+      explanation:
+        'The ISSB targets investors using financial materiality, whereas the CSRD legally codifies double materiality to serve a broader set of stakeholders.',
     },
     {
       id: 'final-2',
-      question: 'Following the 2025 "Omnibus" simplification package, which entities are now fully exempt from mandatory CSRD reporting?',
+      question:
+        'Following the 2025 "Omnibus" simplification package, which entities are now fully exempt from mandatory CSRD reporting?',
       options: [
         'All non-EU companies',
         'Listed Small and Medium-sized Enterprises (SMEs)',
         'Large undertakings with over 1,000 employees',
-        'Financial institutions'
+        'Financial institutions',
       ],
       correctAnswer: 1,
-      explanation: 'The Omnibus directive raised the threshold to >1,000 employees and €450M turnover, officially exempting listed SMEs.'
+      explanation:
+        'The Omnibus directive raised the threshold to >1,000 employees and €450M turnover, officially exempting listed SMEs.',
     },
     {
       id: 'final-3',
-      question: 'Which of the following is NOT one of the four core pillars of the IFRS S2 climate disclosure framework?',
-      options: [
-        'Governance',
-        'Strategy',
-        'Double Materiality Assessment',
-        'Metrics and Targets'
-      ],
+      question:
+        'Which of the following is NOT one of the four core pillars of the IFRS S2 climate disclosure framework?',
+      options: ['Governance', 'Strategy', 'Double Materiality Assessment', 'Metrics and Targets'],
       correctAnswer: 2,
-      explanation: 'The four core pillars of IFRS S2 (derived from TCFD) are Governance, Strategy, Risk Management, and Metrics/Targets. Double materiality is a CSRD concept.'
+      explanation:
+        'The four core pillars of IFRS S2 (derived from TCFD) are Governance, Strategy, Risk Management, and Metrics/Targets. Double materiality is a CSRD concept.',
     },
     {
       id: 'final-4',
-      question: 'A company acquires a 30% equity stake in a joint venture but holds the exclusive authority to implement all of its daily operating policies. Under the "operational control" approach, what percentage of the joint venture\'s emissions must the company report in Scope 1 and 2?',
-      options: [
-        '30%',
-        '0%',
-        '50%',
-        '100%'
-      ],
+      question:
+        'A company acquires a 30% equity stake in a joint venture but holds the exclusive authority to implement all of its daily operating policies. Under the "operational control" approach, what percentage of the joint venture\'s emissions must the company report in Scope 1 and 2?',
+      options: ['30%', '0%', '50%', '100%'],
       correctAnswer: 3,
-      explanation: 'Under operational control, an entity accounts for 100% of the emissions from operations over which it implements operating policies, regardless of equity share.'
+      explanation:
+        'Under operational control, an entity accounts for 100% of the emissions from operations over which it implements operating policies, regardless of equity share.',
     },
     {
       id: 'final-5',
-      question: 'How must a facility account for the direct CO2 emissions resulting from the combustion of 100% pure biomass/bio-diesel (B100)?',
+      question:
+        'How must a facility account for the direct CO2 emissions resulting from the combustion of 100% pure biomass/bio-diesel (B100)?',
       options: [
         'They are included in Scope 1.',
         'They are excluded from the scopes entirely and reported separately as a biogenic memo item.',
         'They are accounted for in Scope 3, Category 3.',
-        'They are considered zero and not reported at all.'
+        'They are considered zero and not reported at all.',
       ],
       correctAnswer: 1,
-      explanation: 'Direct biogenic CO2 emissions from burning biomass are part of the natural carbon cycle and must be reported separately from the main scopes.'
+      explanation:
+        'Direct biogenic CO2 emissions from burning biomass are part of the natural carbon cycle and must be reported separately from the main scopes.',
     },
     {
       id: 'final-6',
-      question: 'When using the Scope 2 "market-based" method, what emission factor must a company use if it purchases grid electricity but does NOT actively procure contractual instruments like Renewable Energy Certificates (RECs)?',
+      question:
+        'When using the Scope 2 "market-based" method, what emission factor must a company use if it purchases grid electricity but does NOT actively procure contractual instruments like Renewable Energy Certificates (RECs)?',
       options: [
         'A residual mix factor',
         'A location-based grid average factor',
         'A direct measurement (CEMS) factor',
-        'An absolute zero factor'
+        'An absolute zero factor',
       ],
       correctAnswer: 0,
-      explanation: 'If a company lacks specific contractual instruments, it must apply a residual mix factor—the grid average stripped of claimed green attributes—to prevent double counting.'
+      explanation:
+        'If a company lacks specific contractual instruments, it must apply a residual mix factor—the grid average stripped of claimed green attributes—to prevent double counting.',
     },
     {
       id: 'final-7',
-      question: 'Where do the Transmission and Distribution (T&D) grid losses of purchased electricity belong in an end-consumer\'s GHG inventory?',
+      question:
+        "Where do the Transmission and Distribution (T&D) grid losses of purchased electricity belong in an end-consumer's GHG inventory?",
       options: [
         'Scope 2 (Location-based)',
         'Scope 1',
         'Scope 3, Category 3 (Fuel- and Energy-Related Activities)',
-        'They are omitted to prevent double-counting.'
+        'They are omitted to prevent double-counting.',
       ],
       correctAnswer: 2,
-      explanation: 'End-consumers do not own the grid, so T&D losses are accounted for in Scope 3, Category 3, not Scope 2.'
+      explanation:
+        'End-consumers do not own the grid, so T&D losses are accounted for in Scope 3, Category 3, not Scope 2.',
     },
     {
       id: 'final-8',
-      question: 'What is the primary limitation of calculating Scope 3 emissions using the "spend-based" (EEIO) method?',
+      question:
+        'What is the primary limitation of calculating Scope 3 emissions using the "spend-based" (EEIO) method?',
       options: [
         'It is too expensive and time-consuming to implement.',
         'It relies solely on primary supplier data.',
         'It assumes a linear relationship between monetary spend and emissions, failing to reflect physical operational improvements made by suppliers.',
-        'It only calculates downstream emissions.'
+        'It only calculates downstream emissions.',
       ],
       correctAnswer: 2,
-      explanation: 'Spend-based data relies on industry financial averages, meaning a supplier\'s physical carbon reductions won\'t show in the inventory unless the product\'s financial cost drops.'
+      explanation:
+        "Spend-based data relies on industry financial averages, meaning a supplier's physical carbon reductions won't show in the inventory unless the product's financial cost drops.",
     },
     {
       id: 'final-9',
-      question: 'A tire manufacturer sells tires to an automaker, who installs them on cars sold to consumers. Under which Scope 3 category should the tire manufacturer report the emissions from the eventual consumer driving the car?',
+      question:
+        'A tire manufacturer sells tires to an automaker, who installs them on cars sold to consumers. Under which Scope 3 category should the tire manufacturer report the emissions from the eventual consumer driving the car?',
       options: [
         'Category 1: Purchased Goods and Services',
         'Category 9: Downstream Transportation',
         'Category 11: Use of Sold Products',
-        'Category 10: Processing of Sold Products'
+        'Category 10: Processing of Sold Products',
       ],
       correctAnswer: 3,
-      explanation: 'Because the tire is an intermediate product later integrated into a final product (the car), the downstream integration is tracked under Category 10.'
+      explanation:
+        'Because the tire is an intermediate product later integrated into a final product (the car), the downstream integration is tracked under Category 10.',
     },
     {
       id: 'final-10',
@@ -752,71 +812,77 @@ Blockchain, or distributed ledger technology (DLT), provides the ultimate infras
       options: [
         'A target to replace 50% of suppliers annually based on their carbon footprint.',
         'A target mandating a specific percentage of suppliers (by spend or emissions) to set their own science-based targets within 5 years.',
-        'A target to audit 100% of suppliers\' Scope 1 emissions manually.',
-        'A target to transition all suppliers to spend-based data.'
+        "A target to audit 100% of suppliers' Scope 1 emissions manually.",
+        'A target to transition all suppliers to spend-based data.',
       ],
       correctAnswer: 1,
-      explanation: 'Supplier Engagement Targets shift the burden by requiring a designated percentage of suppliers to adopt their own rigorous, science-based reduction goals.'
+      explanation:
+        'Supplier Engagement Targets shift the burden by requiring a designated percentage of suppliers to adopt their own rigorous, science-based reduction goals.',
     },
     {
       id: 'final-11',
-      question: 'Which of the following best describes the SBTi\'s stance on using carbon offsets to meet a company\'s near-term or long-term emission reduction targets?',
+      question:
+        "Which of the following best describes the SBTi's stance on using carbon offsets to meet a company's near-term or long-term emission reduction targets?",
       options: [
         'Offsets can be used to meet up to 50% of near-term targets.',
         'Offsets are strictly prohibited; targets must be met through gross, physical value-chain decarbonization.',
         'Offsets can only be used for Scope 3 targets.',
-        'Offsets are fully permitted if they are verified by the UN.'
+        'Offsets are fully permitted if they are verified by the UN.',
       ],
       correctAnswer: 1,
-      explanation: 'Under the strict Mitigation Hierarchy, internal reduction targets are gross targets; carbon credits/offsets cannot be used as substitutes for internal value chain reductions.'
+      explanation:
+        'Under the strict Mitigation Hierarchy, internal reduction targets are gross targets; carbon credits/offsets cannot be used as substitutes for internal value chain reductions.',
     },
     {
       id: 'final-12',
-      question: 'To legitimately claim a state of "corporate net-zero" under the SBTi, what must a company do with its final, unavoidable residual emissions (capped at 10%)?',
+      question:
+        'To legitimately claim a state of "corporate net-zero" under the SBTi, what must a company do with its final, unavoidable residual emissions (capped at 10%)?',
       options: [
         'Reclassify them as Beyond Value Chain Mitigation (BVCM).',
         'Offset them using biological avoidance credits.',
         'Permanently neutralize them using high-quality carbon removal/sequestration credits.',
-        'Deduct them using the Sectoral Decarbonization Approach (SDA).'
+        'Deduct them using the Sectoral Decarbonization Approach (SDA).',
       ],
       correctAnswer: 2,
-      explanation: 'Reaching net-zero requires deeply reducing absolute emissions (typically 90%) and permanently neutralizing the remaining residual emissions (max 10%) via removals.'
+      explanation:
+        'Reaching net-zero requires deeply reducing absolute emissions (typically 90%) and permanently neutralizing the remaining residual emissions (max 10%) via removals.',
     },
     {
       id: 'final-13',
-      question: 'How does the required boundary coverage for Scope 3 emissions change between near-term and long-term SBTi targets?',
+      question:
+        'How does the required boundary coverage for Scope 3 emissions change between near-term and long-term SBTi targets?',
       options: [
         'Near-term requires 95% coverage; long-term requires 100% coverage.',
         'Near-term requires 67% coverage; long-term requires an expanded 90% coverage.',
         'Scope 3 is optional for near-term but requires 50% coverage for long-term.',
-        'Both require a strict 67% coverage boundary.'
+        'Both require a strict 67% coverage boundary.',
       ],
       correctAnswer: 1,
-      explanation: 'SBTi uses an expansive boundary approach, requiring companies to cover 67% of Scope 3 in the near term and expand that to 90% by 2050.'
+      explanation:
+        'SBTi uses an expansive boundary approach, requiring companies to cover 67% of Scope 3 in the near term and expand that to 90% by 2050.',
     },
     {
       id: 'final-14',
-      question: 'What is the fundamental difference between an "avoidance" credit and a "removal" credit?',
+      question:
+        'What is the fundamental difference between an "avoidance" credit and a "removal" credit?',
       options: [
         'Avoidance extracts existing carbon from the atmosphere; removal prevents new carbon from entering.',
         'Avoidance prevents potential future emissions compared to a baseline; removal physically extracts CO2 from the atmosphere and stores it.',
         'Avoidance is used for Scope 1; removal is used for Scope 3.',
-        'There is no difference; they are interchangeable under the GHG protocol.'
+        'There is no difference; they are interchangeable under the GHG protocol.',
       ],
       correctAnswer: 1,
-      explanation: 'Avoidance mitigates the flow of new emissions (e.g., stopping deforestation), while removal actively decreases atmospheric concentration (e.g., Direct Air Capture).'
+      explanation:
+        'Avoidance mitigates the flow of new emissions (e.g., stopping deforestation), while removal actively decreases atmospheric concentration (e.g., Direct Air Capture).',
     },
     {
       id: 'final-15',
-      question: 'If a wind farm generates carbon credits, but the farm was already legally mandated and fully financed by state subsidies, which Core Carbon Principle do the credits violate?',
-      options: [
-        'Additionality',
-        'Permanence',
-        'Ex-Post Issuance',
-        'Leakage'
-      ],
+      question:
+        'If a wind farm generates carbon credits, but the farm was already legally mandated and fully financed by state subsidies, which Core Carbon Principle do the credits violate?',
+      options: ['Additionality', 'Permanence', 'Ex-Post Issuance', 'Leakage'],
       correctAnswer: 0,
-      explanation: 'Additionality requires proof that the mitigation would not have happened without the carbon credit incentive; legally mandated projects are non-additional.'
+      explanation:
+        'Additionality requires proof that the mitigation would not have happened without the carbon credit incentive; legally mandated projects are non-additional.',
     },
     {
       id: 'final-16',
@@ -825,10 +891,11 @@ Blockchain, or distributed ledger technology (DLT), provides the ultimate infras
         'Purchasing cheap offsets to claim carbon neutrality without reducing internal emissions.',
         'Removing Scope 3 emissions from the corporate footprint.',
         'Financing external global climate action (like protecting natural sinks) in addition to making deep internal value-chain cuts.',
-        'Excluding suppliers from carbon reporting.'
+        'Excluding suppliers from carbon reporting.',
       ],
       correctAnswer: 2,
-      explanation: 'BVCM involves companies taking ongoing responsibility during their transition by funding external climate solutions, supplementary to their own internal SBTi reductions.'
+      explanation:
+        'BVCM involves companies taking ongoing responsibility during their transition by funding external climate solutions, supplementary to their own internal SBTi reductions.',
     },
     {
       id: 'final-17',
@@ -837,58 +904,65 @@ Blockchain, or distributed ledger technology (DLT), provides the ultimate infras
         'When sequestered carbon escapes back into the atmosphere over time.',
         'When protecting one area simply shifts the emitting activity (like logging) to a different, unprotected area outside the project boundary.',
         'When credits are double-claimed by two organizations.',
-        'When Scope 1 emissions leak into Scope 2.'
+        'When Scope 1 emissions leak into Scope 2.',
       ],
       correctAnswer: 1,
-      explanation: 'Leakage is a secondary effect where a project inadvertently causes an increase in emissions outside of its defined boundary, negating the climate benefit.'
+      explanation:
+        'Leakage is a secondary effect where a project inadvertently causes an increase in emissions outside of its defined boundary, negating the climate benefit.',
     },
     {
       id: 'final-18',
-      question: 'Why is the transition from manual spreadsheet accounting to enterprise ESG software increasingly a legal necessity?',
+      question:
+        'Why is the transition from manual spreadsheet accounting to enterprise ESG software increasingly a legal necessity?',
       options: [
         'Software eliminates the need for Scope 3 reporting.',
         'Spreadsheets cannot calculate location-based Scope 2 emissions.',
         'Mandatory frameworks like the CSRD require digital tagging (XHTML) and "audit-grade" assurance trails that manual spreadsheets cannot reliably support.',
-        'The GHG Protocol explicitly banned the use of Excel in 2024.'
+        'The GHG Protocol explicitly banned the use of Excel in 2024.',
       ],
       correctAnswer: 2,
-      explanation: 'Strict regulatory mandates require data to survive external assurance and be digitally tagged for databases (like the ESAP), making manual, un-versioned spreadsheets a massive compliance risk.'
+      explanation:
+        'Strict regulatory mandates require data to survive external assurance and be digitally tagged for databases (like the ESAP), making manual, un-versioned spreadsheets a massive compliance risk.',
     },
     {
       id: 'final-19',
-      question: 'In Digital MRV (dMRV), what is the primary advantage of integrating Internet of Things (IoT) sensors into physical assets?',
+      question:
+        'In Digital MRV (dMRV), what is the primary advantage of integrating Internet of Things (IoT) sensors into physical assets?',
       options: [
         'It automatically neutralizes residual emissions.',
         'It allows companies to skip the double materiality assessment.',
         'It replaces estimated, spend-based proxies with real-time, primary activity data directly from the point of combustion.',
-        'It reclassifies Scope 1 emissions into Scope 3.'
+        'It reclassifies Scope 1 emissions into Scope 3.',
       ],
       correctAnswer: 2,
-      explanation: 'IoT enables continuous direct measurement of physical assets, generating irrefutable, automated primary data pipelines rather than relying on delayed estimates.'
+      explanation:
+        'IoT enables continuous direct measurement of physical assets, generating irrefutable, automated primary data pipelines rather than relying on delayed estimates.',
     },
     {
       id: 'final-20',
-      question: 'How does blockchain (Distributed Ledger Technology) specifically solve challenges in the Voluntary Carbon Market (VCM)?',
+      question:
+        'How does blockchain (Distributed Ledger Technology) specifically solve challenges in the Voluntary Carbon Market (VCM)?',
       options: [
         'It absorbs carbon directly from the atmosphere.',
         'It automatically calculates Scope 3 EEIO data.',
         'It provides an immutable, transparent registry that uniquely serializes credits, ensuring provenance and mathematically preventing double-counting.',
-        'It converts all location-based metrics to market-based metrics.'
+        'It converts all location-based metrics to market-based metrics.',
       ],
       correctAnswer: 2,
-      explanation: 'Blockchain acts as a decentralized ledger that permanently records ownership and retirement of environmental attributes, eliminating the risk of double-claiming a single carbon credit.'
-    }
-  ]
+      explanation:
+        'Blockchain acts as a decentralized ledger that permanently records ownership and retirement of environmental attributes, eliminating the risk of double-claiming a single carbon credit.',
+    },
+  ],
 };
 
 // ============================================================================
-// IMPORTANT: KEEP YOUR EXISTING COURSES HERE. 
-// Do NOT delete any variables like `const previousCourse = { ... }` that you 
+// IMPORTANT: KEEP YOUR EXISTING COURSES HERE.
+// Do NOT delete any variables like `const previousCourse = { ... }` that you
 // already had in this file!
 // ============================================================================
 
 // Simply add the new `corporateSustainabilityCourse` object to your final export array:
 export const courses = [
   // ...yourExistingCourses,  <-- Keep whatever was already here
-  corporateSustainabilityCourse
+  corporateSustainabilityCourse,
 ];

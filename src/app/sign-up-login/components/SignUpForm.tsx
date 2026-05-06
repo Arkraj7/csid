@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { createUserWithEmailAndPassword, updateProfile, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '@/lib/firebase';
@@ -17,7 +18,7 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailSignUp = async (e: React.FormEvent) => {
+  const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
@@ -25,9 +26,10 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(userCredential.user, { displayName: name });
       router.push('/courses');
-    } catch (err: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
       setError(
-        err.message.includes('email-already-in-use')
+        message.includes('email-already-in-use')
           ? 'Email is already in use.'
           : 'Failed to create account.'
       );
@@ -41,7 +43,7 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
     try {
       await signInWithPopup(auth, googleProvider);
       router.push('/courses');
-    } catch (err) {
+    } catch {
       setError('Google sign-up failed.');
     } finally {
       setIsLoading(false);
@@ -55,10 +57,13 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
         disabled={isLoading}
         className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
       >
-        <img
+        <Image
           src="https://www.svgrepo.com/show/475656/google-color.svg"
           alt="Google"
+          width={20}
+          height={20}
           className="w-5 h-5"
+          unoptimized
         />
         Sign up with Google
       </button>
@@ -110,6 +115,16 @@ export default function SignUpForm({ onSwitchToSignIn }: Props) {
           {isLoading ? 'Creating Account...' : 'Create Account'}
         </button>
       </form>
+      <div className="text-center text-sm text-muted-foreground mt-4">
+        Already have an account?{' '}
+        <button
+          type="button"
+          onClick={onSwitchToSignIn}
+          className="font-semibold text-primary hover:underline focus:outline-none"
+        >
+          Log in
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,12 +1,20 @@
-import React from 'react';
+import { notFound } from 'next/navigation';
 import CoursesPageClient from '../components/CoursesPageClient';
-import { courseData } from '../components/courseData';
+import { courses } from '@/app/courses/components/data';
 
-// This tells Next.js which course pages to build
 export function generateStaticParams() {
-  return [{ courseId: 'climate-finance-101' }];
+  return courses.map((course) => ({ courseId: course.id }));
 }
 
-export default function CoursePage() {
-  return <CoursesPageClient course={courseData} />;
+// In Next.js 15+, dynamic route params must be typed as a Promise
+export default async function CoursePage({ params }: { params: Promise<{ courseId: string }> }) {
+  const resolvedParams = await params;
+
+  const course = courses.find((c) => c.id === resolvedParams.courseId);
+
+  if (!course) {
+    notFound();
+  }
+
+  return <CoursesPageClient course={course} />;
 }

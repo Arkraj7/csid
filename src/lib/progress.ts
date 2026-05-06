@@ -14,7 +14,7 @@ export const updateUserProgress = async (updates: {
     const userRef = doc(db, 'users', auth.currentUser.uid);
 
     // Prepare the update payload using Firebase's 'increment' feature
-    const updatePayload: any = {};
+    const updatePayload: Record<string, unknown> = {};
     if (updates.certificatesEarned)
       updatePayload.certificatesEarned = increment(updates.certificatesEarned);
     if (updates.lessonsCompleted)

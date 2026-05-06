@@ -1,25 +1,11 @@
 'use client';
 
 import React, { useState, useCallback, useMemo, memo } from 'react';
-import Image from 'next/image';
+import Image, { type ImageProps } from 'next/image';
 
-interface AppImageProps {
+interface AppImageProps extends Omit<ImageProps, 'src'> {
   src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  className?: string;
-  priority?: boolean;
-  quality?: number;
-  placeholder?: 'blur' | 'empty';
-  blurDataURL?: string;
-  fill?: boolean;
-  sizes?: string;
-  onClick?: () => void;
   fallbackSrc?: string;
-  loading?: 'lazy' | 'eager';
-  unoptimized?: boolean;
-  [key: string]: any;
 }
 
 const AppImage = memo(function AppImage({
@@ -71,9 +57,8 @@ const AppImage = memo(function AppImage({
   }, [className, isLoading, onClick]);
 
   const imageProps = useMemo(() => {
-    const baseProps: any = {
+    const baseProps: Partial<Omit<ImageProps, 'alt'>> = {
       src: imageSrc,
-      alt,
       className: imageClassName,
       quality,
       placeholder,
@@ -82,6 +67,11 @@ const AppImage = memo(function AppImage({
       onLoad: handleLoad,
       onClick,
     };
+
+    if (!fill) {
+      baseProps.width = width ?? 400;
+      baseProps.height = height ?? 300;
+    }
 
     if (priority) {
       baseProps.priority = true;
@@ -93,10 +83,13 @@ const AppImage = memo(function AppImage({
       baseProps.blurDataURL = blurDataURL;
     }
 
-    return baseProps;
+    if (sizes) {
+      baseProps.sizes = sizes;
+    }
+
+    return baseProps as Omit<ImageProps, 'alt'>;
   }, [
     imageSrc,
-    alt,
     imageClassName,
     quality,
     placeholder,
@@ -107,12 +100,17 @@ const AppImage = memo(function AppImage({
     handleError,
     handleLoad,
     onClick,
+    width,
+    height,
+    sizes,
+    fill,
   ]);
 
   if (fill) {
     return (
       <div className="relative" style={{ width: '100%', height: '100%' }}>
         <Image
+          alt={alt ?? ''}
           {...imageProps}
           fill
           sizes={sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
@@ -123,9 +121,7 @@ const AppImage = memo(function AppImage({
     );
   }
 
-  return (
-    <Image {...imageProps} width={width || 400} height={height || 300} sizes={sizes} {...props} />
-  );
+  return <Image alt={alt ?? ''} {...imageProps} {...props} />;
 });
 
 AppImage.displayName = 'AppImage';

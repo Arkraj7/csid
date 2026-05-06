@@ -1,11 +1,9 @@
-// 1. Import all your individual course objects
+// Import the individual courses from their respective files
 import { corporateSustainabilityCourse } from './corporate-sustainability';
 import { climateFinanceCourse } from './climate-finance';
-import { esgReportingCourse } from './esg-reporting';
 
-// 2. Export them as a single array that the rest of your app can use
+// Export them as a single array that your website components will read
 export const courses = [
   corporateSustainabilityCourse,
   climateFinanceCourse,
-  esgReportingCourse,
 ];

@@ -10,7 +10,8 @@ const pillars = [
   {
     icon: Leaf,
     label: 'Mitigation',
-    color: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+    color:
+      'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
   },
   {
     icon: Droplets,
@@ -20,12 +21,14 @@ const pillars = [
   {
     icon: Shield,
     label: 'Resilience',
-    color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
+    color:
+      'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
   },
   {
     icon: Hammer,
     label: 'Recovery',
-    color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+    color:
+      'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
   },
 ];
 
@@ -75,6 +78,154 @@ const Typewriter = ({
   return <span>{currentText}</span>;
 };
 
+const AnimatedSkyBanner = () => {
+  return (
+    <div className="w-full max-w-md h-[60px] md:h-[80px] mb-6 relative overflow-hidden rounded-2xl border border-primary/20 bg-white/20 dark:bg-slate-900/20 backdrop-blur-md shadow-sm flex items-center justify-center">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 900 90"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute inset-0"
+      >
+        <defs>
+          <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+            <feOffset dx="0" dy="1" result="offsetblur" />
+            <feComponentTransfer>
+              <feFuncA type="linear" slope="0.25" />
+            </feComponentTransfer>
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Sun */}
+        <g>
+          <circle cx="450" cy="45" r="22" fill="#FFEB3B" />
+          <circle cx="450" cy="45" r="16" fill="#FFC107" />
+          <g opacity="0.6">
+            <path
+              d="M450 15 L450 5"
+              stroke="#FF9800"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M450 75 L450 85"
+              stroke="#FF9800"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M415 45 L405 45"
+              stroke="#FF9800"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M485 45 L495 45"
+              stroke="#FF9800"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M425 25 L417 17"
+              stroke="#FF9800"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M475 65 L483 73"
+              stroke="#FF9800"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+          </g>
+        </g>
+
+        {/* Cloud 1 */}
+        <g>
+          <g
+            filter="url(#softShadow)"
+            className="fill-white dark:fill-slate-700"
+          >
+            <ellipse cx="180" cy="42" rx="38" ry="15" />
+            <ellipse cx="210" cy="36" rx="26" ry="17" />
+            <ellipse cx="235" cy="43" rx="22" ry="13" />
+          </g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="-300 0; 900 0"
+            dur="18s"
+            repeatCount="indefinite"
+          />
+        </g>
+
+        {/* Cloud 2 */}
+        <g>
+          <g
+            filter="url(#softShadow)"
+            className="fill-white/90 dark:fill-slate-600"
+          >
+            <ellipse cx="520" cy="55" rx="32" ry="12" />
+            <ellipse cx="545" cy="50" rx="22" ry="14" />
+            <ellipse cx="565" cy="54" rx="18" ry="11" />
+          </g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="-600 0; 900 0"
+            dur="24s"
+            repeatCount="indefinite"
+          />
+        </g>
+
+        {/* Cloud 3 */}
+        <g>
+          <g
+            filter="url(#softShadow)"
+            className="fill-white dark:fill-slate-700"
+          >
+            <ellipse cx="720" cy="38" rx="35" ry="14" />
+            <ellipse cx="750" cy="32" rx="24" ry="16" />
+            <ellipse cx="775" cy="39" rx="20" ry="12" />
+          </g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="-800 0; 900 0"
+            dur="20s"
+            repeatCount="indefinite"
+          />
+        </g>
+
+        {/* Cloud 4 */}
+        <g>
+          <g
+            filter="url(#softShadow)"
+            className="fill-white/80 dark:fill-slate-600"
+          >
+            <ellipse cx="80" cy="52" rx="24" ry="10" />
+            <ellipse cx="100" cy="48" rx="17" ry="11" />
+          </g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="-100 0; 900 0"
+            dur="15s"
+            repeatCount="indefinite"
+          />
+        </g>
+      </svg>
+    </div>
+  );
+};
+
 export default function HeroBanner() {
   const containerRef = useRef(null);
   const treeRef = useRef(null);
@@ -86,9 +237,24 @@ export default function HeroBanner() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.1 });
 
-      tl.fromTo(mountainsRef.current, { y: 60 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0)
-        .fromTo(castleRef.current, { y: 80 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0.1)
-        .fromTo(treeRef.current, { y: 100 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0.2)
+      tl.fromTo(
+        mountainsRef.current,
+        { y: 60 },
+        { y: 0, duration: 1.5, ease: 'power3.out' },
+        0
+      )
+        .fromTo(
+          castleRef.current,
+          { y: 80 },
+          { y: 0, duration: 1.5, ease: 'power3.out' },
+          0.1
+        )
+        .fromTo(
+          treeRef.current,
+          { y: 100 },
+          { y: 0, duration: 1.5, ease: 'power3.out' },
+          0.2
+        )
         .fromTo(
           textRef.current,
           { y: 20, autoAlpha: 0 },
@@ -111,10 +277,8 @@ export default function HeroBanner() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
           <div className="animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-5">
-              <Leaf size={12} />
-              Center for Sustainability &amp; Inclusive Development
-            </div>
+            {/* Newly added animated sky banner component */}
+            <AnimatedSkyBanner />
 
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-flow">
               Empowering Action for a Sustainable and Inclusive Future.
@@ -196,7 +360,10 @@ export default function HeroBanner() {
               </div>
 
               {/* TREES */}
-              <div className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-40" ref={treeRef}>
+              <div
+                className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-40"
+                ref={treeRef}
+              >
                 <Image
                   src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png"
                   alt="Tree"

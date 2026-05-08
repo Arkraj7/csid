@@ -10,8 +10,7 @@ const pillars = [
   {
     icon: Leaf,
     label: 'Mitigation',
-    color:
-      'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+    color: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
   },
   {
     icon: Droplets,
@@ -21,14 +20,12 @@ const pillars = [
   {
     icon: Shield,
     label: 'Resilience',
-    color:
-      'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
+    color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
   },
   {
     icon: Hammer,
     label: 'Recovery',
-    color:
-      'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+    color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
   },
 ];
 
@@ -79,24 +76,9 @@ export default function HeroBanner() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.1 });
 
-      tl.fromTo(
-        mountainsRef.current,
-        { y: 60 },
-        { y: 0, duration: 1.5, ease: 'power3.out' },
-        0
-      )
-        .fromTo(
-          castleRef.current,
-          { y: 80 },
-          { y: 0, duration: 1.5, ease: 'power3.out' },
-          0.1
-        )
-        .fromTo(
-          treeRef.current,
-          { y: 100 },
-          { y: 0, duration: 1.5, ease: 'power3.out' },
-          0.2
-        )
+      tl.fromTo(mountainsRef.current, { y: 60 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0)
+        .fromTo(castleRef.current, { y: 80 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0.1)
+        .fromTo(treeRef.current, { y: 100 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0.2)
         .fromTo(
           textRef.current,
           { y: 20, autoAlpha: 0 },
@@ -203,10 +185,7 @@ export default function HeroBanner() {
               </div>
 
               {/* TREES */}
-              <div
-                className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-40"
-                ref={treeRef}
-              >
+              <div className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-40" ref={treeRef}>
                 <Image
                   src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png"
                   alt="Tree"

@@ -412,20 +412,20 @@ export default function HeroBanner() {
                 ref={textRef}
               >
                 <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2 block">
-                  New Release
+                  Climate Challenge
                 </span>
                 <h2 className="text-3xl font-serif leading-tight mb-3 text-white font-medium">
-                  Featured Course: Climate Finance &amp; Investing
+                  Put your climate awareness to the test and see how high you can climb!
                 </h2>
                 <p className="text-sm text-slate-300 leading-relaxed mb-5">
-                  Explore our new standalone curriculum covering carbon markets, ESG frameworks, and
-                  the future of global climate finance.
+                  Challenge yourself with our interactive climate quiz and discover where you stand
+                  on environmental knowledge.
                 </p>
                 <Link
-                  href="/courses"
+                  href="/climate-awareness"
                   className="inline-block px-6 py-2.5 bg-emerald-500 text-white font-semibold rounded-lg text-sm hover:bg-emerald-400 hover:scale-105 transition-all duration-200 shadow-lg shadow-emerald-500/30"
                 >
-                  Explore Course Catalog
+                  Test Your Climate Awareness
                 </Link>
               </div>
             </div>

@@ -8,8 +8,16 @@ import {
   getQuestionsByDifficulty,
   calculateScore,
   getScoreTitle,
-  Question,
+  QuizQuestion,
 } from '@/data/climate-quiz';
+
+interface Question {
+  id: number;
+  question: string;
+  options: string[];
+  correctAnswer: string;
+  explanation: string;
+}
 
 function QuizContent() {
   const router = useRouter();
@@ -18,8 +26,8 @@ function QuizContent() {
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [userAnswers, setUserAnswers] = useState<number[]>([]);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +52,7 @@ function QuizContent() {
   }
 
   const handleAnswerSelect = (answerIndex: number) => {
-    setSelectedAnswer(answerIndex);
+    setSelectedAnswer(questions[answerIndex].correctAnswer);
   };
 
   const handleNext = () => {
@@ -52,10 +60,10 @@ function QuizContent() {
       const newAnswers = [...userAnswers];
       newAnswers[currentQuestion] = selectedAnswer;
       setUserAnswers(newAnswers);
-      setSelectedAnswer(null);
 
       if (currentQuestion < questions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
+        setSelectedAnswer(null);
       } else {
         setShowResults(true);
       }
@@ -82,7 +90,7 @@ function QuizContent() {
       questions.map((q) => q.correctAnswer)
     );
     const scoreTitle = getScoreTitle(score, questions.length);
-    const shareText = `I just scored ${score}/${questions.length} on the ${difficulty} Climate Awareness Test! Think you can beat my eco-score? Take the test here: https://csid.vercel.app/climate-awareness`;
+    const shareText = `I just scored ${score}/${questions.length} on ${difficulty} Climate Awareness Test! Think you can beat my eco-score? Take the test here: https://csid.vercel.app/climate-awareness`;
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
@@ -92,13 +100,11 @@ function QuizContent() {
             <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
               {/* Score Display */}
               <div className="text-center mb-8">
-                <div className="text-6xl font-bold text-emerald-400 mb-4">
+                <div className="text-6xl font-bold text-emerald-400 mb-2">
                   {score}/{questions.length}
                 </div>
                 <h1 className="text-3xl font-bold text-white mb-2">{scoreTitle}</h1>
-                <p className="text-slate-300">
-                  You completed the {difficulty} climate awareness quiz!
-                </p>
+                <p className="text-slate-300">You completed {difficulty} climate awareness quiz!</p>
               </div>
 
               {/* Anti-Cheat Warning */}
@@ -119,7 +125,7 @@ function QuizContent() {
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://csid.vercel.app/climate-awareness')}&summary=${encodeURIComponent(shareText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg font-semibold transition-colors text-center"
+                  className="block w-full bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg text-center font-semibold transition-colors"
                 >
                   Share on LinkedIn
                 </a>
@@ -129,7 +135,7 @@ function QuizContent() {
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full bg-black hover:bg-gray-800 text-white py-3 px-6 rounded-lg font-semibold transition-colors text-center"
+                  className="block w-full bg-black hover:bg-gray-800 text-white py-3 px-6 rounded-lg text-center font-semibold transition-colors"
                 >
                   Share on X (Twitter)
                 </a>
@@ -139,7 +145,7 @@ function QuizContent() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={handleRestart}
-                  className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-white py-3 px-6 rounded-lg font-semibold transition-colors"
+                  className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-200"
                 >
                   Try Again
                 </button>
@@ -196,8 +202,8 @@ function QuizContent() {
 
           {/* Question Card */}
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
-            <div className="mb-8">
-              <div className="text-sm text-emerald-400 font-medium mb-2">{question.category}</div>
+            {/* Score Display */}
+            <div className="text-center mb-8">
               <h2 className="text-2xl font-bold text-white leading-relaxed">{question.question}</h2>
             </div>
 
@@ -208,7 +214,7 @@ function QuizContent() {
                   key={index}
                   onClick={() => handleAnswerSelect(index)}
                   className={`w-full text-left p-4 rounded-lg border transition-all duration-200 ${
-                    selectedAnswer === index
+                    selectedAnswer === option
                       ? 'bg-emerald-500/20 border-emerald-500 text-white'
                       : 'bg-slate-700/50 border-slate-600 text-slate-300 hover:bg-slate-700 hover:border-slate-500'
                   }`}
@@ -216,10 +222,10 @@ function QuizContent() {
                   <div className="flex items-center gap-3">
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                        selectedAnswer === index ? 'border-emerald-500' : 'border-slate-500'
+                        selectedAnswer === option ? 'border-emerald-500' : 'border-slate-500'
                       }`}
                     >
-                      {selectedAnswer === index && (
+                      {selectedAnswer === option && (
                         <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                       )}
                     </div>

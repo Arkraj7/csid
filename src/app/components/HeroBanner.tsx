@@ -33,34 +33,44 @@ const Typewriter = ({
   text,
   delay = 0,
   speed = 30,
+  repeatDelay = 5000,
 }: {
   text: string;
   delay?: number;
   speed?: number;
+  repeatDelay?: number;
 }) => {
   const [currentText, setCurrentText] = useState('');
+  const [key, setKey] = useState(0);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let typeInterval: NodeJS.Timeout;
+    let repeatTimeout: NodeJS.Timeout;
+
+    setCurrentText('');
 
     const startDelay = setTimeout(() => {
       let currentIndex = 0;
 
-      timeout = setInterval(() => {
+      typeInterval = setInterval(() => {
         if (currentIndex < text.length) {
           setCurrentText(text.slice(0, currentIndex + 1));
           currentIndex++;
         } else {
-          clearInterval(timeout);
+          clearInterval(typeInterval);
+          repeatTimeout = setTimeout(() => {
+            setKey((k) => k + 1);
+          }, repeatDelay);
         }
       }, speed);
     }, delay);
 
     return () => {
       clearTimeout(startDelay);
-      if (timeout) clearInterval(timeout);
+      if (typeInterval) clearInterval(typeInterval);
+      if (repeatTimeout) clearTimeout(repeatTimeout);
     };
-  }, [text, delay, speed]);
+  }, [text, delay, speed, repeatDelay, key]);
 
   return <span>{currentText}</span>;
 };
@@ -115,6 +125,7 @@ export default function HeroBanner() {
                 text="CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change."
                 delay={500}
                 speed={25}
+                repeatDelay={5000}
               />
               <span className="animate-pulse ml-[1px] font-bold">|</span>
             </p>

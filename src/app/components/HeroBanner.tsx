@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -29,6 +29,36 @@ const pillars = [
   },
 ];
 
+// Helper Typewriter component
+const Typewriter = ({ text, delay = 0, speed = 30 }: { text: string; delay?: number; speed?: number }) => {
+  const [currentText, setCurrentText] = useState('');
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    
+    // Initial delay before the typing starts
+    const startDelay = setTimeout(() => {
+      let currentIndex = 0;
+      
+      timeout = setInterval(() => {
+        if (currentIndex < text.length) {
+          setCurrentText(text.slice(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(timeout);
+        }
+      }, speed);
+    }, delay);
+
+    return () => {
+      clearTimeout(startDelay);
+      if (timeout) clearInterval(timeout);
+    };
+  }, [text, delay, speed]);
+
+  return <span>{currentText}</span>;
+};
+
 export default function HeroBanner() {
   const containerRef = useRef(null);
   const treeRef = useRef(null);
@@ -40,7 +70,6 @@ export default function HeroBanner() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.1 });
 
-      // Using fromTo guarantees the animation starts perfectly every time without glitching
       tl.fromTo(mountainsRef.current, { y: 60 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0)
         .fromTo(castleRef.current, { y: 80 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0.1)
         .fromTo(treeRef.current, { y: 100 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0.2)
@@ -71,18 +100,19 @@ export default function HeroBanner() {
               Center for Sustainability &amp; Inclusive Development
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-5 text-balance">
-              Empowering Action for a{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                Sustainable and Inclusive
-              </span>{' '}
-              Future.
+            {/* Added Animated Gradient Flow using Tailwind Classes */}
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-flow">
+              Empowering Action for a Sustainable and Inclusive Future.
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl">
-              CSID delivers structured, research-backed courses on climate mitigation, adaptation,
-              resilience, and recovery — empowering learners and professionals to drive meaningful
-              change.
+            {/* Updated Paragraph with Typewriter Effect */}
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl min-h-[90px] md:min-h-[80px]">
+              <Typewriter 
+                text="CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change."
+                delay={500}
+                speed={25}
+              />
+              <span className="animate-pulse ml-[1px] font-bold">|</span>
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
@@ -122,7 +152,7 @@ export default function HeroBanner() {
                 />
               </div>
 
-              {/* MOUNTAINS: Massive Bleed to prevent tearing */}
+              {/* MOUNTAINS */}
               <div
                 className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-20"
                 ref={mountainsRef}
@@ -161,7 +191,7 @@ export default function HeroBanner() {
                 />
               </div>
 
-              {/* Text Overlay (Updated to Climate Course) */}
+              {/* Text Overlay */}
               <div
                 className="absolute z-50 bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-[#0e192d] via-[#0e192d]/90 to-transparent text-left"
                 ref={textRef}

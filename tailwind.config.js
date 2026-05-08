@@ -53,6 +53,8 @@ module.exports = {
         'fade-in': 'fadeIn 0.4s ease forwards',
         'slide-up': 'slideUp 0.3s ease forwards',
         'pulse-green': 'pulseGreen 2s ease-in-out infinite',
+        // Added the gradient flow animation
+        'gradient-flow': 'gradientFlow 5s ease infinite', 
       },
       keyframes: {
         fadeIn: {
@@ -66,6 +68,11 @@ module.exports = {
         pulseGreen: {
           '0%, 100%': { boxShadow: '0 0 0 0 rgba(22,163,74,0.4)' },
           '50%': { boxShadow: '0 0 0 8px rgba(22,163,74,0)' },
+        },
+        // Added the keyframes for the gradient flow
+        gradientFlow: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
         },
       },
       backgroundImage: {

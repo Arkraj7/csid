@@ -8,7 +8,9 @@ export default function CorporateSustainabilityGraphic({
   className?: string;
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-2xl flex items-center justify-center bg-gradient-to-br from-slate-50 to-emerald-50/30 dark:from-slate-950 dark:to-teal-950/20 ${className}`}>
+    <div
+      className={`relative overflow-hidden rounded-2xl flex items-center justify-center bg-gradient-to-br from-slate-50 to-emerald-50/30 dark:from-slate-950 dark:to-teal-950/20 ${className}`}
+    >
       <svg
         viewBox="0 0 800 600"
         xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +23,7 @@ export default function CorporateSustainabilityGraphic({
             <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
             <stop offset="100%" stopColor="#0d9488" stopOpacity="0.1" />
           </linearGradient>
-          
+
           <linearGradient id="tealCyan" x1="100%" y1="100%" x2="0%" y2="0%">
             <stop offset="0%" stopColor="#0891b2" stopOpacity="0.6" />
             <stop offset="100%" stopColor="#34d399" stopOpacity="0.2" />
@@ -52,7 +54,12 @@ export default function CorporateSustainabilityGraphic({
         </defs>
 
         {/* --- BACKGROUND: Carbon Accounting Grid & Frameworks --- */}
-        <g stroke="currentColor" className="text-slate-400 dark:text-slate-600" strokeWidth="1" opacity="0.2">
+        <g
+          stroke="currentColor"
+          className="text-slate-400 dark:text-slate-600"
+          strokeWidth="1"
+          opacity="0.2"
+        >
           {/* Horizontal Grid */}
           <line x1="0" y1="150" x2="800" y2="150" strokeDasharray="6,12" />
           <line x1="0" y1="300" x2="800" y2="300" strokeDasharray="6,12" />
@@ -87,7 +94,7 @@ export default function CorporateSustainabilityGraphic({
               additive="sum"
             />
           </ellipse>
-          
+
           {/* Cyan Orb */}
           <ellipse cx="400" cy="300" rx="140" ry="190" fill="url(#tealCyan)">
             <animateTransform
@@ -111,11 +118,11 @@ export default function CorporateSustainabilityGraphic({
 
         {/* --- DYNAMIC ELEMENTS: Net-Zero Transition --- */}
         {/* The Transition Journey Line */}
-        <path 
-          d="M 0 500 Q 250 500 400 300 T 800 100" 
-          fill="none" 
-          stroke="url(#trendLineGrad)" 
-          strokeWidth="6" 
+        <path
+          d="M 0 500 Q 250 500 400 300 T 800 100"
+          fill="none"
+          stroke="url(#trendLineGrad)"
+          strokeWidth="6"
           opacity="0.9"
         />
 
@@ -130,15 +137,36 @@ export default function CorporateSustainabilityGraphic({
               dur="6s"
               repeatCount="indefinite"
             />
-            <animate attributeName="opacity" values="0.5; 0; 0.5" dur="6s" repeatCount="indefinite" />
+            <animate
+              attributeName="opacity"
+              values="0.5; 0; 0.5"
+              dur="6s"
+              repeatCount="indefinite"
+            />
           </circle>
-          
+
           {/* Solid Framework Boundary */}
-          <circle cx="0" cy="0" r="80" fill="none" stroke="currentColor" className="text-emerald-500 dark:text-emerald-300" strokeWidth="1.5" strokeDasharray="12,6" />
+          <circle
+            cx="0"
+            cy="0"
+            r="80"
+            fill="none"
+            stroke="currentColor"
+            className="text-emerald-500 dark:text-emerald-300"
+            strokeWidth="1.5"
+            strokeDasharray="12,6"
+          />
 
           {/* Orbiting Data Nodes (GHG Protocol, Scope 1, 2, 3) */}
           <g>
-            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="18s" repeatCount="indefinite" />
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0"
+              to="360"
+              dur="18s"
+              repeatCount="indefinite"
+            />
             {/* Scope Node 1 */}
             <circle cx="80" cy="0" r="6" fill="#10b981" filter="url(#nodeGlow)" />
             {/* Scope Node 2 */}

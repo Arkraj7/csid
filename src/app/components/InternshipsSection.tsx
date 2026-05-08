@@ -53,9 +53,7 @@ export default function InternshipsSection() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Duration</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    1 to 3 months
-                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">1 to 3 months</p>
                 </div>
               </div>
 
@@ -94,11 +92,15 @@ export default function InternshipsSection() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-gray-700 dark:text-gray-300">One-page Statement of Purpose (SOP)</span>
+                <span className="text-gray-700 dark:text-gray-300">
+                  One-page Statement of Purpose (SOP)
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-gray-700 dark:text-gray-300">Writing sample (1,200 to 1,800 words)</span>
+                <span className="text-gray-700 dark:text-gray-300">
+                  Writing sample (1,200 to 1,800 words)
+                </span>
               </li>
             </ul>
           </div>
@@ -112,7 +114,8 @@ export default function InternshipsSection() {
                   Strict Guidelines
                 </h3>
                 <p className="text-red-700 dark:text-red-400 leading-relaxed">
-                  A strict non-AI policy for all application materials. Any plagiarism will result in immediate termination of the application process.
+                  A strict non-AI policy for all application materials. Any plagiarism will result
+                  in immediate termination of the application process.
                 </p>
               </div>
             </div>

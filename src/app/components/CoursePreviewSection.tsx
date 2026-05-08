@@ -12,7 +12,9 @@ export default function CoursePreviewSection() {
     <section className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">Featured Programs</h2>
+          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+            Featured Programs
+          </h2>
           <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
             Expand your expertise with our industry-leading sustainability courses.
           </p>
@@ -35,10 +37,14 @@ export default function CoursePreviewSection() {
                   <span className="text-xs font-semibold text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-900/50 px-2 py-1 rounded-full">
                     {course.level}
                   </span>
-                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">{course.duration}</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                    {course.duration}
+                  </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{course.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {course.title}
+                </h3>
 
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-grow line-clamp-3">
                   {course.description}
@@ -56,7 +62,10 @@ export default function CoursePreviewSection() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link href="/courses" className="text-green-600 dark:text-green-400 font-semibold hover:text-green-800 dark:hover:text-green-300">
+          <Link
+            href="/courses"
+            className="text-green-600 dark:text-green-400 font-semibold hover:text-green-800 dark:hover:text-green-300"
+          >
             View all courses &rarr;
           </Link>
         </div>

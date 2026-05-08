@@ -66,10 +66,10 @@ export default function CareersPage() {
                   We have intern positions open on a regular and rolling basis. If you are
                   interested in an internship with CSID, kindly mail your application to{' '}
                   <a
-                    href="mailto:careers@csid.org"
+                    href="mailto:centerforsustainabilityinclusi@gmail.com"
                     className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
                   >
-                    careers@csid.org
+                    centerforsustainabilityinclusi@gmail.com
                   </a>
                   .
                 </p>
@@ -160,7 +160,7 @@ export default function CareersPage() {
               {/* Apply CTA */}
               <div className="text-center pt-4">
                 <a
-                  href="mailto:careers@csid.org"
+                  href="mailto:centerforsustainabilityinclusi@gmail.com"
                   className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-all duration-150 active:scale-95 shadow-md shadow-primary/20"
                 >
                   <Mail size={16} />
@@ -186,7 +186,7 @@ export default function CareersPage() {
                   Get notified when positions open
                 </p>
                 <a
-                  href="mailto:careers@csid.org?subject=Job%20Opportunity%20Interest"
+                  href="mailto:centerforsustainabilityinclusi@gmail.com?subject=Job%20Opportunity%20Interest"
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg border border-border text-foreground text-sm font-medium hover:bg-muted transition-colors"
                 >
                   <Mail size={14} />

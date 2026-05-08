@@ -23,10 +23,10 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Info & Form Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-12 relative z-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-12 relative z-20">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
             {/* Left Side: Contact Information */}
-            <div className="lg:w-2/5 bg-primary p-10 text-white flex flex-col justify-between relative overflow-hidden">
+            <div className="lg:w-2/5 bg-primary p-8 text-white flex flex-col justify-between relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-[80px] translate-x-1/3 -translate-y-1/3" />
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-[80px] -translate-x-1/3 translate-y-1/3" />
 
@@ -47,16 +47,16 @@ export default function ContactPage() {
 
                   {/* Email */}
                   <div className="flex items-start gap-4">
-                    <Mail className="w-6 h-6 mt-1 text-emerald-200" />
+                    <Mail className="w-6 h-6 text-emerald-200 flex-shrink-0" />
                     <div>
                       <p className="text-sm text-emerald-100 font-medium uppercase tracking-wider mb-1">
                         Email
                       </p>
                       <a
-                        href="mailto:arkraj.biswas6@gmail.com"
+                        href="mailto:centerforsustainabilityinclusi@gmail.com"
                         className="text-lg font-semibold hover:text-emerald-100 transition-colors"
                       >
-                        arkraj.biswas6@gmail.com
+                        centerforsustainabilityinclusi@gmail.com
                       </a>
                     </div>
                   </div>
@@ -98,17 +98,17 @@ export default function ContactPage() {
             </div>
 
             {/* Right Side: Contact Form */}
-            <div className="lg:w-3/5 p-10 sm:p-12 bg-white">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Send a Message</h2>
+            <div className="lg:w-3/5 p-8 sm:p-10 bg-white">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
               <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       First Name
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
+                      className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white text-sm"
                       placeholder="John"
                     />
                   </div>
@@ -118,7 +118,7 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
+                      className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white text-sm"
                       placeholder="Doe"
                     />
                   </div>
@@ -130,7 +130,7 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
+                    className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white text-sm"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -138,15 +138,15 @@ export default function ContactPage() {
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
                   <textarea
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none bg-gray-50 focus:bg-white"
+                    rows={4}
+                    className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none bg-gray-50 focus:bg-white text-sm"
                     placeholder="Your message here..."
                   ></textarea>
                 </div>
 
                 <button
                   type="button"
-                  className="bg-primary hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl w-full flex justify-center items-center gap-2 transition-all shadow-lg shadow-primary/30 mt-4"
+                  className="bg-primary hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg w-full flex justify-center items-center gap-2 transition-all shadow-lg shadow-primary/30 mt-3 text-sm"
                 >
                   Send Message
                   <Send className="w-5 h-5" />

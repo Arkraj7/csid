@@ -80,7 +80,7 @@ const Typewriter = ({
 
 const AnimatedSkyBanner = () => {
   return (
-    <div className="w-full max-w-md h-[60px] md:h-[80px] mb-6 relative overflow-hidden rounded-2xl border border-primary/20 bg-white/20 dark:bg-slate-900/20 backdrop-blur-md shadow-sm flex items-center justify-center">
+    <div className="w-full max-w-md h-[60px] md:h-[80px] mb-6 relative overflow-hidden rounded-2xl bg-white/20 dark:bg-slate-900/20 backdrop-blur-md shadow-sm flex items-center justify-center">
       <svg
         width="100%"
         height="100%"
@@ -101,50 +101,116 @@ const AnimatedSkyBanner = () => {
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
         </defs>
 
-        {/* Sun */}
-        <g>
-          <circle cx="450" cy="45" r="22" fill="#FFEB3B" />
-          <circle cx="450" cy="45" r="16" fill="#FFC107" />
+        {/* Sun (Light Mode) */}
+        <g className="dark:hidden">
+          <circle cx="450" cy="45" r="22" fill="#FFEB3B" filter="url(#glow)">
+            <animate attributeName="r" values="22;24;22" dur="2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="450" cy="45" r="16" fill="#FFC107">
+            <animate attributeName="r" values="16;17;16" dur="2s" repeatCount="indefinite" />
+          </circle>
           <g opacity="0.6">
             <path
               d="M450 15 L450 5"
               stroke="#FF9800"
               strokeWidth="3"
               strokeLinecap="round"
-            />
+            >
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" />
+            </path>
             <path
               d="M450 75 L450 85"
               stroke="#FF9800"
               strokeWidth="3"
               strokeLinecap="round"
-            />
+            >
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" />
+            </path>
             <path
               d="M415 45 L405 45"
               stroke="#FF9800"
               strokeWidth="3"
               strokeLinecap="round"
-            />
+            >
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" />
+            </path>
             <path
               d="M485 45 L495 45"
               stroke="#FF9800"
               strokeWidth="3"
               strokeLinecap="round"
-            />
+            >
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" />
+            </path>
             <path
               d="M425 25 L417 17"
               stroke="#FF9800"
               strokeWidth="2.5"
               strokeLinecap="round"
-            />
+            >
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" />
+            </path>
             <path
               d="M475 65 L483 73"
               stroke="#FF9800"
               strokeWidth="2.5"
               strokeLinecap="round"
-            />
+            >
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" />
+            </path>
+            {/* Added 2 missing rays */}
+            <path
+              d="M475 25 L483 17"
+              stroke="#FF9800"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            >
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" />
+            </path>
+            <path
+              d="M425 65 L417 73"
+              stroke="#FF9800"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            >
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" />
+            </path>
           </g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0,0; 1,0; 0,0"
+            dur="0.5s"
+            repeatCount="indefinite"
+          />
+        </g>
+
+        {/* Moon (Dark Mode) */}
+        <g className="hidden dark:block">
+          <circle cx="450" cy="45" r="22" fill="#F0F0F0" filter="url(#glow)">
+            <animate attributeName="r" values="22;24;22" dur="3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="445" cy="40" r="18" fill="#E0E0E0" />
+          <circle cx="440" cy="45" r="16" fill="#D0D0D0" />
+          <circle cx="450" cy="50" r="15" fill="#C0C0C0" />
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0,0; 1,0; 0,0"
+            dur="0.8s"
+            repeatCount="indefinite"
+          />
         </g>
 
         {/* Cloud 1 */}
@@ -161,7 +227,7 @@ const AnimatedSkyBanner = () => {
             attributeName="transform"
             type="translate"
             values="-300 0; 900 0"
-            dur="18s"
+            dur="30s"
             repeatCount="indefinite"
           />
         </g>
@@ -180,7 +246,7 @@ const AnimatedSkyBanner = () => {
             attributeName="transform"
             type="translate"
             values="-600 0; 900 0"
-            dur="24s"
+            dur="40s"
             repeatCount="indefinite"
           />
         </g>
@@ -199,7 +265,7 @@ const AnimatedSkyBanner = () => {
             attributeName="transform"
             type="translate"
             values="-800 0; 900 0"
-            dur="20s"
+            dur="35s"
             repeatCount="indefinite"
           />
         </g>

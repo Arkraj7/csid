@@ -23,10 +23,10 @@ export default function Footer() {
             <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
               <Mail className="w-5 h-5" />
               <a
-                href="mailto:contact@csid.education"
+                href="mailto:centerforsustainabilityinclusi@gmail.com"
                 className="hover:text-primary dark:hover:text-emerald-400 transition-colors"
               >
-                contact@csid.education
+                centerforsustainabilityinclusi@gmail.com
               </a>
             </div>
           </div>
@@ -57,6 +57,14 @@ export default function Footer() {
                   className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-emerald-400 transition-colors"
                 >
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/careers"
+                  className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-emerald-400 transition-colors"
+                >
+                  Careers
                 </Link>
               </li>
             </ul>

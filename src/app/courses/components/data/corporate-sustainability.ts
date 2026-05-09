@@ -12,6 +12,9 @@ export const corporateSustainabilityCourse = {
   image: '/assets/images/course-corporate-sustainability.png',
   level: 'Moderate',
   duration: '6 Modules',
+  quizCount: 6,
+  certificate: 'Yes, upon completion',
+  language: 'English',
   chapters: [
     {
       id: 'chapter-1',

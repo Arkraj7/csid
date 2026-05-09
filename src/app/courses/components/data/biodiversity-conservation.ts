@@ -9,6 +9,9 @@ export const biodiversityConservationCourse = {
   image: '/assets/images/courses/biodiversity-conservation.png',
   level: 'Beginner',
   duration: '5 Modules',
+  quizCount: 6,
+  certificate: 'Yes, upon completion',
+  language: 'English',
   chapters: [
     {
       id: 'module-1',

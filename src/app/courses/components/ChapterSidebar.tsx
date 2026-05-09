@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Volume2, CheckCircle2, Circle, FileText } from 'lucide-react';
+import { Volume2, CheckCircle2, Circle, FileText, Signal, Clock, ListChecks, Award, Globe } from 'lucide-react';
 
 type CourseChapter = {
   id: string;
@@ -13,6 +13,10 @@ type Course = {
   title: string;
   description: string;
   duration: string;
+  level: string;
+  quizCount: number;
+  certificate: string;
+  language: string;
   chapters: CourseChapter[];
 };
 
@@ -51,6 +55,48 @@ export default function ChapterSidebar({
         </p>
         <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 text-xs font-bold">
           {course.duration}
+        </div>
+        <div className="mt-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-xs font-black uppercase text-gray-400 dark:text-gray-500 tracking-wider mb-3">
+            Course Information
+          </h3>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <Signal size={16} className="text-green-600 dark:text-green-400 shrink-0" />
+              <div className="min-w-0 flex-1">
+                <span className="text-xs text-gray-500 dark:text-gray-400">Level</span>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{course.level}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Clock size={16} className="text-green-600 dark:text-green-400 shrink-0" />
+              <div className="min-w-0 flex-1">
+                <span className="text-xs text-gray-500 dark:text-gray-400">Duration</span>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{course.duration}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <ListChecks size={16} className="text-green-600 dark:text-green-400 shrink-0" />
+              <div className="min-w-0 flex-1">
+                <span className="text-xs text-gray-500 dark:text-gray-400">Quizzes</span>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{course.quizCount}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Award size={16} className="text-green-600 dark:text-green-400 shrink-0" />
+              <div className="min-w-0 flex-1">
+                <span className="text-xs text-gray-500 dark:text-gray-400">Certificate</span>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{course.certificate}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Globe size={16} className="text-green-600 dark:text-green-400 shrink-0" />
+              <div className="min-w-0 flex-1">
+                <span className="text-xs text-gray-500 dark:text-gray-400">Language</span>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{course.language}</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="mt-5">
           <div className="flex items-center justify-between text-xs font-bold text-gray-500 dark:text-gray-400 mb-2">

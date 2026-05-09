@@ -7,8 +7,11 @@ export const climateFinanceCourse = {
   description:
     'Master the macroeconomics of climate change, multilateral funds, carbon markets, ESG reporting frameworks, and the future of global green finance.',
   image: '/assets/images/course-climate-finance.png',
-  level: 'Moderate',
+  level: 'Advanced',
   duration: '6 Modules',
+  quizCount: 7,
+  certificate: 'Yes, upon completion',
+  language: 'English',
   chapters: [
     {
       id: 'chapter-1',

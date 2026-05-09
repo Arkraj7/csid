@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   Volume2,
@@ -11,6 +12,9 @@ import {
   ListChecks,
   Award,
   Globe,
+  Share2,
+  Link as LinkIcon,
+  Check,
 } from 'lucide-react';
 
 type CourseChapter = {
@@ -133,6 +137,9 @@ export default function ChapterSidebar({
             {completedCount} of {course.chapters.length} chapters complete
           </p>
         </div>
+
+        {/* Share Course Section */}
+        <ShareCourseCard courseTitle={course.title} />
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-2">
@@ -182,5 +189,74 @@ export default function ChapterSidebar({
         </button>
       </div>
     </aside>
+  );
+}
+
+// Share Course Card Component
+function ShareCourseCard({ courseTitle }: { courseTitle: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    if (typeof window !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const encodedUrl = encodeURIComponent(currentUrl);
+  const encodedTitle = encodeURIComponent(`Check out this course: ${courseTitle}`);
+
+  return (
+    <div className="p-4 border-t border-gray-100 dark:border-gray-800">
+      <h3 className="text-xs font-black uppercase text-gray-400 dark:text-gray-500 tracking-wider mb-3">
+        Share this course
+      </h3>
+      <div className="flex items-center gap-2">
+        <a
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:text-blue-400 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
+          aria-label="Share on LinkedIn"
+        >
+          <Share2 className="w-4 h-4" />
+        </a>
+
+        <a
+          href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-sky-500 hover:bg-sky-50 dark:hover:text-sky-400 dark:hover:bg-sky-900/30 rounded-lg transition-colors"
+          aria-label="Share on Twitter"
+        >
+          <Share2 className="w-4 h-4" />
+        </a>
+
+        <a
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-700 hover:bg-blue-50 dark:hover:text-blue-400 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
+          aria-label="Share on Facebook"
+        >
+          <Share2 className="w-4 h-4" />
+        </a>
+
+        <button
+          onClick={handleCopyLink}
+          className="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:text-emerald-400 dark:hover:bg-emerald-900/30 rounded-lg transition-colors ml-auto flex items-center gap-1.5 text-xs font-medium"
+          aria-label={copied ? 'Link copied' : 'Copy link'}
+        >
+          {copied ? (
+            <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          ) : (
+            <LinkIcon className="w-4 h-4" />
+          )}
+          {copied ? 'Copied!' : 'Copy Link'}
+        </button>
+      </div>
+    </div>
   );
 }

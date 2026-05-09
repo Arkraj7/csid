@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { DM_Sans } from 'next/font/google';
 import { Toaster } from 'sonner';
+import QuizPopup from '@/components/ui/QuizPopup';
 import '../styles/tailwind.css';
 
 const dmSans = DM_Sans({
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         />
         {children}
+        <QuizPopup />
         <Toaster position="bottom-right" richColors closeButton />
 
         <script

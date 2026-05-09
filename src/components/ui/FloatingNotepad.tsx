@@ -32,8 +32,9 @@ export default function FloatingNotepad() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
   const userIdRef = useRef<string | null>(null);
+  const [showPlaceholder, setShowPlaceholder] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -64,6 +65,7 @@ export default function FloatingNotepad() {
         setNotes(notesData.sort((a: Note, b: Note) => b.timestamp - a.timestamp));
         if (notesData.length > 0) {
           setActiveNote(notesData[0]);
+          setShowPlaceholder(notesData[0].text === '');
         }
       }
     } catch (error) {
@@ -101,32 +103,32 @@ export default function FloatingNotepad() {
     const updatedNotes = [newNote, ...notes];
     setNotes(updatedNotes);
     setActiveNote(newNote);
+    setShowPlaceholder(true);
 
     if (userIdRef.current) {
       await saveNotes(updatedNotes);
     }
 
-    setTimeout(() => textareaRef.current?.focus(), 100);
+    setTimeout(() => editorRef.current?.focus(), 100);
   };
 
-  const handleTextChange = (text: string) => {
+  const handleEditorInput = () => {
     if (!activeNote) return;
 
-    const updatedNote = { ...activeNote, text };
-    setActiveNote(updatedNote);
+    const html = editorRef.current?.innerHTML || '';
+    const stripped = html.replace(/<[^>]*>/g, '').trim();
+    setShowPlaceholder(stripped === '');
+
+    const updatedNote = { ...activeNote, text: html, timestamp: Date.now() };
 
     const updatedNotes = notes.map((n) => (n.id === activeNote.id ? updatedNote : n));
     setNotes(updatedNotes);
+    setActiveNote(updatedNote);
   };
 
   const handleSaveNote = async () => {
     if (!activeNote) return;
-    const updatedNote = { ...activeNote, timestamp: Date.now() };
-    const updatedNotes = notes.map((n) => (n.id === activeNote.id ? updatedNote : n));
-    updatedNotes.sort((a, b) => b.timestamp - a.timestamp);
-    setNotes(updatedNotes);
-    setActiveNote(updatedNote);
-    await saveNotes(updatedNotes);
+    await saveNotes(notes);
   };
 
   const handleDeleteNote = async (noteId: string) => {
@@ -134,55 +136,22 @@ export default function FloatingNotepad() {
     setNotes(updatedNotes);
 
     if (activeNote?.id === noteId) {
-      setActiveNote(updatedNotes[0] || null);
+      const newActive = updatedNotes[0] || null;
+      setActiveNote(newActive);
+      setShowPlaceholder(newActive ? newActive.text === '' : true);
     }
 
     await saveNotes(updatedNotes);
   };
 
-  const applyFormat = (format: 'bold' | 'italic' | 'strikethrough' | 'highlight') => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
-
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const selectedText = activeNote?.text.substring(start, end) || '';
-
-    if (!selectedText) return;
-
-    let formattedText = selectedText;
-    let offset = 0;
-
-    switch (format) {
-      case 'bold':
-        formattedText = `**${selectedText}**`;
-        offset = 4;
-        break;
-      case 'italic':
-        formattedText = `*${selectedText}*`;
-        offset = 2;
-        break;
-      case 'strikethrough':
-        formattedText = `~~${selectedText}~~`;
-        offset = 4;
-        break;
-      case 'highlight':
-        formattedText = `==${selectedText}==`;
-        offset = 4;
-        break;
+  const applyFormat = (command: string, value?: string) => {
+    if (command === 'hiliteColor') {
+      document.execCommand('hiliteColor', false, '#fef08a');
+    } else {
+      document.execCommand(command, false, value);
     }
-
-    const newText =
-      (activeNote?.text.substring(0, start) || '') +
-      formattedText +
-      (activeNote?.text.substring(end) || '');
-
-    handleTextChange(newText);
-
-    setTimeout(() => {
-      textarea.focus();
-      textarea.setSelectionRange(start + offset, start + offset + selectedText.length);
-    }, 0);
+    editorRef.current?.focus();
+    handleEditorInput();
   };
 
   const toggleNotepad = () => {
@@ -191,6 +160,14 @@ export default function FloatingNotepad() {
       setIsExpanded(true);
     } else {
       setIsExpanded(!isExpanded);
+    }
+  };
+
+  const handleNoteSelect = (note: Note) => {
+    setActiveNote(note);
+    setShowPlaceholder(note.text === '');
+    if (editorRef.current) {
+      editorRef.current.innerHTML = note.text;
     }
   };
 
@@ -257,13 +234,13 @@ export default function FloatingNotepad() {
             {notes.map((note) => (
               <button
                 key={note.id}
-                onClick={() => setActiveNote(note)}
+                onClick={() => handleNoteSelect(note)}
                 className={`w-full text-left px-4 py-2 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
                   activeNote?.id === note.id ? 'bg-primary/10' : ''
                 }`}
               >
                 <p className="text-sm text-gray-600 dark:text-gray-300 truncate">
-                  {note.text.substring(0, 50) || 'Empty note'}
+                  {note.text.replace(/<[^>]*>/g, '') || 'Empty note'}
                 </p>
                 <p className="text-xs text-gray-400 mt-0.5">
                   {new Date(note.timestamp).toLocaleDateString()}
@@ -275,7 +252,7 @@ export default function FloatingNotepad() {
 
         {/* Active Note Editor */}
         {activeNote && (
-          <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 flex flex-col overflow-hidden relative">
             {/* Toolbar */}
             <div className="flex items-center gap-1 p-2 border-b border-gray-200 dark:border-gray-700 flex-wrap">
               <button
@@ -300,7 +277,7 @@ export default function FloatingNotepad() {
                 <Strikethrough size={16} />
               </button>
               <button
-                onClick={() => applyFormat('highlight')}
+                onClick={() => applyFormat('hiliteColor')}
                 className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 title="Highlight"
               >
@@ -323,14 +300,23 @@ export default function FloatingNotepad() {
               </button>
             </div>
 
-            {/* Text Area */}
-            <textarea
-              ref={textareaRef}
-              value={activeNote.text}
-              onChange={(e) => handleTextChange(e.target.value)}
-              placeholder="Start typing your notes..."
-              className="flex-1 w-full p-4 resize-none border-0 focus:ring-0 text-sm text-gray-700 dark:text-gray-200 bg-transparent placeholder-gray-400"
-            />
+            {/* ContentEditable Editor */}
+            <div className="flex-1 relative">
+              <div
+                ref={editorRef}
+                contentEditable
+                onInput={handleEditorInput}
+                suppressContentEditableWarning
+                className="flex-1 w-full p-4 overflow-y-auto text-sm text-gray-700 dark:text-gray-200 bg-transparent outline-none min-h-full"
+                style={{ whiteSpace: 'pre-wrap' }}
+                dangerouslySetInnerHTML={{ __html: activeNote.text }}
+              />
+              {showPlaceholder && (
+                <div className="absolute top-4 left-4 text-gray-400 pointer-events-none text-sm">
+                  Start typing your notes...
+                </div>
+              )}
+            </div>
           </div>
         )}
 

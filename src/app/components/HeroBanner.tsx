@@ -504,50 +504,6 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
   );
 };
 
-// Toggle Switch Component
-const DayNightToggle = ({
-  isNight,
-  setIsNight,
-}: {
-  isNight: boolean;
-  setIsNight: (value: boolean) => void;
-}) => {
-  return (
-    <button
-      onClick={() => setIsNight(!isNight)}
-      className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all duration-300 shadow-lg"
-      aria-label="Toggle day/night"
-    >
-      <div className="relative w-16 h-8 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 dark:from-indigo-900 dark:to-purple-900 transition-all duration-500">
-        <div
-          className={`absolute top-1 w-6 h-6 rounded-full bg-yellow-200 shadow-lg transition-all duration-500 ${
-            isNight ? 'translate-x-9 bg-slate-200' : 'translate-x-1'
-          }`}
-          style={{
-            boxShadow: isNight ? '0 0 10px rgba(200,200,255,0.5)' : '0 0 10px rgba(255,200,0,0.5)',
-          }}
-        >
-          {isNight ? (
-            <svg viewBox="0 0 24 24" className="w-full h-full p-1 text-indigo-900">
-              <path
-                fill="currentColor"
-                d="M12 3c.132 0 .263.002.394.007.18-.018.365-.028.55-.028 5.523 0 10 4.477 10 10s-4.477 10-10 10c-.185 0-.37-.01-.55-.028.132.005.263.007.394.007 5.523 0 10-4.477 10-10s-4.477-10-10-10z"
-              />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 24 24" className="w-full h-full p-1 text-orange-500">
-              <path
-                fill="currentColor"
-                d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"
-              />
-            </svg>
-          )}
-        </div>
-      </div>
-    </button>
-  );
-};
-
 export default function HeroBanner() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
@@ -596,11 +552,8 @@ export default function HeroBanner() {
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance">
               Empowering Action for a{' '}
-              <span className="relative inline">
-                <span className="absolute -inset-1 bg-[#fef3c7]/70 dark:bg-[#92400e]/50 rounded" />
-                <span className="relative text-primary dark:text-primary">
-                  Sustainable and Inclusive Future.
-                </span>
+              <span className="text-primary dark:text-primary">
+                Sustainable and Inclusive Future.
               </span>
             </h1>
 
@@ -634,12 +587,26 @@ export default function HeroBanner() {
                 Start Learning Today
                 <ArrowRight size={16} />
               </Link>
+              <button
+                onClick={() => setIsNight(!isNight)}
+                className="p-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 border border-gray-200 dark:border-gray-700"
+                aria-label="Toggle day/night mode"
+              >
+                {isNight ? (
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 text-amber-500" fill="currentColor">
+                    <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 text-indigo-600" fill="currentColor">
+                    <path d="M12 3c.132 0 .263.002.394.007.18-.018.365-.028.55-.028 5.523 0 10 4.477 10 10s-4.477 10-10 10c-.185 0-.37-.01-.55-.028.132.005.263.007.394.007 5.523 0 10-4.477 10-10s-4.477-10-10-10z" />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
 
           <div className="hidden lg:block w-full" ref={containerRef}>
             <div className="relative rounded-3xl overflow-hidden">
-              <DayNightToggle isNight={isNight} setIsNight={setIsNight} />
               <DayNightScene isNight={isNight} />
 
               <div

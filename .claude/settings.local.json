@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m ' *)",
+      "Bash(Select-String -Path \"src\\\\app\\\\courses\\\\components\\\\data\\\\*.ts\" -Pattern \"quiz:\")",
+      "Bash(Select-Object -First 50)",
+      "Bash(git add *)",
+      "Bash(git push *)",
+      "Bash(npx prettier *)"
+    ]
+  }
+}

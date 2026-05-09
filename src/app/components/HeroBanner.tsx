@@ -595,7 +595,10 @@ export default function HeroBanner() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-flow">
-              Empowering Action for a Sustainable and Inclusive Future.
+              Empowering Action for a{' '}
+              <span className="bg-[#fef3c7]/70 dark:bg-[#78350f]/40 px-1 rounded">
+                Sustainable and Inclusive Future.
+              </span>
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl min-h-[90px] md:min-h-[80px]">

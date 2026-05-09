@@ -10,7 +10,7 @@ export const corporateSustainabilityCourse = {
   description:
     'Master the transition from voluntary ESG initiatives to mandatory global frameworks, the GHG Protocol, and Net-Zero strategies.',
   image: '/assets/images/course-corporate-sustainability.png',
-  level: 'Advanced',
+  level: 'Moderate',
   duration: '6 Modules',
   chapters: [
     {

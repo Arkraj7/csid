@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ArrowRight, Leaf, Droplets, Shield, Hammer } from 'lucide-react';
@@ -68,235 +67,415 @@ const Typewriter = ({
     return () => {
       clearTimeout(startDelay);
       if (typeInterval) clearInterval(typeInterval);
-      if (repeatTimeout) clearTimeout(repeatTimeout);
+      if (repeatTimeout) clearInterval(repeatTimeout);
     };
   }, [text, delay, speed, repeatDelay, key]);
 
   return <span>{currentText}</span>;
 };
 
-const AnimatedSkyBanner = () => {
+// Animated Day/Night Scene Component
+const DayNightScene = ({ isNight }: { isNight: boolean }) => {
   return (
-    <div className="w-full max-w-md h-[60px] md:h-[80px] mb-6 relative overflow-hidden rounded-2xl bg-white/20 dark:bg-slate-900/20 backdrop-blur-md shadow-sm flex items-center justify-center">
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 900 90"
-        preserveAspectRatio="xMidYMid slice"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0"
+    <div
+      className={`relative w-full h-[500px] xl:h-[550px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-1000 ${
+        isNight ? 'bg-[#0a1628]' : 'bg-gradient-to-b from-[#4fa4c7] via-[#87ceeb] to-[#b8d4e3]'
+      }`}
+    >
+      {/* Day Sky Gradient */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-1000 ${
+          isNight ? 'opacity-0' : 'opacity-100'
+        }`}
+        style={{
+          background: 'linear-gradient(180deg, #1e6091 0%, #4fa4c7 40%, #87ceeb 70%, #b8d4e3 100%)',
+        }}
+      />
+
+      {/* Night Sky Gradient */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-1000 ${
+          isNight ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          background: 'linear-gradient(180deg, #0a1628 0%, #1a2a4a 30%, #2a3a5a 60%, #1a2a4a 100%)',
+        }}
+      />
+
+      {/* Stars */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}
       >
-        <defs>
-          <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
-            <feOffset dx="0" dy="1" result="offsetblur" />
-            <feComponentTransfer>
-              <feFuncA type="linear" slope="0.25" />
-            </feComponentTransfer>
-            <feMerge>
-              <feMergeNode />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={`star-${i}`}
+            className="absolute rounded-full bg-white animate-twinkle"
+            style={{
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 60}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${Math.random() * 2 + 2}s`,
+            }}
+          />
+        ))}
+      </div>
 
-        {/* Sun (Light Mode) */}
-        <g className="dark:hidden">
-          <circle cx="450" cy="45" r="22" fill="#FFEB3B" filter="url(#glow)">
-            <animate attributeName="r" values="22;24;22" dur="2s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="450" cy="45" r="16" fill="#FFC107">
-            <animate attributeName="r" values="16;17;16" dur="2s" repeatCount="indefinite" />
-          </circle>
-          <g opacity="0.6">
-            <path d="M450 15 L450 5" stroke="#FF9800" strokeWidth="3" strokeLinecap="round">
-              <animate
-                attributeName="opacity"
-                values="0.6;1;0.6"
-                dur="1.5s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path d="M450 75 L450 85" stroke="#FF9800" strokeWidth="3" strokeLinecap="round">
-              <animate
-                attributeName="opacity"
-                values="0.6;1;0.6"
-                dur="1.5s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path d="M415 45 L405 45" stroke="#FF9800" strokeWidth="3" strokeLinecap="round">
-              <animate
-                attributeName="opacity"
-                values="0.6;1;0.6"
-                dur="1.5s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path d="M485 45 L495 45" stroke="#FF9800" strokeWidth="3" strokeLinecap="round">
-              <animate
-                attributeName="opacity"
-                values="0.6;1;0.6"
-                dur="1.5s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path d="M425 25 L417 17" stroke="#FF9800" strokeWidth="2.5" strokeLinecap="round">
-              <animate
-                attributeName="opacity"
-                values="0.6;1;0.6"
-                dur="1.5s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path d="M475 65 L483 73" stroke="#FF9800" strokeWidth="2.5" strokeLinecap="round">
-              <animate
-                attributeName="opacity"
-                values="0.6;1;0.6"
-                dur="1.5s"
-                repeatCount="indefinite"
-              />
-            </path>
-            {/* Added 2 missing rays */}
-            <path d="M475 25 L483 17" stroke="#FF9800" strokeWidth="2.5" strokeLinecap="round">
-              <animate
-                attributeName="opacity"
-                values="0.6;1;0.6"
-                dur="1.5s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path d="M425 65 L417 73" stroke="#FF9800" strokeWidth="2.5" strokeLinecap="round">
-              <animate
-                attributeName="opacity"
-                values="0.6;1;0.6"
-                dur="1.5s"
-                repeatCount="indefinite"
-              />
-            </path>
+      {/* Sun */}
+      <div
+        className={`absolute transition-all duration-1000 ${
+          isNight ? 'translate-y-[300px] opacity-0' : 'translate-y-0 opacity-100'
+        }`}
+        style={{ left: '20%', top: '15%' }}
+      >
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <defs>
+            <filter id="sunGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          {/* Sun rays */}
+          <g className="animate-sunRays origin-center">
+            {[...Array(12)].map((_, i) => {
+              const angle = i * 30 * (Math.PI / 180);
+              const x1 = 60 + 55 * Math.cos(angle);
+              const y1 = 60 + 55 * Math.sin(angle);
+              const x2 = 60 + 65 * Math.cos(angle);
+              const y2 = 60 + 65 * Math.sin(angle);
+              return (
+                <line
+                  key={`ray-${i}`}
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke="#FFD700"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  className="animate-pulse"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                />
+              );
+            })}
           </g>
-          <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="0,0; 1,0; 0,0"
-            dur="0.5s"
-            repeatCount="indefinite"
+          {/* Sun core */}
+          <circle
+            cx="60"
+            cy="60"
+            r="45"
+            fill="#FFD93D"
+            filter="url(#sunGlow)"
+            className="animate-pulse-slow"
           />
-        </g>
+          <circle cx="60" cy="60" r="35" fill="#FFF176" />
+        </svg>
+      </div>
 
-        {/* Moon (Dark Mode) */}
-        <g className="hidden dark:block">
-          <circle cx="450" cy="45" r="22" fill="#F0F0F0" filter="url(#glow)">
-            <animate attributeName="r" values="22;24;22" dur="3s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="445" cy="40" r="18" fill="#E0E0E0" />
-          <circle cx="440" cy="45" r="16" fill="#D0D0D0" />
-          <circle cx="450" cy="50" r="15" fill="#C0C0C0" />
-          <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="0,0; 1,0; 0,0"
-            dur="0.8s"
-            repeatCount="indefinite"
-          />
-        </g>
+      {/* Crescent Moon */}
+      <div
+        className={`absolute transition-all duration-1000 ${
+          isNight ? 'translate-y-0 opacity-100' : '-translate-y-[300px] opacity-0'
+        }`}
+        style={{ right: '15%', top: '10%' }}
+      >
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <defs>
+            <filter id="moonGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          {/* Moon glow */}
+          <circle cx="40" cy="40" r="35" fill="#E8E8E8" filter="url(#moonGlow)" opacity="0.3" />
+          {/* Crescent moon shape */}
+          <circle cx="40" cy="40" r="30" fill="#F5F5DC" />
+          <circle cx="55" cy="35" r="25" fill={isNight ? '#1a2a4a' : '#1a2a4a'} />
+          {/* Moon craters */}
+          <circle cx="25" cy="45" r="4" fill="#D4D4AA" opacity="0.5" />
+          <circle cx="30" cy="30" r="3" fill="#D4D4AA" opacity="0.4" />
+          <circle cx="35" cy="50" r="2" fill="#D4D4AA" opacity="0.3" />
+        </svg>
+      </div>
 
+      {/* Clouds - Day */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}
+      >
         {/* Cloud 1 */}
-        <g>
-          <g filter="url(#softShadow)" className="fill-white dark:fill-slate-700">
-            <ellipse cx="180" cy="42" rx="38" ry="15" />
-            <ellipse cx="210" cy="36" rx="26" ry="17" />
-            <ellipse cx="235" cy="43" rx="22" ry="13" />
-          </g>
-          <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="-300 0; 900 0"
-            dur="30s"
-            repeatCount="indefinite"
-          />
-        </g>
-
+        <div className="absolute" style={{ top: '8%', left: '10%' }}>
+          <svg width="180" height="80" viewBox="0 0 180 80">
+            <defs>
+              <filter id="cloudShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                <feOffset dy="2" result="offsetblur" />
+                <feComponentTransfer>
+                  <feFuncA type="linear" slope="0.2" />
+                </feComponentTransfer>
+                <feMerge>
+                  <feMergeNode />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <g filter="url(#cloudShadow)" className="animate-cloudDrift">
+              <ellipse cx="90" cy="50" rx="70" ry="25" fill="white" />
+              <ellipse cx="60" cy="40" rx="40" ry="30" fill="white" />
+              <ellipse cx="120" cy="35" rx="35" ry="25" fill="white" />
+              <ellipse cx="90" cy="30" rx="30" ry="20" fill="white" />
+            </g>
+          </svg>
+        </div>
         {/* Cloud 2 */}
-        <g>
-          <g filter="url(#softShadow)" className="fill-white/90 dark:fill-slate-600">
-            <ellipse cx="520" cy="55" rx="32" ry="12" />
-            <ellipse cx="545" cy="50" rx="22" ry="14" />
-            <ellipse cx="565" cy="54" rx="18" ry="11" />
-          </g>
-          <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="-600 0; 900 0"
-            dur="40s"
-            repeatCount="indefinite"
-          />
-        </g>
-
+        <div className="absolute" style={{ top: '20%', left: '50%' }}>
+          <svg width="150" height="70" viewBox="0 0 150 70">
+            <g filter="url(#cloudShadow)" className="animate-cloudDrift2">
+              <ellipse cx="75" cy="45" rx="60" ry="20" fill="white" opacity="0.95" />
+              <ellipse cx="50" cy="35" rx="35" ry="25" fill="white" opacity="0.95" />
+              <ellipse cx="100" cy="30" rx="30" ry="22" fill="white" opacity="0.95" />
+            </g>
+          </svg>
+        </div>
         {/* Cloud 3 */}
-        <g>
-          <g filter="url(#softShadow)" className="fill-white dark:fill-slate-700">
-            <ellipse cx="720" cy="38" rx="35" ry="14" />
-            <ellipse cx="750" cy="32" rx="24" ry="16" />
-            <ellipse cx="775" cy="39" rx="20" ry="12" />
-          </g>
-          <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="-800 0; 900 0"
-            dur="35s"
-            repeatCount="indefinite"
-          />
-        </g>
+        <div className="absolute" style={{ top: '5%', right: '15%' }}>
+          <svg width="120" height="60" viewBox="0 0 120 60">
+            <g filter="url(#cloudShadow)" className="animate-cloudDrift3">
+              <ellipse cx="60" cy="40" rx="50" ry="18" fill="white" />
+              <ellipse cx="40" cy="30" rx="30" ry="22" fill="white" />
+              <ellipse cx="85" cy="28" rx="25" ry="18" fill="white" />
+            </g>
+          </svg>
+        </div>
+      </div>
 
-        {/* Cloud 4 */}
-        <g>
-          <g filter="url(#softShadow)" className="fill-white/80 dark:fill-slate-600">
-            <ellipse cx="80" cy="52" rx="24" ry="10" />
-            <ellipse cx="100" cy="48" rx="17" ry="11" />
-          </g>
-          <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="-100 0; 900 0"
-            dur="15s"
-            repeatCount="indefinite"
+      {/* Clouds - Night (edge-lit by moonlight) */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}
+      >
+        <div className="absolute" style={{ top: '8%', left: '10%' }}>
+          <svg width="180" height="80" viewBox="0 0 180 80">
+            <g filter="url(#cloudShadow)" className="animate-cloudDrift">
+              <ellipse cx="90" cy="50" rx="70" ry="25" fill="#4a5568" />
+              <ellipse cx="60" cy="40" rx="40" ry="30" fill="#4a5568" />
+              <ellipse cx="120" cy="35" rx="35" ry="25" fill="#4a5568" />
+              {/* Moonlit edges */}
+              <ellipse cx="90" cy="30" rx="70" ry="25" fill="#718096" opacity="0.6" />
+              <ellipse cx="60" cy="30" rx="40" ry="30" fill="#718096" opacity="0.6" />
+            </g>
+          </svg>
+        </div>
+        <div className="absolute" style={{ top: '20%', left: '50%' }}>
+          <svg width="150" height="70" viewBox="0 0 150 70">
+            <g filter="url(#cloudShadow)" className="animate-cloudDrift2">
+              <ellipse cx="75" cy="45" rx="60" ry="20" fill="#374151" />
+              <ellipse cx="50" cy="35" rx="35" ry="25" fill="#374151" />
+              <ellipse cx="100" cy="30" rx="30" ry="22" fill="#374151" />
+              <ellipse cx="75" cy="25" rx="60" ry="20" fill="#4b5563" opacity="0.6" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      {/* Mountains */}
+      <div className="absolute bottom-[25%] left-0 right-0">
+        <svg width="100%" height="200" viewBox="0 0 800 200" preserveAspectRatio="xMidYMax slice">
+          <defs>
+            <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={isNight ? '#2d3748' : '#6b8e6b'} />
+              <stop offset="100%" stopColor={isNight ? '#1a202c' : '#4a5d4a'} />
+            </linearGradient>
+            <linearGradient id="mountainGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={isNight ? '#4a5568' : '#8fbc8f'} />
+              <stop offset="100%" stopColor={isNight ? '#2d3748' : '#6b8e6b'} />
+            </linearGradient>
+          </defs>
+          {/* Back mountains */}
+          <polygon
+            points="0,200 150,80 300,150 450,60 600,140 750,50 800,120 800,200"
+            fill="url(#mountainGradient2)"
+            className="transition-all duration-1000"
           />
-        </g>
-      </svg>
+          {/* Front mountains */}
+          <polygon
+            points="0,200 100,120 250,170 400,100 550,160 700,90 800,150 800,200"
+            fill="url(#mountainGradient)"
+            className="transition-all duration-1000"
+          />
+          {/* Snow caps (day only) */}
+          <polygon
+            points="450,60 430,85 470,85"
+            fill={isNight ? '#4a5568' : '#e8e8e8'}
+            className="transition-all duration-1000"
+          />
+          <polygon
+            points="750,50 730,75 770,75"
+            fill={isNight ? '#4a5568' : '#e8e8e8'}
+            className="transition-all duration-1000"
+          />
+        </svg>
+      </div>
+
+      {/* Tree with swaying animation */}
+      <div
+        className={`absolute bottom-[10%] left-[15%] transition-all duration-1000 ${
+          isNight ? 'translate-x-[50px]' : 'translate-x-0'
+        }`}
+      >
+        <svg width="200" height="300" viewBox="0 0 200 300">
+          {/* Tree trunk */}
+          <rect
+            x="90"
+            y="150"
+            width="20"
+            height="150"
+            fill={isNight ? '#3d2914' : '#5d4037'}
+            rx="2"
+          />
+          {/* Tree branches */}
+          <path
+            d="M100 200 Q60 180 30 190"
+            stroke={isNight ? '#3d2914' : '#5d4037'}
+            strokeWidth="8"
+            fill="none"
+            className="animate-treeSway"
+            style={{ transformOrigin: '100px 200px' }}
+          />
+          <path
+            d="M100 180 Q140 160 170 175"
+            stroke={isNight ? '#3d2914' : '#5d4037'}
+            strokeWidth="6"
+            fill="none"
+            className="animate-treeSwayReverse"
+            style={{ transformOrigin: '100px 180px' }}
+          />
+          {/* Tree foliage */}
+          <g className="animate-foliageSway" style={{ transformOrigin: '100px 120px' }}>
+            <ellipse cx="100" cy="100" rx="80" ry="70" fill={isNight ? '#1a3a1a' : '#228b22'} />
+            <ellipse cx="70" cy="120" rx="50" ry="45" fill={isNight ? '#1a3a1a' : '#228b22'} />
+            <ellipse cx="130" cy="115" rx="55" ry="50" fill={isNight ? '#1a3a1a' : '#228b22'} />
+            <ellipse cx="100" cy="80" rx="45" ry="40" fill={isNight ? '#2d5a2d' : '#32cd32'} />
+            <ellipse cx="60" cy="100" rx="35" ry="30" fill={isNight ? '#2d5a2d' : '#32cd32'} />
+            <ellipse cx="140" cy="95" rx="40" ry="35" fill={isNight ? '#2d5a2d' : '#32cd32'} />
+          </g>
+        </svg>
+      </div>
+
+      {/* Second Tree */}
+      <div
+        className={`absolute bottom-[8%] right-[20%] transition-all duration-1000 ${
+          isNight ? '-translate-x-[30px]' : 'translate-x-0'
+        }`}
+      >
+        <svg width="150" height="250" viewBox="0 0 150 250">
+          <rect
+            x="65"
+            y="130"
+            width="20"
+            height="120"
+            fill={isNight ? '#3d2914' : '#5d4037'}
+            rx="2"
+          />
+          <g
+            className="animate-foliageSway"
+            style={{ transformOrigin: '75px 100px', animationDelay: '0.5s' }}
+          >
+            <ellipse cx="75" cy="80" rx="65" ry="60" fill={isNight ? '#1a3a1a' : '#228b22'} />
+            <ellipse cx="50" cy="95" rx="40" ry="35" fill={isNight ? '#1a3a1a' : '#228b22'} />
+            <ellipse cx="100" cy="90" rx="45" ry="40" fill={isNight ? '#1a3a1a' : '#228b22'} />
+            <ellipse cx="75" cy="60" rx="35" ry="30" fill={isNight ? '#2d5a2d' : '#32cd32'} />
+          </g>
+        </svg>
+      </div>
+
+      {/* Ground/Hills */}
+      <div className="absolute bottom-0 left-0 right-0 h-[12%]">
+        <svg width="100%" height="100%" viewBox="0 0 800 100" preserveAspectRatio="xMidYMax slice">
+          <defs>
+            <linearGradient id="groundGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={isNight ? '#1a202c' : '#7cb342'} />
+              <stop offset="100%" stopColor={isNight ? '#0f151f' : '#558b2f'} />
+            </linearGradient>
+          </defs>
+          <ellipse cx="400" cy="100" rx="500" ry="80" fill="url(#groundGradient)" />
+        </svg>
+      </div>
+
+      {/* Horizon glow (sunset/sunrise effect) */}
+      <div
+        className={`absolute bottom-[10%] left-0 right-0 h-[30%] transition-opacity duration-1000 ${
+          isNight ? 'opacity-0' : 'opacity-60'
+        }`}
+        style={{
+          background: 'linear-gradient(0deg, rgba(255,165,0,0.3) 0%, transparent 100%)',
+        }}
+      />
     </div>
+  );
+};
+
+// Toggle Switch Component
+const DayNightToggle = ({
+  isNight,
+  setIsNight,
+}: {
+  isNight: boolean;
+  setIsNight: (value: boolean) => void;
+}) => {
+  return (
+    <button
+      onClick={() => setIsNight(!isNight)}
+      className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all duration-300 shadow-lg"
+      aria-label="Toggle day/night"
+    >
+      <div className="relative w-16 h-8 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 dark:from-indigo-900 dark:to-purple-900 transition-all duration-500">
+        <div
+          className={`absolute top-1 w-6 h-6 rounded-full bg-yellow-200 shadow-lg transition-all duration-500 ${
+            isNight ? 'translate-x-9 bg-slate-200' : 'translate-x-1'
+          }`}
+          style={{
+            boxShadow: isNight ? '0 0 10px rgba(200,200,255,0.5)' : '0 0 10px rgba(255,200,0,0.5)',
+          }}
+        >
+          {isNight ? (
+            <svg viewBox="0 0 24 24" className="w-full h-full p-1 text-indigo-900">
+              <path
+                fill="currentColor"
+                d="M12 3c.132 0 .263.002.394.007.18-.018.365-.028.55-.028 5.523 0 10 4.477 10 10s-4.477 10-10 10c-.185 0-.37-.01-.55-.028.132.005.263.007.394.007 5.523 0 10-4.477 10-10s-4.477-10-10-10z"
+              />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" className="w-full h-full p-1 text-orange-500">
+              <path
+                fill="currentColor"
+                d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"
+              />
+            </svg>
+          )}
+        </div>
+      </div>
+    </button>
   );
 };
 
 export default function HeroBanner() {
   const containerRef = useRef(null);
-  const treeRef = useRef(null);
-  const castleRef = useRef(null);
-  const mountainsRef = useRef(null);
   const textRef = useRef(null);
+  const [isNight, setIsNight] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.1 });
-
-      tl.fromTo(mountainsRef.current, { y: 60 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0)
-        .fromTo(castleRef.current, { y: 80 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0.1)
-        .fromTo(treeRef.current, { y: 100 }, { y: 0, duration: 1.5, ease: 'power3.out' }, 0.2)
-        .fromTo(
-          textRef.current,
-          { y: 20, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 1, ease: 'power2.out' },
-          0.5
-        );
+      gsap.fromTo(
+        textRef.current,
+        { y: 20, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 1, ease: 'power2.out', delay: 0.5 }
+      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -313,9 +492,6 @@ export default function HeroBanner() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
           <div className="animate-fade-in">
-            {/* Newly added animated sky banner component */}
-            <AnimatedSkyBanner />
-
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-flow">
               Empowering Action for a Sustainable and Inclusive Future.
             </h1>
@@ -353,77 +529,37 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          {/* Right: Dilmays Parallax Animation */}
+          {/* Right: Interactive Day/Night Scene */}
           <div className="hidden lg:block w-full" ref={containerRef}>
-            <div className="relative w-full h-[500px] xl:h-[550px] rounded-3xl overflow-hidden shadow-2xl bg-[#a4c5d5] border border-white/10">
-              {/* SKY */}
-              <div className="absolute top-0 left-0 w-full h-full z-10">
-                <Image
-                  src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-sky.png"
-                  alt="Sky"
-                  className="w-full h-full object-cover object-bottom"
-                  fill
-                  unoptimized
-                />
-              </div>
-
-              {/* MOUNTAINS */}
-              <div
-                className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-20"
-                ref={mountainsRef}
-              >
-                <Image
-                  src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-moutains.png"
-                  alt="Mountains"
-                  className="w-full h-full object-cover object-bottom"
-                  fill
-                  unoptimized
-                />
-              </div>
-
-              {/* CASTLE */}
-              <div
-                className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-30"
-                ref={castleRef}
-              >
-                <Image
-                  src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-castle.png"
-                  alt="Castle"
-                  className="w-full h-full object-cover object-bottom"
-                  fill
-                  unoptimized
-                />
-              </div>
-
-              {/* TREES */}
-              <div className="absolute -top-[20%] -left-[10%] w-[120%] h-[130%] z-40" ref={treeRef}>
-                <Image
-                  src="https://cdn.zajno.com/dev/codepen/story-dilmays/parallax-tree.png"
-                  alt="Tree"
-                  className="w-full h-full object-cover object-bottom scale-105"
-                  fill
-                  unoptimized
-                />
-              </div>
+            <div className="relative rounded-3xl overflow-hidden">
+              <DayNightToggle isNight={isNight} setIsNight={setIsNight} />
+              <DayNightScene isNight={isNight} />
 
               {/* Text Overlay */}
               <div
-                className="absolute z-50 bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-[#0e192d] via-[#0e192d]/90 to-transparent text-left"
+                className="absolute z-50 bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-black/60 via-black/40 to-transparent text-left"
                 ref={textRef}
               >
-                <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2 block">
-                  Climate Challenge
+                <span
+                  className={`text-xs font-bold uppercase tracking-widest mb-2 block ${
+                    isNight ? 'text-indigo-300' : 'text-emerald-400'
+                  }`}
+                >
+                  {isNight ? 'Night Mode' : 'Day Mode'}
                 </span>
                 <h2 className="text-3xl font-serif leading-tight mb-3 text-white font-medium">
-                  Put your climate awareness to the test and see how high you can climb!
+                  Put your climate awareness to the test!
                 </h2>
                 <p className="text-sm text-slate-300 leading-relaxed mb-5">
-                  Challenge yourself with our interactive climate quiz and discover where you stand
-                  on environmental knowledge.
+                  Challenge yourself with our interactive climate quiz.
                 </p>
                 <Link
                   href="/climate-awareness"
-                  className="inline-block px-6 py-2.5 bg-emerald-500 text-white font-semibold rounded-lg text-sm hover:bg-emerald-400 hover:scale-105 transition-all duration-200 shadow-lg shadow-emerald-500/30"
+                  className={`inline-block px-6 py-2.5 font-semibold rounded-lg text-sm hover:scale-105 transition-all duration-200 shadow-lg ${
+                    isNight
+                      ? 'bg-indigo-500 text-white hover:bg-indigo-400 shadow-indigo-500/30'
+                      : 'bg-emerald-500 text-white hover:bg-emerald-400 shadow-emerald-500/30'
+                  }`}
                 >
                   Test Your Climate Awareness
                 </Link>
@@ -432,6 +568,111 @@ export default function HeroBanner() {
           </div>
         </div>
       </div>
+
+      {/* CSS Animations */}
+      <style jsx global>{`
+        @keyframes twinkle {
+          0%,
+          100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.2);
+          }
+        }
+        .animate-twinkle {
+          animation: twinkle 2s ease-in-out infinite;
+        }
+        @keyframes pulse-slow {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
+        }
+        @keyframes sunRays {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-sunRays {
+          animation: sunRays 60s linear infinite;
+        }
+        @keyframes cloudDrift {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(100vw);
+          }
+        }
+        .animate-cloudDrift {
+          animation: cloudDrift 45s linear infinite;
+        }
+        .animate-cloudDrift2 {
+          animation: cloudDrift 60s linear infinite;
+          animation-delay: -20s;
+        }
+        .animate-cloudDrift3 {
+          animation: cloudDrift 50s linear infinite;
+          animation-delay: -35s;
+        }
+        @keyframes treeSway {
+          0%,
+          100% {
+            transform: rotate(0deg);
+          }
+          25% {
+            transform: rotate(2deg);
+          }
+          75% {
+            transform: rotate(-2deg);
+          }
+        }
+        .animate-treeSway {
+          animation: treeSway 4s ease-in-out infinite;
+        }
+        @keyframes treeSwayReverse {
+          0%,
+          100% {
+            transform: rotate(0deg);
+          }
+          25% {
+            transform: rotate(-2deg);
+          }
+          75% {
+            transform: rotate(2deg);
+          }
+        }
+        .animate-treeSwayReverse {
+          animation: treeSwayReverse 4s ease-in-out infinite;
+        }
+        @keyframes foliageSway {
+          0%,
+          100% {
+            transform: translateX(0) rotate(0deg);
+          }
+          25% {
+            transform: translateX(2px) rotate(1deg);
+          }
+          75% {
+            transform: translateX(-2px) rotate(-1deg);
+          }
+        }
+        .animate-foliageSway {
+          animation: foliageSway 3s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 }

@@ -3,49 +3,51 @@
 @tailwind utilities;
 
 :root {
-  --background: #f0fdf4;
-  --foreground: #0f172a;
-  --primary: #16a34a;
+  --background: #faf8ff;
+  --foreground: #1e1b2e;
+  --primary: #8b5cf6;
   --primary-foreground: #ffffff;
-  --secondary: #0d9488;
+  --secondary: #a78bfa;
   --secondary-foreground: #ffffff;
-  --accent: #84cc16;
-  --accent-foreground: #ffffff;
-  --muted: #e2e8f0;
-  --muted-foreground: #64748b;
+  --accent: #c4b5fd;
+  --accent-foreground: #1e1b2e;
+  --muted: #f3f0ff;
+  --muted-foreground: #6b7280;
   --card: #ffffff;
-  --card-foreground: #0f172a;
-  --border: #d1fae5;
-  --input: #e2e8f0;
-  --ring: #16a34a;
-  --radius: 0.75rem;
-  --font-sans: 'DM Sans', sans-serif;
+  --card-foreground: #1e1b2e;
+  --border: #e9e3ff;
+  --input: #f3f0ff;
+  --ring: #8b5cf6;
+  --radius: 1rem;
+  --font-sans: 'Outfit', 'DM Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
   --earth: #92400e;
-  --teal-light: #ccfbf1;
+  --teal-light: #ede9fe;
   --warning: #f59e0b;
   --danger: #ef4444;
 }
 
 .dark {
-  --background: #0f1a14;
-  --foreground: #f0fdf4;
-  --primary: #22c55e;
-  --primary-foreground: #0f1a14;
-  --secondary: #14b8a6;
-  --secondary-foreground: #0f1a14;
-  --accent: #a3e635;
-  --accent-foreground: #0f1a14;
-  --muted: #1e2d24;
-  --muted-foreground: #94a3b8;
-  --card: #162112;
-  --card-foreground: #f0fdf4;
-  --border: #1e3a28;
-  --input: #1e3a28;
-  --ring: #22c55e;
-  --radius: 0.75rem;
-  --font-sans: 'DM Sans', sans-serif;
+  --background: #1a1625;
+  --foreground: #f5f3ff;
+  --primary: #a78bfa;
+  --primary-foreground: #1a1625;
+  --secondary: #8b5cf6;
+  --secondary-foreground: #ffffff;
+  --accent: #7c3aed;
+  --accent-foreground: #f5f3ff;
+  --muted: #2d2640;
+  --muted-foreground: #a1a1aa;
+  --card: #251f35;
+  --card-foreground: #f5f3ff;
+  --border: #3d3356;
+  --input: #2d2640;
+  --ring: #a78bfa;
+  --radius: 1rem;
+  --font-sans: 'Outfit', 'DM Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
   --earth: #d97706;
-  --teal-light: #134e4a;
+  --teal-light: #3b2d5a;
   --warning: #f59e0b;
   --danger: #f87171;
 }
@@ -97,26 +99,26 @@
     border-radius: 2px;
   }
   .gradient-green {
-    background: linear-gradient(135deg, #16a34a 0%, #0d9488 100%);
+    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
   }
   .gradient-earth {
-    background: linear-gradient(135deg, #16a34a 0%, #84cc16 50%, #0d9488 100%);
+    background: linear-gradient(135deg, #8b5cf6 0%, #c4b5fd 50%, #a78bfa 100%);
   }
   .pillar-mitigation {
-    background-color: #dcfce7;
-    color: #15803d;
+    background-color: #ede9fe;
+    color: #7c3aed;
   }
   .dark .pillar-mitigation {
-    background-color: #14532d;
-    color: #86efac;
+    background-color: #3b2d5a;
+    color: #c4b5fd;
   }
   .pillar-adaptation {
-    background-color: #cffafe;
-    color: #0e7490;
+    background-color: #fce7f3;
+    color: #be185d;
   }
   .dark .pillar-adaptation {
-    background-color: #164e63;
-    color: #67e8f9;
+    background-color: #4a2040;
+    color: #f9a8d4;
   }
   .pillar-resilience {
     background-color: #e0e7ff;
@@ -141,7 +143,7 @@
   }
   .card-hover:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(22, 163, 74, 0.12);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.12);
   }
   .animate-fade-in {
     animation: fadeIn 0.4s ease forwards;
@@ -165,11 +167,17 @@
     background-color: var(--teal-light);
   }
   .quiz-option.correct {
-    border-color: #16a34a;
-    background-color: #dcfce7;
+    border-color: #8b5cf6;
+    background-color: #ede9fe;
   }
   .quiz-option.incorrect {
     border-color: #ef4444;
     background-color: #fee2e2;
+  }
+  .soft-shadow {
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.08);
+  }
+  .soft-glow {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.15);
   }
 }

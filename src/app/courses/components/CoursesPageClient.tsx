@@ -98,7 +98,7 @@ export default function CoursesPageClient({ course }: { course: Course }) {
   const progressPercent = Math.round((completedChapters.length / course.chapters.length) * 100);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-12">
+    <div className="min-h-screen bg-gradient-to-br from-[#faf8ff] via-[#f5f3ff] to-[#ede9fe] dark:from-[#1a1625] dark:via-[#231d30] dark:to-[#2d2640] pb-12">
       <CourseHeader course={course} completedChapters={completedChapters} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -106,14 +106,14 @@ export default function CoursesPageClient({ course }: { course: Course }) {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => router.push('/')}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-900 transition-colors font-semibold text-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-violet-200 dark:border-violet-800 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-violet-900/30 transition-colors font-semibold text-sm bg-white/80 dark:bg-[#251f35]/80 backdrop-blur-sm"
             >
               <Home size={17} />
               Home
             </button>
             <button
               onClick={() => router.back()}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-900 transition-colors font-semibold text-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-violet-200 dark:border-violet-800 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-violet-900/30 transition-colors font-semibold text-sm bg-white/80 dark:bg-[#251f35]/80 backdrop-blur-sm"
             >
               <ArrowLeft size={17} />
               Back
@@ -122,7 +122,7 @@ export default function CoursesPageClient({ course }: { course: Course }) {
 
           <button
             onClick={toggleDarkMode}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 transition-colors font-semibold text-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 text-white hover:from-violet-600 hover:to-purple-600 transition-all font-semibold text-sm shadow-lg shadow-violet-500/20"
           >
             {isDarkMode ? <Sun size={17} /> : <Moon size={17} />}
             {isDarkMode ? 'Day Mode' : 'Night Mode'}
@@ -131,7 +131,7 @@ export default function CoursesPageClient({ course }: { course: Course }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-800">
+            <div className="bg-white/90 dark:bg-[#251f35]/90 backdrop-blur-xl rounded-2xl shadow-[0_4px_30px_rgba(139,92,246,0.08)] p-6 border border-violet-100 dark:border-violet-800/50">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                 About this Course
               </h2>
@@ -140,15 +140,15 @@ export default function CoursesPageClient({ course }: { course: Course }) {
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
-              <div className="p-6 border-b border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/40">
+            <div className="bg-white/90 dark:bg-[#251f35]/90 backdrop-blur-xl rounded-2xl shadow-[0_4px_30px_rgba(139,92,246,0.08)] border border-violet-100 dark:border-violet-800/50 overflow-hidden">
+              <div className="p-6 border-b border-violet-100 dark:border-violet-800/50 bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Course Content</h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   {course.chapters.length} Chapters - Final Assessment
                 </p>
               </div>
 
-              <div className="divide-y divide-gray-100 dark:divide-gray-800">
+              <div className="divide-y divide-violet-100 dark:divide-violet-800/50">
                 {course.chapters.map((chapter, index) => {
                   const isCompleted = completedChapters.includes(chapter.id);
                   const isLocked =
@@ -159,19 +159,19 @@ export default function CoursesPageClient({ course }: { course: Course }) {
                       key={chapter.id}
                       className={`p-6 transition-colors duration-200 ${
                         isLocked
-                          ? 'bg-gray-50/50 dark:bg-gray-900/50'
-                          : 'hover:bg-green-50/30 dark:hover:bg-green-900/10'
+                          ? 'bg-violet-50/50 dark:bg-violet-900/20'
+                          : 'hover:bg-violet-50/50 dark:hover:bg-violet-900/20'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-start space-x-4">
                           <div className="flex-shrink-0 mt-1">
                             {isCompleted ? (
-                              <CheckCircle2 className="w-6 h-6 text-green-500" />
+                              <CheckCircle2 className="w-6 h-6 text-violet-500" />
                             ) : isLocked ? (
                               <Lock className="w-6 h-6 text-gray-400" />
                             ) : (
-                              <PlayCircle className="w-6 h-6 text-green-600" />
+                              <PlayCircle className="w-6 h-6 text-violet-600" />
                             )}
                           </div>
                           <div>
@@ -191,7 +191,7 @@ export default function CoursesPageClient({ course }: { course: Course }) {
                         {!isLocked && (
                           <Link
                             href={`/courses/${course.id}/chapters/${chapter.id}`}
-                            className="inline-flex items-center px-4 py-2 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 font-medium rounded-lg hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors shrink-0"
+                            className="inline-flex items-center px-4 py-2 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 font-medium rounded-xl hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors shrink-0"
                           >
                             {isCompleted ? 'Review' : 'Start'}
                             <ChevronRight className="w-4 h-4 ml-1" />
@@ -206,7 +206,7 @@ export default function CoursesPageClient({ course }: { course: Course }) {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-800 sticky top-8">
+            <div className="bg-white/90 dark:bg-[#251f35]/90 backdrop-blur-xl rounded-2xl shadow-[0_4px_30px_rgba(139,92,246,0.08)] p-6 border border-violet-100 dark:border-violet-800/50 sticky top-8">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                 Your Progress
               </h3>
@@ -214,11 +214,11 @@ export default function CoursesPageClient({ course }: { course: Course }) {
               <div className="mb-6">
                 <div className="flex justify-between text-sm font-medium mb-2">
                   <span className="text-gray-600 dark:text-gray-400">Course Completion</span>
-                  <span className="text-green-600">{progressPercent}%</span>
+                  <span className="text-violet-600">{progressPercent}%</span>
                 </div>
-                <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2.5">
+                <div className="w-full bg-violet-100 dark:bg-violet-900/50 rounded-full h-2.5">
                   <div
-                    className="bg-green-600 h-2.5 rounded-full transition-all duration-500"
+                    className="bg-gradient-to-r from-violet-500 to-purple-500 h-2.5 rounded-full transition-all duration-500"
                     style={{ width: `${progressPercent}%` }}
                   />
                 </div>
@@ -226,27 +226,27 @@ export default function CoursesPageClient({ course }: { course: Course }) {
 
               <div className="space-y-3">
                 <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center">
-                  <CheckCircle2 className="w-4 h-4 text-green-500 mr-2" />
+                  <CheckCircle2 className="w-4 h-4 text-violet-500 mr-2" />
                   {completedChapters.length} of {course.chapters.length} chapters completed
                 </p>
               </div>
 
               {completedChapters.length === course.chapters.length && (
-                <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
-                  <button className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors shadow-sm shadow-green-200">
+                <div className="mt-8 pt-6 border-t border-violet-100 dark:border-violet-800/50">
+                  <button className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-lg shadow-violet-500/20">
                     Take Final Assessment
                   </button>
                 </div>
               )}
 
               {/* Course Features Widget */}
-              <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
+              <div className="mt-6 pt-6 border-t border-violet-100 dark:border-violet-800/50">
                 <h4 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
                   Course Features
                 </h4>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <BarChart className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <BarChart className="w-4 h-4 text-violet-600 shrink-0" />
                     <div className="flex-1 min-w-0">
                       <span className="text-xs text-gray-500 dark:text-gray-400">Level</span>
                       <p className="text-sm font-medium text-gray-900 dark:text-gray-100">

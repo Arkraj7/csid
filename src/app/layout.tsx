@@ -1,6 +1,8 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { DM_Sans } from 'next/font/google';
+import { Outfit } from 'next/font/google';
+import { Playfair_Display } from 'next/font/google';
 import { Toaster } from 'sonner';
 import QuizPopup from '@/components/ui/QuizPopup';
 import '../styles/tailwind.css';
@@ -9,6 +11,20 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-dm-sans',
+  display: 'swap',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair',
   display: 'swap',
 });
 
@@ -28,8 +44,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={dmSans.variable} suppressHydrationWarning>
-      <body className={dmSans.className}>
+    <html
+      lang="en"
+      className={`${dmSans.variable} ${outfit.variable} ${playfair.variable}`}
+      suppressHydrationWarning
+    >
+      <body
+        className={`${outfit.className} bg-gradient-to-br from-[#faf8ff] via-[#f5f3ff] to-[#ede9fe] dark:from-[#1a1625] dark:via-[#231d30] dark:to-[#2d2640]`}
+      >
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -4,4 +4,8 @@ import { climateFinanceCourse } from './climate-finance';
 import { biodiversityConservationCourse } from './biodiversity-conservation';
 
 // Export them as a single array that your website components will read
-export const courses = [corporateSustainabilityCourse, climateFinanceCourse, biodiversityConservationCourse];
+export const courses = [
+  corporateSustainabilityCourse,
+  climateFinanceCourse,
+  biodiversityConservationCourse,
+];

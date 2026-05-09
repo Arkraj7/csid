@@ -594,10 +594,13 @@ export default function HeroBanner() {
       <div className="relative max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-flow">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance">
               Empowering Action for a{' '}
-              <span className="bg-[#fef3c7]/70 dark:bg-[#78350f]/40 px-1 rounded">
-                Sustainable and Inclusive Future.
+              <span className="relative inline-block px-1">
+                <span className="absolute inset-0 bg-[#fef3c7]/70 dark:bg-[#78350f]/40 rounded -z-10" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-flow">
+                  Sustainable and Inclusive Future.
+                </span>
               </span>
             </h1>
 

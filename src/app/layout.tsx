@@ -5,6 +5,7 @@ import { Outfit } from 'next/font/google';
 import { Playfair_Display } from 'next/font/google';
 import { Toaster } from 'sonner';
 import QuizPopup from '@/components/ui/QuizPopup';
+import FloatingNotepad from '@/components/ui/FloatingNotepad';
 import '../styles/tailwind.css';
 
 const dmSans = DM_Sans({
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
         {children}
         <QuizPopup />
+        <FloatingNotepad />
         <Toaster position="bottom-right" richColors closeButton />
 
         <script

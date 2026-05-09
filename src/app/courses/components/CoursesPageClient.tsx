@@ -12,6 +12,14 @@ import {
   Lock,
   Moon,
   Sun,
+  BarChart,
+  Clock,
+  ListChecks,
+  Award,
+  Globe,
+  Share2,
+  Link as LinkIcon,
+  Check,
 } from 'lucide-react';
 import CourseHeader from './CourseHeader';
 import { getCompletedCourseChapters } from '@/lib/progress';
@@ -38,6 +46,9 @@ type Course = {
   image: string;
   level: string;
   duration: string;
+  quizCount: number;
+  certificate: string;
+  language: string;
   chapters: Chapter[];
   finalAssessment: QuizQuestion[];
 };
@@ -227,9 +238,135 @@ export default function CoursesPageClient({ course }: { course: Course }) {
                   </button>
                 </div>
               )}
+
+              {/* Course Features Widget */}
+              <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
+                <h4 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+                  Course Features
+                </h4>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <BarChart className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">Level</span>
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        {course.level || 'Beginner'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">Duration</span>
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        {course.duration || '5 Modules'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <ListChecks className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">Quizzes</span>
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        {course.quizCount || course.chapters.length + 1}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Award className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">Certificate</span>
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        {course.certificate || 'Yes, upon completion'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Globe className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">Language</span>
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        {course.language || 'English'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Share Course Widget */}
+              <ShareCourseWidget courseTitle={course.title} />
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// Share Course Widget Component
+function ShareCourseWidget({ courseTitle }: { courseTitle: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    if (typeof window !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const encodedUrl = encodeURIComponent(currentUrl);
+  const encodedTitle = encodeURIComponent(`Check out this course: ${courseTitle}`);
+
+  return (
+    <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
+      <h4 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+        Share this Course
+      </h4>
+      <div className="flex items-center gap-2">
+        <a
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:text-blue-400 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
+          aria-label="Share on LinkedIn"
+        >
+          <Share2 className="w-4 h-4" />
+        </a>
+
+        <a
+          href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-sky-500 hover:bg-sky-50 dark:hover:text-sky-400 dark:hover:bg-sky-900/30 rounded-lg transition-colors"
+          aria-label="Share on Twitter"
+        >
+          <Share2 className="w-4 h-4" />
+        </a>
+
+        <a
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-700 hover:bg-blue-50 dark:hover:text-blue-400 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
+          aria-label="Share on Facebook"
+        >
+          <Share2 className="w-4 h-4" />
+        </a>
+
+        <button
+          onClick={handleCopyLink}
+          className="p-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:text-emerald-400 dark:hover:bg-emerald-900/30 rounded-lg transition-colors ml-auto flex items-center gap-1.5 text-xs font-medium"
+          aria-label={copied ? 'Link copied' : 'Copy link'}
+        >
+          {copied ? (
+            <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          ) : (
+            <LinkIcon className="w-4 h-4" />
+          )}
+          {copied ? 'Copied!' : 'Copy Link'}
+        </button>
       </div>
     </div>
   );

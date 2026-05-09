@@ -74,6 +74,71 @@ const Typewriter = ({
   return <span>{currentText}</span>;
 };
 
+// Cloud component that drifts completely across the screen
+const DriftingCloud = ({
+  top,
+  width,
+  height,
+  duration,
+  delay,
+  color,
+  secondaryColor,
+}: {
+  top: string;
+  width: number;
+  height: number;
+  duration: number;
+  delay: number;
+  color: string;
+  secondaryColor: string;
+}) => {
+  return (
+    <svg
+      className="absolute"
+      style={{
+        top,
+        left: '-300px',
+        width: `${width}px`,
+        height: `${height}px`,
+        animation: `cloudDrift ${duration}s linear infinite`,
+        animationDelay: `-${delay}s`,
+      }}
+      viewBox={`0 0 ${width} ${height}`}
+    >
+      <g filter="url(#cloudShadow)">
+        <ellipse
+          cx={width * 0.5}
+          cy={height * 0.6}
+          rx={width * 0.4}
+          ry={height * 0.35}
+          fill={color}
+        />
+        <ellipse
+          cx={width * 0.3}
+          cy={height * 0.4}
+          rx={width * 0.25}
+          ry={height * 0.4}
+          fill={color}
+        />
+        <ellipse
+          cx={width * 0.7}
+          cy={height * 0.35}
+          rx={width * 0.22}
+          ry={height * 0.35}
+          fill={color}
+        />
+        <ellipse
+          cx={width * 0.5}
+          cy={height * 0.3}
+          rx={width * 0.2}
+          ry={height * 0.3}
+          fill={secondaryColor}
+        />
+      </g>
+    </svg>
+  );
+};
+
 // Animated Day/Night Scene Component
 const DayNightScene = ({ isNight }: { isNight: boolean }) => {
   return (
@@ -102,11 +167,30 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
         }}
       />
 
+      {/* SVG Defs for filters */}
+      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+        <defs>
+          <filter id="cloudShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+            <feOffset dy="3" result="offsetblur" />
+            <feComponentTransfer>
+              <feFuncA type="linear" slope="0.25" />
+            </feComponentTransfer>
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
+
       {/* Stars */}
       <div
-        className={`absolute inset-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
+          isNight ? 'opacity-100' : 'opacity-0'
+        }`}
       >
-        {[...Array(50)].map((_, i) => (
+        {[...Array(60)].map((_, i) => (
           <div
             key={`star-${i}`}
             className="absolute rounded-full bg-white animate-twinkle"
@@ -114,7 +198,7 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
               width: `${Math.random() * 3 + 1}px`,
               height: `${Math.random() * 3 + 1}px`,
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 60}%`,
+              top: `${Math.random() * 55}%`,
               animationDelay: `${Math.random() * 3}s`,
               animationDuration: `${Math.random() * 2 + 2}s`,
             }}
@@ -127,7 +211,7 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
         className={`absolute transition-all duration-1000 ${
           isNight ? 'translate-y-[300px] opacity-0' : 'translate-y-0 opacity-100'
         }`}
-        style={{ left: '20%', top: '15%' }}
+        style={{ left: '15%', top: '10%' }}
       >
         <svg width="120" height="120" viewBox="0 0 120 120">
           <defs>
@@ -181,7 +265,7 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
         className={`absolute transition-all duration-1000 ${
           isNight ? 'translate-y-0 opacity-100' : '-translate-y-[300px] opacity-0'
         }`}
-        style={{ right: '15%', top: '10%' }}
+        style={{ right: '12%', top: '8%' }}
       >
         <svg width="80" height="80" viewBox="0 0 80 80">
           <defs>
@@ -193,94 +277,101 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
               </feMerge>
             </filter>
           </defs>
-          {/* Moon glow */}
           <circle cx="40" cy="40" r="35" fill="#E8E8E8" filter="url(#moonGlow)" opacity="0.3" />
-          {/* Crescent moon shape */}
           <circle cx="40" cy="40" r="30" fill="#F5F5DC" />
           <circle cx="55" cy="35" r="25" fill={isNight ? '#1a2a4a' : '#1a2a4a'} />
-          {/* Moon craters */}
           <circle cx="25" cy="45" r="4" fill="#D4D4AA" opacity="0.5" />
           <circle cx="30" cy="30" r="3" fill="#D4D4AA" opacity="0.4" />
           <circle cx="35" cy="50" r="2" fill="#D4D4AA" opacity="0.3" />
         </svg>
       </div>
 
-      {/* Clouds - Day */}
+      {/* Day Clouds */}
       <div
-        className={`absolute inset-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute inset-0 transition-opacity duration-1000 overflow-hidden ${
+          isNight ? 'opacity-0' : 'opacity-100'
+        }`}
       >
-        {/* Cloud 1 */}
-        <div className="absolute" style={{ top: '8%', left: '10%' }}>
-          <svg width="180" height="80" viewBox="0 0 180 80">
-            <defs>
-              <filter id="cloudShadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-                <feOffset dy="2" result="offsetblur" />
-                <feComponentTransfer>
-                  <feFuncA type="linear" slope="0.2" />
-                </feComponentTransfer>
-                <feMerge>
-                  <feMergeNode />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <g filter="url(#cloudShadow)" className="animate-cloudDrift">
-              <ellipse cx="90" cy="50" rx="70" ry="25" fill="white" />
-              <ellipse cx="60" cy="40" rx="40" ry="30" fill="white" />
-              <ellipse cx="120" cy="35" rx="35" ry="25" fill="white" />
-              <ellipse cx="90" cy="30" rx="30" ry="20" fill="white" />
-            </g>
-          </svg>
-        </div>
-        {/* Cloud 2 */}
-        <div className="absolute" style={{ top: '20%', left: '50%' }}>
-          <svg width="150" height="70" viewBox="0 0 150 70">
-            <g filter="url(#cloudShadow)" className="animate-cloudDrift2">
-              <ellipse cx="75" cy="45" rx="60" ry="20" fill="white" opacity="0.95" />
-              <ellipse cx="50" cy="35" rx="35" ry="25" fill="white" opacity="0.95" />
-              <ellipse cx="100" cy="30" rx="30" ry="22" fill="white" opacity="0.95" />
-            </g>
-          </svg>
-        </div>
-        {/* Cloud 3 */}
-        <div className="absolute" style={{ top: '5%', right: '15%' }}>
-          <svg width="120" height="60" viewBox="0 0 120 60">
-            <g filter="url(#cloudShadow)" className="animate-cloudDrift3">
-              <ellipse cx="60" cy="40" rx="50" ry="18" fill="white" />
-              <ellipse cx="40" cy="30" rx="30" ry="22" fill="white" />
-              <ellipse cx="85" cy="28" rx="25" ry="18" fill="white" />
-            </g>
-          </svg>
-        </div>
+        <DriftingCloud
+          top="5%"
+          width={250}
+          height={100}
+          duration={40}
+          delay={0}
+          color="white"
+          secondaryColor="rgba(255,255,255,0.9)"
+        />
+        <DriftingCloud
+          top="18%"
+          width={200}
+          height={80}
+          duration={50}
+          delay={15}
+          color="white"
+          secondaryColor="rgba(255,255,255,0.9)"
+        />
+        <DriftingCloud
+          top="8%"
+          width={180}
+          height={70}
+          duration={35}
+          delay={25}
+          color="white"
+          secondaryColor="rgba(255,255,255,0.9)"
+        />
+        <DriftingCloud
+          top="25%"
+          width={150}
+          height={60}
+          duration={45}
+          delay={30}
+          color="rgba(255,255,255,0.9)"
+          secondaryColor="rgba(255,255,255,0.8)"
+        />
       </div>
 
-      {/* Clouds - Night (edge-lit by moonlight) */}
+      {/* Night Clouds (edge-lit) */}
       <div
-        className={`absolute inset-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 transition-opacity duration-1000 overflow-hidden ${
+          isNight ? 'opacity-100' : 'opacity-0'
+        }`}
       >
-        <div className="absolute" style={{ top: '8%', left: '10%' }}>
-          <svg width="180" height="80" viewBox="0 0 180 80">
-            <g filter="url(#cloudShadow)" className="animate-cloudDrift">
-              <ellipse cx="90" cy="50" rx="70" ry="25" fill="#4a5568" />
-              <ellipse cx="60" cy="40" rx="40" ry="30" fill="#4a5568" />
-              <ellipse cx="120" cy="35" rx="35" ry="25" fill="#4a5568" />
-              {/* Moonlit edges */}
-              <ellipse cx="90" cy="30" rx="70" ry="25" fill="#718096" opacity="0.6" />
-              <ellipse cx="60" cy="30" rx="40" ry="30" fill="#718096" opacity="0.6" />
-            </g>
-          </svg>
-        </div>
-        <div className="absolute" style={{ top: '20%', left: '50%' }}>
-          <svg width="150" height="70" viewBox="0 0 150 70">
-            <g filter="url(#cloudShadow)" className="animate-cloudDrift2">
-              <ellipse cx="75" cy="45" rx="60" ry="20" fill="#374151" />
-              <ellipse cx="50" cy="35" rx="35" ry="25" fill="#374151" />
-              <ellipse cx="100" cy="30" rx="30" ry="22" fill="#374151" />
-              <ellipse cx="75" cy="25" rx="60" ry="20" fill="#4b5563" opacity="0.6" />
-            </g>
-          </svg>
-        </div>
+        <DriftingCloud
+          top="5%"
+          width={250}
+          height={100}
+          duration={40}
+          delay={0}
+          color="#4a5568"
+          secondaryColor="#718096"
+        />
+        <DriftingCloud
+          top="18%"
+          width={200}
+          height={80}
+          duration={50}
+          delay={15}
+          color="#374151"
+          secondaryColor="#4b5563"
+        />
+        <DriftingCloud
+          top="8%"
+          width={180}
+          height={70}
+          duration={35}
+          delay={25}
+          color="#4a5568"
+          secondaryColor="#6b7280"
+        />
+        <DriftingCloud
+          top="25%"
+          width={150}
+          height={60}
+          duration={45}
+          delay={30}
+          color="#374151"
+          secondaryColor="#4b5563"
+        />
       </div>
 
       {/* Mountains */}
@@ -296,19 +387,16 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
               <stop offset="100%" stopColor={isNight ? '#2d3748' : '#6b8e6b'} />
             </linearGradient>
           </defs>
-          {/* Back mountains */}
           <polygon
             points="0,200 150,80 300,150 450,60 600,140 750,50 800,120 800,200"
             fill="url(#mountainGradient2)"
             className="transition-all duration-1000"
           />
-          {/* Front mountains */}
           <polygon
             points="0,200 100,120 250,170 400,100 550,160 700,90 800,150 800,200"
             fill="url(#mountainGradient)"
             className="transition-all duration-1000"
           />
-          {/* Snow caps (day only) */}
           <polygon
             points="450,60 430,85 470,85"
             fill={isNight ? '#4a5568' : '#e8e8e8'}
@@ -322,14 +410,13 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
         </svg>
       </div>
 
-      {/* Tree with swaying animation */}
+      {/* Trees */}
       <div
-        className={`absolute bottom-[10%] left-[15%] transition-all duration-1000 ${
+        className={`absolute bottom-[10%] left-[12%] transition-all duration-1000 ${
           isNight ? 'translate-x-[50px]' : 'translate-x-0'
         }`}
       >
         <svg width="200" height="300" viewBox="0 0 200 300">
-          {/* Tree trunk */}
           <rect
             x="90"
             y="150"
@@ -338,7 +425,6 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
             fill={isNight ? '#3d2914' : '#5d4037'}
             rx="2"
           />
-          {/* Tree branches */}
           <path
             d="M100 200 Q60 180 30 190"
             stroke={isNight ? '#3d2914' : '#5d4037'}
@@ -355,7 +441,6 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
             className="animate-treeSwayReverse"
             style={{ transformOrigin: '100px 180px' }}
           />
-          {/* Tree foliage */}
           <g className="animate-foliageSway" style={{ transformOrigin: '100px 120px' }}>
             <ellipse cx="100" cy="100" rx="80" ry="70" fill={isNight ? '#1a3a1a' : '#228b22'} />
             <ellipse cx="70" cy="120" rx="50" ry="45" fill={isNight ? '#1a3a1a' : '#228b22'} />
@@ -367,9 +452,8 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
         </svg>
       </div>
 
-      {/* Second Tree */}
       <div
-        className={`absolute bottom-[8%] right-[20%] transition-all duration-1000 ${
+        className={`absolute bottom-[8%] right-[18%] transition-all duration-1000 ${
           isNight ? '-translate-x-[30px]' : 'translate-x-0'
         }`}
       >
@@ -394,7 +478,7 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
         </svg>
       </div>
 
-      {/* Ground/Hills */}
+      {/* Ground */}
       <div className="absolute bottom-0 left-0 right-0 h-[12%]">
         <svg width="100%" height="100%" viewBox="0 0 800 100" preserveAspectRatio="xMidYMax slice">
           <defs>
@@ -407,7 +491,7 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
         </svg>
       </div>
 
-      {/* Horizon glow (sunset/sunrise effect) */}
+      {/* Horizon glow */}
       <div
         className={`absolute bottom-[10%] left-0 right-0 h-[30%] transition-opacity duration-1000 ${
           isNight ? 'opacity-0' : 'opacity-60'
@@ -469,6 +553,26 @@ export default function HeroBanner() {
   const textRef = useRef(null);
   const [isNight, setIsNight] = useState(false);
 
+  // Sync with system/site dark mode on mount and when it changes
+  useEffect(() => {
+    const checkDarkMode = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setIsNight(isDark);
+    };
+
+    // Check initial dark mode
+    checkDarkMode();
+
+    // Watch for dark mode changes
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -483,14 +587,12 @@ export default function HeroBanner() {
 
   return (
     <section className="relative overflow-hidden bg-hero-pattern">
-      {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-teal-50/60 to-emerald-50 dark:from-green-950/40 dark:via-teal-950/30 dark:to-emerald-950/20" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/4" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
 
       <div className="relative max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Text */}
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-flow">
               Empowering Action for a Sustainable and Inclusive Future.
@@ -529,21 +631,17 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          {/* Right: Interactive Day/Night Scene */}
           <div className="hidden lg:block w-full" ref={containerRef}>
             <div className="relative rounded-3xl overflow-hidden">
               <DayNightToggle isNight={isNight} setIsNight={setIsNight} />
               <DayNightScene isNight={isNight} />
 
-              {/* Text Overlay */}
               <div
                 className="absolute z-50 bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-black/60 via-black/40 to-transparent text-left"
                 ref={textRef}
               >
                 <span
-                  className={`text-xs font-bold uppercase tracking-widest mb-2 block ${
-                    isNight ? 'text-indigo-300' : 'text-emerald-400'
-                  }`}
+                  className={`text-xs font-bold uppercase tracking-widest mb-2 block ${isNight ? 'text-indigo-300' : 'text-emerald-400'}`}
                 >
                   {isNight ? 'Night Mode' : 'Day Mode'}
                 </span>
@@ -569,7 +667,6 @@ export default function HeroBanner() {
         </div>
       </div>
 
-      {/* CSS Animations */}
       <style jsx global>{`
         @keyframes twinkle {
           0%,
@@ -613,21 +710,10 @@ export default function HeroBanner() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(100vw);
+            transform: translateX(calc(100vw + 600px));
           }
         }
-        .animate-cloudDrift {
-          animation: cloudDrift 45s linear infinite;
-        }
-        .animate-cloudDrift2 {
-          animation: cloudDrift 60s linear infinite;
-          animation-delay: -20s;
-        }
-        .animate-cloudDrift3 {
-          animation: cloudDrift 50s linear infinite;
-          animation-delay: -35s;
-        }
-        @keyframes treeSway {
+        .animate-treeSway {
           0%,
           100% {
             transform: rotate(0deg);

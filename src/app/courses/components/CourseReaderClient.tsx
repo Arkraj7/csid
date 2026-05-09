@@ -27,6 +27,10 @@ type Course = {
   title: string;
   description: string;
   duration: string;
+  level: string;
+  quizCount: number;
+  certificate: string;
+  language: string;
   chapters: CourseChapter[];
 };
 

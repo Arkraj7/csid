@@ -1,4 +1,4 @@
-/* eslint-disable */
+﻿/* eslint-disable */
 // @ts-nocheck
 
 export const biodiversityConservationCourse = {
@@ -32,7 +32,7 @@ To systematically study and manage this vast ecological wealth, scientists rely 
 The ten zones represent dramatically different environmental conditions. The Trans-Himalaya zone, for example, is a cold, high-altitude desert that supports specialised wildlife such as the Snow Leopard and the Black-necked Crane. Conversely, the Deccan Peninsula represents the largest zone, covering the majority of the peninsular region, featuring ancient volcanic soils and vast expanses of mixed deciduous forests. Other critical zones include the Himalayas (representing the Palearctic Realm), the Semi-Arid regions, the Western Ghats, the Gangetic Plain, the North-East India, the Islands, and the Coastal regions. These distinct regions highlight the necessity of targeted conservation approaches.
 
 ### Lesson 1.3: Global Hotspots and the Dynamics of Endemism
-The concept of "Biodiversity Hotspots" was introduced by scientist Norman Myers in 2000 as a framework to identify Earth's most biologically rich and ecologically fragile areas that urgently require conservation intervention. To qualify for this designation, a region must meet strict criteria, primarily containing at least 1,500 species of endemic vascular plants—meaning these species are found nowhere else on the planet. The region must also have experienced significant habitat loss, making it highly threatened.
+The concept of "Biodiversity Hotspots" was introduced by scientist Norman Myers in 2000 as a framework to identify Earth's most biologically rich and ecologically fragile areas that urgently require conservation intervention. To qualify for this designation, a region must meet strict criteria, primarily containing at least 1,500 species of endemic vascular plantsâ€”meaning these species are found nowhere else on the planet. The region must also have experienced significant habitat loss, making it highly threatened.
 
 India proudly hosts or shares four of these global biodiversity hotspots: the Himalayas, the Western Ghats, the Indo-Burma region, and Sundaland (which encompasses the Nicobar group of Islands). The Western Ghats and Sri Lanka hotspot, alongside the Eastern Himalayas, are particularly noted for their high concentration of endemic species adapted to specific micro-habitats. Because endemic species possess narrow niche requirements, any minor change in their micro-environment can rapidly drive their populations toward extinction.`,
       quiz: [
@@ -91,15 +91,15 @@ By identifying and quantifying services such as carbon sequestration, water regu
 ### Lesson 2.1: Conceptual Frameworks for Natural Capital
 To evaluate the true worth of biological diversity, economists and ecologists utilise the concept of "Natural Capital," which treats the natural environment as a stock of assets that provides a flow of valuable goods and services. The TEEB framework is essential in categorising these benefits into four primary ecosystem services: provisioning, regulating, cultural, and supporting services.
 
-Provisioning services encompass the direct, tangible goods extracted from nature, such as food, timber, fibre, and medicinal plants. Regulating services refer to the non-consumptive benefits that maintain environmental stability, including climate regulation, carbon sequestration, pollution control, and coastal protection against storm surges. Cultural services reflect the non-material, recreational, aesthetic, and spiritual values that humans derive from natural spaces. Finally, supporting services are the fundamental ecological processes—such as soil formation, photosynthesis, and nutrient cycling—that act as the bedrock, enabling all other ecosystem functions to occur. 
+Provisioning services encompass the direct, tangible goods extracted from nature, such as food, timber, fibre, and medicinal plants. Regulating services refer to the non-consumptive benefits that maintain environmental stability, including climate regulation, carbon sequestration, pollution control, and coastal protection against storm surges. Cultural services reflect the non-material, recreational, aesthetic, and spiritual values that humans derive from natural spaces. Finally, supporting services are the fundamental ecological processesâ€”such as soil formation, photosynthesis, and nutrient cyclingâ€”that act as the bedrock, enabling all other ecosystem functions to occur. 
 
 ### Lesson 2.2: Economic Valuation of Coastal and Marine Ecosystems
-India’s coastal and marine ecosystems—ranging from coral reefs and seagrass beds to vast mangrove forests—are regions of extraordinary biological productivity. Economically, the services provided by these coastal and marine ecosystems are staggering, contributing approximately 2.4% of India's net national product.
+Indiaâ€™s coastal and marine ecosystemsâ€”ranging from coral reefs and seagrass beds to vast mangrove forestsâ€”are regions of extraordinary biological productivity. Economically, the services provided by these coastal and marine ecosystems are staggering, contributing approximately 2.4% of India's net national product.
 
-Mangroves, in particular, serve as critical economic and ecological assets. Beyond providing nursery habitats for commercial fisheries, they act as massive "bio-shields" that protect coastal infrastructure and communities from the devastating impacts of cyclones, storm surges, and tsunamis. When comprehensively evaluated using the TEEB framework, the average total economic benefit of Indian mangrove ecosystems is estimated to be a remarkable ₹958,766 per hectare annually. Such high valuations mathematically prove that preserving mangroves yields a far higher long-term dividend than clearing them for short-term coastal development or aquaculture.
+Mangroves, in particular, serve as critical economic and ecological assets. Beyond providing nursery habitats for commercial fisheries, they act as massive "bio-shields" that protect coastal infrastructure and communities from the devastating impacts of cyclones, storm surges, and tsunamis. When comprehensively evaluated using the TEEB framework, the average total economic benefit of Indian mangrove ecosystems is estimated to be a remarkable â‚¹958,766 per hectare annually. Such high valuations mathematically prove that preserving mangroves yields a far higher long-term dividend than clearing them for short-term coastal development or aquaculture.
 
 ### Lesson 2.3: Forest Ecosystem Services and Total Economic Value (TEV)
-Forest ecosystems contribute significantly to both local livelihoods and the state gross domestic product through a blend of direct extraction and invisible regulatory services. To capture this complete picture, the "Total Economic Value" (TEV) approach is deployed. TEV aggregates "use-values"—both consumptive (like timber) and non-consumptive (like recreation)—with "non-use values," which encompass altruistic existence values and bequest values (the satisfaction of ensuring nature exists for future generations).
+Forest ecosystems contribute significantly to both local livelihoods and the state gross domestic product through a blend of direct extraction and invisible regulatory services. To capture this complete picture, the "Total Economic Value" (TEV) approach is deployed. TEV aggregates "use-values"â€”both consumptive (like timber) and non-consumptive (like recreation)â€”with "non-use values," which encompass altruistic existence values and bequest values (the satisfaction of ensuring nature exists for future generations).
 
 Various economic valuation methods are used to translate these concepts into monetary terms. For example, the Travel Cost Method is commonly employed to determine the recreational and cultural value of an ecosystem by analysing the expenses consumers willingly incur to travel to and access a natural site. Understanding these metrics ensures that governments can accurately incorporate the invisible wealth of forests, such as the vital carbon stock held in biomass and soils, into their financial accounting and policy planning.`,
       quiz: [
@@ -130,10 +130,10 @@ Various economic valuation methods are used to translate these concepts into mon
           id: 'm2-q3',
           question:
             'What is the estimated average annual economic benefit of Indian mangroves per hectare?',
-          options: ['₹92,662', '₹336,114', '₹958,766', '₹1,500,000'],
+          options: ['â‚¹92,662', 'â‚¹336,114', 'â‚¹958,766', 'â‚¹1,500,000'],
           correctAnswer: 2,
           explanation:
-            '₹958,766 is the calculated average total economic benefit provided by Indian mangrove ecosystems per hectare annually.',
+            'â‚¹958,766 is the calculated average total economic benefit provided by Indian mangrove ecosystems per hectare annually.',
         },
         {
           id: 'm2-q4',
@@ -164,14 +164,14 @@ Various economic valuation methods are used to translate these concepts into mon
       id: 'module-3',
       title: 'Module 3: Anthropogenic Threats and Biological Invasions',
       content: `### Introduction
-The third module examines the primary drivers of biodiversity loss in India, with a specific focus on human-induced pressures. As India continues its rapid developmental trajectory, the tension between infrastructure expansion and ecological preservation has intensified. The module explores how habitat fragmentation—the breaking apart of continuous ecosystems—disrupts wildlife corridors and isolates populations, leading to increased human-wildlife conflict and reduced genetic diversity. 
+The third module examines the primary drivers of biodiversity loss in India, with a specific focus on human-induced pressures. As India continues its rapid developmental trajectory, the tension between infrastructure expansion and ecological preservation has intensified. The module explores how habitat fragmentationâ€”the breaking apart of continuous ecosystemsâ€”disrupts wildlife corridors and isolates populations, leading to increased human-wildlife conflict and reduced genetic diversity. 
 
 A central theme of this module is the ecological impact of Invasive Alien Species (IAS), which are considered one of the leading threats to native biodiversity globally. Using Lantana camara as a definitive case study, learners will understand how an ornamental plant introduced in the 19th century has systematically invaded over 40% of India's tiger range. We will also address the overarching threat of climate change, specifically its role as a "force multiplier" that accelerates biological invasions and causes altitudinal habitat shifts in sensitive mountain ecosystems like the Himalayas.
 
 ### Lesson 3.1: The Ecology of Invasion: Lantana camara as a Case Study
 Biological invasions pose a profound anthropogenic threat to native ecosystems. The perennial shrub Lantana camara, originally native to tropical America, was introduced to India in the 19th century and has since become one of the most aggressive invasive species in the country. Currently, Lantana threatens approximately 44% of the nation's total forest cover and has specifically invaded over 40% of India's established tiger range.
 
-The ecological success of Lantana camara is driven by its exceptional biological traits. It exhibits high phenotypic plasticity, allowing it to adapt and thrive across a vast array of climatic conditions. Crucially, Lantana utilises allelopathy—the release of biochemicals into the soil that actively inhibit the germination and growth of competing native plant species. This process fundamentally alters the ecosystem; studies reveal that heavily invaded areas suffer a severe reduction in native tree species richness and juvenile plant recruitment, while concurrently showing an abnormal increase in soil organic carbon (SOC) and nutrient levels strictly beneath the Lantana canopy.
+The ecological success of Lantana camara is driven by its exceptional biological traits. It exhibits high phenotypic plasticity, allowing it to adapt and thrive across a vast array of climatic conditions. Crucially, Lantana utilises allelopathyâ€”the release of biochemicals into the soil that actively inhibit the germination and growth of competing native plant species. This process fundamentally alters the ecosystem; studies reveal that heavily invaded areas suffer a severe reduction in native tree species richness and juvenile plant recruitment, while concurrently showing an abnormal increase in soil organic carbon (SOC) and nutrient levels strictly beneath the Lantana canopy.
 
 ### Lesson 3.2: Habitat Fragmentation and its Impacts on Flagship Species
 Habitat fragmentation occurs when continuous swathes of natural ecosystems are carved up by human development, such as highways, railways, agricultural expansion, and mining operations. These disturbances do not merely reduce total habitat area; they create isolated "islands" of wilderness. This isolation critically disrupts ancient wildlife corridors, preventing large, wide-ranging mammals like elephants and tigers from migrating for food, water, and breeding.
@@ -179,7 +179,7 @@ Habitat fragmentation occurs when continuous swathes of natural ecosystems are c
 Furthermore, disturbed edges created by fragmentation are highly susceptible to secondary threats. For instance, areas disturbed by road widening and mining become primary entry points for aggressive weeds like Lantana camara to colonise. Among India's diverse geographic regions, the Shivalik Hills, Central Indian landscapes, and the Southern Western Ghats have been identified as some of the worst-hit areas suffering from severe habitat fragmentation combined with biological invasion.
 
 ### Lesson 3.3: Climate Change and the Altitudinal Shift of Mountain Flora
-Climate change acts as a formidable force multiplier that compounds all other ecological threats. In highly sensitive mountain environments like the Himalayas, the impacts of global warming are strikingly visible. The region has experienced accelerated decadal warming rates ranging from 0.3 °C to 0.9 °C.
+Climate change acts as a formidable force multiplier that compounds all other ecological threats. In highly sensitive mountain environments like the Himalayas, the impacts of global warming are strikingly visible. The region has experienced accelerated decadal warming rates ranging from 0.3 Â°C to 0.9 Â°C.
 
 Because temperature strictly dictates the distribution of high-altitude flora and fauna, this rapid warming forces species to migrate upward to higher elevations in search of their required cooler thermal niches. However, this upward shift inevitably leads to "habitat shrinkage," because mountain peaks possess significantly less surface area than their lower slopes. Consequently, iconic mountain-dwelling species such as the Snow Leopard, as well as highly specialised, endemic alpine medicinal herbs, face an existential threat; once they reach the physical limits of the mountain peaks, their thermal niches will disappear entirely.`,
       quiz: [
@@ -248,19 +248,19 @@ Because temperature strictly dictates the distribution of high-altitude flora an
       id: 'module-4',
       title: 'Module 4: Integrated Conservation and Species Recovery Programs',
       content: `### Introduction
-The fourth module explores the diverse strategies employed by the Indian government and local communities to conserve biodiversity. We begin with a deep dive into the flagship species initiatives—Project Tiger and Project Elephant. These programmes have set global benchmarks for wildlife recovery, with India now hosting over 70% of the world's wild tigers and 60% of Asian elephants. The module analyses the management models used in these reserves, including the "core-buffer" strategy, the use of modern technology like satellite tagging for Project Dolphin, and the world's first intercontinental large carnivore translocation project, Project Cheetah.
+The fourth module explores the diverse strategies employed by the Indian government and local communities to conserve biodiversity. We begin with a deep dive into the flagship species initiativesâ€”Project Tiger and Project Elephant. These programmes have set global benchmarks for wildlife recovery, with India now hosting over 70% of the world's wild tigers and 60% of Asian elephants. The module analyses the management models used in these reserves, including the "core-buffer" strategy, the use of modern technology like satellite tagging for Project Dolphin, and the world's first intercontinental large carnivore translocation project, Project Cheetah.
 
-Beyond top-down governmental interventions, the module highlights the critical importance of traditional and community-based conservation. We will examine the "Sacred Groves" of India—centuries-old patches of forest protected by local communities due to religious and cultural beliefs. These groves serve as vital micro-ecosystems and repositories of biodiversity in fragmented landscapes. 
+Beyond top-down governmental interventions, the module highlights the critical importance of traditional and community-based conservation. We will examine the "Sacred Groves" of Indiaâ€”centuries-old patches of forest protected by local communities due to religious and cultural beliefs. These groves serve as vital micro-ecosystems and repositories of biodiversity in fragmented landscapes. 
 
 ### Lesson 4.1: Flagship Initiatives: Success Metrics for Project Tiger and Beyond
-India’s approach to wildlife conservation has relied heavily on the "flagship species" concept—protecting high-profile, charismatic animals whose preservation inherently safeguards the broader ecosystems they inhabit. The most prominent example is Project Tiger, officially launched on 1 April 1973. This initiative revolutionised conservation management by adopting a "core-buffer" strategy, dedicating strictly protected central core areas for the undisturbed breeding of tigers, surrounded by multi-use buffer zones. This systematic protection has yielded remarkable success; the 2022 population estimation revealed an average of 3,682 wild tigers in the country, meaning India now hosts over 70% of the global wild tiger population.
+Indiaâ€™s approach to wildlife conservation has relied heavily on the "flagship species" conceptâ€”protecting high-profile, charismatic animals whose preservation inherently safeguards the broader ecosystems they inhabit. The most prominent example is Project Tiger, officially launched on 1 April 1973. This initiative revolutionised conservation management by adopting a "core-buffer" strategy, dedicating strictly protected central core areas for the undisturbed breeding of tigers, surrounded by multi-use buffer zones. This systematic protection has yielded remarkable success; the 2022 population estimation revealed an average of 3,682 wild tigers in the country, meaning India now hosts over 70% of the global wild tiger population.
 
 Building on this success, India has expanded its focused recovery projects. Project Cheetah successfully executed the first intercontinental large carnivore translocation in history. Similarly, initiatives like Project Dolphin leverage cutting-edge tools; in December 2024, researchers achieved the first-ever satellite-tagging of a Ganges River Dolphin to precisely track its movements and identify aquatic stressors.
 
 ### Lesson 4.2: Landscape-Level Management for Project Elephant
 Launched in 1992, Project Elephant seeks to protect the endangered Asian elephant across 33 formally notified reserves spanning the country. India presently sustains over 60% of the world's Asian elephants. Unlike the stringent statutory protection afforded to National Parks or established Tiger Reserves under the Wild Life (Protection) Act of 1972, Elephant Reserves operate primarily as administrative management units and do not necessarily possess the same robust legal standing.
 
-This discrepancy creates complex challenges in landscape management, particularly because elephants are migratory species that require massive territories to thrive. To reconcile this, Project Elephant places immense emphasis on identifying, securing, and maintaining "elephant corridors"—narrow, critical strips of forested land that allow herds to move safely between major habitat blocks. Conserving these linkages is an urgent priority to mitigate rising human-elephant conflict resulting from landscape fragmentation.
+This discrepancy creates complex challenges in landscape management, particularly because elephants are migratory species that require massive territories to thrive. To reconcile this, Project Elephant places immense emphasis on identifying, securing, and maintaining "elephant corridors"â€”narrow, critical strips of forested land that allow herds to move safely between major habitat blocks. Conserving these linkages is an urgent priority to mitigate rising human-elephant conflict resulting from landscape fragmentation.
 
 ### Lesson 4.3: Community-Led Conservation: The Ecological Role of Sacred Groves
 While modern legislation plays a central role in conservation, centuries-old traditional practices remain equally critical. "Sacred groves" are fragmented patches of indigenous forest, varying in size from just a few trees to several hectares, that have been preserved by local and tribal communities through deep-rooted religious taboos, deities, and cultural veneration. It is estimated that over 100,000 such groves exist across the nation.
@@ -329,7 +329,7 @@ These community-conserved areas hold immense ecological value. In the Malabar Co
       content: `### Introduction
 The final module shifts the focus to the legal and administrative architecture governing biodiversity in India. We explore the Biological Diversity Act of 2002, which was enacted to fulfil India's commitments under the UN Convention on Biological Diversity (CBD). The module details the decentralised three-tier structure consisting of the National Biodiversity Authority (NBA), State Biodiversity Boards (SBB), and local Biodiversity Management Committees (BMC).
 
-Learners will understand the complex regulatory framework for Access and Benefit Sharing (ABS), which ensures that local communities—the custodians of biological wealth—receive a fair share of the profits when their resources or traditional knowledge are commercialised. Furthermore, the module delves into India’s pioneering strides in digital conservation documentation, mapping the creation of the Traditional Knowledge Digital Library (TKDL) and the nationwide implementation of electronic People's Biodiversity Registers (e-PBRs).
+Learners will understand the complex regulatory framework for Access and Benefit Sharing (ABS), which ensures that local communitiesâ€”the custodians of biological wealthâ€”receive a fair share of the profits when their resources or traditional knowledge are commercialised. Furthermore, the module delves into Indiaâ€™s pioneering strides in digital conservation documentation, mapping the creation of the Traditional Knowledge Digital Library (TKDL) and the nationwide implementation of electronic People's Biodiversity Registers (e-PBRs).
 
 ### Lesson 5.1: Legal Foundations: The Biological Diversity Act, 2002
 Following its obligations under the 1992 Convention on Biological Diversity, India enacted the Biological Diversity Act (BDA) in 2002. This landmark legislation serves as the cornerstone of the nation's environmental policy regarding the conservation, sustainable use, and equitable sharing of biological resources. To effectively manage biodiversity across a vast and diverse geography, the Act established a decentralised, three-tier regulatory mechanism.
@@ -337,14 +337,14 @@ Following its obligations under the 1992 Convention on Biological Diversity, Ind
 At the apex is the National Biodiversity Authority (NBA), which operates at the central level and specifically manages requests for access to Indian biological resources by foreign individuals or institutions. At the regional level sit the State Biodiversity Boards (SBBs), while the grassroots level is managed by local Biodiversity Management Committees (BMCs). The Act mandates a robust Access and Benefit Sharing (ABS) framework. Anyone seeking to commercialise biological assets must establish Prior Informed Consent (PIC) and negotiate Mutually Agreed Terms (MAT) to ensure that the indigenous communities who have preserved these resources are fairly compensated.
 
 ### Lesson 5.2: Intellectual Property and the Traditional Knowledge Digital Library
-In the late 1990s, the Indian government faced egregious instances of international biopiracy, where foreign corporations secured unethical patents on native Indian biological resources and centuries-old remedies, such as the wound-healing properties of Turmeric and the fungicidal properties of Neem. These patents were granted largely because patent examiners in foreign offices could not search for "prior art"—existing knowledge—that was locked away in ancient, untranslated texts.
+In the late 1990s, the Indian government faced egregious instances of international biopiracy, where foreign corporations secured unethical patents on native Indian biological resources and centuries-old remedies, such as the wound-healing properties of Turmeric and the fungicidal properties of Neem. These patents were granted largely because patent examiners in foreign offices could not search for "prior art"â€”existing knowledgeâ€”that was locked away in ancient, untranslated texts.
 
 In response, the Council of Scientific and Industrial Research (CSIR) partnered with the Ministry of AYUSH in 2001 to create the Traditional Knowledge Digital Library (TKDL). This monumental database systematically transcribes traditional medical formulations from Ayurveda, Unani, Siddha, Sowa Rigpa, and Yoga. The indigenous texts are converted into an innovative classification system and translated into five international languages: English, German, French, Japanese, and Spanish. By providing this database to international patent offices, the TKDL ensures that patent examiners can easily verify existing Indian knowledge, successfully preventing the misappropriation and biopiracy of the nation's medical heritage.
 
-### Lesson 5.3: Digital Innovations: Electronic People’s Biodiversity Registers (e-PBR)
-At the base of the Biological Diversity Act's three-tier structure are the local Biodiversity Management Committees (BMCs). The primary statutory function of a BMC is to document local biodiversity, traditional practices, and ecological knowledge into detailed logs known as People’s Biodiversity Registers (PBRs).
+### Lesson 5.3: Digital Innovations: Electronic Peopleâ€™s Biodiversity Registers (e-PBR)
+At the base of the Biological Diversity Act's three-tier structure are the local Biodiversity Management Committees (BMCs). The primary statutory function of a BMC is to document local biodiversity, traditional practices, and ecological knowledge into detailed logs known as Peopleâ€™s Biodiversity Registers (PBRs).
 
-Historically recorded on paper, the physical management and sharing of thousands of village-level PBRs proved highly inefficient. To resolve this, India has initiated a massive undertaking to transition to electronic People’s Biodiversity Registers (e-PBRs). Digitising this information allows for real-time monitoring of biodiversity losses, aids in resolving intellectual property disputes, and most importantly, improves the speed and transparency of the Access and Benefit Sharing (ABS) mechanism, ensuring that local communities are promptly recognised and compensated for commercialised local knowledge.`,
+Historically recorded on paper, the physical management and sharing of thousands of village-level PBRs proved highly inefficient. To resolve this, India has initiated a massive undertaking to transition to electronic Peopleâ€™s Biodiversity Registers (e-PBRs). Digitising this information allows for real-time monitoring of biodiversity losses, aids in resolving intellectual property disputes, and most importantly, improves the speed and transparency of the Access and Benefit Sharing (ABS) mechanism, ensuring that local communities are promptly recognised and compensated for commercialised local knowledge.`,
       quiz: [
         {
           id: 'm5-q1',
@@ -375,7 +375,7 @@ Historically recorded on paper, the physical management and sharing of thousands
             'Under the Biological Diversity Act, what is the primary role of the local Biodiversity Management Committees (BMC)?',
           options: [
             'To arrest poachers',
-            'To prepare People’s Biodiversity Registers (PBRs)',
+            'To prepare Peopleâ€™s Biodiversity Registers (PBRs)',
             'To grant patents to international companies',
             'To build national highways',
           ],
@@ -399,7 +399,7 @@ Historically recorded on paper, the physical management and sharing of thousands
         {
           id: 'm5-q5',
           question:
-            'The shift to electronic People’s Biodiversity Registers (e-PBR) is intended to improve which mechanism?',
+            'The shift to electronic Peopleâ€™s Biodiversity Registers (e-PBR) is intended to improve which mechanism?',
           options: [
             'Access and Benefit Sharing (ABS)',
             'Wildlife Census methodology',
@@ -417,7 +417,7 @@ Historically recorded on paper, the physical management and sharing of thousands
     {
       id: 'final-1',
       question:
-        'India hosts what percentage of the world’s recorded species, according to the national report?',
+        'India hosts what percentage of the worldâ€™s recorded species, according to the national report?',
       options: ['2.4%', '5.32%', '7.8%', '23.39%'],
       correctAnswer: 2,
       explanation:

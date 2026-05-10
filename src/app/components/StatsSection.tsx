@@ -13,7 +13,6 @@ export default function StatsSection() {
           </div>
           <Link
             href="/csid/Leaf-and-Ledger/calculator.html"
-            target="_blank"
             className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-bold shadow-lg animate-pulse hover:scale-105 transition-all"
             style={{
               background: 'linear-gradient(135deg, #059669, #10b981)',

@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth, db } from '@/lib/firebase';
+import { auth } from '@/lib/firebase';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 import {
   StickyNote,
   X,
@@ -15,6 +16,7 @@ import {
   Save,
   Loader2,
 } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface Note {
   id: string;
@@ -56,6 +58,7 @@ export default function FloatingNotepad() {
 
   const loadNotes = async (userId: string) => {
     try {
+      const db = getFirestore();
       const notesRef = doc(db, NOTES_COLLECTION, userId);
       const notesSnap = await getDoc(notesRef);
 
@@ -78,6 +81,7 @@ export default function FloatingNotepad() {
 
     setIsSaving(true);
     try {
+      const db = getFirestore();
       const notesRef = doc(db, NOTES_COLLECTION, userIdRef.current);
       await setDoc(
         notesRef,
@@ -87,8 +91,10 @@ export default function FloatingNotepad() {
         },
         { merge: true }
       );
+      toast.success('Note saved successfully');
     } catch (error) {
       console.error('Error saving notes:', error);
+      toast.error('Failed to save note');
     }
     setIsSaving(false);
   };

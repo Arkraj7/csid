@@ -1,29 +1,25 @@
 import React from 'react';
-import { Users, BookOpen, Award, Globe } from 'lucide-react';
-
-const stats = [
-  { icon: Users, value: '500+', label: 'Active Learners', color: 'text-primary' },
-  { icon: BookOpen, value: '150+', label: 'Research Modules', color: 'text-secondary' },
-  { icon: Award, value: '25+', label: 'Global Experts', color: 'text-accent' },
-  { icon: Globe, value: '200+', label: 'Certifications Issued', color: 'text-earth' },
-];
+import Link from 'next/link';
+import { Calculator, ArrowRight } from 'lucide-react';
 
 export default function StatsSection() {
   return (
-    <section className="bg-card border-b border-border">
-      <div className="max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats?.map((stat) => (
-            <div key={`stat-${stat?.label}`} className="flex items-center gap-3">
-              <div className={`p-2.5 rounded-xl bg-muted ${stat?.color}`}>
-                <stat.icon size={20} />
-              </div>
-              <div>
-                <div className={`text-xl font-bold font-tabular ${stat?.color}`}>{stat?.value}</div>
-                <div className="text-xs text-muted-foreground">{stat?.label}</div>
-              </div>
-            </div>
-          ))}
+    <section className="bg-emerald-600">
+      <div className="max-w-screen-xl mx-auto px-4 py-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="text-center sm:text-left">
+            <h3 className="text-white text-xl font-bold">🌱 CSID Green Calculator Toolkit</h3>
+            <p className="text-emerald-100 text-sm">Measure your environmental impact in minutes</p>
+          </div>
+          <Link
+            href="/csid/Leaf-and-Ledger/calculator.html"
+            target="_blank"
+            className="inline-flex items-center gap-2 bg-white text-emerald-700 px-6 py-3 rounded-xl font-bold hover:bg-emerald-50 transition-all hover:scale-105 shadow-lg"
+          >
+            <Calculator size={20} />
+            Try Calculator
+            <ArrowRight size={18} />
+          </Link>
         </div>
       </div>
     </section>

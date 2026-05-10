@@ -67,14 +67,14 @@ export default function Navbar({ currentPath }: NavbarProps) {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-[#f4faf7]/80 dark:bg-[#0A192F]/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav className="fixed top-0 w-full z-50 bg-[#e8f1fa]/90 dark:bg-[#0A192F]/80 backdrop-blur-md border-b border-blue-200 dark:border-gray-800 transition-colors duration-300">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">
           {/* LOGO SECTION */}
           <Link href="/" className="flex items-center gap-3">
             <AppLogo className="w-10 h-10 md:w-12 md:h-12 drop-shadow-sm" />
             <div className="flex flex-col justify-center">
-              <span className="font-bold text-xl md:text-2xl text-[#0d1b2a] dark:text-white leading-none tracking-tight transition-colors">
+              <span className="font-bold text-xl md:text-2xl text-[#1e3a5f] dark:text-white leading-none tracking-tight transition-colors">
                 CSID
               </span>
               <span className="text-[10px] md:text-[11px] text-gray-600 dark:text-gray-400 font-semibold tracking-wide mt-1 hidden sm:block uppercase transition-colors">

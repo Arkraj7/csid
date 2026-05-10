@@ -5,7 +5,7 @@ import AppLogo from '@/components/ui/AppLogo';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#f4faf7] dark:bg-[#0A192F] border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 transition-colors duration-300">
+    <footer className="bg-[#e8f1fa] dark:bg-[#0A192F] border-t border-blue-200 dark:border-gray-800 pt-16 pb-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}

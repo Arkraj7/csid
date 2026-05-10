@@ -1,8 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Brain, Flame, Zap, Moon, Sun } from 'lucide-react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { ArrowRight, Brain, Flame, Zap } from 'lucide-react';
 
 interface Difficulty {
   id: string;
@@ -52,74 +54,16 @@ const difficulties: Difficulty[] = [
 ];
 
 export default function ClimateAwarenessPage() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    setIsDarkMode(document.documentElement.classList.contains('dark'));
-
-    const observer = new MutationObserver(() => {
-      setIsDarkMode(document.documentElement.classList.contains('dark'));
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
-  }, []);
-
-  const toggleDarkMode = () => {
-    const isDark = document.documentElement.classList.contains('dark');
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    }
-    setIsDarkMode(!isDark);
-  };
-
-  // Light mode classes
-  const lightBg = 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50';
-  const lightCardBg = 'bg-white/90';
-  const lightText = 'text-emerald-800';
-  const lightSubtext = 'text-gray-600';
-  const lightMuted = 'text-amber-700';
-
-  // Dark mode classes
-  const darkBg = 'bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950';
-  const darkCardBg = 'bg-slate-800/60';
-  const darkText = 'text-slate-100';
-  const darkSubtext = 'text-slate-300';
-  const darkMuted = 'text-indigo-300';
-
-  const bg = isDarkMode ? darkBg : lightBg;
-  const cardBg = isDarkMode ? darkCardBg : lightCardBg;
-  const text = isDarkMode ? darkText : lightText;
-  const subtext = isDarkMode ? darkSubtext : lightSubtext;
-  const muted = isDarkMode ? darkMuted : lightMuted;
-
   return (
-    <div className={`min-h-screen ${bg}`}>
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+      <Navbar currentPath="/climate-awareness" />
       <div className="container mx-auto px-4 py-16">
-        {/* Dark Mode Toggle */}
-        <div className="flex justify-end mb-8">
-          <button
-            onClick={toggleDarkMode}
-            className={`p-3 rounded-full ${cardBg} ${isDarkMode ? 'border border-indigo-700/50' : 'border border-amber-200'} shadow-lg hover:scale-110 transition-all duration-200`}
-            aria-label="Toggle dark mode"
-          >
-            {isDarkMode ? (
-              <Sun className="w-5 h-5 text-amber-400" />
-            ) : (
-              <Moon className="w-5 h-5 text-indigo-600" />
-            )}
-          </button>
-        </div>
-
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className={`text-5xl font-bold ${text} mb-6 font-serif`}>
+          <h1 className="text-5xl font-bold text-emerald-800 mb-6 font-serif">
             Climate Awareness Challenge
           </h1>
-          <p className={`text-xl ${muted} max-w-3xl mx-auto leading-relaxed`}>
+          <p className="text-xl text-amber-700 max-w-3xl mx-auto leading-relaxed">
             Choose your difficulty level and test your knowledge about climate change,
             sustainability, and environmental action.
           </p>
@@ -130,7 +74,7 @@ export default function ClimateAwarenessPage() {
           {difficulties.map((difficulty) => (
             <div
               key={difficulty.id}
-              className={`${cardBg} backdrop-blur-sm rounded-2xl p-8 border ${difficulty.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105`}
+              className={`bg-white/90 backdrop-blur-sm rounded-2xl p-8 border ${difficulty.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105`}
             >
               {/* Icon */}
               <div className="flex justify-center mb-6">
@@ -141,13 +85,11 @@ export default function ClimateAwarenessPage() {
 
               {/* Content */}
               <div className="text-center">
-                <h3 className={`text-2xl font-bold mb-2 ${text}`}>{difficulty.name}</h3>
-                <div
-                  className={`font-semibold mb-4 ${isDarkMode ? 'text-indigo-300' : 'text-emerald-600'}`}
-                >
+                <h3 className="text-2xl font-bold mb-2 text-emerald-800">{difficulty.name}</h3>
+                <div className="font-semibold mb-4 text-emerald-600">
                   {difficulty.questions} Questions
                 </div>
-                <p className={`${subtext} text-sm leading-relaxed mb-6`}>
+                <p className="text-gray-600 text-sm leading-relaxed mb-6">
                   {difficulty.description}
                 </p>
               </div>
@@ -168,12 +110,13 @@ export default function ClimateAwarenessPage() {
         <div className="text-center mt-16">
           <Link
             href="/"
-            className={`${muted} hover:text-emerald-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-2 font-medium`}
+            className="text-amber-700 hover:text-emerald-600 transition-colors inline-flex items-center gap-2 font-medium"
           >
             ← Back to Home
           </Link>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

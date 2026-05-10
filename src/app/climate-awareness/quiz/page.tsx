@@ -3,13 +3,8 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
-import {
-  getQuestionsByDifficulty,
-  calculateScore,
-  getScoreTitle,
-  QuizQuestion,
-} from '@/data/climate-quiz';
+import { ArrowLeft, ArrowRight, CheckCircle2, PartyPopper, BookOpen, Award } from 'lucide-react';
+import { getQuestionsByDifficulty, calculateScore, getScoreTitle } from '@/data/climate-quiz';
 
 interface Question {
   id: number;
@@ -26,8 +21,8 @@ function QuizContent() {
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [userAnswers, setUserAnswers] = useState<string[]>([]);
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,14 +40,14 @@ function QuizContent() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading quiz...</div>
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex items-center justify-center">
+        <div className="text-emerald-700 text-xl font-medium">Loading quiz...</div>
       </div>
     );
   }
 
   const handleAnswerSelect = (answerIndex: number) => {
-    setSelectedAnswer(questions[answerIndex].correctAnswer);
+    setSelectedAnswer(answerIndex);
   };
 
   const handleNext = () => {
@@ -73,70 +68,103 @@ function QuizContent() {
   const handlePrevious = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
-      setSelectedAnswer(userAnswers[currentQuestion - 1]);
+      setSelectedAnswer(userAnswers[currentQuestion - 1] ?? null);
     }
   };
 
   const handleRestart = () => {
     setCurrentQuestion(0);
-    setUserAnswers(new Array(questions.length).fill(-1));
+    setUserAnswers(new Array(questions.length).fill(null));
     setSelectedAnswer(null);
     setShowResults(false);
   };
 
   if (showResults) {
     const score = calculateScore(
-      userAnswers,
+      userAnswers.map((a, idx) => (a === null ? '' : questions[idx].correctAnswer)),
       questions.map((q) => q.correctAnswer)
     );
     const scoreTitle = getScoreTitle(score, questions.length);
-    const shareText = `I just scored ${score}/${questions.length} on ${difficulty} Climate Awareness Test! Think you can beat my eco-score? Take the test here: https://csid.vercel.app/climate-awareness`;
+    const percentage = Math.round((score / questions.length) * 100);
+    const shareText = `I just scored ${score}/${questions.length} (${percentage}%) on ${difficulty} Climate Awareness Test! Think you can beat my eco-score? Take the test here: https://csid.vercel.app/climate-awareness`;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
-            {/* Results Card */}
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
+            {/* Congratulations Card */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-10 border border-amber-200 shadow-xl text-center">
+              {/* Celebration Icon */}
+              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                <PartyPopper className="w-12 h-12 text-white" />
+              </div>
+
+              {/* Congratulations Message */}
+              <h1 className="text-4xl font-bold text-emerald-700 mb-3">Congratulations! 🎉</h1>
+              <p className="text-lg text-amber-700 mb-8">
+                You&apos;ve completed the {difficulty} climate awareness quiz!
+              </p>
+
               {/* Score Display */}
-              <div className="text-center mb-8">
-                <div className="text-6xl font-bold text-emerald-400 mb-2">
-                  {score}/{questions.length}
+              <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 mb-8 border border-emerald-200">
+                <div className="text-7xl font-bold text-emerald-600 mb-3">{percentage}%</div>
+                <div className="text-2xl text-emerald-700 font-semibold mb-2">
+                  {score} out of {questions.length} correct
                 </div>
-                <h1 className="text-3xl font-bold text-white mb-2">{scoreTitle}</h1>
-                <p className="text-slate-300">You completed {difficulty} climate awareness quiz!</p>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 rounded-full">
+                  <Award className="w-5 h-5 text-emerald-600" />
+                  <span className="text-emerald-700 font-medium">{scoreTitle}</span>
+                </div>
               </div>
 
               {/* Anti-Cheat Warning */}
-              <div className="bg-yellow-500/20 border border-yellow-500 rounded-lg p-4 mb-8">
-                <p className="text-yellow-300 text-sm leading-relaxed">
-                  <strong>Wait... did you just use AI to answer these?</strong> Look, ChatGPT
-                  can&apos;t save the ice caps for you. Don&apos;t use AI to cheat your way to
-                  environmental enlightenment!
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8">
+                <p className="text-amber-700 text-sm leading-relaxed">
+                  <strong>Remember:</strong> Real climate action starts with knowledge, not just
+                  scores. Apply what you&apos;ve learned in your daily life!
                 </p>
               </div>
 
-              {/* Social Sharing */}
-              <div className="space-y-4 mb-8">
-                <h3 className="text-white font-semibold text-center mb-4">Share Your Results:</h3>
+              {/* Browse Courses CTA */}
+              <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-6 mb-8">
+                <h3 className="text-white text-xl font-bold mb-3">Ready to Learn More?</h3>
+                <p className="text-emerald-100 mb-5">
+                  Explore our comprehensive courses and deepen your climate knowledge
+                </p>
+                <Link
+                  href="/courses"
+                  className="inline-flex items-center gap-2 bg-white text-emerald-600 px-8 py-3 rounded-xl font-bold hover:bg-emerald-50 transition-all shadow-lg"
+                >
+                  <BookOpen className="w-5 h-5" />
+                  Browse Our Courses
+                </Link>
+              </div>
 
-                {/* LinkedIn Share */}
+              {/* Social Sharing */}
+              <div className="space-y-3 mb-8">
+                <h3 className="text-amber-800 font-semibold mb-3">Share Your Results:</h3>
+
                 <a
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://csid.vercel.app/climate-awareness')}&summary=${encodeURIComponent(shareText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg text-center font-semibold transition-colors"
+                  className="block w-full bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
                 >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
                   Share on LinkedIn
                 </a>
 
-                {/* X (Twitter) Share */}
                 <a
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full bg-black hover:bg-gray-800 text-white py-3 px-6 rounded-lg text-center font-semibold transition-colors"
+                  className="block w-full bg-black hover:bg-gray-800 text-white py-3 px-6 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
                 >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.112z" />
+                  </svg>
                   Share on X (Twitter)
                 </a>
               </div>
@@ -145,15 +173,16 @@ function QuizContent() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={handleRestart}
-                  className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-200"
+                  className="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center gap-2"
                 >
+                  <ArrowLeft className="w-4 h-4" />
                   Try Again
                 </button>
                 <Link
                   href="/climate-awareness"
-                  className="flex-1 bg-slate-600 hover:bg-slate-500 text-white py-3 px-6 rounded-lg font-semibold transition-colors text-center"
+                  className="flex-1 bg-slate-600 hover:bg-slate-500 text-white py-3 px-6 rounded-xl font-semibold transition-colors text-center flex items-center justify-center gap-2"
                 >
-                  Back to Difficulty Selection
+                  Back to Selection
                 </Link>
               </div>
             </div>
@@ -167,44 +196,46 @@ function QuizContent() {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <Link
               href="/climate-awareness"
-              className="text-slate-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-2"
+              className="text-amber-700 hover:text-emerald-600 transition-colors inline-flex items-center gap-2 font-medium"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Difficulty Selection
+              Back to Selection
             </Link>
-            <div className="text-slate-300">
+            <div className="px-4 py-2 bg-white/80 rounded-full text-amber-700 font-semibold">
               {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Quiz
             </div>
           </div>
 
           {/* Progress Bar */}
           <div className="mb-8">
-            <div className="flex justify-between text-sm text-slate-400 mb-2">
+            <div className="flex justify-between text-sm text-amber-700 mb-2 font-medium">
               <span>
                 Question {currentQuestion + 1} of {questions.length}
               </span>
               <span>{Math.round(progress)}% Complete</span>
             </div>
-            <div className="w-full bg-slate-700 rounded-full h-2">
+            <div className="w-full bg-amber-200 rounded-full h-3">
               <div
-                className="bg-emerald-500 h-2 rounded-full transition-all duration-300"
+                className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 rounded-full transition-all duration-500 shadow-md"
                 style={{ width: `${progress}%` }}
               />
             </div>
           </div>
 
           {/* Question Card */}
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
-            {/* Score Display */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 border border-amber-200 shadow-xl">
+            {/* Question Text */}
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-white leading-relaxed">{question.question}</h2>
+              <h2 className="text-2xl font-bold text-gray-800 leading-relaxed">
+                {question.question}
+              </h2>
             </div>
 
             {/* Answer Options */}
@@ -213,53 +244,67 @@ function QuizContent() {
                 <button
                   key={index}
                   onClick={() => handleAnswerSelect(index)}
-                  className={`w-full text-left p-4 rounded-lg border transition-all duration-200 ${
-                    selectedAnswer === option
-                      ? 'bg-emerald-500/20 border-emerald-500 text-white'
-                      : 'bg-slate-700/50 border-slate-600 text-slate-300 hover:bg-slate-700 hover:border-slate-500'
+                  className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-300 ${
+                    selectedAnswer === index
+                      ? 'bg-gradient-to-r from-emerald-100 to-teal-100 border-emerald-500 shadow-md shadow-emerald-200/50 transform scale-[1.02]'
+                      : 'bg-white border-amber-100 text-gray-700 hover:bg-amber-50 hover:border-amber-300 hover:shadow-md'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <div
-                      className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                        selectedAnswer === option ? 'border-emerald-500' : 'border-slate-500'
+                      className={`w-8 h-8 rounded-full border-2 flex items-center justify-center font-bold transition-all duration-200 ${
+                        selectedAnswer === index
+                          ? 'bg-emerald-500 border-emerald-500 text-white'
+                          : 'border-amber-300 text-amber-600 bg-amber-50'
                       }`}
                     >
-                      {selectedAnswer === option && (
-                        <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                      {selectedAnswer === index ? (
+                        <CheckCircle2 className="w-5 h-5 text-white" />
+                      ) : (
+                        String.fromCharCode(65 + index)
                       )}
                     </div>
-                    <span className="flex-1">{option}</span>
+                    <span className="flex-1 text-base font-medium">{option}</span>
                   </div>
                 </button>
               ))}
             </div>
 
             {/* Navigation */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center pt-4 border-t border-amber-100">
               <button
                 onClick={handlePrevious}
                 disabled={currentQuestion === 0}
-                className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-200 ${
+                className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 ${
                   currentQuestion === 0
-                    ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
-                    : 'bg-slate-600 hover:bg-slate-500 text-white'
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-amber-100 hover:bg-amber-200 text-amber-800'
                 }`}
               >
+                <ArrowLeft className="w-4 h-4" />
                 Previous
               </button>
 
               <button
                 onClick={handleNext}
                 disabled={selectedAnswer === null}
-                className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2 ${
+                className={`px-8 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 ${
                   selectedAnswer === null
-                    ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
-                    : 'bg-emerald-500 hover:bg-emerald-400 text-white'
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white shadow-lg hover:shadow-xl'
                 }`}
               >
-                {currentQuestion === questions.length - 1 ? 'Submit' : 'Next'}
-                <ArrowRight className="w-4 h-4" />
+                {currentQuestion === questions.length - 1 ? (
+                  <>
+                    Submit
+                    <CheckCircle2 className="w-4 h-4" />
+                  </>
+                ) : (
+                  <>
+                    Next
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -273,8 +318,8 @@ export default function QuizPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 flex items-center justify-center">
-          <div className="text-white text-xl">Loading quiz...</div>
+        <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex items-center justify-center">
+          <div className="text-emerald-700 text-xl font-medium">Loading quiz...</div>
         </div>
       }
     >

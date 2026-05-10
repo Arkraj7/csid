@@ -17,7 +17,8 @@ export default function StatsSection() {
             className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-bold shadow-lg animate-pulse hover:scale-105 transition-all"
             style={{
               background: 'linear-gradient(135deg, #059669, #10b981)',
-              boxShadow: '0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.3), 0 0 60px rgba(16, 185, 129, 0.2)',
+              boxShadow:
+                '0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.3), 0 0 60px rgba(16, 185, 129, 0.2)',
             }}
           >
             <Calculator size={20} />

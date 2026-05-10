@@ -34,19 +34,12 @@ function QuizContent() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     if (!difficulty || !['easy', 'medium', 'hard'].includes(difficulty)) {
       router.push('/climate-awareness');
       return;
     }
-
-    // Check for saved preference or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-    setIsDarkMode(initialDark);
 
     const quizQuestions = getQuestionsByDifficulty(difficulty);
     setQuestions(quizQuestions);
@@ -55,10 +48,20 @@ function QuizContent() {
   }, [difficulty, router]);
 
   const toggleDarkMode = () => {
-    const nextDark = !isDarkMode;
-    setIsDarkMode(nextDark);
-    localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+    // Force re-render by triggering state update
+    setSelectedAnswer((prev) => prev);
   };
+
+  const isDarkMode =
+    typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
 
   const handleAnswerSelect = (answerIndex: number) => {
     setSelectedAnswer(answerIndex);
@@ -93,6 +96,14 @@ function QuizContent() {
     setShowResults(false);
   };
 
+  // Force re-render hook for theme changes
+  const [, setThemeUpdate] = useState(0);
+  useEffect(() => {
+    const observer = new MutationObserver(() => setThemeUpdate(Date.now()));
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
   // Light mode classes
   const lightBg = 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50';
   const lightCardBg = 'bg-white/90 backdrop-blur-sm';
@@ -119,7 +130,7 @@ function QuizContent() {
   const darkSelectedBorder = 'border-indigo-400';
   const darkOptionHover = 'hover:bg-slate-700/50 hover:border-indigo-600';
 
-  // Select classes based on mode
+  // Select classes based on global mode
   const bg = isDarkMode ? darkBg : lightBg;
   const cardBg = isDarkMode ? darkCardBg : lightCardBg;
   const border = isDarkMode ? darkBorder : lightBorder;
@@ -194,9 +205,7 @@ function QuizContent() {
                 }`}
               >
                 <div
-                  className={`text-7xl font-bold mb-3 ${
-                    isDarkMode ? 'text-indigo-300' : 'text-emerald-600'
-                  }`}
+                  className={`text-7xl font-bold mb-3 ${isDarkMode ? 'text-indigo-300' : 'text-emerald-600'}`}
                 >
                   {percentage}%
                 </div>

@@ -1742,3 +1742,27 @@ async function generatePDFBlob() {
   cloned.remove();
   return blob;
 }
+
+// --- Data Guide Tab Switching Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('button[data-bs-toggle="tab"]');
+  const infoContents = document.querySelectorAll('.tab-info-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('shown.bs.tab', (event) => {
+      // Hide all info contents
+      infoContents.forEach(content => {
+        content.style.display = 'none';
+      });
+
+      // Get the ID of the newly activated tab target
+      const targetId = event.target.getAttribute('data-bs-target').replace('#', '');
+
+      // Show the matching info content
+      const targetInfo = document.getElementById('info-' + targetId);
+      if (targetInfo) {
+        targetInfo.style.display = 'block';
+      }
+    });
+  });
+});

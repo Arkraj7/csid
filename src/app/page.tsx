@@ -7,6 +7,7 @@ import CoursePreviewSection from '@/app/components/CoursePreviewSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
 import CertificatePreviewSection from '@/app/components/CertificatePreviewSection';
 import StatsSection from '@/app/components/StatsSection';
+import CalculatorBanner from '@/app/components/CalculatorBanner';
 
 export default function HomePage() {
   return (
@@ -18,6 +19,9 @@ export default function HomePage() {
 
         {/* Recent Uploads Banner */}
         <CoursePreviewSection />
+
+        {/* Calculator Banner Ad */}
+        <CalculatorBanner />
 
         {/* The Built on Frameworks section is completely deleted from here */}
 

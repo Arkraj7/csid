@@ -1140,7 +1140,7 @@ document.addEventListener('click', (e) => {
       if (unitSpan) unitSpan.textContent = checkedUnit === 'ac' ? 'ac' : 'm²';
       const rangeInput = areaDiv.closest(".form-group")?.querySelector("input[type='range']");
       if (rangeInput) {
-        rangeInput.max = checkedUnit === 'ac' ? 50 : 200000;
+        rangeInput.max = checkedUnit === 'ac' ? 2.5 : 10000;
         rangeInput.value = displayVal;
       }
     });
@@ -1168,7 +1168,7 @@ document.addEventListener('click', (e) => {
   //     if (unitSpan) unitSpan.textContent = checkedUnit === 'ac' ? 'ac' : 'm²';
   //     const rangeInput = areaDiv.closest(".form-group")?.querySelector("input[type='range']");
   //     if (rangeInput) {
-  //       rangeInput.max = checkedUnit === 'ac' ? 50 : 200000;
+  //       rangeInput.max = checkedUnit === 'ac' ? 2.5 : 10000;
   //       rangeInput.value = displayVal;
   //     }
   //   });
@@ -1184,7 +1184,7 @@ document.addEventListener('click', (e) => {
     numInput.value = Number(newDisplay.toFixed(chosenUnit === 'ac' ? 4 : 2));
     unitSpan.textContent = chosenUnit === 'ac' ? 'ac' : 'm²';
     if (rangeInput) {
-      rangeInput.max = chosenUnit === 'ac' ? 50 : 200000;
+      rangeInput.max = chosenUnit === 'ac' ? 2.5 : 10000;
       rangeInput.value = numInput.value;
     }
     updateAllSliderFills();

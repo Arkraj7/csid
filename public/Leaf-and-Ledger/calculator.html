@@ -67,7 +67,7 @@
             </div> <div class="input-row">
             
 
-            <input type="range" id="treesRange" class="--form-range" min="0" max="10000" value="0"
+            <input type="range" id="treesRange" class="--form-range" min="0" max="200" value="0"
           oninput="validateNonNegative(this); syncInput('trees','treesRange');">
             </div> 
           </div>
@@ -78,7 +78,7 @@
               <input type="number" id="species" class="form-control w-auto" value="0" min="0" oninput="validateNonNegative(this); syncSlider('species','speciesRange')" readonly>
             </div>
             <div class="input-row">
-              <input type="range" id="speciesRange" class="--form-range" min="0" max="100" value="0" oninput="validateNonNegative(this); syncInput('species','speciesRange')">
+              <input type="range" id="speciesRange" class="--form-range" min="0" max="50" value="0" oninput="validateNonNegative(this); syncInput('species','speciesRange')">
             </div>
           </div>
 
@@ -102,7 +102,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="areaRange" class="--form-range" min="0" max="200000" value="0" oninput="validateNonNegative(this); syncInput('area','areaRange')">
+              <input type="range" id="areaRange" class="--form-range" min="0" max="10000" value="0" oninput="validateNonNegative(this); syncInput('area','areaRange')">
             </div>
           </div>
 
@@ -131,7 +131,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="electricityRange" class="--form-range" min="0" max="100000" value="0" oninput="validateNonNegative(this); syncInput('electricity','electricityRange')">
+              <input type="range" id="electricityRange" class="--form-range" min="0" max="30000" value="0" oninput="validateNonNegative(this); syncInput('electricity','electricityRange')">
             </div>
           </div>
 
@@ -144,7 +144,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="renewableRange" class="--form-range" min="0" max="100000" value="0" oninput="validateNonNegative(this); syncInput('renewable','renewableRange')">
+              <input type="range" id="renewableRange" class="--form-range" min="0" max="30000" value="0" oninput="validateNonNegative(this); syncInput('renewable','renewableRange')">
             </div>
           </div>
 
@@ -157,7 +157,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="powerRatingRange" class="--form-range" min="0" max="1000" value="0" oninput="validateNonNegative(this); syncInput('powerRating','powerRatingRange')">
+              <input type="range" id="powerRatingRange" class="--form-range" min="0" max="50" value="0" oninput="validateNonNegative(this); syncInput('powerRating','powerRatingRange')">
             </div>
           </div>
 
@@ -185,7 +185,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="waterWithdrawalRange" class="--form-range" min="0" max="1000000" value="0" oninput="validateNonNegative(this); syncInput('waterWithdrawal','waterWithdrawalRange')">
+              <input type="range" id="waterWithdrawalRange" class="--form-range" min="0" max="200000" value="0" oninput="validateNonNegative(this); syncInput('waterWithdrawal','waterWithdrawalRange')">
             </div>
           </div>
 
@@ -198,7 +198,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="waterDischargedRange" class="--form-range" min="0" max="1000000" value="0" oninput="validateNonNegative(this); syncInput('waterDischarged','waterDischargedRange')">
+              <input type="range" id="waterDischargedRange" class="--form-range" min="0" max="200000" value="0" oninput="validateNonNegative(this); syncInput('waterDischarged','waterDischargedRange')">
             </div>
           </div>
 
@@ -211,7 +211,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="waterReusedRange" class="--form-range" min="0" max="1000000" value="0" oninput="validateNonNegative(this); syncInput('waterReused','waterReusedRange')">
+              <input type="range" id="waterReusedRange" class="--form-range" min="0" max="200000" value="0" oninput="validateNonNegative(this); syncInput('waterReused','waterReusedRange')">
             </div>
           </div>
 
@@ -239,7 +239,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="siteAreaRange" class="--form-range" min="0" max="200000" value="0" oninput="validateNonNegative(this); syncInput('siteArea','siteAreaRange')">
+              <input type="range" id="siteAreaRange" class="--form-range" min="0" max="10000" value="0" oninput="validateNonNegative(this); syncInput('siteArea','siteAreaRange')">
             </div>
           </div>
 
@@ -257,7 +257,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="hazardousWasteRange" class="--form-range" min="0" max="50000" value="0" oninput="validateNonNegative(this); syncInput('hazardousWaste','hazardousWasteRange')">
+              <input type="range" id="hazardousWasteRange" class="--form-range" min="0" max="200" value="0" oninput="validateNonNegative(this); syncInput('hazardousWaste','hazardousWasteRange')">
             </div>
           </div>
 
@@ -270,7 +270,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="nonHazardousWasteRange" class="--form-range" min="0" max="100000" value="0" oninput="validateNonNegative(this); syncInput('nonHazardousWaste','nonHazardousWasteRange')">
+              <input type="range" id="nonHazardousWasteRange" class="--form-range" min="0" max="30000" value="0" oninput="validateNonNegative(this); syncInput('nonHazardousWaste','nonHazardousWasteRange')">
             </div>
           </div>
 
@@ -283,7 +283,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="wasteRecycledRange" class="--form-range" min="0" max="100000" value="0" oninput="validateNonNegative(this); syncInput('wasteRecycled','wasteRecycledRange')">
+              <input type="range" id="wasteRecycledRange" class="--form-range" min="0" max="30000" value="0" oninput="validateNonNegative(this); syncInput('wasteRecycled','wasteRecycledRange')">
             </div>
           </div>
 
@@ -296,7 +296,7 @@
               </div>
             </div>
             <div class="input-row">
-              <input type="range" id="wasteLandfillRange" class="--form-range" min="0" max="100000" value="0" oninput="validateNonNegative(this); syncInput('wasteLandfill','wasteLandfillRange')">
+              <input type="range" id="wasteLandfillRange" class="--form-range" min="0" max="30000" value="0" oninput="validateNonNegative(this); syncInput('wasteLandfill','wasteLandfillRange')">
             </div>
           </div>
         </div>

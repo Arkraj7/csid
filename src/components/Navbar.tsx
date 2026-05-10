@@ -109,6 +109,12 @@ export default function Navbar({ currentPath }: NavbarProps) {
             >
               Contact
             </Link>
+            <Link
+              href="/green-calculator"
+              className={`font-medium transition-colors ${currentPath === '/green-calculator' ? 'text-primary' : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary'}`}
+            >
+              Calculator
+            </Link>
             {user && (
               <Link
                 href="/progress"
@@ -257,6 +263,12 @@ export default function Navbar({ currentPath }: NavbarProps) {
               className={`block px-3 py-2 font-medium ${currentPath === '/contact' ? 'text-primary' : 'text-gray-600 dark:text-gray-300 hover:text-primary'}`}
             >
               Contact
+            </Link>
+            <Link
+              href="/green-calculator"
+              className={`block px-3 py-2 font-medium ${currentPath === '/green-calculator' ? 'text-primary' : 'text-gray-600 dark:text-gray-300 hover:text-primary'}`}
+            >
+              Calculator
             </Link>
 
             {user && (

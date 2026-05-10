@@ -12,7 +12,7 @@ export default function StatsSection() {
             <p className="text-amber-800 text-sm">Measure your environmental impact in minutes</p>
           </div>
           <Link
-            href="/Leaf-and-Ledger/calculator.html"
+            href="/green-calculator/"
             className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-bold shadow-lg animate-pulse hover:scale-105 transition-all"
             style={{
               background: 'linear-gradient(135deg, #059669, #10b981)',

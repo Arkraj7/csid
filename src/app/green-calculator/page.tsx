@@ -159,7 +159,7 @@ export default function GreenCalculatorPage() {
               reports.
             </p>
             <a
-              href="/Leaf-and-Ledger/calculator.html"
+              href="/csid/Leaf-and-Ledger/calculator.html"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-8 rounded-xl text-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"

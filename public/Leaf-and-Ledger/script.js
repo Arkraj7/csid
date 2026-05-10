@@ -1458,9 +1458,9 @@ function calculate() {
     //if (emojisLocal[index] !== undefined) el.textContent = emojisLocal[index];
     if(iconsToUse[index]){
       //el.innerHTML = `<img src="./images/${iconsToUse[index]}" alt="${labels[index]}" class="metric-icon-img" style="height: 48px;">`;
-      el.innerHTML = `<img src="/Leaf-and-Ledger/images/${iconsToUse[index]}" alt="${labels[index]}" class="metric-icon-img" style="height: 48px;">`;
+      el.innerHTML = `<img src="/csid/Leaf-and-Ledger/images/${iconsToUse[index]}" alt="${labels[index]}" class="metric-icon-img" style="height: 48px;">`;
     }
-    //el.innerHTML = iconsToUse[index] ? `<img src="/Leaf-and-Ledger/images/${iconsToUse[index]}" alt="${labels[index]}"> ${labels[index]}` : labels[index];
+    //el.innerHTML = iconsToUse[index] ? `<img src="/csid/Leaf-and-Ledger/images/${iconsToUse[index]}" alt="${labels[index]}"> ${labels[index]}` : labels[index];
     //el.innerHTML = iconsToUse[index] ? `<img src="./images/${iconsToUse[index]}" alt="${labels[index]}"> ${labels[index]}` : labels[index];
     // class="metric-icon-img"
   });
@@ -1693,7 +1693,7 @@ async function generatePDFBlob() {
   });
 
   doc.querySelectorAll(".impact-section .impact-card > img").forEach((image, index) => {
-    if (iconsToUse[index]) image.src = "/Leaf-and-Ledger/images/" + iconsToUse[index];
+    if (iconsToUse[index]) image.src = "/csid/Leaf-and-Ledger/images/" + iconsToUse[index];
     //if (iconsToUse[index]) image.src = "./images/" + iconsToUse[index];
     
   });

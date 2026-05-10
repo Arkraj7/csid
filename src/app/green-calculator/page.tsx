@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -51,20 +51,38 @@ const calculatorTabs: CalculatorTab[] = [
 ];
 
 export default function GreenCalculatorPage() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    setIsDarkMode(document.documentElement.classList.contains('dark'));
+
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar currentPath="/green-calculator" />
-      <main className="bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50">
+      <main
+        className={`${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-emerald-950 to-green-900' : 'bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50'}`}
+      >
         <div className="container mx-auto px-4 py-16">
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center bg-emerald-500 text-white p-4 rounded-2xl mb-6 shadow-lg">
               <Calculator className="w-12 h-12" />
             </div>
-            <h1 className="text-5xl font-bold text-emerald-800 mb-6 font-serif">
+            <h1
+              className={`text-5xl font-bold mb-6 font-serif ${isDarkMode ? 'text-white' : 'text-emerald-800'}`}
+            >
               CSID Green Calculator Toolkit
             </h1>
-            <p className="text-xl text-emerald-700 max-w-3xl mx-auto leading-relaxed">
+            <p
+              className={`text-xl max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-emerald-300' : 'text-emerald-700'}`}
+            >
               Calculate your environmental impact across four key sustainability categories. Get
               detailed metrics on carbon, energy, water, and waste — with downloadable reports.
             </p>
@@ -75,16 +93,24 @@ export default function GreenCalculatorPage() {
             {calculatorTabs.map((tab) => (
               <div
                 key={tab.id}
-                className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300"
+                className={`${isDarkMode ? 'bg-slate-800/60 border-emerald-700/30' : 'bg-white/90 border-emerald-200'} backdrop-blur-sm rounded-2xl p-6 border shadow-lg hover:shadow-xl transition-all duration-300`}
               >
                 <div
                   className={`${tab.color} w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 shadow-md`}
                 >
                   {tab.icon}
                 </div>
-                <h3 className="text-lg font-bold mb-2 text-emerald-800">{tab.name}</h3>
-                <p className="text-sm mb-4 text-gray-600">{tab.description}</p>
-                <div className="text-sm font-semibold text-emerald-600">
+                <h3
+                  className={`text-lg font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-emerald-800'}`}
+                >
+                  {tab.name}
+                </h3>
+                <p className={`text-sm mb-4 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
+                  {tab.description}
+                </p>
+                <div
+                  className={`text-sm font-semibold ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}
+                >
                   {tab.metricsCount} metrics
                 </div>
               </div>
@@ -93,14 +119,18 @@ export default function GreenCalculatorPage() {
 
           {/* Calculator Launch */}
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 border border-emerald-200 shadow-2xl">
+            <div
+              className={`${isDarkMode ? 'bg-slate-800/60 border-emerald-700/30' : 'bg-white/90 border-emerald-200'} backdrop-blur-sm rounded-3xl p-8 border shadow-2xl`}
+            >
               <div className="mb-6">
                 <span className="text-6xl">🌿</span>
               </div>
-              <h2 className="text-3xl font-bold mb-4 text-emerald-800">
+              <h2
+                className={`text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-emerald-800'}`}
+              >
                 Ready to Measure Your Impact?
               </h2>
-              <p className="text-lg mb-8 text-gray-600">
+              <p className={`text-lg mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
                 Enter your environmental data and get comprehensive metrics with downloadable PDF
                 reports.
               </p>
@@ -118,27 +148,45 @@ export default function GreenCalculatorPage() {
 
           {/* Info Section */}
           <div className="max-w-4xl mx-auto mt-16">
-            <div className="bg-emerald-100/50 rounded-2xl p-8 text-center">
-              <h3 className="text-xl font-bold mb-4 text-emerald-700">How It Works</h3>
+            <div
+              className={`${isDarkMode ? 'bg-slate-800/40' : 'bg-emerald-100/50'} rounded-2xl p-8 text-center`}
+            >
+              <h3
+                className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}
+              >
+                How It Works
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                <div className="bg-white/80 rounded-xl p-4">
+                <div className={`${isDarkMode ? 'bg-slate-700/50' : 'bg-white/80'} rounded-xl p-4`}>
                   <div className="text-2xl font-bold text-emerald-500 mb-2">1</div>
-                  <h4 className="font-semibold mb-2 text-emerald-800">Select a Category</h4>
-                  <p className="text-sm text-gray-600">
+                  <h4
+                    className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-emerald-800'}`}
+                  >
+                    Select a Category
+                  </h4>
+                  <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
                     Choose from Green Space, Energy, Water, or Waste metrics
                   </p>
                 </div>
-                <div className="bg-white/80 rounded-xl p-4">
+                <div className={`${isDarkMode ? 'bg-slate-700/50' : 'bg-white/80'} rounded-xl p-4`}>
                   <div className="text-2xl font-bold text-emerald-500 mb-2">2</div>
-                  <h4 className="font-semibold mb-2 text-emerald-800">Enter Your Data</h4>
-                  <p className="text-sm text-gray-600">
+                  <h4
+                    className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-emerald-800'}`}
+                  >
+                    Enter Your Data
+                  </h4>
+                  <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
                     Input your environmental metrics using intuitive sliders
                   </p>
                 </div>
-                <div className="bg-white/80 rounded-xl p-4">
+                <div className={`${isDarkMode ? 'bg-slate-700/50' : 'bg-white/80'} rounded-xl p-4`}>
                   <div className="text-2xl font-bold text-emerald-500 mb-2">3</div>
-                  <h4 className="font-semibold mb-2 text-emerald-800">Get Your Report</h4>
-                  <p className="text-sm text-gray-600">
+                  <h4
+                    className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-emerald-800'}`}
+                  >
+                    Get Your Report
+                  </h4>
+                  <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
                     View results with 9 detailed metrics and download your PDF
                   </p>
                 </div>
@@ -150,7 +198,7 @@ export default function GreenCalculatorPage() {
           <div className="text-center mt-16">
             <Link
               href="/"
-              className="text-emerald-600 hover:text-emerald-600 transition-colors inline-flex items-center gap-2 font-medium"
+              className={`${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'} hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors inline-flex items-center gap-2 font-medium`}
             >
               ← Back to Home
             </Link>

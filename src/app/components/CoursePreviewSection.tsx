@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import CorporateSustainabilityGraphic from '@/app/components/CorporateSustainabilityGraphic';
 // Update the import path to point to your new 'data' folder
 import { courses } from '@/app/courses/components/data';

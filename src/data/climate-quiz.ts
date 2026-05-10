@@ -1053,7 +1053,7 @@ export function getScoreTitle(score: number, total: number): string {
 }
 
 // Helper function to convert QuizQuestion to Question interface for compatibility
-export function convertToLegacyQuestions(questions: QuizQuestion[]): any[] {
+export function convertToLegacyQuestions(questions: QuizQuestion[]): Record<string, unknown>[] {
   return questions.map((q) => ({
     id: q.id.toString(),
     question: q.question,

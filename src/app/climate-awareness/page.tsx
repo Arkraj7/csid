@@ -12,6 +12,7 @@ interface Difficulty {
   icon: React.ReactNode;
   color: string;
   hoverColor: string;
+  borderColor: string;
 }
 
 const difficulties: Difficulty[] = [
@@ -22,8 +23,9 @@ const difficulties: Difficulty[] = [
     description:
       'A gentle breeze. Perfect if your idea of climate action is occasionally remembering your reusable grocery bag.',
     icon: <Brain className="w-8 h-8" />,
-    color: 'bg-green-500',
-    hoverColor: 'hover:bg-green-400',
+    color: 'bg-emerald-500',
+    hoverColor: 'hover:bg-emerald-600',
+    borderColor: 'border-emerald-300',
   },
   {
     id: 'medium',
@@ -33,7 +35,8 @@ const difficulties: Difficulty[] = [
       'Heating up! For those who actually know what ESG stands for and have yelled at someone for putting greasy pizza boxes in the recycling.',
     icon: <Flame className="w-8 h-8" />,
     color: 'bg-orange-500',
-    hoverColor: 'hover:bg-orange-400',
+    hoverColor: 'hover:bg-orange-600',
+    borderColor: 'border-orange-300',
   },
   {
     id: 'hard',
@@ -43,20 +46,21 @@ const difficulties: Difficulty[] = [
       'Category 5 Hurricane. Warning: May induce severe eco-anxiety. Only for absolute climate nerds and Greta Thunberg.',
     icon: <Zap className="w-8 h-8" />,
     color: 'bg-red-500',
-    hoverColor: 'hover:bg-red-400',
+    hoverColor: 'hover:bg-red-600',
+    borderColor: 'border-red-300',
   },
 ];
 
 export default function ClimateAwarenessPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-6 font-serif">
+          <h1 className="text-5xl font-bold text-emerald-800 mb-6 font-serif">
             Climate Awareness Challenge
           </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-amber-800 max-w-3xl mx-auto leading-relaxed">
             Choose your difficulty level and test your knowledge about climate change,
             sustainability, and environmental action.
           </p>
@@ -67,22 +71,22 @@ export default function ClimateAwarenessPage() {
           {difficulties.map((difficulty) => (
             <div
               key={difficulty.id}
-              className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700 hover:border-emerald-500 transition-all duration-300 hover:transform hover:scale-105"
+              className={`bg-white/90 backdrop-blur-sm rounded-2xl p-8 border ${difficulty.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105`}
             >
               {/* Icon */}
               <div className="flex justify-center mb-6">
-                <div className={`${difficulty.color} p-4 rounded-full text-white`}>
+                <div className={`${difficulty.color} p-4 rounded-full text-white shadow-md`}>
                   {difficulty.icon}
                 </div>
               </div>
 
               {/* Content */}
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-2">{difficulty.name}</h3>
-                <div className="text-emerald-400 font-semibold mb-4">
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">{difficulty.name}</h3>
+                <div className="text-emerald-600 font-semibold mb-4">
                   {difficulty.questions} Questions
                 </div>
-                <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                <p className="text-gray-600 text-sm leading-relaxed mb-6">
                   {difficulty.description}
                 </p>
               </div>
@@ -90,7 +94,7 @@ export default function ClimateAwarenessPage() {
               {/* Button */}
               <Link
                 href={`/climate-awareness/quiz?difficulty=${difficulty.id}`}
-                className={`${difficulty.color} ${difficulty.hoverColor} w-full py-3 px-6 rounded-lg text-white font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-lg`}
+                className={`${difficulty.color} ${difficulty.hoverColor} w-full py-3 px-6 rounded-xl text-white font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-lg`}
               >
                 Start Challenge
                 <ArrowRight className="w-4 h-4" />
@@ -103,7 +107,7 @@ export default function ClimateAwarenessPage() {
         <div className="text-center mt-16">
           <Link
             href="/"
-            className="text-slate-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-2"
+            className="text-amber-700 hover:text-emerald-600 transition-colors inline-flex items-center gap-2 font-medium"
           >
             ← Back to Home
           </Link>

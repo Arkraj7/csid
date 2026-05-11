@@ -553,7 +553,7 @@ export default function HeroBanner() {
         {/* Dark overlay when night mode - makes image dark so elements shine */}
         <div
           className={`absolute inset-0 transition-opacity duration-1000 ${
-            isNight ? 'opacity-80 bg-[#0a1628]/90' : 'opacity-0'
+            isNight ? 'opacity-90 bg-[#0a1628]/95' : 'opacity-30 bg-black/40'
           }`}
         />
       </div>
@@ -561,28 +561,28 @@ export default function HeroBanner() {
       <div className="relative z-10 max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-white drop-shadow-lg">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-emerald-800 dark:text-white">
               Empowering Action for a{' '}
-              <span className="text-emerald-300 drop-shadow-md">
+              <span className="text-primary dark:text-primary">
                 Sustainable and Inclusive Future.
               </span>
             </h1>
 
-            <p className="text-base md:text-lg leading-relaxed mb-6 max-w-xl min-h-[90px] md:min-h-[80px] text-white/90 drop-shadow-md">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl min-h-[90px] md:min-h-[80px]">
               <Typewriter
                 text="CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change."
                 delay={500}
                 speed={25}
                 repeatDelay={5000}
               />
-              <span className="animate-pulse ml-[1px] font-bold text-white">|</span>
+              <span className="animate-pulse ml-[1px] font-bold">|</span>
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
               {pillars?.map((p) => (
                 <span
                   key={`hero-pillar-${p?.label}`}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-black/30 text-white backdrop-blur-sm border border-white/20`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${p?.color}`}
                 >
                   <p.icon size={12} />
                   {p?.label}

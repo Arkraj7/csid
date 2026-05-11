@@ -59,9 +59,9 @@ function CertificateCard({ preview = false }: { preview?: boolean }) {
         </div>
 
         {/* Signature line */}
-        <div className="flex items-end justify-center gap-8">
+        <div className="flex items-end justify-center gap-4 sm:gap-8">
           <div className="text-center">
-            <div className="h-8 border-b border-foreground/30 mb-1 w-28 mx-auto" />
+            <div className="h-6 sm:h-8 border-b border-foreground/30 mb-1 w-24 sm:w-28 mx-auto" />
             <div className="text-xs text-muted-foreground">Course Director, CSID</div>
           </div>
           <div className="text-center">

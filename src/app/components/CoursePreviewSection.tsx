@@ -44,11 +44,11 @@ export default function CoursePreviewSection() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {course.title}
                 </h3>
 
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-grow line-clamp-3">
+                <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base mb-6 flex-grow line-clamp-3">
                   {course.description}
                 </p>
 

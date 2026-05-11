@@ -94,11 +94,14 @@ export default function TestimonialsSection() {
         <div className="flex animate-infinite-scroll">
           {loopItems.map((testimonial, idx) => (
             // Fixed width ensures exactly ~3 show up on desktop at a time
-            <div key={`testimonial-${idx}`} className="px-4 w-[380px] md:w-[450px] flex-shrink-0">
+            <div
+              key={`testimonial-${idx}`}
+              className="px-2 sm:px-3 md:px-4 w-[300px] sm:w-[340px] md:w-[400px] flex-shrink-0"
+            >
               <div className="h-full bg-card border border-border rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between cursor-default">
                 <div>
                   <Quote size={32} className="text-primary/20 mb-6" />
-                  <p className="text-foreground font-medium text-sm md:text-base leading-relaxed mb-10">
+                  <p className="text-foreground font-medium text-xs sm:text-sm leading-relaxed mb-8 sm:mb-10">
                     &quot;{testimonial.quote}&quot;
                   </p>
                 </div>

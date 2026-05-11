@@ -619,6 +619,31 @@ export default function HeroBanner() {
           <div className="hidden lg:block w-full" ref={containerRef}>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
               <DayNightScene isNight={isNight} />
+              <div className="absolute bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-black/60 via-black/40 to-transparent text-left">
+                <span
+                  className={`text-xs font-bold uppercase tracking-widest mb-2 block ${
+                    isNight ? 'text-indigo-300' : 'text-emerald-400'
+                  }`}
+                >
+                  {isNight ? 'Night Mode' : 'Day Mode'}
+                </span>
+                <h2 className="text-3xl font-serif leading-tight mb-3 text-white font-medium">
+                  Put your climate awareness to the test!
+                </h2>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                  Challenge yourself with our interactive climate quiz.
+                </p>
+                <Link
+                  href="/climate-awareness"
+                  className={`inline-block px-6 py-2.5 font-semibold rounded-lg text-sm hover:scale-105 transition-all duration-200 shadow-lg ${
+                    isNight
+                      ? 'bg-indigo-500 text-white hover:bg-indigo-400 shadow-indigo-500/30'
+                      : 'bg-emerald-500 text-white hover:bg-emerald-400 shadow-emerald-500/30'
+                  }`}
+                >
+                  Test Your Climate Awareness
+                </Link>
+              </div>
             </div>
           </div>
         </div>

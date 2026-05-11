@@ -6,7 +6,7 @@ export const biodiversityConservationCourse = {
   title: 'Biodiversity and Conservation in the Indian Subcontinent',
   description:
     "A comprehensive exploration of India's biogeography, ecosystem economics, anthropogenic threats, and conservation policies.",
-  image: '/assets/images/courses/biodiversity-conservation.png',
+  image: '/csid/assets/images/Biodiversity & Conservation.png',
   level: 'Beginner',
   duration: '5 Modules',
   quizCount: 6,

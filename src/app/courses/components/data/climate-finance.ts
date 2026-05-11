@@ -6,7 +6,7 @@ export const climateFinanceCourse = {
   title: 'Climate Finance & Investing',
   description:
     'Master the macroeconomics of climate change, multilateral funds, carbon markets, ESG reporting frameworks, and the future of global green finance.',
-  image: '/assets/images/course-climate-finance.png',
+  image: '/csid/assets/images/Climate Finance & Investing (2).png',
   level: 'Advanced',
   duration: '6 Modules',
   quizCount: 7,

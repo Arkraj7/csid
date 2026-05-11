@@ -544,8 +544,9 @@ export default function HeroBanner() {
     <section className="relative overflow-hidden bg-hero-pattern">
       {/* Hero Image Background */}
       <div className="absolute inset-0 z-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://minimax-algeng-chat-tts-us.oss-us-east-1.aliyuncs.com/ccv2%2F2026-05-11%2FMiniMax-M2.7%2F1985441370147393974%2F0087183831021633f4b3a06208a7925f12e221b93a9f286d615bfdfd615540ef..png"
+          src="/csid/assets/images/hero-bg.png"
           alt="CSID Hero"
           className="w-full h-full object-cover object-center"
         />
@@ -615,47 +616,9 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          <div className="hidden lg:flex items-center justify-center" ref={containerRef}>
-            <div
-              className={`relative rounded-3xl overflow-hidden max-w-xl transition-all duration-1000 ${
-                isNight
-                  ? 'bg-[#0a1628]/70 backdrop-blur-xl border border-indigo-500/30'
-                  : 'bg-white/80 backdrop-blur-md border border-white/30 shadow-2xl'
-              }`}
-            >
-              <div className="p-10">
-                <span
-                  className={`text-xs font-bold uppercase tracking-widest mb-3 block ${
-                    isNight ? 'text-indigo-300' : 'text-emerald-600'
-                  }`}
-                >
-                  {isNight ? 'Night Mode' : 'Day Mode'}
-                </span>
-                <h2
-                  className={`text-3xl font-serif leading-tight mb-3 font-medium ${
-                    isNight ? 'text-white' : 'text-emerald-800'
-                  }`}
-                >
-                  Put your climate awareness to the test!
-                </h2>
-                <p
-                  className={`text-sm leading-relaxed mb-6 ${
-                    isNight ? 'text-slate-300' : 'text-gray-600'
-                  }`}
-                >
-                  Challenge yourself with our interactive climate quiz.
-                </p>
-                <Link
-                  href="/climate-awareness"
-                  className={`inline-block px-6 py-2.5 font-semibold rounded-lg text-sm hover:scale-105 transition-all duration-200 shadow-lg ${
-                    isNight
-                      ? 'bg-indigo-500 text-white hover:bg-indigo-400 shadow-indigo-500/30'
-                      : 'bg-emerald-500 text-white hover:bg-emerald-400 shadow-emerald-500/30'
-                  }`}
-                >
-                  Test Your Climate Awareness
-                </Link>
-              </div>
+          <div className="hidden lg:block w-full" ref={containerRef}>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+              <DayNightScene isNight={isNight} />
             </div>
           </div>
         </div>

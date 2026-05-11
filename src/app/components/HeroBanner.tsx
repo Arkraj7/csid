@@ -554,6 +554,8 @@ export default function HeroBanner() {
           alt="CSID Hero"
           className="w-full h-full object-cover object-center"
         />
+        {/* Mobile overlay to hide girl and bird */}
+        <div className="absolute inset-0 bg-white/90 dark:bg-[#0a1628]/90 pointer-events-none md:hidden" />
         {/* Dark overlay for night mode */}
         <div
           className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -562,7 +564,7 @@ export default function HeroBanner() {
         />
       </div>
 
-      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
+      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 pt-20 pb-16 md:pt-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-gray-900 dark:text-white drop-shadow-sm">

@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import CorporateSustainabilityGraphic from '@/app/components/CorporateSustainabilityGraphic';
-// Update the import path to point to your new 'data' folder
+import Image from 'next/image';
 import { courses } from '@/app/courses/components/data';
 
 export default function CoursePreviewSection() {
-  // Grab the latest 3 courses to feature on the homepage
   const featuredCourses = courses.slice(0, 3);
 
   return (
@@ -25,9 +23,9 @@ export default function CoursePreviewSection() {
               key={course.id}
               className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-lg dark:shadow-gray-700/50 overflow-hidden hover:shadow-xl dark:hover:shadow-2xl transition-shadow duration-300 flex flex-col"
             >
-              {/* Course Image - Now using Corporate Sustainability Graphic */}
+              {/* Course Image */}
               <div className="relative h-48 w-full bg-gray-200 dark:bg-gray-700">
-                <CorporateSustainabilityGraphic className="w-full h-full" />
+                <Image src={course.image} alt={course.title} fill className="object-cover" />
               </div>
 
               {/* Course Content */}

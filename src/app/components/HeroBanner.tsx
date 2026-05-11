@@ -542,34 +542,47 @@ export default function HeroBanner() {
 
   return (
     <section className="relative overflow-hidden">
-      {/* Hero Background */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#fafaf5] to-[#e8f4ea]" />
+      {/* Hero Background Image */}
+      <div className="absolute inset-0 z-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/csid/assets/images/hero-bg.png"
+          alt="CSID Hero"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Dark overlay for night mode */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            isNight ? 'opacity-90 bg-[#0a1628]' : 'opacity-0'
+          }`}
+        />
+      </div>
 
       <div className="relative z-10 max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-emerald-800 dark:text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-gray-900 dark:text-white drop-shadow-sm">
               Empowering Action for a{' '}
-              <span className="text-primary dark:text-primary">
+              <span className="text-primary dark:text-emerald-400">
                 Sustainable and Inclusive Future.
               </span>
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl min-h-[90px] md:min-h-[80px]">
+            <p className="text-base md:text-lg leading-relaxed mb-6 max-w-xl min-h-[90px] md:min-h-[80px] text-gray-700 dark:text-gray-200 drop-shadow-sm">
               <Typewriter
                 text="CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change."
                 delay={500}
                 speed={25}
                 repeatDelay={5000}
               />
-              <span className="animate-pulse ml-[1px] font-bold">|</span>
+              <span className="animate-pulse ml-[1px] font-bold text-gray-900 dark:text-white">|</span>
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
               {pillars?.map((p) => (
                 <span
                   key={`hero-pillar-${p?.label}`}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${p?.color}`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/70 dark:bg-gray-800/70 text-gray-800 dark:text-gray-200 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50`}
                 >
                   <p.icon size={12} />
                   {p?.label}

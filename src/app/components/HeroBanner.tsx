@@ -575,7 +575,9 @@ export default function HeroBanner() {
                 speed={25}
                 repeatDelay={5000}
               />
-              <span className="animate-pulse ml-[1px] font-bold text-gray-900 dark:text-white">|</span>
+              <span className="animate-pulse ml-[1px] font-bold text-gray-900 dark:text-white">
+                |
+              </span>
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">

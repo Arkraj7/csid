@@ -506,7 +506,6 @@ const DayNightScene = ({ isNight }: { isNight: boolean }) => {
 
 export default function HeroBanner() {
   const containerRef = useRef(null);
-  const textRef = useRef(null);
   const [isNight, setIsNight] = useState(false);
 
   // Sync with system/site dark mode on mount and when it changes
@@ -532,7 +531,7 @@ export default function HeroBanner() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        textRef.current,
+        containerRef.current,
         { y: 20, autoAlpha: 0 },
         { y: 0, autoAlpha: 1, duration: 1, ease: 'power2.out', delay: 0.5 }
       );
@@ -543,35 +542,46 @@ export default function HeroBanner() {
 
   return (
     <section className="relative overflow-hidden bg-hero-pattern">
-      <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-teal-50/60 to-emerald-50 dark:from-green-950/40 dark:via-teal-950/30 dark:to-emerald-950/20" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/4" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
+      {/* Hero Image Background */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://minimax-algeng-chat-tts-us.oss-us-east-1.aliyuncs.com/ccv2%2F2026-05-11%2FMiniMax-M2.7%2F1985441370147393974%2F0087183831021633f4b3a06208a7925f12e221b93a9f286d615bfdfd615540ef..png"
+          alt="CSID Hero"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Dark overlay when night mode - makes image dark so elements shine */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            isNight ? 'opacity-80 bg-[#0a1628]/90' : 'opacity-0'
+          }`}
+        />
+      </div>
 
-      <div className="relative max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
+      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-5 text-balance text-white drop-shadow-lg">
               Empowering Action for a{' '}
-              <span className="text-primary dark:text-primary">
+              <span className="text-emerald-300 drop-shadow-md">
                 Sustainable and Inclusive Future.
               </span>
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl min-h-[90px] md:min-h-[80px]">
+            <p className="text-base md:text-lg leading-relaxed mb-6 max-w-xl min-h-[90px] md:min-h-[80px] text-white/90 drop-shadow-md">
               <Typewriter
                 text="CSID delivers structured, research-backed courses on climate mitigation, adaptation, resilience, and recovery — empowering learners and professionals to drive meaningful change."
                 delay={500}
                 speed={25}
                 repeatDelay={5000}
               />
-              <span className="animate-pulse ml-[1px] font-bold">|</span>
+              <span className="animate-pulse ml-[1px] font-bold text-white">|</span>
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
               {pillars?.map((p) => (
                 <span
                   key={`hero-pillar-${p?.label}`}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${p?.color}`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-black/30 text-white backdrop-blur-sm border border-white/20`}
                 >
                   <p.icon size={12} />
                   {p?.label}
@@ -605,23 +615,34 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          <div className="hidden lg:block w-full" ref={containerRef}>
-            <div className="relative rounded-3xl overflow-hidden">
-              <DayNightScene isNight={isNight} />
-
-              <div
-                className="absolute z-50 bottom-0 left-0 w-full px-8 pb-8 pt-24 bg-gradient-to-t from-black/60 via-black/40 to-transparent text-left"
-                ref={textRef}
-              >
+          <div className="hidden lg:flex items-center justify-center" ref={containerRef}>
+            <div
+              className={`relative rounded-3xl overflow-hidden max-w-xl transition-all duration-1000 ${
+                isNight
+                  ? 'bg-[#0a1628]/70 backdrop-blur-xl border border-indigo-500/30'
+                  : 'bg-white/80 backdrop-blur-md border border-white/30 shadow-2xl'
+              }`}
+            >
+              <div className="p-10">
                 <span
-                  className={`text-xs font-bold uppercase tracking-widest mb-2 block ${isNight ? 'text-indigo-300' : 'text-emerald-400'}`}
+                  className={`text-xs font-bold uppercase tracking-widest mb-3 block ${
+                    isNight ? 'text-indigo-300' : 'text-emerald-600'
+                  }`}
                 >
                   {isNight ? 'Night Mode' : 'Day Mode'}
                 </span>
-                <h2 className="text-3xl font-serif leading-tight mb-3 text-white font-medium">
+                <h2
+                  className={`text-3xl font-serif leading-tight mb-3 font-medium ${
+                    isNight ? 'text-white' : 'text-emerald-800'
+                  }`}
+                >
                   Put your climate awareness to the test!
                 </h2>
-                <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                <p
+                  className={`text-sm leading-relaxed mb-6 ${
+                    isNight ? 'text-slate-300' : 'text-gray-600'
+                  }`}
+                >
                   Challenge yourself with our interactive climate quiz.
                 </p>
                 <Link

@@ -15,6 +15,7 @@ import {
   Volume2,
 } from 'lucide-react';
 import { updateUserProgress } from '@/lib/progress';
+import BiodiversityMap from './BiodiversityMap';
 
 type QuizQuestion = {
   id: string;
@@ -24,10 +25,24 @@ type QuizQuestion = {
   explanation: string;
 };
 
+type Hotspot = {
+  name: string;
+  coords: [number, number];
+  description: string;
+};
+
+type InteractiveContent = {
+  type: 'map';
+  title: string;
+  description: string;
+  hotspots: Hotspot[];
+};
+
 type CourseChapter = {
   id: string;
   title: string;
   content: string;
+  interactiveContent?: InteractiveContent;
   quiz?: QuizQuestion[];
 };
 
@@ -454,6 +469,18 @@ export default function ChapterContent({
           );
         })}
       </div>
+
+      {chapter.interactiveContent && chapter.interactiveContent.type === 'map' && (
+        <div className="mb-12">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+            {chapter.interactiveContent.title}
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6">
+            {chapter.interactiveContent.description}
+          </p>
+          <BiodiversityMap hotspots={chapter.interactiveContent.hotspots} />
+        </div>
+      )}
 
       {requiresQuiz && (
         <section className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5 md:p-8 mb-12 border border-gray-200 dark:border-gray-700">

@@ -16,6 +16,28 @@ export const biodiversityConservationCourse = {
     {
       id: 'module-1',
       title: 'Module 1: Biogeographic Foundations and Megadiversity',
+      interactiveContent: {
+        type: 'map',
+        title: "Interactive Map: India's Biodiversity Hotspots",
+        description: "Explore the major biodiversity hotspots of India by interacting with the map below. Click on each marker to learn more about these ecologically significant regions.",
+        hotspots: [
+          {
+            name: "Western Ghats",
+            coords: [10.1520, 76.9535],
+            description: "Older than the Himalaya mountains, the mountain chain of the Western Ghats represents geomorphic features of immense importance with unique biophysical and ecological processes."
+          },
+          {
+            name: "Sundarbans",
+            coords: [21.9497, 89.1833],
+            description: "The largest single block of tidal halophytic mangrove forest in the world, home to the Royal Bengal Tiger."
+          },
+          {
+            name: "The Himalayas",
+            coords: [27.3516, 88.3239],
+            description: "The Eastern Himalayas are a global biodiversity hotspot, featuring dramatic variations in elevation and incredibly rich alpine and sub-alpine flora and fauna."
+          }
+        ]
+      },
       content: `### Introduction
 The first module establishes the spatial and statistical baseline for understanding biodiversity within the Indian subcontinent. It begins by examining India's classification as one of the world's 17 megadiverse nations, a designation based on a rigorous assessment of species richness and endemism. The analysis extends beyond a simple cataloguing of life forms to explore the evolutionary and geological reasons behind this diversity, including the stability provided by the Indian tectonic plate and the country's varied topographic features ranging from the world's tallest mountains to vast coastal deltas.
 

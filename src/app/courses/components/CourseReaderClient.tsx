@@ -15,10 +15,24 @@ type QuizQuestion = {
   explanation: string;
 };
 
+type Hotspot = {
+  name: string;
+  coords: [number, number];
+  description: string;
+};
+
+type InteractiveContent = {
+  type: 'map';
+  title: string;
+  description: string;
+  hotspots: Hotspot[];
+};
+
 type CourseChapter = {
   id: string;
   title: string;
   content: string;
+  interactiveContent?: InteractiveContent;
   quiz?: QuizQuestion[];
 };
 

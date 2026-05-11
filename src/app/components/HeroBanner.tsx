@@ -9,22 +9,26 @@ const pillars = [
   {
     icon: Leaf,
     label: 'Mitigation',
-    color: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+    color:
+      'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700',
   },
   {
     icon: Droplets,
     label: 'Adaptation',
-    color: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300',
+    color:
+      'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 border border-blue-200 dark:border-blue-700',
   },
   {
     icon: Shield,
     label: 'Resilience',
-    color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
+    color:
+      'bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300 border border-purple-200 dark:border-purple-700',
   },
   {
     icon: Hammer,
     label: 'Recovery',
-    color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+    color:
+      'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 border border-amber-200 dark:border-amber-700',
   },
 ];
 
@@ -584,7 +588,7 @@ export default function HeroBanner() {
               {pillars?.map((p) => (
                 <span
                   key={`hero-pillar-${p?.label}`}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/70 dark:bg-gray-800/70 text-gray-800 dark:text-gray-200 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${p?.color}`}
                 >
                   <p.icon size={12} />
                   {p?.label}

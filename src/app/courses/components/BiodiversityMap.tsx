@@ -55,12 +55,13 @@ export default function BiodiversityMap({ hotspots }: BiodiversityMapProps) {
     const createMap = () => {
       if (!mapRef.current || mapRef.current.querySelector('.leaflet-container')) return;
 
-      const L = window.L as unknown as any;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const L = window.L as any;
       const map = L.map(mapRef.current).setView([22.5937, 78.9629], 5);
 
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
 
       hotspots.forEach((spot) => {

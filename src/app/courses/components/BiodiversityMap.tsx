@@ -12,13 +12,28 @@ type BiodiversityMapProps = {
   hotspots: Hotspot[];
 };
 
-// Leaflet is loaded via script tag, so we declare it on window
+// Extend window to include Leaflet
 declare global {
   interface Window {
-    L: {
-      map: (el: HTMLElement) => unknown;
-      tileLayer: (url: string, options: unknown) => unknown;
-      marker: (coords: [number, number]) => unknown;
+    L?: {
+      map: (
+        el: HTMLElement,
+        options?: unknown
+      ) => {
+        setView: (center: [number, number], zoom: number) => unknown;
+        invalidateSize: () => void;
+      };
+      tileLayer: (url: string, options: unknown) => { addTo: (map: unknown) => unknown };
+      marker: (
+        coords: [number, number],
+        options?: unknown
+      ) => {
+        addTo: (map: unknown) => {
+          addTo: (map: unknown) => unknown;
+          bindPopup: (content: string) => unknown;
+        };
+        bindPopup: (content: string) => unknown;
+      };
     };
   }
 }
@@ -26,52 +41,92 @@ declare global {
 export default function BiodiversityMap({ hotspots }: BiodiversityMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!mapRef.current) return;
 
-    const initMap = () => {
-      if (typeof window.L === 'undefined') {
+    const loadLeaflet = async () => {
+      try {
+        // Check if Leaflet is already loaded
+        if (window.L) {
+          initMap();
+          return;
+        }
+
+        // Load Leaflet CSS
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
         document.head.appendChild(link);
 
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-        script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
-        script.crossOrigin = '';
-        script.onload = () => {
-          setIsLoading(false);
-          createMap();
-        };
-        document.head.appendChild(script);
-      } else {
+        // Load Leaflet JS
+        await new Promise<void>((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+          script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+          script.crossOrigin = '';
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error('Failed to load Leaflet'));
+          document.head.appendChild(script);
+        });
+
+        initMap();
+      } catch (_err) {
+        setError('Failed to load map');
         setIsLoading(false);
-        createMap();
       }
     };
 
-    const createMap = () => {
-      if (!mapRef.current || mapRef.current.querySelector('.leaflet-container')) return;
+    const initMap = () => {
+      if (!mapRef.current || !window.L) return;
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const L = window.L as any;
-      const map = L.map(mapRef.current).setView([22.5937, 78.9629], 5);
+      // Check if map already initialized
+      if (mapRef.current.querySelector('.leaflet-container')) {
+        setIsLoading(false);
+        return;
+      }
 
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      const L = window.L;
+
+      const map = L.map(mapRef.current, {
+        center: [22.5937, 78.9629],
+        zoom: 5,
+        zoomControl: true,
+        attributionControl: true,
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
       }).addTo(map);
 
       hotspots.forEach((spot) => {
-        const marker = L.marker(spot.coords).addTo(map);
-        marker.bindPopup(`<b>${spot.name}</b><br>${spot.description}`);
+        const marker = L.marker(spot.coords as [number, number], {
+          title: spot.name,
+        }).addTo(map);
+        marker.bindPopup(`<strong>${spot.name}</strong><br>${spot.description}`);
       });
+
+      // Force map to recalculate size
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 100);
+
+      setIsLoading(false);
     };
 
-    initMap();
+    loadLeaflet();
   }, [hotspots]);
+
+  if (error) {
+    return (
+      <div className="my-8 rounded-xl overflow-hidden border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20 p-8 text-center">
+        <p className="text-red-600 dark:text-red-400">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="my-8 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
@@ -83,7 +138,11 @@ export default function BiodiversityMap({ hotspots }: BiodiversityMapProps) {
           </div>
         </div>
       )}
-      <div ref={mapRef} className={`h-[400px] w-full ${isLoading ? 'hidden' : ''}`} />
+      <div
+        ref={mapRef}
+        className={`h-[400px] w-full ${isLoading ? 'hidden' : ''}`}
+        style={{ minHeight: '400px' }}
+      />
     </div>
   );
 }

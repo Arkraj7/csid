@@ -543,20 +543,7 @@ export default function HeroBanner() {
   return (
     <section className="relative overflow-hidden bg-hero-pattern">
       {/* Hero Image Background */}
-      <div className="absolute inset-0 z-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/csid/assets/images/hero-bg.png"
-          alt="CSID Hero"
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Dark overlay when night mode - makes image dark so elements shine */}
-        <div
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            isNight ? 'opacity-90 bg-[#0a1628]/95' : 'opacity-30 bg-black/40'
-          }`}
-        />
-      </div>
+      <div className="absolute inset-0 z-0 bg-[#fafaf5]" />
 
       <div className="relative z-10 max-w-screen-2xl mx-auto px-4 lg:px-8 xl:px-10 2xl:px-16 py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

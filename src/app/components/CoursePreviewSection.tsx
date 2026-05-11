@@ -25,7 +25,7 @@ export default function CoursePreviewSection() {
             >
               {/* Course Image */}
               <div className="relative h-48 w-full bg-gray-200 dark:bg-gray-700">
-                <Image src={course.image} alt={course.title} fill className="object-cover" />
+                <Image src={course.image} alt={course.title} fill className="object-cover object-[center_top]" />
               </div>
 
               {/* Course Content */}
